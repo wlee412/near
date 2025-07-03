@@ -21,6 +21,7 @@ public class Client{
     private String socialPlatform;
     private String socialId;
     private String interest;
-    private String emailVerifed;
+    private String emailVerified;
+    private int state;
     private Timestamp regDate;
 }
