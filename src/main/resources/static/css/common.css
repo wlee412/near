@@ -1,3 +1,7 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
 html, body {
   height: 100%;
   margin: 0;
@@ -7,6 +11,7 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
 
 .wrapper {
   flex: 1;
@@ -25,13 +30,13 @@ header, footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 12px 24px;
 }
 
 .footer-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: 12px 24px;
   font-size: 14px;
   color: #555;
   display: flex;
@@ -48,10 +53,14 @@ header, footer {
   text-decoration: underline;
 }
 
-.logo {
+.logo a {
   font-size: 28px;
   font-weight: bold;
-  color: #5daec5;
+  color: #5daec5 !important;
+  text-decoration: none;
+}
+.logo a:hover {
+  color: #479bb0;
 }
 
 .center-menu {
