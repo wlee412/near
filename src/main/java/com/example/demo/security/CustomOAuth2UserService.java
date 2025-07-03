@@ -78,7 +78,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			client.setBirth(Date.valueOf("1900-01-01"));
 			client.setPhone("000-0000-0000");
 			client.setGender('N');
-			client.setEmailVerifed("N");
+			client.setEmailVerified("N");
 			clientMapper.socialInsert(client);
 			
 			client = clientMapper.findBySocialIdAndPlatform(socialId, platform);
