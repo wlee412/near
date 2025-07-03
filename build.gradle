@@ -25,6 +25,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' 
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
