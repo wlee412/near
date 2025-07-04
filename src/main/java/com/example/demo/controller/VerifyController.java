@@ -150,7 +150,7 @@ public class VerifyController {
 				// 인증 성공 -> ACCOUNT_VERIFICATION 테이블 인증성공 여부 & 인증시간 UPDATE
 			} else {
 				result = verifyService.updateVerificationTable(code, type);
-						 verifyService.updateClientTable(verification.getId());
+						 verifyService.updateClientTable(verification.getClientId());
 			}
 
 			// 결과 값 VIEW 페이지로 넘겨주기
@@ -183,7 +183,7 @@ public class VerifyController {
 		        }
 
 		        AccountVerification verification = new AccountVerification();
-		        verification.setId(client.getClientId());
+		        verification.setClientId(client.getClientId());
 		        verification.setCode(code);
 		        verification.setType("FIND_ID");
 		        verification.setExpiresAt(Timestamp.valueOf(LocalDateTime.now().plusMinutes(10)));
@@ -221,11 +221,12 @@ public class VerifyController {
 	        }
 
 	        AccountVerification verification = new AccountVerification();
-	        verification.setId(client.getClientId());
+	        verification.setClientId(client.getClientId());
 	        verification.setCode(code);
 	        verification.setType("FIND_PASSWORD");
 	        verification.setExpiresAt(Timestamp.valueOf(LocalDateTime.now().plusMinutes(10)));
-
+	        verification.setUsedAt(null);
+	        
 	        verifyService.insertVerification(verification);
 	        emailService.sendFindPwEmail(client.getEmailId() + "@" + client.getEmailDomain(), code);
 

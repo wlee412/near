@@ -9,9 +9,9 @@ import com.example.demo.model.Client;
 @Mapper
 public interface ClientMapper {
 
-	public int countById(@Param("id") String id);
+	public int countById(@Param("clientId") String clientId);
 
-	public int countByNickname(@Param("nickname") String nickname);
+//	public int countByNickname(@Param("nickname") String nickname);
 
 	public int insert(Client client);
 

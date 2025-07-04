@@ -70,16 +70,16 @@ public class ClientService {
 		return clientMapper.countById(id) > 0;
 	}
 	
-	public boolean checkNicknameExists(String nickname) {
-		return clientMapper.countByNickname(nickname) > 0;
-	}
+//	public boolean checkNicknameExists(String nickname) {
+//		return clientMapper.countByNickname(nickname) > 0;
+//	}
 	
 	public Client findByEmailForRegister(String email) {
 		return clientMapper.selectByEmailForRegister(email);
 	}
 	
-	public boolean registerClient(Client member) {
-		return clientMapper.insert(member) > 0;
+	public boolean registerClient(Client client) {
+		return clientMapper.insert(client) > 0;
 	}
 	
 	

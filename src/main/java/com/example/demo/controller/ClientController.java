@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -66,12 +67,12 @@ public class ClientController {
 	}
 
 	// 닉네임 중복 확인
-	@ResponseBody
-	@GetMapping("/check-nickname")
-	public String checkNickname(@RequestParam("nickname") String nickname) {
-		boolean exists = clientService.checkNicknameExists(nickname);
-		return exists ? "duplicate" : "ok";
-	}
+//	@ResponseBody
+//	@GetMapping("/check-nickname")
+//	public String checkNickname(@RequestParam("nickname") String nickname) {
+//		boolean exists = clientService.checkNicknameExists(nickname);
+//		return exists ? "duplicate" : "ok";
+//	}
 
 	// 이메일 중복 확인
 	@PostMapping("/checkEmailDuplicate")
@@ -84,8 +85,11 @@ public class ClientController {
 
 	//회원가입 폼
 	@PostMapping("/register")
-	public String register(Client client, @RequestParam("pwConfirm") String pwConfirm, Model model,
-			RedirectAttributes redirectAttributes) {
+	public String register(Client client, 
+						   @RequestParam("pwConfirm") String pwConfirm, 
+						   @RequestParam(value = "interestList", required = false) List<String> interestList,
+						   Model model,
+						   RedirectAttributes redirectAttributes) {
 
 		// ===== 2. 비밀번호확인 =====
 		if (!client.getPassword().equals(pwConfirm)) {
@@ -99,7 +103,14 @@ public class ClientController {
 		// 정상회원 상태값 명시적 0으로 설정
 //		client.setState(0); //
 //		System.out.println("state: " + client.getState());
-
+		
+		if (interestList != null && !interestList.isEmpty()) {
+		    String interestStr = String.join(",", interestList);
+		    client.setInterest(interestStr);  // 이제 정상 작동
+		} else {
+		    client.setInterest(""); // 선택 안 했을 경우
+		}
+		
 		// ===== 4. 비밀번호 암호화 =====
 		client.setPassword(passwordEncoder.encode(client.getPassword()));
 
@@ -122,7 +133,7 @@ public class ClientController {
 		Timestamp expiresAt = new Timestamp(System.currentTimeMillis() + 10 * 60 * 1000);
 
 		AccountVerification verification = new AccountVerification();
-		verification.setId(client.getClientId());
+		verification.setClientId(client.getClientId());
 		verification.setCode(token);
 		verification.setType("MEMBER_JOIN");
 		verification.setExpiresAt(expiresAt);

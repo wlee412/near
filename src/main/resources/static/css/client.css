@@ -1,0 +1,390 @@
+/* =============================
+📌 기본세팅
+============================= */
+
+html,body {
+	/* 	background-color: #f4f6f9; */
+	background-color: #ffffff;
+	margin: 0;
+/* 	padding: 40px; */
+	height:100%;
+}
+/* 전체 레이아웃 */
+.content-wrapper {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+	max-width: 480px;
+	margin: 50px auto;
+	padding: 24px;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 아이디비번찾기 */
+.containerbox {
+	max-width: 480px;
+/* 	margin: 250px auto; */
+	margin: 250px auto;
+	padding: 24px;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* =============================
+📌  제목 / 구분선
+============================= */
+.title {
+	font-size: 26px;
+	font-weight: 700;
+	margin-bottom: 30px;
+	color: #222;
+}
+
+.divider {
+	height: 2px;
+	background-color: #e0e0e0;
+	margin: 24px 0;
+}
+
+/* =============================
+📌 폼 그룹 공통
+============================= */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	font-size: 15px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"],
+	input[type="date"], select {
+	width: 100%; /* ✅ 전체 너비 */
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 16px;
+	background-color: #f9f9f9;
+	transition: border 0.2s ease;
+}
+
+input:focus, select:focus {
+	border-color: #555;
+	outline: none;
+	background-color: #fff;
+}
+
+/* =============================
+📌 성별, 체크박스, 라디오
+============================= */
+.radio-group, .checkbox-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: center;
+	margin-top: 6px;
+}
+
+.checkbox-group {
+	font-weight: 600;
+}
+
+.radio-group label, .checkbox-group label {
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 15px;
+	color: #333;
+	white-space: nowrap; /* ✅ 줄바꿈 방지! */
+}
+
+/* =============================
+📌 이메일 행 (인증 버튼 옆)
+============================= */
+.input-row {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	flex-wrap: wrap; /* 혹시 모를 넘침 방지 */
+}
+
+.input-row input, .input-row select {
+	flex: 1;
+}
+
+.input-row span {
+	font-size: 16px;
+}
+
+.input-row button {
+	white-space: nowrap;
+	background-color: white;
+	border: 1px solid #222;
+	padding: 10px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.2s;
+}
+
+.input-row button:hover {
+	background-color: #f2f2f2;
+}
+
+/* =============================
+📌 결과 메시지
+============================= */
+.result-text {
+	font-size: 13px;
+	color: gray;
+	margin-top: 5px;
+}
+
+/* =============================
+📌 체크박스 설명
+============================= */
+.checkbox-group .subtext {
+	font-size: 13px;
+	color: #555;
+	margin-left: 6px;
+	font-weight: 400;
+}
+
+/* =============================
+📌 버튼 (가입하기 / 수정하기 / 회원탈퇴 취소 전용)
+============================= */
+/* ✅ 공통 버튼 스타일 */
+.btn {
+ padding: 12px 30px;
+  font-size: 16px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 30px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #4a9cb1;
+}
+
+/* ✅ 단일 버튼용 */
+.btn-full {
+	width: 100%;
+}
+
+.btn-full:hover {
+	background-color: #444;
+}
+
+/* ✅ 나란히 정렬할 때: 부모가 flex, 자식이 반반 */
+.button-row {
+	display: flex !important;
+	flex-direction: row !important;
+	gap: 10px;
+	width: 100%;
+	margin-top: 30px; /* ✅ 이 줄 추가해서 간격 벌리기 */
+}
+
+.btn-half {
+	flex: 1;
+}
+
+.btn-half:hover {
+	background-color: #444;
+}
+
+/* =============================
+📌 readonly input 스타일 (아이디 등)
+============================= */
+input[readonly] {
+	background-color: #e9ecef;
+	color: #666;
+	cursor: not-allowed;
+}
+
+/* =============================
+📌 수정 제목 대응 (회원가입과 구분되게)
+============================= */
+.update-title {
+	font-size: 26px;
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+/* =============================
+📌 아이디 / 비밀번호 찾기 ( 탭 메뉴)
+============================= */
+/* 탭 메뉴 */
+.tab-menu {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.tab-button {
+	padding: 10px 20px;
+	font-weight: bold;
+	background: none;
+	border: none;
+	font-size: 16px;
+	color: #aaa;
+	cursor: pointer;
+	border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+	color: #000;
+	border-bottom: 2px solid #000;
+}
+
+/* 탭 내용 숨기기 / 보이기 */
+.tab-content {
+	display: none;
+}
+
+.tab-content.active {
+	display: block;
+}
+
+/* 입력창 + 버튼 정렬 */
+.input-inline {
+	display: flex;
+	gap: 10px;
+	font-size: 14px;
+	margin-bottom: 15px;
+	flex-wrap: wrap;
+}
+
+.input-inline input {
+	flex: 1;
+	padding: 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #f8f8f8;
+}
+
+.input-inline input:focus {
+	border-color: #333;
+	background-color: #fff;
+}
+
+/* 버튼 스타일 */
+.btn-small {
+	width: 120px;
+	padding: 10px;
+	font-size: 14px;
+	background-color: #222;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.btn-small:hover {
+	background-color: #444;
+}
+
+/* 결과 메시지 */
+.result-text {
+	font-size: 14px;
+	color: gray;
+	margin-top: 10px;
+}
+
+.title {
+	font-size: 26px;
+	font-weight: bold;
+	color: #111;
+}
+
+.divider {
+	height: 1px;
+	background-color: #ddd;
+	margin: 20px 0;
+}
+
+/* 인증번호 전송, 확인, 비밀번호 변경 버튼 슬림 스타일 */
+.btn-slim {
+	display: inline-block;
+	width: 100%;
+	padding: 10px 16px;
+	font-size: 16px;
+	font-weight: normal; /* ✅ 기본 굵기 */
+	border: none;
+	border-radius: 6px;
+	margin-top: 5px;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.btn-slim:hover {
+	background-color: #444;
+}
+
+/* =============================
+📌 이메일 입력 필드 너비 비율 조정 추가
+============================= */
+#emailId {
+	flex: 1;
+	min-width: 100px;
+}
+
+#emailDomainSelect {
+	flex: 1;
+	min-width: 100px;
+}
+
+#customEmailDomain {
+	flex: 1;
+	min-width: 90px;
+}
+
+#pwCodeGroup label {
+	margin-bottom: 10px;
+}
+
+
+/*회원가입 로딩시.. 스피너 추가 */
+.input-row span {
+	width: 16px;
+	text-align: center;
+}
+
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    animation: rotate 1s linear infinite;
+    margin-top: 80px;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

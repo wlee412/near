@@ -35,3 +35,26 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# 보안 파일
+secret.properties
+.env
+
+# 로그
+*.log
+
+# 빌드 결과물
+/build/
+/test-output/
+/target/
+/*.jar
+/*.war
+
+# 캐시/임시
+.gradle/
+*.tmp
+*~
+
+# 기타 (이미 포함된 것과 병합 정리 가능)
+.idea/
+*.iml
