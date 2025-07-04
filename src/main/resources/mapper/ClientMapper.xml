@@ -80,7 +80,7 @@
 	<select id="login" parameterType="String" resultType="com.example.demo.model.Client">
 		SELECT *
 		FROM client
-		WHERE ID = #{clientId}
+		WHERE client_id = #{clientId}
 		AND state = 0
 	</select>
 	<!-- AND state IN (0, 2) 상태값 0,2 회원만 로그인 가능 -->

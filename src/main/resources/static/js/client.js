@@ -1,6 +1,5 @@
 /*회원가입 아이디 유효성 + 중복 검사 */
 
-
 async function validateForm() {
 //	const emailAd = document.querySelector('input[name="emailAd"]');
 	const isIdValid = await checkId(); // ✅ await 사용
@@ -377,26 +376,30 @@ function checkEmailDuplicateLive() {
 }
 
 //✅ 이벤트 연결
-document.addEventListener("DOMContentLoaded", function() {
-	const emailCheckResult = document.getElementById("emailCheckResult");
+document.addEventListener("DOMContentLoaded", function () {
+  const addListenerIfExists = (id, event, handler) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener(event, handler);
+  };
 
-	 //이메일 아이디 입력 중 실시간 중복검사 실행
-	document.getElementById("emailId").addEventListener("input", checkEmailDuplicateLive);
+  // 이메일 아이디 입력 중 실시간 중복검사
+  addListenerIfExists("emailId", "input", checkEmailDuplicateLive);
 
-	 //이메일 아이디 입력 후 blur 시 유효성 + 중복검사
-	document.getElementById("emailId").addEventListener("blur", function() {
-		validateEmailId(this);
-	});
+  // 이메일 아이디 입력 후 blur 시 유효성 검사
+  addListenerIfExists("emailId", "blur", function () {
+    validateEmailId(this);
+  });
 
-	// 도메인 선택 시 중복검사
-	document.getElementById("emailDomainSelect").addEventListener("change", handleDomainChange);
+  // 도메인 select 변경 시
+  addListenerIfExists("emailDomainSelect", "change", handleDomainChange);
 
-	// 직접입력 도메인 입력 중 실시간 중복검사 실행
-	document.getElementById("customEmailDomain").addEventListener("input", checkEmailDuplicateLive);
+  // 직접입력 도메인 입력 중 실시간 중복검사
+  addListenerIfExists("customEmailDomain", "input", checkEmailDuplicateLive);
 
-	// 직접입력 도메인 입력 완료 후 blur 시 중복검사
-	document.getElementById("customEmailDomain").addEventListener("blur", checkEmailDuplicate);
+  // 직접입력 도메인 blur 시 중복검사
+  addListenerIfExists("customEmailDomain", "blur", checkEmailDuplicate);
 });
+
 
 //성별 
 function getGender() {
@@ -409,27 +412,29 @@ function getGender() {
 	}
 }
 
-document.getElementById("registerBtn").addEventListener("click", function() {
-	let gender = getGender();
-	if (gender) {
-		console.log("선택된 성별:", gender);
-		// 이후 회원가입 데이터를 서버로 전송하는 로직 추가
-	}
-});
-
-// 생년월일
-document.addEventListener("DOMContentLoaded", function() {
-	var birthInput = document.getElementById("birth");
-
-	// 날짜가 선택되지 않으면 제출 방지
-	birthInput.addEventListener("blur", function() {
-		if (!birthInput.value) {
-			alert("생년월일을 반드시 선택해야 합니다!");
-			birthInput.focus();
+// 성별 버튼
+const registerBtn = document.getElementById("registerBtn");
+if (registerBtn) {
+	registerBtn.addEventListener("click", function () {
+		let gender = getGender();
+		if (gender) {
+			console.log("선택된 성별:", gender);
 		}
 	});
+}
+
+// 생년월일 유효성
+document.addEventListener("DOMContentLoaded", function () {
+	var birthInput = document.getElementById("birth");
+	if (birthInput) {
+		birthInput.addEventListener("blur", function () {
+			if (!birthInput.value) {
+				alert("생년월일을 반드시 선택해야 합니다!");
+				birthInput.focus();
+			}
+		});
+	}
 });
- 
 
 // 📌 필수 약관 동의 체크 여부 
 //function validateAgreementOnly() {
@@ -597,7 +602,7 @@ function sendIdCode() {
 
 	message.innerText = "⏳ 인증번호를 전송 중입니다...";
 	message.style.color = "gray";
-
+	
 	fetch("/verify/sendFindIdCode", {
 		method: "POST",
 		headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -606,11 +611,10 @@ function sendIdCode() {
 		.then(res => res.json())
 		.then(data => {
 
-			console.log("✅ data.id 값:", data.id);
 
 			if (data.success) {
 				idAuthCode = data.code;
-				idFound = data.id;
+				idFound = data.clientId;
 				document.getElementById("idMessage").innerText = "✅ 인증번호가 전송되었습니다.";
 			} else {
 				document.getElementById("idMessage").innerText = "❌ " + data.message;
@@ -623,25 +627,25 @@ function sendIdCode() {
 }
 
 // 아이디 인증번호 전송
-fetch("/verify/sendFindIdCode", {
-	method: "POST",
-	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-	body: new URLSearchParams({ email })
-})
+//fetch("/verify/sendFindIdCode", {
+//	method: "POST",
+//	headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//	body: new URLSearchParams({ email })
+//})
 
 // 이메일 존재 확인
-fetch("/verify/checkEmail", {
-	method: "POST",
-	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-	body: new URLSearchParams({ email })
-})
-
-// 비밀번호 인증번호 전송
-fetch("/verify/sendFindPwCode", {
-	method: "POST",
-	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-	body: new URLSearchParams({ email })
-})
+//fetch("/verify/checkEmail", {
+//	method: "POST",
+//	headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//	body: new URLSearchParams({ email })
+//})
+//
+//// 비밀번호 인증번호 전송
+//fetch("/verify/sendFindPwCode", {
+//	method: "POST",
+//	headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//	body: new URLSearchParams({ email })
+//})
 
 // 재원 - 아이디 찾기 코드 유효성 검사 (시작)  
 //아이디 찾기
@@ -658,7 +662,7 @@ function checkIdCode() {
 		.then(res => res.json())
 		.then(data => {
 			if (data.success) {
-				result.innerHTML = `✅ 회원님의 아이디는 <strong>${data.userId}</strong> 입니다.<br><br>
+				result.innerHTML = `✅ 회원님의 아이디는 <strong>${data.clientId}</strong> 입니다.<br><br>
                <a href="/client/login" style="color: black; text-decoration: none;">로그인 페이지로 이동하기</a>`;
 				result.style.color = "green";
 			} else {
@@ -733,6 +737,7 @@ function verifyCode() {
 		.then(res => res.json())
 		.then(data => {
 			if (data.success) {
+				document.getElementById("clientIdHidden").value = data.clientId; 
 				result.innerText = "✅ 인증 성공! 비밀번호를 재설정하세요.";
 				result.style.color = "green";
 				document.getElementById("resetPwSection").style.display = "block";
@@ -755,6 +760,9 @@ function resetPassword() {
 	const newPw = document.getElementById("newPw").value.trim();
 	const confirmPw = document.getElementById("confirmPw").value.trim();
 	const resetResult = document.getElementById("resetResult");
+	const clientId = document.getElementById("clientIdHidden").value.trim(); 
+
+
 
 	const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\\|[\]{};:'",.<>/?`~]).{8,}$/;
 
@@ -779,7 +787,7 @@ function resetPassword() {
 	fetch("/client/resetPassword", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ id: userId, newPassword: newPw })
+		body: JSON.stringify({ clientId: clientId, newPassword: newPw })
 	})
 		.then(res => res.json())
 		.then(data => {

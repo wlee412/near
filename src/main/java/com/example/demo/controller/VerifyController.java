@@ -82,7 +82,7 @@ public class VerifyController {
 	    }
 
 	    response.put("success", true);
-	    response.put("userId", client.getClientId());
+	    response.put("clientId", client.getClientId());
 	    return response;
 	}
 	
@@ -179,6 +179,7 @@ public class VerifyController {
 		        if (client == null) {
 		            result.put("success", false);
 		            result.put("message", "존재하지 않는 이메일입니다.");
+
 		            return result;
 		        }
 
@@ -193,7 +194,7 @@ public class VerifyController {
 		        
 		        result.put("success", true);
 		        result.put("code", code);
-		        result.put("id", client.getClientId());
+		        result.put("clientId", client.getClientId());
 		        return result;
 
 		    } catch (Exception e) {
@@ -232,6 +233,7 @@ public class VerifyController {
 
 	        result.put("success", true);
 	        result.put("code", code);
+	        result.put("clientId", client.getClientId());
 	        return result;
 
 	    } catch (Exception e) {

@@ -94,8 +94,9 @@ public class EmailService {
 	}
 
 	public void sendVerificationEmail(String to, String code) {
+		System.out.println("메일 전송 함수 진입"); 
 		String subject = "[Gamesamo]이메일 회원인증 요청";
-		String url = "http://3.34.122.138/verify/verifyCode?code=" + code + "&type=MEMBER_JOIN"; 
+		String url = "http://localhost/verify/verifyCode?code=" + code + "&type=MEMBER_JOIN"; 
 		String content = "" + "<html>"
 				+ "<body style='font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 30px;'>"
 				+ "<table style='margin: 0 auto; text-align: center'>" + "<tr>" + "<td style='text-align: center;'>"
@@ -115,9 +116,13 @@ public class EmailService {
 			helper.setFrom(new InternetAddress("2j1william@gmail.com", "Gamesemo"));
 			helper.setTo(to);
 			helper.setSubject(subject);
+			System.out.println("메일 전송 시도 완료"); 
 			helper.setText(content, true);
 			mailSender.send(message);
+	        System.out.println("메일 전송 성공");
+
 		} catch (Exception e) {
+	        System.out.println("메일 전송 중 예외 발생");
 			e.printStackTrace();
 		}
 

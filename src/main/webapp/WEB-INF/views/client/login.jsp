@@ -35,8 +35,8 @@
 			</div>
 			<!-- 			<div class="divider"></div> -->
 			<form action="/client/login" method="post">
-				<input type="text" name="id" placeholder="아이디" required> <input
-					type="password" name="pw" placeholder="비밀번호" required>
+				<input type="text" name="clientId" placeholder="아이디" required> 
+				<input type="password" name="password" placeholder="비밀번호" required>
 				<div class="login-options">
 					<label> <input type="checkbox" name="rememberMe">
 						로그인 상태 유지

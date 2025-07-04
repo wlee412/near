@@ -59,8 +59,8 @@ public class VerifyService{
 		return verifyMapper.findIdClient(email, domain);
 	}
 
-	public void updateClientTable(String id) {
-		verifyMapper.updateClientTable(id);
+	public void updateClientTable(String clientId) {
+		verifyMapper.updateClientTable(clientId);
 	}
 
 	

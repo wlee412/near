@@ -37,15 +37,17 @@
 	<update id="updateEmailVerified">
 		UPDATE client
 		SET EMAIL_VERIFIED = 'Y'
-		WHERE CLIENT_ID = (
+		WHERE CLIENT_ID
+		= (
 		SELECT CLIENT_ID
 		FROM account_verification
 		WHERE CODE = #{code}
-		AND TYPE = 'client_JOIN'
+		AND
+		TYPE = 'client_JOIN'
 		)
 	</update>
 
-	<update id="updateclientTable" parameterType="String">
+	<update id="updateClientTable" parameterType="String">
 		UPDATE client
 		SET
 		EMAIL_VERIFIED = 'Y'
@@ -62,31 +64,34 @@
 	</update>
 
 
-	<select id="findIdclient" parameterType="String"
-		resultType="com.example.demo.model.Client">
-		SELECT *
-		FROM client
-		WHERE CONCAT(email_id, '@',
-		email_domain) = #{email}
+	<select id="findIdClient" parameterType="String"
+		resultType="Client">
+		SELECT * FROM client
+		WHERE CONCAT(email_id, '@', email_domain) = #{email}
 	</select>
 
 	<select id="isEmailExist" resultType="int">
 		SELECT CASE
-		WHEN COUNT(*) > 0 THEN 1
+		WHEN COUNT(*) >
+		0 THEN 1
 		ELSE 0
 		END
 		FROM client
-		WHERE CONCAT(email_id, '@', email_domain) = #{email}
+		WHERE CONCAT(email_id, '@', email_domain)
+		= #{email}
 	</select>
 
 	<select id="findByEmailAndType"
 		resultType="com.example.demo.model.AccountVerification">
 		SELECT av.*
 		FROM account_verification av
-		JOIN client m ON av.client_id = m.client_id
-		WHERE CONCAT(m.email_id, '@', m.email_domain) = #{email}
+		JOIN client m ON
+		av.client_id = m.client_id
+		WHERE CONCAT(m.email_id, '@',
+		m.email_domain) = #{email}
 		AND av.type = #{type}
-		ORDER BY av.created_at DESC
+		ORDER BY av.created_at
+		DESC
 		LIMIT 1
 	</select>
 
