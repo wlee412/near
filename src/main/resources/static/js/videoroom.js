@@ -21,6 +21,8 @@ var doSimulcast = (getQueryStringValue("simulcast") === "yes" || getQueryStringV
 var doSimulcast2 = (getQueryStringValue("simulcast2") === "yes" || getQueryStringValue("simulcast2") === "true");
 var subscriber_mode = (getQueryStringValue("subscriber-mode") === "yes" || getQueryStringValue("subscriber-mode") === "true");
 
+var isPublished = true;
+
 $(document).ready(function() {
 	// Initialize Janus (자동 시작)
 	Janus.init({
@@ -49,7 +51,7 @@ $(document).ready(function() {
 							$('#registernow').removeClass('hide').show();
 							$('#register').click(registerUsername);
 							$('#roomname').focus();
-							$('#start').removeAttr('disabled').html("Stop")
+							$('#start').removeAttr('disabled').html("종료")
 								.click(function() {
 									$(this).attr('disabled', true);
 									janus.destroy();
@@ -245,11 +247,9 @@ $(document).ready(function() {
 							if ($('#myvideo').length === 0) {
 								$('#videolocal').append('<video class="rounded centered" id="myvideo" width="100%" height="100%" autoplay playsinline muted="muted"/>');
 								// Add a 'mute' button
-								$('#videolocal').append('<button class="btn btn-warning btn-xs" id="mute" style="position: absolute; bottom: 0px; left: 0px; margin: 15px;">Mute</button>');
 								$('#mute').click(toggleMute);
 								// Add an 'unpublish' button
-								$('#videolocal').append('<button class="btn btn-warning btn-xs" id="unpublish" style="position: absolute; bottom: 0px; right: 0px; margin: 15px;">Unpublish</button>');
-								$('#unpublish').click(unpublishOwnFeed);
+								$('#unpublish').click(toggleVideo);
 							}
 							$('#publisher').removeClass('hide').html(myusername).show();
 							Janus.attachMediaStream($('#myvideo').get(0), stream);
@@ -379,7 +379,7 @@ function registerUsername() {
 			room: myroom,
 			permanent: false,
 			record: false,
-			publishers: 6,
+			publishers: 2,
 			bitrate: 128000,
 			fir_freq: 10,
 			ptype: "publisher",
@@ -480,7 +480,34 @@ function toggleMute() {
 	else
 		sfutest.muteAudio();
 	muted = sfutest.isAudioMuted();
-	$('#mute').html(muted ? "Unmute" : "Mute");
+	$('#mute').html(muted ? "마이크 켜기" : "마이크 끄기");
+}
+
+// [윤성찬] 화면 송출
+function toggleVideo() {
+	$('#unpublish').attr('disabled', true).unbind('click');
+
+	if (isPublished) {
+		// 카메라 끄기
+		sfutest.send({
+			message: { request: "unpublish" },
+			success: function() {
+				isPublished = false;
+				$('#unpublish')
+					.text("카메라 켜기")
+					.attr('disabled', false)
+					.click(toggleVideo);
+			}
+		});
+	} else {
+		// 카메라 켜기
+		publishOwnFeed(true);
+		isPublished = true;
+		$('#unpublish')
+			.text("카메라 끄기")
+			.attr('disabled', false)
+			.click(toggleVideo);
+	}
 }
 
 // [jsflux] 방나가기

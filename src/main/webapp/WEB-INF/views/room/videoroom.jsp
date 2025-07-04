@@ -62,12 +62,6 @@ th, td {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="page-header">
-					<h1>
-						상담
-						<button class="btn btn-default" autocomplete="off" id="start">Start</button>
-					</h1>
-				</div>
 				<div class="container hide" id="videojoin">
 					<div class="row">
 						<div class="col-md-12" id="controls">
@@ -125,9 +119,10 @@ th, td {
 									</ul>
 								</div>
 							</div>
-							<button id="btn-mic">마이크</button>
-							<button id="btn-cam">카메라</button>
-							<button id="btn-end">종료</button>
+							<button id="mute" class="btn btn-warning btn-xs">마이크 끄기</button>
+							<button id="unpublish" class="btn btn-warning btn-xs">카메라</button>
+							<button class="btn btn-warning btn-xs" autocomplete="off"
+								id="start">시작</button>
 						</div>
 
 						<!-- 나 -->
