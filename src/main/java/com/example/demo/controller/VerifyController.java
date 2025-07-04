@@ -119,6 +119,8 @@ public class VerifyController {
 	        int updated = verifyService.updateVerificationTable(code, "FIND_PASSWORD");
 
 	        if (updated > 0) {
+	        	String clientId = verification.getClientId();
+	        	result.put("clientId", clientId);
 	            result.put("success", true);
 	            result.put("message", "인증 성공");
 	        } else {

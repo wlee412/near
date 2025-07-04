@@ -1,17 +1,9 @@
 /*회원가입 아이디 유효성 + 중복 검사 */
 
 async function validateForm() {
-//	const emailAd = document.querySelector('input[name="emailAd"]');
-	const isIdValid = await checkId(); // ✅ await 사용
+	const isIdValid = await checkId(); 
 	const isPwValid = checkPassword();
-//	const isNickValid = await checkNickname();
 	const isPhoneValid = checkPhone(); 
-
-//	if (!emailAd.checked) {
-//		alert("이메일 광고 수신 동의는 필수입니다.");
-//		emailAd.focus();
-//		return false;
-//	}
 
 	if (!isIdValid) {
 		alert("영문 + 숫자 4자 이상, 또는 중복된 아이디입니다.");
@@ -23,11 +15,6 @@ async function validateForm() {
 		return false;
 	}
 	
-//	if (!isNickValid) {
-//		alert("닉네임 조건을 확인해 주세요.");
-//		return false;
-//	}
-//	
 	if (!isPhoneValid) {
 		alert("휴대폰 번호를 확인해주세요.");
 		return false;
