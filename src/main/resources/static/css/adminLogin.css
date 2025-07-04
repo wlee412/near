@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/* ==========================
+   관리자 로그인 화면 기본 스타일
+   ========================== */
+body {
+  font-family: 'Gowun Batang', serif;
+  background: linear-gradient(145deg, #e0f7ff, #f8fcff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.login-container h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.button-main {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 30px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.button-main:hover {
+  background-color: #4a9cb1;
+}
+
+.login-error {
+  margin-top: 15px;
+  color: red;
+  font-size: 14px;
+}
+
+/* ==========================
+   반응형 스타일 세트
+   ========================== */
+
+/* 노트북 이하 (1024px) */
+@media (max-width: 1024px) {
+  .login-container {
+    width: 360px;
+    padding: 35px;
+  }
+}
+
+/* 태블릿 이하 (800px) */
+@media (max-width: 800px) {
+  .login-container {
+    width: 320px;
+    padding: 30px;
+  }
+
+  .login-container h2 {
+    font-size: 24px;
+  }
+
+  .login-container input {
+    font-size: 15px;
+  }
+
+  .button-main {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+/* 모바일 이하 (480px) */
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .login-container h2 {
+    font-size: 20px;
+  }
+
+  .login-container input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .button-main {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
