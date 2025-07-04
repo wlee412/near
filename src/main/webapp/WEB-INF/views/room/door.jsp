@@ -10,7 +10,6 @@
 <form action="/chat/room" method="get">
   <label>상담실 비밀번호 (UUID)</label>
   <input type="text" name="token" required>
-  <input type="hidden" name="subscriber-mode" value="true">
   <button type="submit">입장</button>
 </form>
 </body>
