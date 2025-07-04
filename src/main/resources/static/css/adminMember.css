@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+body {
+  font-family: 'Gowun Batang', serif;
+  background-color: #f5f9ff;
+  margin: 0;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #e9f2ff;
+  font-size: 16px;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f4faff;
+}
+
+/* 상태 뱃지 */
+.state-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: white;
+}
+
+.state-0 {
+  background-color: #3498db;  /* 일반 */
+}
+
+.state-1 {
+  background-color: #95a5a6;  /* 탈퇴 */
+}
+
+.state-2 {
+  background-color: #e74c3c;  /* 블랙리스트 */
+}
+
+/* 검색창, 버튼 등 */
+.search-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box input,
+.search-box select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.button-main {
+  padding: 8px 16px;
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-main:hover {
+  background-color: #4a9cb1;
+}
+
+/* 페이지네이션 */
+.pagination {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 6px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.pagination a.current {
+  color: #5daec5;
+  text-decoration: underline;
+}
