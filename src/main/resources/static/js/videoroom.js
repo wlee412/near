@@ -231,7 +231,8 @@ $(document).ready(function() {
 									$('#myvideo').hide();
 									$('#videolocal').append(
 										'<div class="no-video-container">' +
-										'<i class="fa fa-video-camera fa-5 no-video-icon" style="height: 100%;"></i>' +
+										'<i class="fa fa-video-camera fa-5 no-video-icon" style="height: 100%; ' +
+										'transform: scaleX(-1); -webkit-transform: scaleX(-1);"></i>' +
 										'<span class="no-video-text" style="font-size: 16px;">Video rejected, no webcam</span>' +
 										'</div>');
 								}
