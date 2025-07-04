@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+#videolocal video {
+	transform: scaleX(-1);
+	-webkit-transform: scaleX(-1); /* Safari 대응 */
+}

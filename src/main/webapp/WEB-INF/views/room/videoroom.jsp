@@ -47,6 +47,7 @@
       padding: 10px;
     }
   </style>
+  <link rel="stylesheet" href="/css/room.css"/>
 </head>
 
 <body>
