@@ -79,6 +79,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			client.setPhone("000-0000-0000");
 			client.setGender('N');
 			client.setEmailVerified("N");
+			client.setZipcode(" ");
+			client.setAddrBase(" ");
+			client.setAddrDetail(email);
+			client.setZipcode(" ");
 			clientMapper.socialInsert(client);
 			
 			client = clientMapper.findBySocialIdAndPlatform(socialId, platform);

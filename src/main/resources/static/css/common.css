@@ -1,0 +1,138 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Gowun Batang', serif;
+  background: linear-gradient(145deg, #e0f7ff, #f8fcff);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-container a {
+  text-decoration: none;
+  color: #555;
+  margin-left: 10px;
+}
+.footer-container a:hover {
+  text-decoration: underline;
+}
+
+.logo a {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5daec5 !important;
+  text-decoration: none;
+}
+.logo a:hover {
+  color: #479bb0;
+}
+
+.center-menu {
+  display: flex;
+  gap: 30px;
+}
+.center-menu a,
+.login a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+}
+.center-menu a:hover,
+.login a:hover {
+  color: #5daec5;
+}
+
+.main-banner {
+  flex: 1;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-banner h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.main-banner p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.main-banner button {
+  padding: 12px 30px;
+  font-size: 16px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 30px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+}
+.main-banner button:hover {
+  background-color: #4a9cb1;
+}
+
+
+
+@media (max-width: 1024px) { /* 일반 노트북 */
+  .center-menu {
+    gap: 25px;
+  }
+}
+@media (max-width: 800px) { /* 태블릿 */
+  .center-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) { /* 모바일 */
+  .center-menu a {
+    font-size: 14px;
+  }
+}

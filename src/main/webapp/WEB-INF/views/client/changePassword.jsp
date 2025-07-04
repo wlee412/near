@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title> 비밀번호 변경하기 </title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/member.css">
+	href="${pageContext.request.contextPath}/css/client.css">
 </head>
 <body>
 	<div class="container">

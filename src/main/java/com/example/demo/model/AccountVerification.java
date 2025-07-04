@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class AccountVerification {
 	
-	private int num;
-	private String id;
+	private int pk;
+	private String clientId;
 	private String code;
 	private String type;
 	private Timestamp expiresAt;

@@ -7,8 +7,7 @@
 
 
 	<!-- 회원가입. -->
-	<insert id="insertClient"
-		parameterType="com.example.demo.model.Client">
+	<insert id="insert" parameterType="com.example.demo.model.Client">
 		INSERT INTO client (
 		client_id,
 		password,
@@ -16,7 +15,9 @@
 		phone,
 		email_id,
 		email_domain,
-		address,
+		zipcode,
+		addr_base,
+		addr_detail,
 		birth,
 		gender,
 		alarm,
@@ -35,7 +36,9 @@
 		#{phone},
 		#{emailId},
 		#{emailDomain},
-		#{address},
+		#{zipcode},
+		#{addrBase},
+		#{addrDetail},
 		#{birth},
 		#{gender},
 		#{alarm},
@@ -77,7 +80,7 @@
 	<select id="login" parameterType="String" resultType="com.example.demo.model.Client">
 		SELECT *
 		FROM client
-		WHERE ID = #{id}
+		WHERE ID = #{clientId}
 		AND state = 0
 	</select>
 	<!-- AND state IN (0, 2) 상태값 0,2 회원만 로그인 가능 -->
@@ -125,7 +128,7 @@
 		#{socialPlatform},
 		#{socialId},
 		#{interest},
-		#{emailVerifed},
+		#{emailVerified},
 		#{state},
 		NOW()
 		)

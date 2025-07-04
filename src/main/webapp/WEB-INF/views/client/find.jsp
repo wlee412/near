@@ -4,9 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디/비밀번호 찾기</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/member.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
+<%@ include file="../includes/header.jsp" %>
 <body>
 	<div class="containerbox">
 		<h2 class="title">아이디 / 비밀번호 찾기</h2>
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
  </script>
 
-	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/client.js" defer></script>
 </body>
+		<%@ include file="../includes/footer.jsp" %>
 </html>

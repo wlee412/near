@@ -2,17 +2,17 @@
 
 
 async function validateForm() {
-	const emailAd = document.querySelector('input[name="emailAd"]');
+//	const emailAd = document.querySelector('input[name="emailAd"]');
 	const isIdValid = await checkId(); // ✅ await 사용
 	const isPwValid = checkPassword();
-	const isNickValid = await checkNickname();
+//	const isNickValid = await checkNickname();
 	const isPhoneValid = checkPhone(); 
 
-	if (!emailAd.checked) {
-		alert("이메일 광고 수신 동의는 필수입니다.");
-		emailAd.focus();
-		return false;
-	}
+//	if (!emailAd.checked) {
+//		alert("이메일 광고 수신 동의는 필수입니다.");
+//		emailAd.focus();
+//		return false;
+//	}
 
 	if (!isIdValid) {
 		alert("영문 + 숫자 4자 이상, 또는 중복된 아이디입니다.");
@@ -24,11 +24,11 @@ async function validateForm() {
 		return false;
 	}
 	
-	if (!isNickValid) {
-		alert("닉네임 조건을 확인해 주세요.");
-		return false;
-	}
-	
+//	if (!isNickValid) {
+//		alert("닉네임 조건을 확인해 주세요.");
+//		return false;
+//	}
+//	
 	if (!isPhoneValid) {
 		alert("휴대폰 번호를 확인해주세요.");
 		return false;
@@ -57,7 +57,7 @@ async function checkId() {
 		return false;
 	}
 
-	const res = await fetch("/member/check-id?id=" + encodeURIComponent(id));
+	const res = await fetch("/client/check-id?id=" + encodeURIComponent(id));
 	const data = await res.text();
 
 	if (data === "duplicate") {
@@ -102,37 +102,37 @@ function validateName() {
 
 /* 회원가입 닉네임 유효성 + 중복 검사 */
 
-async function checkNickname() {
-	const nickname = document.getElementById("nickname").value.trim();
-	const resultBox = document.getElementById("nicknameCheckResult");
-
-	const regex = /^[가-힣]+$/;
-
-	if (nickname.length < 2) {
-		resultBox.textContent = "닉네임은 2자 이상 입력해주세요.";
-		resultBox.style.color = "gray";
-		return false;
-	}
-
-	if (!regex.test(nickname)) {
-		resultBox.textContent = "닉네임은 한글만 입력 가능합니다.";
-		resultBox.style.color = "gray";
-		return false;
-	}
-
-	const response = await fetch("/member/check-nickname?nickname=" + encodeURIComponent(nickname));
-	const data = await response.text();
-
-	if (data === "duplicate") {
-		resultBox.textContent = "❌ 이미 사용 중인 닉네임입니다.";
-		resultBox.style.color = "red";
-		return false;
-	} else {
-		resultBox.textContent = "✅ 사용 가능한 닉네임입니다.";
-		resultBox.style.color = "green";
-		return true;
-	}
-}
+//async function checkNickname() {
+//	const nickname = document.getElementById("nickname").value.trim();
+//	const resultBox = document.getElementById("nicknameCheckResult");
+//
+//	const regex = /^[가-힣]+$/;
+//
+//	if (nickname.length < 2) {
+//		resultBox.textContent = "닉네임은 2자 이상 입력해주세요.";
+//		resultBox.style.color = "gray";
+//		return false;
+//	}
+//
+//	if (!regex.test(nickname)) {
+//		resultBox.textContent = "닉네임은 한글만 입력 가능합니다.";
+//		resultBox.style.color = "gray";
+//		return false;
+//	}
+//
+//	const response = await fetch("/client/check-nickname?nickname=" + encodeURIComponent(nickname));
+//	const data = await response.text();
+//
+//	if (data === "duplicate") {
+//		resultBox.textContent = "❌ 이미 사용 중인 닉네임입니다.";
+//		resultBox.style.color = "red";
+//		return false;
+//	} else {
+//		resultBox.textContent = "✅ 사용 가능한 닉네임입니다.";
+//		resultBox.style.color = "green";
+//		return true;
+//	}
+//}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -349,7 +349,7 @@ function checkEmailDuplicate() {
 	}
 
 	// ✅ 유효한 이메일일 경우 중복검사 fetch 요청
-	fetch("/member/checkEmailDuplicate", {
+	fetch("/client/checkEmailDuplicate", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ email: fullEmail })
@@ -461,7 +461,7 @@ function checkCurrentPassword() {
 		return;
 	}
 
-	fetch("/member/checkPassword", {
+	fetch("/client/checkPassword", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -659,7 +659,7 @@ function checkIdCode() {
 		.then(data => {
 			if (data.success) {
 				result.innerHTML = `✅ 회원님의 아이디는 <strong>${data.userId}</strong> 입니다.<br><br>
-               <a href="/member/login" style="color: black; text-decoration: none;">로그인 페이지로 이동하기</a>`;
+               <a href="/client/login" style="color: black; text-decoration: none;">로그인 페이지로 이동하기</a>`;
 				result.style.color = "green";
 			} else {
 				result.innerText = "❌ 인증번호가 일치하지 않습니다.";
@@ -776,7 +776,7 @@ function resetPassword() {
 		return;
 	}
 
-	fetch("/member/resetPassword", {
+	fetch("/client/resetPassword", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ id: userId, newPassword: newPw })
@@ -786,7 +786,7 @@ function resetPassword() {
 			if (data.success) {
 				resetResult.innerText = "✅ 비밀번호가 변경되었습니다. 로그인 페이지로 이동합니다.";
 				resetResult.style.color = "green";
-				setTimeout(() => location.href = "/member/login", 2500);
+				setTimeout(() => location.href = "/client/login", 2500);
 			} else {
 				resetResult.innerText = "❌ 비밀번호 변경에 실패했습니다.";
 				resetResult.style.color = "red";
