@@ -60,6 +60,7 @@
 
 		<div id="resetPwSection" class="tab-content"
 			style="display: none; margin-top: 20px;">
+				<input type="hidden" id="clientIdHidden" name="clientId">
 			<div class="form-group">
 				<label for="newPw">새 비밀번호</label> <input type="password" id="newPw"
 					placeholder="새 비밀번호 입력">
@@ -110,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
  </script>
-
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/client.js" defer></script>
 </body>
 		<%@ include file="../includes/footer.jsp" %>

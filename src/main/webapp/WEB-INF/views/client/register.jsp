@@ -139,6 +139,7 @@
 				</div>
 
 				<!-- 주소 -->
+			   <div class="form-group">
 					<label>주소</label>
 					<div class="input-row">
 						<input type="text" name="zipcode" id="postcode" placeholder="우편번호" readonly style="width: 150px;">
@@ -146,7 +147,8 @@
 					</div>
 					<input type="text" id="roadAddress" placeholder="도로명 주소" name="addrBase" readonly required style="margin-top: 8px;"> 
 					<input type="text" id="detailAddress" placeholder="상세 주소 입력" name="addrDetail" required style="margin-top: 8px;">
-
+				</div>
+				
 				<!-- 생년월일 -->
 				<div class="form-group">
 					<label for="birth">생년월일</label> <input type="date" name="birth" id="birth" required>

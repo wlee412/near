@@ -154,8 +154,10 @@ public class ClientController {
 
 	@PostMapping("/login")
 	public String login(@ModelAttribute Client login,
-			@RequestParam(name = "reclientMe", required = false) String reclientMe, Model model, HttpSession session,
-			HttpServletResponse response) {
+				        @RequestParam(name = "reclientMe", required = false) String reclientMe, 
+				        Model model, 
+				        HttpSession session,
+				        HttpServletResponse response) {
 		System.out.println("입력 ID: " + login.getClientId());
 		System.out.println("입력 PW: " + login.getPassword());
 		Client client = clientService.login(login);
@@ -369,12 +371,12 @@ public class ClientController {
 	@PostMapping("/resetPassword")
 	@ResponseBody
 	public Map<String, Object> resetPassword(@RequestBody Map<String, String> data) {
-		String id = data.get("id");
+		String clientId = data.get("clientId");
 		String newPassword = data.get("newPassword");
 
 		Map<String, Object> result = new HashMap<>();
 
-		Client client = clientService.findById(id);
+		Client client = clientService.findById(clientId);
 		if (client == null) {
 			result.put("success", false);
 			result.put("message", "회원 정보 없음");
@@ -386,7 +388,7 @@ public class ClientController {
 
 		// Map으로 전달
 		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("id", id);
+		paramMap.put("clientId", clientId);
 		paramMap.put("newPw", encodedPw);
 
 		boolean updated = clientService.updatePasswordForFind(paramMap); // service 메서드도 새로 만들어야 함

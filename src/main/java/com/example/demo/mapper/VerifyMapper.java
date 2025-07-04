@@ -34,6 +34,6 @@ public interface VerifyMapper {
 
 	public Client findIdClient(String email, String domain);
 
-	public void updateClientTable(String id);
+	public void updateClientTable(String clientId);
 
 }

@@ -1,12 +1,13 @@
 package com.example.demo.service;
 
-import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.example.demo.mapper.ClientMapper;
 import com.example.demo.model.Client;
 
@@ -92,14 +93,11 @@ public class ClientService {
 		return null;
 	}
 
-	public Client findById(String id) {
-		return clientMapper.findById(id);
+	public Client findById(@Param("clientId") String clientId) {
+		return clientMapper.findById(clientId);
 	}
 	
-	public List<Client> selectAllEmailSubscribers() {
 
-	      return clientMapper.selectAllEmailSubscribers();
-	}
 
 	
 }

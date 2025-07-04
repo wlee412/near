@@ -43,13 +43,12 @@ public interface ClientMapper {
 
 	public boolean registerClient(Client client);
 	
-	public List<Client> selectAllEmailSubscribers();
 	
 	// 로그인 : 영교님꺼 추가	
 	
 	void socialInsert(Client client);
 
-	public Client login(String id);
+	public Client login(String clientId);
 	
 	Client findBySocialIdAndPlatform(@Param("socialId") String socialId, @Param ("platform") String platform);
 
