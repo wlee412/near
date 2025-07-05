@@ -6,12 +6,12 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Gowun Batang', serif;
-  background: linear-gradient(145deg, #e0f7ff, #f8fcff);
+/*   background: linear-gradient(145deg, #e0f7ff, #f8fcff); */
+  background: linear-gradient(to right, #e0f7ff 0%, #f0fbff 50%, #e8faff 100%);
   color: #333;
   display: flex;
   flex-direction: column;
 }
-
 
 .wrapper {
   flex: 1;
@@ -22,6 +22,9 @@ html, body {
 header, footer {
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+footer {
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* 위 그림자 */
 }
 
 .header-container {
@@ -36,7 +39,7 @@ header, footer {
 .footer-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 8px 24px;
   font-size: 14px;
   color: #555;
   display: flex;
@@ -52,6 +55,31 @@ header, footer {
 .footer-container a:hover {
   text-decoration: underline;
 }
+
+.terms-container {
+  max-width: 600px;
+  margin: 15px auto; 
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  font-family: 'Gowun Batang', serif;
+  line-height: 1.6;
+  font-size: 13px;
+  color: #333;
+  background: #f9fafa;
+}
+
+.terms-wrapper {
+  flex: 1;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #e0f7ff, #f8fcff);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
 
 .logo a {
   font-size: 28px;

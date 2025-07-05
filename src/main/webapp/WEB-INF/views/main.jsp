@@ -14,7 +14,7 @@
 
 		<section class="main-banner">
 			<h1>가까이 귀 기울이는 누군가, n:ear</h1>
-			<p>당신의 마음을 편안히 들어주는 온라인 상담 플랫폼</p>
+			<p>당신의 마음을 편안히 들어주는 온라인 화상상담 플랫폼</p>
 			<button>상담 예약하기</button>
 		</section>
 	</div>

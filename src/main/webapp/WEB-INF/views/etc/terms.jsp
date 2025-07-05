@@ -11,6 +11,8 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="../includes/header.jsp"%>
+		<div class="terms-wrapper">
+		<div class="terms-container">
 		<h2>이용약관</h2>
 		<p>본 약관은 온라인 심리상담 플랫폼 n:ear(이하 "회사")가 제공하는 서비스 이용과 관련하여 회사와 이용자의
 			권리, 의무, 책임사항 및 절차 등을 규정함을 목적으로 합니다.</p>
@@ -37,6 +39,8 @@
 			않습니다.</p>
 
 		<p>본 약관은 수시로 개정될 수 있으며, 개정 시 사전에 공지합니다.</p>
+	</div>
+	</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
 </body>

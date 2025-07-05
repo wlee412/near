@@ -11,6 +11,8 @@
 <body>
 	<div class="wrapper">
 		<%@ include file="../includes/header.jsp"%>
+		<div class="terms-wrapper">
+		<div class="terms-container">
 		<h2>개인정보처리방침</h2>
 		<p>n:ear(이하 “회사”)는 사용자 개인정보 보호를 매우 중요하게 생각하며, 「개인정보 보호법」 등 관련 법령에
 			따라 다음과 같이 개인정보를 수집·이용합니다.</p>
@@ -42,6 +44,8 @@
 		</ul>
 
 		<p>본 방침은 2025년 7월 28일부터 적용됩니다.</p>
+	</div>
+	</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
 </body>
