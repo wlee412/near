@@ -8,6 +8,7 @@
 		parameterType="com.example.demo.model.AccountVerification">
 		INSERT INTO account_verification (
 		CLIENT_ID,
+		PHONE,
 		CODE,
 		TYPE,
 		EXPIRES_AT,
@@ -16,6 +17,7 @@
 		USED_AT
 		) VALUES (
 		#{clientId},
+		#{phone},
 		#{code},
 		#{type},
 		#{expiresAt},
@@ -67,7 +69,8 @@
 	<select id="findIdClient" parameterType="String"
 		resultType="Client">
 		SELECT * FROM client
-		WHERE CONCAT(email_id, '@', email_domain) = #{email}
+		WHERE CONCAT(email_id, '@',
+		email_domain) = #{email}
 	</select>
 
 	<select id="isEmailExist" resultType="int">
@@ -95,4 +98,34 @@
 		LIMIT 1
 	</select>
 
+	<select id="findByPhoneAndType" parameterType="map"
+		resultType="com.example.demo.model.AccountVerification">
+		SELECT * FROM account_verification
+		WHERE phone = #{phone}
+		AND type = #{type}
+		AND verified = 'N'
+		ORDER BY created_at DESC
+		LIMIT 1
+	</select>
+
+	<update id="updateVerificationForJoin"
+		parameterType="com.example.demo.model.AccountVerification">
+		UPDATE ACCOUNT_VERIFICATION
+		SET
+		CODE = #{code},
+		EXPIRES_AT
+		= #{expiresAt}
+		WHERE
+		PHONE = #{phone}
+		AND TYPE = #{type}
+		AND VERIFIED =
+		'N'
+	</update>
+
+	<update id="insertClientIdByPhone" parameterType="map">
+		UPDATE account_verification
+		SET client_id = #{clientId}
+		WHERE phone = #{phone}
+		AND type = 'MEMBER_JOIN'
+	</update>
 </mapper>

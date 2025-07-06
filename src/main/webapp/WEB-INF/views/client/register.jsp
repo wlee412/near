@@ -80,11 +80,24 @@
 
 				<!-- 휴대폰 -->
 				<div class="form-group">
-					<label for="phone">휴대폰 번호</label> <input type="tel" name="phone"
-						id="phone" required placeholder="숫자만 입력 (예: 01012345678)"
-						maxlength="11">
-					<div id="phoneCheckResult" class="result-text"
-						style="font-size: 14px; margin-top: 4px;"></div>
+					<label for="phone">휴대폰 번호</label>
+					<div class="input-row">
+						<input type="tel" name="phone" id="phone" required placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
+						<button type="button" class="btn" id="sendCodeBtn">인증코드 전송</button>
+					</div>
+					<div id="phoneCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+				</div>
+				
+				<!-- 인증번호 입력 및 타이머 -->
+				<div class="form-group" id="verificationSection" style="display:none;">
+					<label for="verificationCode">인증번호</label>
+					<div class="input-row">
+						<input type="text" id="verificationCode" placeholder="인증번호 입력">
+						<span id="timerDisplay" style="margin-left: 6px; color: red;">03:00</span>
+
+					</div>
+					<button type="button" class="btn" id="verifyCodeBtn" style="margin-top: 8px;" id="verifyCodeBtn">인증 확인</button>
+					<div id="verifyResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
 
 				<!-- 📧 이메일 입력 -->
@@ -177,6 +190,7 @@
 
 	<script src="https://code.jquery.com/jquery-latest.js" defer></script>
 	<script src="${pageContext.request.contextPath}/js/client.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/sms.js" defer></script>
 </body>
 </html>
 

@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +65,22 @@ public class VerifyService{
 	public void updateClientTable(String clientId) {
 		verifyMapper.updateClientTable(clientId);
 	}
+
+	public AccountVerification findByPhoneAndType(String phone, String type) {
+		return verifyMapper.findByPhoneAndType(phone, type);
+	}
+
+	public void updateVerificationForJoin(AccountVerification existing) {
+		verifyMapper.updateVerificationForJoin(existing);
+	}
+
+	public void insertClientIdByPhone(String phone, String clientId) {
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("phone", phone);
+	    map.put("clientId", clientId);
+	    verifyMapper.insertClientIdByPhone(map);  // ✅ Mapper 호출
+	}
+
 
 	
 	

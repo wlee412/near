@@ -9,6 +9,7 @@ public class AccountVerification {
 	
 	private int pk;
 	private String clientId;
+	private String phone;
 	private String code;
 	private String type;
 	private Timestamp expiresAt;

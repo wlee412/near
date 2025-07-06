@@ -96,6 +96,10 @@ public class ClientService {
 	public Client findById(@Param("clientId") String clientId) {
 		return clientMapper.findById(clientId);
 	}
+
+	public Client findByPhone(String phone) {
+		return clientMapper.findByPhone(phone);
+	}
 	
 
 
