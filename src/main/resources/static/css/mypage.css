@@ -1,0 +1,164 @@
+/* ===============================
+📌 마이페이지 전체 레이아웃
+=============================== */
+.mypage-container {
+	flex: 1;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	max-width: 600px;
+	margin: 60px auto 0;
+	margin-top: 50px;
+}
+
+.mypage-header {
+	margin-bottom: 24px;
+}
+
+.mypage-title {
+	font-size: 32px;
+	font-weight: 700;
+	color: #111;
+	margin: 0;
+	padding-left: 4px;
+}
+
+.mypage-divider {
+	height: 2px;
+	background-color: #ccc;
+	margin-top: 8px;
+	margin-bottom: 30px;
+}
+
+/* ===============================
+📌  마이페이지 본문 레이아웃
+=============================== */
+.mypage-wrapper {
+	display: flex;
+	/* 	justify-content: space-between; */
+	justify-content: center; /* ✅ 가운데 정렬 */
+	align-items: flex-start; /* 위쪽 기준 정렬 */
+	gap: 15px;
+	max-width: 1300px;
+	margin: 0 auto;
+	margin-top: 40px;
+	padding: 60px 80px 60px 40px;
+	/* 위 오른쪽 아래 왼쪽 */
+}
+
+/* ===============================
+📌 사이드바
+=============================== */
+.mypage-sidebar {
+	width: 250px;
+	padding: 20px;
+	border-radius: 12px;
+	margin: 100px auto 0;
+	margin-left: 50px; /* ✅ 왼쪽에서 살짝 띄우기 */
+}
+
+.menu-item {
+	margin-bottom: 15px;
+	padding: 12px 16px;
+	cursor: pointer;
+	border-radius: 8px;
+	transition: border-left 0.2s, background-color 0.2s;
+}
+
+.menu-item:hover {
+	/* 	background-color: #e6e6e6; */
+	background-color: #e9ecef;
+}
+
+.menu-item.active {
+	background-color: #e9ecef;
+	border-left: 4px solid red;
+	font-weight: bold;
+	padding-left: 12px;
+}
+
+/* ===============================
+📌 콘텐츠 박스
+=============================== */
+.mypage-content {
+	flex: 1;
+	padding: 40px;
+	background-color: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	max-width: 600px;
+	margin: 100px auto 0;
+}
+
+/* ===============================
+📌 기본 인사 텍스트 스타일
+=============================== */
+.mypage-welcome-box {
+	text-align: center;
+}
+
+.welcome-title {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 24px;
+}
+
+.welcome-date, .welcome-dday {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #444;
+}
+
+/* ===============================
+📌 폼 공통 스타일
+=============================== */
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: bold;
+	color: #333;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 10px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #f9f9f9;
+	font-size: 16px;
+}
+
+.form-group input[readonly] {
+	background-color: #e9ecef;
+}
+
+/* ===============================
+📌 버튼 스타일
+=============================== */
+.button-row {
+	display: flex;
+	gap: 12px;
+}
+
+.btn {
+	padding: 10px 20px;
+	border: none;
+	background-color: #333;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.btn:hover {
+	background-color: #555;
+}
+
+.btn.btn-half {
+	width: 48%;
+}

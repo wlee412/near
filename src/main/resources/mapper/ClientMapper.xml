@@ -96,12 +96,14 @@
 		parameterType="com.example.demo.model.Client">
 		INSERT INTO client (
 		client_id,
-		name,
 		password,
+		name,
 		phone,
 		email_id,
 		email_domain,
-		address,
+		zipcode,
+		addr_base,
+		addr_detail,
 		birth,
 		gender,
 		alarm,
@@ -115,12 +117,14 @@
 		)
 		VALUES (
 		#{clientId},
-		#{name},
 		#{password},
+		#{name},
 		#{phone},
 		#{emailId},
 		#{emailDomain},
-		#{address},
+		#{zipcode},
+		#{addrBase},
+		#{addrDetail},
 		#{birth},
 		#{gender},
 		#{alarm},
@@ -155,7 +159,7 @@
 	</update>
 
 	<!-- 회원정보 수정 후 최신 정보 조회 -->
-	<select id="selectclientById" parameterType="String"
+	<select id="getClientById" parameterType="String"
 		resultType="com.example.demo.model.Client">
 		SELECT * FROM client WHERE client_id = #{clientId}
 	</select>

@@ -20,7 +20,7 @@ public class Client{
     private String addrDetail;      
 
     private Date birth;        
-    private char gender;          
+    private String gender;          
 
     private boolean alarm;          
     private boolean personalInfo;   

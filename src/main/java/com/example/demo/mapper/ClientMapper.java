@@ -15,21 +15,21 @@ public interface ClientMapper {
 
 	public int insert(Client client);
 
-	public Client findById(String id);
+	public Client findById(String clientId);
 
 	public int updateClient(Client client);
 
-	public Client selectClientById(String id);
+	public Client getClientById(String clientId);
 
 	public int updatePassword(Client client); // 일반 비번 변경
 
-	public int deleteClient(String id);
+	public int deleteClient(String clientId);
 
 	public Client selectByEmailForRegister(String email);
 
 	public Client selectByEmailForFind(String email);
 	
-	public Client selectByIdAndEmail(@Param("id") String id, @Param("email") String email);
+	public Client selectByIdAndEmail(@Param("id") String clientId, @Param("email") String email);
 
 	public int updatePasswordForFind(Map<String, Object> paramMap); // 비번찾기 후 비번변경
 
@@ -37,7 +37,7 @@ public interface ClientMapper {
 
 	public Client findByEmail(@Param("email") String email);
 
-	public int checkIdExists(String id);
+	public int checkIdExists(String clientId);
 
 	public Client findByEmailForRegister(String email);
 

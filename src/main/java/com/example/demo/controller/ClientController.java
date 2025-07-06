@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -238,9 +239,19 @@ public class ClientController {
 	// 마이페이지 회원 정보 수정 화면
 	@GetMapping("/mypageUpdate")
 	public String mypageUpdate(HttpSession session, Model model) {
-		Client client = (Client) session.getAttribute("loginClient");
-		model.addAttribute("client", client);
-		return "client/mypageUpdate";
+	    Client sessionClient = (Client) session.getAttribute("loginClient");
+	    if (sessionClient == null) {
+	        return "redirect:/login"; 
+	    }
+	    Client client = clientService.getClientById(sessionClient.getClientId());
+
+	    String interestStr = client.getInterest();
+	    String[] interestArr = interestStr != null ? interestStr.split(",") : new String[0];
+	    System.out.println("mypageUpdate - client: " + client.toString());
+	    model.addAttribute("interestList", Arrays.asList(interestArr));
+	    model.addAttribute("client", client);
+
+	    return "client/mypageUpdate";
 	}
 
 	// 마이페이지 비밀번호 변경 화면
@@ -274,8 +285,11 @@ public class ClientController {
 
 	// 회원 정보 수정 처리
 	@PostMapping("/update")
-	public String updateClient(@ModelAttribute Client client, HttpSession session,
-			RedirectAttributes redirectAttributes) {
+	public String updateClient(@ModelAttribute Client client, 
+			  				   @RequestParam(value = "interestList", required = false) List<String> interestList,
+							   HttpSession session,
+			                   RedirectAttributes redirectAttributes) {
+		
 		Client loginClient = (Client) session.getAttribute("loginClient");
 
 		if (loginClient == null) {
@@ -284,9 +298,23 @@ public class ClientController {
 
 		// 세션의 ID로 고정 (보안상 중요!)
 		client.setClientId(loginClient.getClientId());
+		
+
+	    // ✅ 일반 로그인 사용자는 성별 수정 불가 (기존 값 유지)
+	    if (!"N".equals(loginClient.getGender())) {
+	        client.setGender(loginClient.getGender());
+	    }
+
+	    // ✅ 관심사 체크박스를 문자열로 병합
+	    if (interestList != null && !interestList.isEmpty()) {
+	        client.setInterest(String.join(",", interestList));
+	    } else {
+	        client.setInterest(""); // 아무것도 선택 안 한 경우
+	    }
+
 
 		boolean result = clientService.updateClient(client);
-
+		
 		if (result) {
 			// 세션에 최신 회원 정보 다시 저장
 			session.setAttribute("loginClient", clientService.getClientById(client.getClientId()));

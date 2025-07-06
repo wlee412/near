@@ -4,16 +4,13 @@
 <html>
 <head>
 <title>비밀번호 변경</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/member.css">
-<link rel="stylesheet" href="<c:url value='/css/header.css' />" />
-<link rel="stylesheet" href="<c:url value='/css/footer.css' />" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <!-- 헤더 영역 -->
-<jsp:include page="/WEB-INF/views/common/header.jsp" flush="true"/>
+<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true"/>
 
 	<!-- ✅ 마이페이지 wrapper 안에 타이틀 포함 -->
 	<div class="mypage-wrapper">
@@ -24,7 +21,7 @@
 		%>
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/member/mypage"
+				<a href="${pageContext.request.contextPath}/client/mypage"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 
@@ -32,20 +29,20 @@
 
 			<div
 				class="menu-item <%= uri.contains("mypageProfile") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/member/mypageProfile'">프로필</div>
+				onclick="location.href='${pageContext.request.contextPath}/client/mypageProfile'">프로필</div>
 
 			<div
 				class="menu-item <%= uri.contains("mypageUpdate") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/member/mypageUpdate'">정보수정</div>
+				onclick="location.href='${pageContext.request.contextPath}/client/mypageUpdate'">정보수정</div>
 
 			<div
 				class="menu-item <%= uri.contains("mypagePassword") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/member/mypagePassword'">비밀번호
+				onclick="location.href='${pageContext.request.contextPath}/client/mypagePassword'">비밀번호
 				변경</div>
 
 			<div
 				class="menu-item <%= uri.contains("mypageDelete") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/member/mypageDelete'">회원탈퇴</div>
+				onclick="location.href='${pageContext.request.contextPath}/client/mypageDelete'">회원탈퇴</div>
 		</div>
 
 
@@ -62,12 +59,12 @@
 			
 
 			<form id="passwordForm"
-				action="${pageContext.request.contextPath}/member/changePassword"
+				action="${pageContext.request.contextPath}/client/changePassword"
 				method="post" onsubmit="return validatePasswordForm()" >
 				<!-- 회원 ID -->
 				<div class="form-group">
 					<label>회원 ID</label> <input type="text" name="id"
-						value="${loginMember.id}" readonly>
+						value="${loginClient.clientId}" readonly>
 				</div>
 
 				<!-- 현재 비밀번호 -->
@@ -102,7 +99,7 @@
 				<div class="form-group button-row">
 					<button type="submit" class="btn btn-half">변경하기</button>
 					<button type="button" class="btn btn-half"
-						onclick="location.href='/member/mypage'">취소</button>
+						onclick="location.href='/client/mypage'">취소</button>
 				</div>
 			</form>
 		</div>
@@ -110,11 +107,11 @@
 		</div>
 
 		<!-- js연결! -->
-		<script src="${pageContext.request.contextPath}/js/member.js"></script>
+		<script src="${pageContext.request.contextPath}/js/mypagePassword.js"></script>
 		
 		<!-- 프로필 아이콘 드롭박스 -->
 	<script src="<c:url value='/js/proFile.js'/>"></script>
 <!-- 푸터 영역 -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp" flush="true"/>
+<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 </body>
 </html>

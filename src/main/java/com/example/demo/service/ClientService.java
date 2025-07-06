@@ -34,12 +34,12 @@ public class ClientService {
 		return clientMapper.updatePassword(member) > 0;
 	}
 
-	public boolean deleteClient(String id) {
-		return clientMapper.deleteClient(id) > 0;
+	public boolean deleteClient(String clientId) {
+		return clientMapper.deleteClient(clientId) > 0;
 	}
 
-	public Client getClientById(String id) {
-		return clientMapper.selectClientById(id);
+	public Client getClientById(String clientId) {
+		return clientMapper.getClientById(clientId);
 	}
 
 	public void sendAuthCode(String email, String code) {
@@ -54,8 +54,8 @@ public class ClientService {
 		return clientMapper.selectByEmailForFind(email);
 	}
 
-	public Client findByIdAndEmail(String id, String email) {
-		return clientMapper.selectByIdAndEmail(id, email);
+	public Client findByIdAndEmail(String clientId, String email) {
+		return clientMapper.selectByIdAndEmail(clientId, email);
 	}
 
 	public boolean updatePasswordForFind(Map<String, Object> paramMap) {
@@ -67,8 +67,8 @@ public class ClientService {
 		return clientMapper.findByEmail(email);
 	}
 	
-	public boolean checkIdExists(String id) {
-		return clientMapper.countById(id) > 0;
+	public boolean checkIdExists(String clientId) {
+		return clientMapper.countById(clientId) > 0;
 	}
 	
 //	public boolean checkNicknameExists(String nickname) {

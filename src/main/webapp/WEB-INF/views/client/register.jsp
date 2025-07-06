@@ -10,33 +10,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-  function execDaumPostcode() {
-    new daum.Postcode({
-      oncomplete: function(data) {
-        // 주소 변수
-        var roadAddr = data.roadAddress; // 도로명 주소
-        var extraAddr = ''; // 참고 항목
 
-        // 참고 항목 조합
-        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-          extraAddr += data.bname;
-        }
-        if (data.buildingName !== '' && data.apartment === 'Y') {
-          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-        }
-        if (extraAddr !== '') {
-          extraAddr = ' (' + extraAddr + ')';
-        }
-
-        // 입력 필드에 값 설정
-        document.getElementById('postcode').value = data.zonecode;
-        document.getElementById("roadAddress").value = roadAddr + extraAddr;
-        document.getElementById("detailAddress").focus(); // 상세주소 입력에 포커스
-      }
-    }).open();
-  }
-</script>
 </head>
 <body>
 	<%@ include file="../includes/header.jsp"%>
@@ -119,7 +93,8 @@
 					<div class="input-row">
 						<input type="text" id="emailId" name="emailId"
 							placeholder="이메일 아이디" required> <span>@</span>
-
+						<div id="emailIdMessage" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+						
 						<!-- 직접입력 input (초기에는 숨김) -->
 						<input type="text" id="customEmailDomain" placeholder="직접입력"
 							style="display: none;" disabled>
