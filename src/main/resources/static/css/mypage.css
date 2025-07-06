@@ -1,0 +1,66 @@
+/* 전체 컨테이너 */
+.counselor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* 마이페이지 타이틀 */
+.mypage-title {
+  width: 100%;
+  border-bottom: 2px solid #333;
+  margin-bottom: 30px;
+}
+
+.mypage-title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+
+/* 본문: 좌우 배치 */
+.mypage-body {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* 좌측 사이드바 */
+.mypage-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.mypage-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mypage-sidebar li {
+  padding: 12px 20px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+}
+
+.mypage-sidebar li:hover {
+  color: #5daec5;
+}
+
+/* 오른쪽 메인 콘텐츠  */
+.main-section {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 600px;
+  min-height: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  word-break: keep-all;
+}

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+
 <!-- 공통 헤더 -->
 <header>
 	<div class="header-container">
@@ -16,15 +18,15 @@
 		<div class="login">
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginMember}">
-					<a href="/member/logout">로그아웃</a>
-					<a href="/member/mypage">마이페이지</a>
+					<a href="/client/logout">로그아웃</a>
+					<a href="/client/mypage">마이페이지</a>
 				</c:when>
 				<c:when test="${not empty sessionScope.loginCounselor}">
-					<a href="/member/logout">로그아웃</a>
+					<a href="/client/logout">로그아웃</a>
 					<a href="/counselor/mypage">상담사페이지</a>
 				</c:when>
 				<c:otherwise>
-					<a href="/member/login">로그인</a>
+					<a href="/client/login">로그인</a>
 				</c:otherwise>
 			</c:choose>
 		</div>

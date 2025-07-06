@@ -15,4 +15,25 @@ public class MainController {
     public String main() {
         return "main";  // main.jsp
     }
+    
+    @GetMapping("/introduce")
+    public String introducePage() {
+        return "intro/introduce"; 
+    }
+    
+    //푸터 약관조항
+    @Controller
+    public class PageController {
+
+        @GetMapping("/terms")
+        public String termsPage() {
+            return "etc/terms"; 
+        }
+
+        @GetMapping("/privacy")
+        public String privacyPage() {
+            return "etc/privacy"; 
+        }
+    }
+    
 }
