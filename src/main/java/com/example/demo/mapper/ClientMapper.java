@@ -52,6 +52,8 @@ public interface ClientMapper {
 	
 	Client findBySocialIdAndPlatform(@Param("socialId") String socialId, @Param ("platform") String platform);
 
+	public Client findByPhone(String phone);
+
 	
 
 

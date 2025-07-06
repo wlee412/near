@@ -36,4 +36,12 @@ public interface VerifyMapper {
 
 	public void updateClientTable(String clientId);
 
+	public AccountVerification findByPhoneAndType(@Param("phone")String phone, @Param("type") String type);
+
+	public void updateVerificationForJoin(AccountVerification existing);
+
+	void insertClientIdByPhone(Map<String, Object> map);
+
+
+
 }

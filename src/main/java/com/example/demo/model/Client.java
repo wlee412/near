@@ -29,7 +29,7 @@ public class Client{
     private String socialId;        
     private String interest;       
 
-    private String emailVerified;   
+    private String verified;   
     private int state;              
     private Timestamp regDate;      
 }

@@ -25,7 +25,7 @@
 		social_platform,
 		social_id,
 		interest,
-		email_verified,
+		verified,
 		state,
 		reg_date
 		)
@@ -46,7 +46,7 @@
 		#{socialPlatform},
 		#{socialId},
 		#{interest},
-		#{emailVerified},
+		#{verified},
 		#{state},
 		NOW()
 		)
@@ -216,11 +216,11 @@
 		AND state = 0
 	</update>
 
-
-	<!-- 이메일 수신동의 한사람 명단 -->
-	<!-- <select id="selectAllEmailSubscribers" -->
-	<!-- resultType="com.example.demo.model.Client"> -->
-	<!-- SELECT * FROM client WHERE EMAIL_AD = 'Y' -->
-	<!-- </select> -->
+	<select id="findByPhone"
+		resultType="com.example.demo.model.Client">
+		SELECT * FROM client
+		WHERE PHONE = #{phone}
+	</select>
+	
 
 </mapper>

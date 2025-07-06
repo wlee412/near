@@ -99,11 +99,10 @@ public class ClientController {
 		}
 
 		// ===== 3. emailVerified 기본값 처리 =====
-		client.setEmailVerified("N");
+		client.setVerified("N");
 
 		// 정상회원 상태값 명시적 0으로 설정
-//		client.setState(0); //
-//		System.out.println("state: " + client.getState());
+		client.setState(0); //
 		
 		if (interestList != null && !interestList.isEmpty()) {
 		    String interestStr = String.join(",", interestList);
@@ -116,12 +115,13 @@ public class ClientController {
 		client.setPassword(passwordEncoder.encode(client.getPassword()));
 
 		// ===== 5. 회원가입 처리 =====
+		client.setVerified("Y");
 		boolean result = clientService.registerClient(client);
-
+		
 		// ===== 6. 결과 처리 =====
 		if (result) {
-			verifyAndSendEmail(client);
-			redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다! 이메일 인증을 완료해주세요.");
+			 verifyService.insertClientIdByPhone(client.getPhone(), client.getClientId());
+			redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다!");
 			return "redirect:/client/login";
 		} else {
 			model.addAttribute("error", "회원가입 중 오류가 발생했습니다.");
@@ -129,23 +129,6 @@ public class ClientController {
 		}
 	}
 
-	private void verifyAndSendEmail(Client client) {
-		String token = UUID.randomUUID().toString();
-		Timestamp expiresAt = new Timestamp(System.currentTimeMillis() + 10 * 60 * 1000);
-
-		AccountVerification verification = new AccountVerification();
-		verification.setClientId(client.getClientId());
-		verification.setCode(token);
-		verification.setType("MEMBER_JOIN");
-		verification.setExpiresAt(expiresAt);
-		verification.setVerified('N');
-
-		verifyService.insertVerification(verification);
-
-		String fullEmail = client.getEmailId() + "@" + client.getEmailDomain();
-		emailService.sendVerificationEmail(fullEmail, token);
-
-	}
 
 //	영교님 controller 함수 - 시작 
 	@GetMapping("/login")
@@ -164,10 +147,10 @@ public class ClientController {
 		Client client = clientService.login(login);
 		System.out.println("DB에서 찾은 Client: " + client);
 		if (client != null) {
-			if ("N".equals(client.getEmailVerified())) {
-	            model.addAttribute("error", "이메일 인증이 완료되지 않았습니다.");
-	            return "client/login";
-	        }
+//			if ("N".equals(client.getVerified())) {
+//	            model.addAttribute("error", "휴대폰 인증이 완료되지 않았습니다.");
+//	            return "client/login";
+//	        }
 			session.setAttribute("loginClient", client);
 			session.setAttribute("id", client.getClientId());
 			if (reclientMe != null) {
