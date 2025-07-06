@@ -15,7 +15,7 @@
 
 		<div class="login">
 			<c:choose>
-				<c:when test="${not empty sessionScope.loginMember}">
+				<c:when test="${not empty sessionScope.loginClient}">
 					<a href="/client/logout">로그아웃</a>
 					<a href="/client/mypage">마이페이지</a>
 				</c:when>

@@ -5,13 +5,6 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-
-tasks.named('processResources') {
-	from("src/main/resources") {
-		include "secret.properties"
-	}
-}
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
@@ -19,6 +12,13 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
+}
+
+tasks.named('processResources') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from("src/main/resources") {
+        include "secret.properties"
+    }
 }
 
 configurations {
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-	
+	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' 
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
@@ -49,6 +49,14 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+bootJar {
+	enabled = false
+}
+
+war {
+	enabled = true
 }
 
 tasks.named('test') {
