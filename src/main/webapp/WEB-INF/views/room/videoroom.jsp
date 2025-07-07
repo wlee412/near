@@ -55,7 +55,8 @@ th, td {
 	padding: 10px;
 }
 </style>
-<link rel="stylesheet" href="/css/room.css" type="text/css" />
+<link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
+<link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 </head>
 
 <body>
@@ -88,7 +89,7 @@ th, td {
 					</div>
 				</div>
 
-				<div class="video-container hide" id="videos">
+				<div class="video-container hide layout" id="videos">
 					<!-- 상대 -->
 					<div class="video-main">
 						<div class="panel">
@@ -119,8 +120,12 @@ th, td {
 									</ul>
 								</div>
 							</div>
+							<button id="whiteboardBtn" class="btn btn-success btn-xs">화이트보드</button>
 							<button id="mute" class="btn btn-warning btn-xs">마이크 끄기</button>
-							<button id="unpublish" class="btn btn-warning btn-xs">카메라</button>
+							<button id="unpublish" class="btn btn-warning btn-xs">카메라
+								끄기</button>
+							<label for="volumeSlider">Volume:</label> <input type="range"
+								id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
 							<button class="btn btn-warning btn-xs" autocomplete="off"
 								id="start">시작</button>
 						</div>
@@ -133,12 +138,33 @@ th, td {
 							<div class="panel-body" id="videolocal"></div>
 						</div>
 					</aside>
-
 				</div>
+
+				<div id="whiteboard-mode" class="layout hidden">
+					<div class="top-section">
+						<div class="whiteboard">화이트보드</div>
+						<div class="right-top">
+							<div id="videoremote1">상대방 화면</div>
+							<div class="controls">
+								<button id="mute">마이크 끄기</button>
+								<button id="unpublish">카메라 끄기</button>
+								<button id="backToVideo">영상 모드로</button>
+							</div>
+						</div>
+					</div>
+					<div class="bottom-section">
+						<div class="tools">그리기 도구</div>
+						<div id="videolocal">내 화면</div>
+					</div>
+				</div>
+
+
 			</div>
 		</div>
 		<hr>
 		<div class="footer"></div>
 	</div>
+	<script type="text/javascript" src="/js/VolumeControl.js"></script>
+	<script type="text/javascript" src="/js/roomlayout.js"></script>
 </body>
 </html>

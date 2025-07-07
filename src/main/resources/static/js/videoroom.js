@@ -183,7 +183,8 @@ $(document).ready(function() {
 										Janus.log("Publisher left: " + unpublished);
 										if (unpublished === 'ok') {
 											// That's us
-											sfutest.hangup();
+											isPublishing = false;
+//											sfutest.hangup();
 											return;
 										}
 										var remoteFeed = null;
@@ -242,6 +243,7 @@ $(document).ready(function() {
 						onlocalstream: function(stream) {
 							Janus.debug(" ::: Got a local stream :::", stream);
 							mystream = stream;
+							isPublishing = true;
 							$('#videojoin').hide();
 							$('#videos').removeClass('hide').show();
 							if ($('#myvideo').length === 0) {
@@ -287,8 +289,8 @@ $(document).ready(function() {
 						oncleanup: function() {
 							Janus.log(" ::: Got a cleanup notification: we are unpublished now :::");
 							mystream = null;
-							$('#videolocal').html('<button id="publish" class="btn btn-primary">Publish</button>');
-							$('#publish').click(function() { publishOwnFeed(true); });
+//							$('#videolocal').html('<button id="publish" class="btn btn-primary">Publish</button>');
+//							$('#publish').click(function() { publishOwnFeed(true); });
 							$("#videolocal").parent().parent().unblock();
 							$('#bitrate').parent().parent().addClass('hide');
 							$('#bitrate a').unbind('click');
@@ -434,7 +436,8 @@ function participantsList(room) {
 // [jsflux] 내 화상화면 시작
 function publishOwnFeed(useAudio) {
 	// Publish our stream
-	$('#publish').attr('disabled', true).unbind('click');
+	isPublishing = true;
+//	$('#publish').attr('disabled', true).unbind('click');
 	sfutest.createOffer(
 		{
 			// Add data:true here if you want to publish datachannels as well
@@ -465,7 +468,7 @@ function publishOwnFeed(useAudio) {
 					publishOwnFeed(false);
 				} else {
 					bootbox.alert("WebRTC error... " + error.message);
-					$('#publish').removeAttr('disabled').click(function() { publishOwnFeed(true); });
+//					$('#publish').removeAttr('disabled').click(function() { publishOwnFeed(true); });
 				}
 			}
 		});
@@ -483,37 +486,30 @@ function toggleMute() {
 	$('#mute').html(muted ? "마이크 켜기" : "마이크 끄기");
 }
 
-// [윤성찬] 화면 송출
+// [윤성찬] 화면 송출 토글
 function toggleVideo() {
-	$('#unpublish').attr('disabled', true).unbind('click');
+  if (isPublishing) {
+    unpublishOwnFeed();
+  } else {
+    publishOwnFeed(true);
+  }
+  updateCameraButtonText();
+}
 
-	if (isPublished) {
-		// 카메라 끄기
-		sfutest.send({
-			message: { request: "unpublish" },
-			success: function() {
-				isPublished = false;
-				$('#unpublish')
-					.text("카메라 켜기")
-					.attr('disabled', false)
-					.click(toggleVideo);
-			}
-		});
-	} else {
-		// 카메라 켜기
-		publishOwnFeed(true);
-		isPublished = true;
-		$('#unpublish')
-			.text("카메라 끄기")
-			.attr('disabled', false)
-			.click(toggleVideo);
-	}
+function updateCameraButtonText() {
+  const btn = $('#unpublish');
+  if (isPublishing) {
+    btn.text('카메라 끄기');
+  } else {
+    btn.text('카메라 켜기');
+  }
 }
 
 // [jsflux] 방나가기
 function unpublishOwnFeed() {
 	// Unpublish our stream
-	$('#unpublish').attr('disabled', true).unbind('click');
+	isPublishing = false;
+//	$('#unpublish').attr('disabled', true).unbind('click');
 	var unpublish = { request: "unpublish" };
 	sfutest.send({ message: unpublish });
 }
