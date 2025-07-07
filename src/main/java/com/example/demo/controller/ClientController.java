@@ -320,14 +320,17 @@ public class ClientController {
 		boolean result = clientService.updateClient(client);
 		
 		if (result) {
-			// 세션에 최신 회원 정보 다시 저장
-			session.setAttribute("loginClient", clientService.getClientById(client.getClientId()));
+			 // ✅ DB에서 최신 회원 정보 가져옴
+		    Client refreshed = clientService.getClientById(client.getClientId());
 
-			// 성공 메시지 추가
-			redirectAttributes.addFlashAttribute("message", "회원 정보가 성공적으로 수정되었습니다.");
+		    // ✅ 로그로 관심사 확인
+		    System.out.println("[DEBUG] 수정 후 DB에서 가져온 관심사: " + refreshed.getInterest());
 
-			// 마이페이지로 리다이렉트
-			return "redirect:/client/mypageProfile";
+		    // ✅ 세션에 최신 정보 저장
+		    session.setAttribute("loginClient", refreshed);
+
+		    redirectAttributes.addFlashAttribute("message", "회원 정보가 성공적으로 수정되었습니다.");
+		    return "redirect:/client/mypageProfile";
 		} else {
 			// 실패 메시지 추가
 			redirectAttributes.addFlashAttribute("error", "회원 정보 수정에 실패했습니다.");

@@ -7,7 +7,8 @@
 
 
 	<!-- 회원가입. -->
-	<insert id="insert" parameterType="com.example.demo.model.Client">
+	<insert id="insert"
+		parameterType="com.example.demo.model.Client">
 		INSERT INTO client (
 		client_id,
 		password,
@@ -63,7 +64,8 @@
 	<select id="findByEmail"
 		resultType="com.example.demo.model.Client">
 		SELECT * FROM client
-		WHERE CONCAT(email_id, '@', email_domain) =
+		WHERE CONCAT(email_id, '@',
+		email_domain) =
 		#{email} AND state = 0
 	</select>
 
@@ -71,23 +73,28 @@
 	<select id="selectByEmailForRegister" parameterType="string"
 		resultType="com.example.demo.model.Client">
 		SELECT * FROM client
-		WHERE CONCAT(email_id, '@', email_domain) = #{email}
+		WHERE CONCAT(email_id, '@', email_domain) =
+		#{email}
 		AND state = 0  <!-- 추가: 탈퇴 제외 -->
 	</select>
 
 
 	<!-- 로그인 : 영교님꺼 추가 -->
-	<select id="login" parameterType="String" resultType="com.example.demo.model.Client">
+	<select id="login" parameterType="String"
+		resultType="com.example.demo.model.Client">
 		SELECT *
 		FROM client
 		WHERE client_id = #{clientId}
-		AND state = 0
+		AND state =
+		0
 	</select>
 	<!-- AND state IN (0, 2) 상태값 0,2 회원만 로그인 가능 -->
 
-	<select id="findBySocialIdAndPlatform" resultType="com.example.demo.model.Client">
+	<select id="findBySocialIdAndPlatform"
+		resultType="com.example.demo.model.Client">
 		SELECT * FROM
-		client WHERE SOCIAL_ID = #{socialId} AND SOCIAL_PLATFORM =
+		client WHERE SOCIAL_ID = #{socialId} AND
+		SOCIAL_PLATFORM =
 		#{platform}
 		AND state = 0
 	</select>
@@ -143,15 +150,20 @@
 
 
 	<!-- 회원정보 수정 -->
-	<update id="updateClient"
-		parameterType="com.example.demo.model.Client">
+	<update id="updateClient" parameterType="com.example.demo.model.Client">
 		UPDATE client
 		SET
 		name = #{name},
 		phone = #{phone},
 		email_id = #{emailId},
-		email_domain = #{emailDomain},
-		gender = #{gender}
+		email_domain =
+		#{emailDomain},
+		gender = #{gender},
+		interest = #{interest},
+		zipcode =
+		#{zipcode},
+		addr_base = #{addrBase},
+		addr_detail = #{addrDetail}
 		<if test="birth != null">
 			, birth = #{birth}
 		</if>
@@ -191,13 +203,14 @@
 		parameterType="String">
 		SELECT * FROM client WHERE client_id = #{clientId}
 	</select>
-	
+
 	<!-- 비밀번호 변경 -->
 	<update id="updatePassword"
 		parameterType="com.example.demo.model.Client">
 		UPDATE client
 		SET password = #{password}
-		WHERE client_id = #{clientId}
+		WHERE client_id =
+		#{clientId}
 	</update>
 
 	<!-- 비번찾기에서 비번번경 -->
@@ -211,7 +224,8 @@
 	<!-- 회원 탈퇴 : 실제 DB삭제 안하고 상태값만 바꿈 -->
 	<update id="deleteClient" parameterType="String">
 		UPDATE client
-		SET state = 1
+		SET state =
+		1
 		WHERE client_id = #{clientId}
 		AND state = 0
 	</update>
@@ -221,6 +235,6 @@
 		SELECT * FROM client
 		WHERE PHONE = #{phone}
 	</select>
-	
+
 
 </mapper>
