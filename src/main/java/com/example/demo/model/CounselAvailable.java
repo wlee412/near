@@ -6,8 +6,10 @@ import lombok.Data;
 
 @Data
 public class CounselAvailable {
-    private int counselNo;   //counsel_no
-    private String counselorId;   // counselor_id
+    private int counselNo;   
+    private String counselorId;  
     private LocalDateTime start;
+		
+
 
 }

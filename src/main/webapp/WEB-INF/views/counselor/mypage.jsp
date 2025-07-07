@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>상담사 마이페이지</title>
 <link rel="stylesheet" href="/css/common.css" />
-<link rel="stylesheet" href="/css/mypage.css" />
-<script defer src="/js/counselor/mypage.js"></script>
+<link rel="stylesheet" href="/css/counselor.css" />
 </head>
 <body>
 
@@ -37,7 +36,7 @@
 
 				<!-- 오른쪽 콘텐츠 -->
 				<section class="main-section" id="contentArea">
-					<p>환영합니다, ${sessionScope.loginCounselor.name}상담사님!</p>
+					<p>환영합니다, ${sessionScope.loginCounselor.name} 상담사님!</p>
 				</section>
 			</div>
 		</div>
@@ -45,5 +44,5 @@
 		<%-- 공통 푸터 --%>
 		<jsp:include page="../includes/footer.jsp" />
 </body>
-<script defer src="/js/counselor/mypage.js"></script>
+<script defer src="/js/counselor.js"></script>
 </html>

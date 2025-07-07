@@ -1,69 +1,62 @@
-<%@page import="java.time.LocalDate"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>상담 가능 시간 설정</title>
+  <title>FullCalendar 테스트 (로컬 JS 사용)</title>
+
+  <!-- ✅ 로컬 CSS 연결 -->
+  <link rel="stylesheet" href="/css/fullcalendar.min.css">
+
+  <!-- ✅ 로컬 JS 연결 -->
+  <script src="/js/fullcalendar.min.js"></script>
+
   <style>
-    .time-option {
-      display: inline-block;
-      padding: 8px 12px;
-      margin: 5px;
-      border: 1px solid #aaa;
-      border-radius: 6px;
-      cursor: pointer;
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 30px;
+      background: #f2f9ff;
     }
-    .time-option.selected {
-      background-color: #4ecdc4;
-      color: white;
+
+    #calendar {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <h2>상담 가능 시간 설정</h2>
 
-  <label for="date">날짜 선택:</label>
-  <input type="date" id="date" name="date" min="<%= LocalDate.now() %>">
+<h2>📅 상담 예약 달력</h2>
+<div id="calendar"></div>
 
-  <div id="timeSlots" style="margin-top: 20px;"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
 
-  <button onclick="submitTimes()">저장</button>
-
-  <script>
-    const validHours = [9, 10, 11, 13, 14, 15, 16]; // 12시 제외
-    const timeSlotsDiv = document.getElementById('timeSlots');
-
-    document.getElementById('date').addEventListener('change', () => {
-      const selectedDate = document.getElementById('date').value;
-      timeSlotsDiv.innerHTML = '';
-      if (!selectedDate) return;
-
-      validHours.forEach(hour => {
-        const timeStr = `${hour.toString().padStart(2, '0')}:00`;
-        const div = document.createElement('div');
-        div.classList.add('time-option');
-        div.textContent = timeStr;
-        div.dataset.time = timeStr;
-        div.addEventListener('click', () => {
-          div.classList.toggle('selected');
-        });
-        timeSlotsDiv.appendChild(div);
-      });
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'ko',
+      dateClick: function(info) {
+        alert('선택한 날짜: ' + info.dateStr);
+      },
+      events: [
+        {
+          title: '🧠 예약됨',
+          start: new Date().toISOString().split('T')[0]
+        }
+      ]
     });
 
-    function submitTimes() {
-      const selectedDate = document.getElementById('date').value;
-      const selectedTimes = Array.from(document.querySelectorAll('.time-option.selected'))
-        .map(el => el.dataset.time);
+    calendar.render();
+  });
+</script>
 
-      const datetimes = selectedTimes.map(time => `${selectedDate}T${time}:00`);
-      console.log("예약 가능 시간 전송:", datetimes);
-
-      // fetch로 백엔드 전송 가능
-      // fetch('/counselor/available-times', { method: 'POST', body: JSON.stringify(...) })
-    }
-  </script>
 </body>
 </html>

@@ -102,6 +102,10 @@ footer {
   font-weight: 500;
   font-size: 16px;
 }
+.login a + a {
+  margin-left: 20px;
+}
+
 .center-menu a:hover,
 .login a:hover {
   color:#5daec5;

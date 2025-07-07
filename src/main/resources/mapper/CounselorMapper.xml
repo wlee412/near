@@ -5,23 +5,40 @@
 
 <mapper namespace="com.example.demo.mapper.CounselorMapper">
 
- <!-- 로그인용 상담사 조회 -->
-  <select id="findByCounselorId" resultType="com.example.demo.model.Counselor">
-    SELECT * FROM counselor
-    WHERE counselor_id = #{counselorId}
-  </select>
+	<!-- 상담사 로그인 -->
+	<select id="findByCounselorId"
+		resultType="com.example.demo.model.Counselor">
+		SELECT * FROM counselor
+		WHERE counselor_id = #{counselorId}
+	</select>
 
-  <!-- 상담 가능 시간 등록 -->
-  <insert id="insertAvailableTime">
-    INSERT INTO counsel_available (counselor_id, start)
-    VALUES (#{counselorId}, #{start})
-  </insert>
+	<!-- 상담 가능 시간 등록 -->
+	<insert id="insertAvailableTime">
+		INSERT INTO counsel_available (counselor_id, start)
+		VALUES (#{counselorId}, #{dateTime})
+	</insert>
 
-  <!-- 상담사 ID로 가능한 시간 목록 조회 -->
-  <select id="selectAvailableTimesByCounselor" resultType="com.example.demo.model.CounselAvailable">
-    SELECT * FROM counsel_available
-    WHERE counselor_id = #{counselorId}
-    ORDER BY start ASC
-  </select>
-  
+	<!-- 상담사 예약 가능 시간 목록 조회 -->
+	<select id="findAvailableTimesByCounselorId"
+		resultType="com.example.demo.model.CounselAvailable">
+		SELECT counsel_no, counselor_id, start
+		FROM
+		counsel_available
+		WHERE counselor_id = #{counselorId}
+		ORDER BY start ASC
+	</select>
+
+	<!-- 시간저장 -->
+	<insert id="insertAvailableTimeWithDateTime">
+		INSERT INTO counsel_available (counselor_id, start)
+		VALUES (#{counselorId}, #{start})
+	</insert>
+
+	<!-- 예약 가능 시간 삭제 -->
+	<delete id="deleteAvailableTimeById">
+		DELETE FROM counsel_available
+		WHERE counsel_no =
+		#{counselNo}
+	</delete>
+
 </mapper>
