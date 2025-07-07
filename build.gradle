@@ -25,9 +25,11 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.json:json:20240303'
+
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	compileOnly 'org.projectlombok:lombok'

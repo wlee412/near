@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.PharmacyMapper">
+
+  <!-- resultMap 정의 -->
+  <resultMap id="pharmacyResultMap" type="com.example.demo.model.PharmacyInfo">
+    <id property="pharmId" column="pharm_id"/>
+    <result property="pharmName" column="pharm_name"/>
+    <result property="pharmAddress" column="pharm_address"/>
+    <result property="pharmTel" column="pharm_tel"/>
+    <result property="pharmLat" column="pharm_lat"/>
+    <result property="pharmLng" column="pharm_lng"/>
+    <result property="openHour" column="open_hour"/>
+  </resultMap>
+
+  <select id="findById" parameterType="string" resultMap="pharmacyResultMap">
+    SELECT * FROM pharm_info WHERE pharm_id = #{value}
+  </select>
+
+  <insert id="insert" parameterType="com.example.demo.model.PharmacyInfo">
+    INSERT INTO pharm_info (
+      pharm_id, pharm_name, pharm_address, pharm_tel,
+      pharm_lat, pharm_lng, open_hour
+    ) VALUES (
+      #{pharmId}, #{pharmName}, #{pharmAddress}, #{pharmTel},
+      #{pharmLat}, #{pharmLng}, #{openHour}
+    )
+  </insert>
+
+ <!-- ✅ 약국 검색 SQL -->
+<select id="searchPharmacies" resultType="map">
+  SELECT
+    pharm_id AS id,
+    pharm_name AS name,
+    pharm_address AS address,
+    pharm_tel AS tel,
+    pharm_lat AS lat,
+    pharm_lng AS lng
+  FROM pharm_info
+  WHERE 1 = 1
+  <if test="name != null and name != ''">
+    AND pharm_name LIKE CONCAT('%', #{name}, '%')
+  </if>
+  <if test="area != null and area != ''">
+    AND pharm_address LIKE CONCAT('%', #{area}, '%')
+  </if>
+</select>
+
+</mapper>

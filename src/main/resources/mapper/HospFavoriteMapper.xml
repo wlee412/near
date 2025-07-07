@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.HospFavoriteMapper">
+
+  <insert id="insertFavorite">
+    INSERT INTO hosp_favorite (client_id, hosp_id)
+    VALUES (#{clientId}, #{hospId})
+  </insert>
+
+  <delete id="deleteFavorite">
+    DELETE FROM hosp_favorite
+    WHERE client_id = #{clientId} AND hosp_id = #{hospId}
+  </delete>
+
+  <select id="isFavorited" resultType="boolean">
+    SELECT COUNT(*) > 0
+    FROM hosp_favorite
+    WHERE client_id = #{clientId} AND hosp_id = #{hospId}
+  </select>
+
+</mapper>
