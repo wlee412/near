@@ -2,47 +2,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/mypage.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/client.css">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true"/>
-	<!-- ✅메시지 알림 -->
-	<c:if
-		test="${not empty message or not empty success or not empty error}">
-		<script>
-			window
-					.addEventListener(
-							'DOMContentLoaded',
-							function() {
-								<c:if test="${not empty message}">alert("<c:out value='${message}'/>");
-								</c:if>
-								<c:if test="${not empty success}">alert("<c:out value='${success}'/>");
-								</c:if>
-								<c:if test="${not empty error}">alert("<c:out value='${error}'/>");
-								</c:if>
-							});
-		</script>
-	</c:if>
+	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 
-	<!-- ✅ 마이페이지 wrapper 안에 타이틀 포함 -->
 	<div class="mypage-wrapper">
-
-		<!-- ✅ 사이드바 -->
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
 				<a href="${pageContext.request.contextPath}/client/mypage"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 			<div class="mypage-divider"></div>
-
 			<div class="menu-item"
 				onclick="location.href='${pageContext.request.contextPath}/client/mypageProfile'">프로필</div>
 			<div class="menu-item"
@@ -54,23 +32,56 @@
 				onclick="location.href='${pageContext.request.contextPath}/client/mypageDelete'">회원탈퇴</div>
 		</div>
 
-		<!-- ✅ 콘텐츠 영역 -->
 		<div class="mypage-content">
+			<!-- ✅ 기본 정보 -->
+			<h2>${client.name}님 환영합니다!</h2>
+			<p>
+				가입일:
+				<fmt:formatDate value="${client.regDate}" pattern="yyyy.MM.dd" />
+			</p>
+			<p>
+				N:EAR와 함께한 지 <strong>D+${dDay}</strong>일 😊
+			</p>
 
-			<div class="mypage-welcome-box">
-				<h2 class="welcome-title">${client.name}님 환영합니다!</h2>
-				<p class="welcome-date">
-					가입일 :
-					<fmt:formatDate value="${client.regDate}" pattern="yyyy.MM.dd" />
-				</p>
-				<p class="welcome-dday">
-					N:EAR와 함께한 지 <strong>D+${dDay}</strong>일 😊
-				</p>
+			<!-- ✅ 구분선 -->
+			<div class="mypage-divider" style="margin-top: 40px; margin-bottom: 30px;"></div>
+			<!-- ✅ 추천 설문 -->
+			<h3>관심사 기반 추천 설문</h3>
+			<c:if test="${empty recommendedSurveys}">
+				<p>추천 설문이 없습니다.</p>
+			</c:if>
+
+			<!-- ✅ 슬라이더 전체 컨테이너 -->
+			<div class="slider-wrapper-container">
+				<div class="slider-wrapper">
+					<button class="slider-button prev" onclick="moveSlide(-1)">&#8249;</button>
+
+					<div class="slider-track" id="sliderTrack">
+						<c:forEach var="survey" items="${recommendedSurveys}">
+							<div class="slider-card">
+								<h4>${survey.surveyName}</h4>
+								<p>${survey.desc}</p>
+								<a
+									href="${pageContext.request.contextPath}/survey/start?surveyId=${survey.surveyId}">설문
+									시작</a>
+							</div>
+						</c:forEach>
+					</div>
+
+					<button class="slider-button next" onclick="moveSlide(1)">&#8250;</button>
+				</div>
 			</div>
-
+			
+			<c:if test="${not empty recommendExplanation}">
+			    <div class="recommend-explanation-box">
+			        <h3>추천 이유</h3>
+			        <p>${recommendExplanation}</p>
+			    </div>
+			</c:if>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
-	
+
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
+	<script src="${pageContext.request.contextPath}/js/mypage.js" defer></script>
 </body>
 </html>

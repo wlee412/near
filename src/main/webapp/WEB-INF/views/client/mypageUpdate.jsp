@@ -92,15 +92,15 @@
 						<span>@</span>
 
 						<!-- 직접입력 input -->
-						<input type="text" id="customEmailDomain" placeholder="직접입력" readonly
+						<input type="text" id="customEmailDomain" name="emailDomain" placeholder="직접입력" readonly
 							style="${client.emailDomain != 'gmail.com' && client.emailDomain != 'naver.com' && client.emailDomain != 'daum.net' ? 'display:inline-block;' : 'display:none;'}"
 							value="${client.emailDomain}"
 							${client.emailDomain != 'gmail.com' && client.emailDomain != 'naver.com' && client.emailDomain != 'daum.net' ? 'name="emailDomain"' : 'disabled'}>
 
 						<!-- select 도메인 -->
-						<select id="emailDomainSelect"
+						<select id="emailDomainSelect" 
 							${client.emailDomain == 'gmail.com' || client.emailDomain == 'naver.com' || client.emailDomain == 'daum.net' ? 'name="emailDomain"' : ''}
-							disabled onchange="handleDomainChange()" required>
+							name="emailDomain" onchange="handleDomainChange()" required>
 							<option value="">도메인 선택</option>
 							<option value="gmail.com"
 								${client.emailDomain == 'gmail.com' ? 'selected' : ''}>gmail.com</option>
@@ -205,7 +205,8 @@
 	<script src="${pageContext.request.contextPath}/js/mypageUpdate.js" defer></script>
 	
 	<!-- 푸터 영역 -->
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 
 </body>
+<%-- 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/> --%>
+
 </html>

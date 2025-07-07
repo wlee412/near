@@ -1,3 +1,24 @@
+function handleDomainChange() {
+  const select = document.getElementById("emailDomainSelect");
+  const input = document.getElementById("customEmailDomain");
+  const selected = select.value;
+
+  if (selected === "custom") {
+    input.style.display = "inline-block";
+    input.removeAttribute("disabled");
+    input.setAttribute("name", "emailDomain");
+
+    select.removeAttribute("name");
+    select.disabled = true;
+  } else {
+    input.style.display = "none";
+    input.setAttribute("disabled", true);
+    input.removeAttribute("name");
+
+    select.setAttribute("name", "emailDomain");
+    select.disabled = false;
+  }
+}
 
 function execDaumPostcode() {
     new daum.Postcode({

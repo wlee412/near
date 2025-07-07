@@ -59,8 +59,7 @@
 			<h2 class="title">회원 탈퇴</h2>
 			<div class="divider"></div>
 
-			<form action="/client/delete" method="post"
-				onsubmit="return validateDeleteForm();">
+			<form action="/client/delete" method="post" onsubmit="return validateDeleteForm();">
 
 				<div class="form-group">
 					<label>ID</label> <input type="text" name="id"
@@ -68,16 +67,17 @@
 				</div>
 
 				<div class="form-group">
-					<label>비밀번호</label> <input type="password" name="pw" required>
+					<label>비밀번호</label> 
+					<input type="password" name="pw" id="pw" required>
 				</div>
 
 				<div class="form-group">
-					<label>비밀번호 확인</label> <input type="password" name="pwConfirm"
-						oninput="checkDeletePwMatch()">
+					<label>비밀번호 확인</label> 
+					<input type="password" name="pwConfirm" id="pwConfirm" oninput="checkPasswordMatch()">
 
 				</div>
 				<!-- 자바스크립트 결과 메시지 표시 -->
-				<p id="pwMatchMsg" class="result-text"></p>
+				<p id="pwMatchResult" class="result-text"></p>
 
 				<div class="form-group button-row">
 					<button type="submit" class="btn btn-half">탈퇴하기</button>
@@ -92,10 +92,10 @@
 
 		<div style="height:300px"></div>
 		<!-- js연결! -->
-		<script src="${pageContext.request.contextPath}/js/client.js"></script>
+		<script src="https://code.jquery.com/jquery-latest.js"></script>
+		<script src="${pageContext.request.contextPath}/js/mypageDelete.js"></script>
 		
 		<!-- 프로필 아이콘 드롭박스 -->
-	<script src="<c:url value='/js/proFile.js'/>"></script>
 <!-- 푸터 영역 -->
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 </body>

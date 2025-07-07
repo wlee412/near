@@ -624,37 +624,6 @@ function checkPwMatch() {
 }
 
 
-// 회원탈퇴
-function confirmDelete() {
-	const pw = document.getElementsByName("pw")[0].value;
-	const pwConfirm = document.getElementsByName("pwConfirm")[0].value;
-
-	const msg = document.getElementById("pwMatchMsg");
-	msg.innerText = ""; // 초기화
-
-	// 빈칸 검사
-	if (!pw || !pwConfirm) {
-		msg.innerText = "비밀번호를 정확히 입력해주세요.";
-		msg.style.color = "red";
-		return false;
-	}
-
-	// 비밀번호 불일치
-	if (pw !== pwConfirm) {
-		msg.innerText = "비밀번호가 일치하지 않습니다.";
-		msg.style.color = "red";
-		return false;
-	}
-
-	// 정말 탈퇴 확인
-	const confirmResult = confirm("정말 탈퇴하시겠습니까?");
-	if (!confirmResult) {
-		return false;
-	}
-
-	// 성공이면 통과
-	return true;
-}
 
 
 // 아이디/ 비번찾기
@@ -852,6 +821,7 @@ function resetPassword() {
 			resetResult.style.color = "red";
 		});
 }
+
 
 
 
