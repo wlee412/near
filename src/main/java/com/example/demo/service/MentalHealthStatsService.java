@@ -20,11 +20,9 @@ public class MentalHealthStatsService {
     private final MentalHealthMapper mapper;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    // 최신 서비스키 및 API 주소
     private final String SERVICE_KEY = "hWh3Syd%2B%2BiSx6gGoilIpTCIHKPDTfvhAjZccjvrt8cJ2jxJ1bm2fZJ79V6eePpDouFTqkiwXnQjCu8QrtFIBGQ%3D%3D";
     private final String BASE_URL = "https://apis.data.go.kr/1383000/yhis/YouthCnslCohortClsMtlService/getYouthCnslCohortClsMtlList";
 
-    // 1. 공공 API 전체 데이터 수집 및 DB 저장
     public String getMentalHealthDataAll() {
         int pageNo = 1;
         int numOfRows = 100;
@@ -77,59 +75,62 @@ public class MentalHealthStatsService {
         }
     }
 
-    // 2. 전체 원본
     public List<MentalHealthItem> selectAll() {
         return mapper.selectAll();
     }
 
-    // 3. 미취학 ~ 고등학생
     public List<MentalHealthItem> selectYoungOnly() {
         return mapper.selectYoungOnly();
     }
 
-    // 4. 대학생 이상
     public List<MentalHealthItem> selectOldOnly() {
         return mapper.selectOldOnly();
     }
 
-    // 혼자가 아니에요 카드 클릭 시 호출 (하나의 차트에 통합된 그룹 값)
-    public List<MentalHealthItem> getGroupedChartData() {
-        List<MentalHealthItem> all = mapper.selectAll();
+    public List<MentalHealthItem> selectAvgByAgeGroup() {
+        List<Map<String, Object>> rawList = mapper.selectAvgByAgeGroup();
 
-        Map<String, Double> grouped = new LinkedHashMap<>();
-
-        for (MentalHealthItem item : all) {
-            String level = item.getChtXCn();
-            double value = 0;
-            try {
-                value = Double.parseDouble(item.getChtVl().replace(",", ""));
-            } catch (Exception ignored) {}
-
-            String group = classifyAgeGroup(level);
-            grouped.put(group, grouped.getOrDefault(group, 0.0) + value);
-        }
-
-        return grouped.entrySet().stream()
-                .map(e -> new MentalHealthItem(e.getKey(), String.valueOf(e.getValue())))
+        return rawList.stream()
+                .map(row -> {
+                    MentalHealthItem item = new MentalHealthItem();
+                    item.setChtXCn(String.valueOf(row.get("chtXCn")));
+                    item.setChtVl(String.valueOf(row.get("chtVl")));
+                    return item;
+                })
                 .collect(Collectors.toList());
     }
 
-    // 공통 그룹화 기준
-    private String classifyAgeGroup(String grade) {
-        if (grade == null) return "기타";
-        if (grade.contains("미취학")) return "미취학";
-        if (grade.contains("초등")) return "초등학생";
-        if (grade.contains("중학")) return "중학생";
-        if (grade.contains("고등")) return "고등학생";
-        if (grade.contains("대학") || grade.contains("대")) return "대학생";
-        return "청소년 아님";
-    }
+    // 연령 그룹별 합산 결과 (chart용)
+    public List<MentalHealthItem> getGroupedChartData() {
+        List<MentalHealthItem> list = mapper.selectAll();
 
-    private int parseToInt(String val) {
-        try {
-            return Integer.parseInt(val.replace(",", ""));
-        } catch (Exception e) {
-            return 0;
+        Map<String, Double> grouped = new LinkedHashMap<>();
+
+        for (MentalHealthItem item : list) {
+            String level = item.getChtXCn();
+            double value = 0.0;
+            try {
+                value = Double.parseDouble(item.getChtVl().replace(",", ""));
+            } catch (Exception e) {
+                continue;
+            }
+
+            String ageGroup = "기타";
+            if (level.contains("초등")) ageGroup = "초등학생";
+            else if (level.contains("중학")) ageGroup = "중학생";
+            else if (level.contains("고등")) ageGroup = "고등학생";
+            else if (level.contains("미취학")) ageGroup = "미취학";
+            else if (level.contains("대학")) ageGroup = "대학생";
+            else if (level.contains("청소년 아님")) ageGroup = "청소년 아님";
+
+            grouped.put(ageGroup, grouped.getOrDefault(ageGroup, 0.0) + value);
         }
+
+        List<String> order = Arrays.asList("미취학", "초등학생", "중학생", "고등학생", "대학생", "청소년 아님");
+
+        return order.stream()
+                .filter(grouped::containsKey)
+                .map(ageGroup -> new MentalHealthItem(ageGroup, String.valueOf(grouped.get(ageGroup))))
+                .collect(Collectors.toList());
     }
 }

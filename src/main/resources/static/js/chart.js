@@ -1,6 +1,6 @@
 // 차트 불러오기 함수
-function loadChartData(type) {
-    fetch(`/mental/chart-data/${type}`)
+function loadChartData() {
+    fetch(`/mental/chart-data/total`)  // 여기서 type을 "total"로 고정
         .then(res => res.json())
         .then(data => {
             const labels = data.map(item => item.chtXCn); // 예: '고등학생', '대학생'
@@ -40,9 +40,9 @@ function loadChartData(type) {
 }
 
 // 모달 열기
-function openModal(type) {
+function openModal() {
     document.getElementById('chartModal').style.display = 'block';
-    loadChartData(type); // <- 여기에 핵심 차트 호출
+    loadChartData(); // ← type 없이 호출 (total로 고정됨)
 }
 
 // 모달 닫기
