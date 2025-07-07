@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.model.MentalHealthItem;
 import com.example.demo.service.MentalHealthStatsService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -69,4 +71,18 @@ public class MentalHealthController {
     public List<MentalHealthItem> testAll() {
         return service.selectAll();
     }
+    
+    //행운 카드
+    @GetMapping("/mental/dashboard")
+    public String mentalDashboard() {
+        return "mental/mentalDashboard";
+    }
+    
+    @GetMapping("/mental/lucky")
+    public String luckyCardPage(Model model) {
+        model.addAttribute("cardText", "오늘도 잘 하고 있어요! 당신은 충분히 소중한 사람입니다 🌟");
+        return "mental/luckyCard"; // JSP 경로에 맞게
+    }
+
+
 }
