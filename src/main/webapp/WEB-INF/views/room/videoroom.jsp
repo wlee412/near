@@ -24,39 +24,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script type="text/javascript" src="/js/janus.js"></script>
 <script type="text/javascript" src="/js/videoroom.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-<script>
-	$(function() {
-		$(".navbar-static-top").load(
-				"navbar.html",
-				function() {
-					$(".navbar-static-top li.dropdown").addClass("active");
-					$(".navbar-static-top a[href='videoroomtest.html']")
-							.parent().addClass("active");
-				});
-		$(".footer").load("footer.html");
-	});
-</script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css"
 	type="text/css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
-<style>
-table {
-	width: 100%;
-	border-top: 1px solid #bdbcbc;
-	border-collapse: collapse;
-}
-
-th, td {
-	border-bottom: 1px solid #bdbcbc;
-	padding: 10px;
-}
-</style>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
 <link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 </head>
@@ -123,7 +95,7 @@ th, td {
 								</div>
 							</div>
 							<div class="controls">
-								<button id="whiteboardBtn">화이트보드</button>
+								<button id="whiteboardBtn" onclick="showWhiteboardMode()">화이트보드</button>
 								<button id="mute">마이크 끄기</button>
 								<button id="unpublish">카메라 끄기</button>
 							</div>
@@ -147,7 +119,24 @@ th, td {
 						<div class="whiteboard">
 							<canvas id="whiteboard-canvas"></canvas>
 						</div>
-						<div class="tools">그리기 도구</div>
+						<div class="tools">
+							<button onclick="usePen()">그리기</button>
+							<button onclick="useEraser()">지우개</button>
+							<button onclick="setMode('select')">선택</button>
+							<button onclick="clearCanvas()">전체 지우기</button>
+							<button onclick="saveCanvasAsImage()">다운로드</button>
+							<label> 배경색: <input type="color" id="bgColorPicker"
+								value="#ffffff" onchange="changeBackgroundColor(this.value)">
+							</label> <label> 색상: <input type="color" id="colorPicker"
+								value="#000000">
+							</label> <label> 굵기: <input type="range" id="brushWidth" min="1"
+								max="30" value="3">
+							</label>
+							<button onclick="saveCheckpoint()">중간 저장</button>
+							<button onclick="rollback()">롤백</button>
+							<button onclick="deleteSelected()">선택 삭제</button>
+						</div>
+
 					</div>
 					<div class="right-section">
 						<div class="panel">
@@ -170,13 +159,12 @@ th, td {
 					</div>
 				</div>
 
-
 			</div>
 		</div>
 		<hr>
-		<div class="footer"></div>
 	</div>
 	<script type="text/javascript" src="/js/VolumeControl.js"></script>
 	<script type="text/javascript" src="/js/roomlayout.js"></script>
+	<script type="text/javascript" src="/js/whiteboard.js"></script>
 </body>
 </html>
