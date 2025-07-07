@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.reservation-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  font-family: 'Gowun Batang', serif;
+}
+
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.reservation-table th,
+.reservation-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.reservation-table th {
+  background-color: #f0f4f9;
+}
+
+.cancel-btn,
+.bulk-cancel-btn {
+  background-color: #e04b4b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-btn:hover,
+.bulk-cancel-btn:hover {
+  background-color: #c93232;
+}
+.menu-container {
+  display: flex;
+  justify-content: center;  /* 중앙 정렬 */
+  gap: 20px;                 /* 메뉴 간 간격 */
+  margin: 20px 0;
+}
+
+.menu-box {
+  background-color: #f4f8ff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu-box a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a4b7b;
+}
+
+.menu-box:hover {
+  background-color: #e0ecff;
+}
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.pagination a.active {
+  background-color: #5daec5;
+  color: white;
+}

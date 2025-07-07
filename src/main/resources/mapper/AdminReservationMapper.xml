@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.AdminReservationMapper">
+
+    <select id="getReservationsWithPaging" resultType="com.example.demo.model.AdminReservation">
+        SELECT 
+            r.reservation_no,
+            csl.name AS counselorName,
+            cli.name AS clientName,
+            cli.client_id AS clientId,
+            cli.phone,
+            ca.start,
+            r.state
+        FROM counsel_reservation r
+        JOIN client cli ON r.client_id = cli.client_id
+        JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
+        JOIN counselor csl ON ca.counselor_id = csl.counselor_id
+        ORDER BY ca.start DESC
+        LIMIT #{startRow}, #{pageSize}
+    </select>
+
+    <select id="getTotalReservationCount" resultType="int">
+        SELECT COUNT(*) FROM counsel_reservation
+    </select>
+
+    <update id="cancelReservation">
+        UPDATE counsel_reservation
+        SET state = '취소'
+        WHERE reservation_no = #{reservationNo}
+    </update>
+
+</mapper>
