@@ -91,10 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		sendUpdate("remove", e.target.toObject());
 	});
 	function sendUpdate(type, payload) {
-		socket.send(JSON.stringify({
-			type: type,
-			payload: payload
-		}));
+		stompClient.send(
+			'/app/draw',           // @MessageMapping("/draw") 와 매핑
+			{
+				type,
+				roomId: currentRoomId,      // 방 구분용 (전역 변수)
+				sender: myUserId,           // 본인 식별용
+				payload
+			},                    // 헤더 (예: {roomId, sender} 를 넣을 수도 있음)
+			JSON.stringify(msg)    // JSON 문자열
+		);
+
 	}
 });
 
@@ -166,13 +173,27 @@ const socket = new SockJS("/ws");
 const stompClient = Stomp.over(socket);
 
 stompClient.connect({}, function() {
-	stompClient.subscribe("/topic/whiteboard", function(message) {
-		const msg = JSON.parse(message.body);
-		if (msg.type === "draw") {
-			fabric.util.enlivenObjects([msg.payload], function(objects) {
-				objects.forEach(obj => canvas.add(obj));
-				canvas.renderAll();
-			});
+	stompClient.subscribe(`/topic/whiteboard/${currentRoomId}`, function(frame) {
+		const msg = JSON.parse(frame.body);
+		if (msg.sender === myUserId) return;   // 자기 메시지 필터링
+
+		switch (msg.type) {
+			case 'draw':
+			case 'add':
+			case 'modify':
+			case 'remove':
+				fabric.util.enlivenObjects([msg.payload], objs => {
+					objs.forEach(o => {
+						if (msg.type === 'remove') canvas.remove(o);
+						else canvas.add(o);
+					});
+					canvas.renderAll();
+				});
+				break;
+			case 'clear':
+				canvas.clear();
+				canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+				break;
 		}
 	});
 });
