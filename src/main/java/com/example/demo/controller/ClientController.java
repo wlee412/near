@@ -1,14 +1,13 @@
 package com.example.demo.controller;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,10 +23,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.model.AccountVerification;
 import com.example.demo.model.Client;
+import com.example.demo.model.Survey;
+import com.example.demo.service.ChatGptService;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.EmailService;
+import com.example.demo.service.SurveyService;
 import com.example.demo.service.VerifyService;
 
 import jakarta.servlet.http.Cookie;
@@ -38,20 +39,25 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/client")
 public class ClientController {
 
-	private final EmailService emailService;
 
 	private final PasswordEncoder passwordEncoder;
-
+	
+	ClientController(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
+	
 	@Autowired
 	private ClientService clientService;
 
 	@Autowired
 	private VerifyService verifyService;
+	
+	@Autowired
+	private SurveyService surveyService;
+	
+	@Autowired
+	private ChatGptService chatGptService;
 
-	ClientController(PasswordEncoder passwordEncoder, EmailService emailService) {
-		this.passwordEncoder = passwordEncoder;
-		this.emailService = emailService;
-	}
 
 	// 회원가입 화면
 	@GetMapping("/register")
@@ -67,14 +73,6 @@ public class ClientController {
 		return exists ? "duplicate" : "ok";
 	}
 
-	// 닉네임 중복 확인
-//	@ResponseBody
-//	@GetMapping("/check-nickname")
-//	public String checkNickname(@RequestParam("nickname") String nickname) {
-//		boolean exists = clientService.checkNicknameExists(nickname);
-//		return exists ? "duplicate" : "ok";
-//	}
-
 	// 이메일 중복 확인
 	@PostMapping("/checkEmailDuplicate")
 	@ResponseBody
@@ -82,7 +80,6 @@ public class ClientController {
 		String email = data.get("email");
 		return clientService.findByEmailForRegister(email) != null;
 	}
-
 
 	//회원가입 폼
 	@PostMapping("/register")
@@ -129,8 +126,6 @@ public class ClientController {
 		}
 	}
 
-
-//	영교님 controller 함수 - 시작 
 	@GetMapping("/login")
 	public String login() {
 		return "client/login";
@@ -173,9 +168,7 @@ public class ClientController {
 		}
 	}
 
-//	영교님 controller 함수 - 끝 
-	
-	// 재원 추가
+
 	@GetMapping("/find")
 	public String find() {
 		return "client/find";
@@ -198,17 +191,45 @@ public class ClientController {
 
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
-		Client client = (Client) session.getAttribute("loginClient");
-		model.addAttribute("client", client);
+	    Client client = (Client) session.getAttribute("loginClient");
+	    model.addAttribute("client", client);
 
-		if (client != null && client.getRegDate() != null) {
-			LocalDate joinDate = client.getRegDate().toLocalDateTime().toLocalDate();
-			LocalDate today = LocalDate.now(ZoneId.systemDefault());
-			long dday = ChronoUnit.DAYS.between(joinDate, today);
-			model.addAttribute("dDay", dday);
-		}
+	    // 관심사 유효성 체크
+	    if (client == null || client.getInterest() == null || client.getInterest().isEmpty()) {
+	        model.addAttribute("recommendExplanation", "관심사가 등록되지 않았습니다.");
+	        return "client/mypage";
+	    }
 
-		return "client/mypage";
+	    String interestStr = client.getInterest();
+	    String[] interestArr = interestStr.split(",");
+
+	    // 설문 추천
+	    List<Survey> recommendedSurveys = surveyService.getRecommendedSurveys(interestArr);
+	    model.addAttribute("recommendedSurveys", recommendedSurveys);
+
+	    // GPT 설명 캐시 로직
+	    if (interestArr.length > 0 && !recommendedSurveys.isEmpty()) {
+	        try {
+	            String explanation = chatGptService.getOrCreateSurveyExplanation(
+	                client.getClientId(), interestArr, recommendedSurveys
+	            );
+	            model.addAttribute("recommendExplanation", explanation);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            model.addAttribute("recommendExplanation", "GPT 설명 생성 실패");
+	            System.out.println("GPT 오류 응답 내용: " + e.getMessage());
+	        }
+	    }
+
+	    // 가입일로부터 D+ 계산
+	    if (client.getRegDate() != null) {
+	        LocalDate joinDate = client.getRegDate().toLocalDateTime().toLocalDate();
+	        LocalDate today = LocalDate.now(ZoneId.systemDefault());
+	        long dday = ChronoUnit.DAYS.between(joinDate, today);
+	        model.addAttribute("dDay", dday);
+	    }
+
+	    return "client/mypage";
 	}
 
 	// 마이페이지 프로필 화면
