@@ -35,13 +35,6 @@
 		<div class="mypage-content">
 			<!-- ✅ 기본 정보 -->
 			<h2>${client.name}님 환영합니다!</h2>
-			<p>
-				가입일:
-				<fmt:formatDate value="${client.regDate}" pattern="yyyy.MM.dd" />
-			</p>
-			<p>
-				N:EAR와 함께한 지 <strong>D+${dDay}</strong>일 😊
-			</p>
 
 			<!-- ✅ 구분선 -->
 			<div class="mypage-divider" style="margin-top: 40px; margin-bottom: 30px;"></div>

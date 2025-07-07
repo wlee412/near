@@ -53,11 +53,11 @@ public class ChatGptService {
         prompt.append(String.join(", ", interests));
         prompt.append(".\n\n");
 
-        prompt.append("아래는 추천된 설문 리스트입니다:\n");
+        prompt.append("아래는 내담자에게 추천된 설문 리스트입니다:\n");
         for (int i = 0; i < surveyNames.size(); i++) {
             prompt.append("- ").append(surveyNames.get(i)).append(": ").append(surveyDescs.get(i)).append("\n");
         }
-        prompt.append("\n이 사용자에게 위 설문들이 왜 유용한지 한문단으로 따듯한 말투로 설명해주세요.");
+        prompt.append("\n이 내담자에게 위 설문들이 왜 유용한지 한문단으로 따듯한 말투로 설명해주세요.");
 
         OkHttpClient client = new OkHttpClient();
         ObjectMapper mapper = new ObjectMapper();
@@ -140,4 +140,3 @@ public class ChatGptService {
         return explanation;
     }
 }
-
