@@ -29,6 +29,11 @@
 	type="text/css" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
 <link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 </head>
