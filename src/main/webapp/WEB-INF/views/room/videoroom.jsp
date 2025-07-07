@@ -24,6 +24,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script type="text/javascript" src="/js/janus.js"></script>
 <script type="text/javascript" src="/js/videoroom.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
 <script>
 	$(function() {
 		$(".navbar-static-top").load(
@@ -120,14 +122,14 @@ th, td {
 									</ul>
 								</div>
 							</div>
-							<button id="whiteboardBtn" class="btn btn-success btn-xs">화이트보드</button>
-							<button id="mute" class="btn btn-warning btn-xs">마이크 끄기</button>
-							<button id="unpublish" class="btn btn-warning btn-xs">카메라
-								끄기</button>
+							<div class="controls">
+								<button id="whiteboardBtn">화이트보드</button>
+								<button id="mute">마이크 끄기</button>
+								<button id="unpublish">카메라 끄기</button>
+							</div>
 							<label for="volumeSlider">Volume:</label> <input type="range"
 								id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
-							<button class="btn btn-warning btn-xs" autocomplete="off"
-								id="start">시작</button>
+							<button autocomplete="off" id="start">시작</button>
 						</div>
 
 						<!-- 나 -->
@@ -141,20 +143,30 @@ th, td {
 				</div>
 
 				<div id="whiteboard-mode" class="layout hidden">
-					<div class="top-section">
-						<div class="whiteboard">화이트보드</div>
-						<div class="right-top">
-							<div id="videoremote1">상대방 화면</div>
-							<div class="controls">
-								<button id="mute">마이크 끄기</button>
-								<button id="unpublish">카메라 끄기</button>
-								<button id="backToVideo">영상 모드로</button>
-							</div>
+					<div class="left-section">
+						<div class="whiteboard">
+							<canvas id="whiteboard-canvas"></canvas>
 						</div>
-					</div>
-					<div class="bottom-section">
 						<div class="tools">그리기 도구</div>
-						<div id="videolocal">내 화면</div>
+					</div>
+					<div class="right-section">
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">상대</h3>
+							</div>
+							<div class="panel-body-sm" id="videoremote1"></div>
+						</div>
+						<div class="controls">
+							<button id="mute">마이크 끄기</button>
+							<button id="unpublish">카메라 끄기</button>
+							<button id="backToVideo">영상 모드로</button>
+						</div>
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">나</h3>
+							</div>
+							<div class="panel-body" id="videolocal"></div>
+						</div>
 					</div>
 				</div>
 
