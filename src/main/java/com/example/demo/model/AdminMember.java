@@ -1,16 +1,19 @@
 package com.example.demo.model;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 @Data
 public class AdminMember {
-	    private String client_id;
+	    private String clientId;
 	    private String name;
 	    private String phone;
 	    private String emailId;         
 	    private String emailDomain; 
-	    private String addr_base;	// 주소
+	    private String addrBase;	// 주소
 	    private int state;
+	    private Timestamp regDate;
 	    
 	    // 페이징 및 검색용
 	    private int startRow;

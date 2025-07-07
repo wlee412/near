@@ -28,7 +28,7 @@ public class AdminMemberController {
                                  @RequestParam(name = "type", required = false) String type,
                                  @RequestParam(name = "keyword", required = false) String keyword,
                                  Model model) {
-
+    	System.out.println("검색 타입: " + type + ", 키워드: " + keyword);
         final int pageSize = 10;   // 페이지당 게시물 수
         final int blockSize = 10;  // 페이징 블럭 크기
 
@@ -38,7 +38,7 @@ public class AdminMemberController {
         AdminPagenation pagenation = new AdminPagenation(total, pageNum, pageSize, blockSize);
 
         List<AdminMember> memberList = adminMemberService.pagingSearch(
-            type, keyword, pagenation.getStartRow(), pagenation.getEndRow()
+            type, keyword, pagenation.getStartRow(), pageSize
         );
 
         int no = total - pagenation.getStartRow() + 1;
@@ -57,6 +57,7 @@ public class AdminMemberController {
         model.addAttribute("currentPage", pagenation.getCurrentPage());
 
         return "admin/adminMember";
+        
     }
 
     

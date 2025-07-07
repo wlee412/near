@@ -10,12 +10,23 @@
 <body>
 
     <h1>회원 관리</h1>
+    <div class="menu-container">
+    <div class="menu-box">
+      <a href="/admin/adminHome">홈</a>
+    </div>
+    <div class="menu-box">
+      <a href="/admin/adminStats">통계</a>
+    </div>
+    <div class="menu-box">
+      <a href="/admin/adminReservation">예약내역</a>
+    </div>
+  </div>
 
     <!-- 🔍 검색창 -->
     <div class="search-box">
         <form method="get" action="<c:url value='/admin/adminMember' />">
             <select name="type">
-                <option value="">전체</option>
+                <option value="all" ${param.type == 'all' ? 'selected' : ''}>전체</option>
                 <option value="name" ${type == 'name' ? 'selected' : ''}>이름</option>
                 <option value="email" ${type == 'email' ? 'selected' : ''}>이메일</option>
                 <option value="state" ${type == 'state' ? 'selected' : ''}>상태</option>
@@ -42,12 +53,12 @@
         <tbody>
             <c:forEach var="member" items="${memberList}" varStatus="status">
                 <tr>
-                    <td>${no - status.index}</td>
-                    <td>${member.client_id}</td>
+                    <td>${status.index + 1}</td>
+                    <td>${member.clientId}</td>
                     <td>${member.name}</td>
                     <td>${member.phone}</td>
                     <td>${member.emailId}@${member.emailDomain}</td>
-                    <td>${member.addr_base}</td>
+                    <td>${member.addrBase}</td>
                     <td>
                         <span class="state-badge state-${member.state}">
                             <c:choose>
@@ -60,13 +71,13 @@
                     </td>
                     <td>
                         <form method="post" action="<c:url value='/admin/updateState' />">
-                            <input type="hidden" name="client_id" value="${member.client_id}" />
+                            <input type="hidden" name="client_id" value="${member.clientId}" />
                             <select name="state">
                                 <option value="0" ${member.state == 0 ? 'selected' : ''}>일반</option>
                                 <option value="1" ${member.state == 1 ? 'selected' : ''}>탈퇴</option>
                                 <option value="2" ${member.state == 2 ? 'selected' : ''}>블랙</option>
                             </select>
-                            <button type="submit" class="button-main">변경</button>
+                            <button type="submit" class="change-btn">변경</button>
                         </form>
                     </td>
                 </tr>
@@ -85,4 +96,5 @@
     </div>
 
 </body>
+<script src="<c:url value='/js/adminMember.js' />"></script>
 </html>

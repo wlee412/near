@@ -91,7 +91,42 @@ tr:hover {
 .button-main:hover {
   background-color: #4a9cb1;
 }
+.change-btn {
+	padding: 5px 12px;
+	border: none;
+	cursor: pointer;
+	background-color:#ff4d4d;
+	color: white;
+	border-radius: 4px;
+}
 
+.change-btn:hover {
+	background-color:#cc0000;
+}
+.menu-container {
+  display: flex;
+  justify-content: center;  /* 중앙 정렬 */
+  gap: 20px;                 /* 메뉴 간 간격 */
+  margin: 20px 0;
+}
+
+.menu-box {
+  background-color: #f4f8ff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu-box a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a4b7b;
+}
+
+.menu-box:hover {
+  background-color: #e0ecff;
+}
 /* 페이지네이션 */
 .pagination {
   margin-top: 30px;
