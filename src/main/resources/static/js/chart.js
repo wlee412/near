@@ -1,76 +1,51 @@
-// 청소년 정신건강 차트 (young)
-fetch('/chart-data/young')
-  .then(res => res.json())
-  .then(data => {
-    const labels = data.map(d => d.chtTtlNm + ' - ' + d.chtXCn);
-    const values = data.map(d => parseFloat(d.chtVl));
+// 차트 불러오기 함수
+function loadChartData(type) {
+    fetch(`/mental/chart-data/${type}`)
+        .then(res => res.json())
+        .then(data => {
+            const labels = data.map(item => item.chtXCn); // 예: '고등학생', '대학생'
+            const values = data.map(item => parseFloat(item.chtVl)); // 수치
 
-    new Chart(document.getElementById('mentalChartYoung'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '청소년 정신건강 지표',
-          data: values,
-          backgroundColor: '#5daec5'
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          title: {
-            display: false
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              precision: 0
+            const ctx = document.getElementById('mentalChart').getContext('2d');
+
+            if (window.myChart) {
+                window.myChart.destroy(); // 기존 차트 제거
             }
-          }
-        }
-      }
-    });
-  })
-  .catch(err => console.error('청소년 차트 오류:', err));
 
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '정신건강 이슈',
+                        data: values,
+                        backgroundColor: 'rgba(75, 192, 192, 0.4)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error("차트 데이터 로드 실패:", error);
+        });
+}
 
-// 대학생 이상 정신건강 차트 (old)
-fetch('/chart-data/old')
-  .then(res => res.json())
-  .then(data => {
-    const labels = data.map(d => d.chtTtlNm + ' - ' + d.chtXCn);
-    const values = data.map(d => parseFloat(d.chtVl));
+// 모달 열기
+function openModal(type) {
+    document.getElementById('chartModal').style.display = 'block';
+    loadChartData(type); // <- 여기에 핵심 차트 호출
+}
 
-    new Chart(document.getElementById('mentalChartOld'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: '대학생 이상 정신건강 지표',
-          data: values,
-          backgroundColor: '#4a9cb1'
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          title: {
-            display: false
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              precision: 0
-            }
-          }
-        }
-      }
-    });
-  })
-  .catch(err => console.error('대학생 차트 오류:', err));
+// 모달 닫기
+function closeModal() {
+    document.getElementById('chartModal').style.display = 'none';
+}

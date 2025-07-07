@@ -5,7 +5,16 @@
   color: #333333;
   margin-bottom: 20px;
   text-align: center;
+  
 }
+
+.chart-title {
+  font-size: 24px;   /* 줄이고 싶은 크기, 예: 24px */
+  color: #333;       /* 텍스트 색상 */
+  font-weight: bold; /* 굵게 유지할지 여부 */
+  margin-bottom: 30px;
+}
+
 
 .chart-container {
   max-width: 700px;

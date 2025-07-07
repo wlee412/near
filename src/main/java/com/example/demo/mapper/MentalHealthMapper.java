@@ -19,9 +19,9 @@ public interface MentalHealthMapper {
                    @Param("chtXCn") String chtXCn,
                    @Param("chtYCn") String chtYCn);
     
-    List<MentalHealthItem> selectYoungOnly();  // 미취학 
+    List<MentalHealthItem> selectYoungOnly();  // 미취학, 초중고
 
-	List<MentalHealthItem> selectOldOnly();  //대학생
+	List<MentalHealthItem> selectOldOnly();  //대학생, 청소년 아님
 
 	List<Map<String, Object>> selectAvgByAgeGroup();
    

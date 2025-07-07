@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+
 <!-- 공통 푸터 -->
 <footer>
   <div class="footer-container">
     <p>© 2025 n:ear. All rights reserved.</p>
     <p>
-      <a href="/terms">이용약관</a> |
+      <a href="/terms">이용약관</a>
+      <span style="color:#555;">&nbsp;&nbsp;&nbsp;|&nbsp;</span>
       <a href="/privacy">개인정보처리방침</a>
     </p>
   </div>
@@ -29,7 +32,7 @@
   }
 </style>
 
-<df-messenger
+<df-messenger>
   intent="WELCOME"
   chat-title="n:ear챗봇상담"
   agent-id="9f1618e2-0167-4e27-bb92-db0c60be0f6d"
@@ -38,6 +41,5 @@
 </df-messenger>
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
 
 
