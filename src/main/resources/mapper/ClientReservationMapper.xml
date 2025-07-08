@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.example.demo.mapper.ClientReservationMapper">
+
+<!-- 	<select id="getReservationList" -->
+<!-- 		resultType="com.example.demo.dto.ReservationInfoDTO"> -->
+<!-- 		SELECT -->
+<!-- 		cr.reservation_no, -->
+<!-- 		co.name AS counselor_name, -->
+<!-- 		cr.client_id, -->
+<!-- 		ca.start AS start_time, -->
+<!-- 		cr.state, -->
+<!-- 		cr.reg_date -->
+<!-- 		FROM counsel_reservation cr -->
+<!-- 		JOIN counsel_available ca ON cr.counsel_no = ca.counsel_no -->
+<!-- 		JOIN counselor co ON ca.counselor_id = co.counselor_id -->
+<!-- 		ORDER BY cr.reg_date DESC -->
+<!-- 	</select> -->
+
+
+</mapper>

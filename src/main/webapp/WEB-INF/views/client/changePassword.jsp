@@ -65,6 +65,6 @@
 	</div>
 
 	<!-- js연결! -->
-	<script src="${pageContext.request.contextPath}/js/member.js"></script>
+	<script src="${pageContext.request.contextPath}/js/client.js"></script>
 </body>
 </html>

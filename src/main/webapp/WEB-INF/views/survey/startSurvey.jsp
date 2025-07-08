@@ -5,12 +5,13 @@
 <head>
   <meta charset="UTF-8">
   <title>${survey.surveyName} 설문</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/survey.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/startSurvey.css">
 </head>
 <body>
   <div class="survey-wrapper">
     <h2>${survey.surveyName}</h2>
     <p>${survey.desc}</p>
+
     <form action="${pageContext.request.contextPath}/survey/submit" method="post">
       <input type="hidden" name="surveyId" value="${survey.surveyId}" />
 
@@ -18,14 +19,13 @@
         <div class="question-block">
           <p><strong>Q${q.QNum}. ${q.question}</strong></p>
           <div class="answer-options">
-            <label><input type="radio" name="q_${q.QNum}" value="0" required> 전혀 아니다</label><br/>
-            <label><input type="radio" name="q_${q.QNum}" value="1"> 아니다</label><br/>
-            <label><input type="radio" name="q_${q.QNum}" value="2"> 보통이다</label><br/>
-            <label><input type="radio" name="q_${q.QNum}" value="3"> 그렇다</label><br/>
+            <label><input type="radio" name="q_${q.QNum}" value="0" required> 전혀 아니다</label>
+            <label><input type="radio" name="q_${q.QNum}" value="1"> 아니다</label>
+            <label><input type="radio" name="q_${q.QNum}" value="2"> 보통이다</label>
+            <label><input type="radio" name="q_${q.QNum}" value="3"> 그렇다</label>
             <label><input type="radio" name="q_${q.QNum}" value="4"> 매우 그렇다</label>
           </div>
         </div>
-        <hr/>
       </c:forEach>
 
       <div class="form-group">
