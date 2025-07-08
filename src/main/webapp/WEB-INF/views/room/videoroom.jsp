@@ -33,9 +33,13 @@
 	src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
+<script>
+	var roomId = "${room.roomId}";
+	var iAm = "${username}";
+</script>
 </head>
 
 <body>
@@ -50,7 +54,7 @@
 								<div class="input-group margin-bottom-md "
 									style="width: 100% !important;">
 									<input autocomplete="off" class="form-control" type="text"
-										id="roomname" value="${janusNum}" readonly />
+										id="roomname" value="${room.janusNum}" readonly />
 								</div>
 								<span class="label label-info" id="you"></span>
 								<div class="input-group margin-bottom-md ">
@@ -127,7 +131,7 @@
 						<div class="tools">
 							<button onclick="usePen()">그리기</button>
 							<button onclick="useEraser()">지우개</button>
-							<button onclick="setMode('select')">선택</button>
+							<button onclick="useSelector()">선택</button>
 							<button onclick="clearCanvas()">전체 지우기</button>
 							<button onclick="saveCanvasAsImage()">다운로드</button>
 							<label> 배경색: <input type="color" id="bgColorPicker"

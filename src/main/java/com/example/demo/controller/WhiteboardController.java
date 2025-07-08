@@ -14,9 +14,19 @@ public class WhiteboardController {
 		this.tpl = tpl;
 	}
 
-	@MessageMapping("/draw")
-	public void onDraw(WhiteboardMessage msg) {
-		// 그대로 같은 방의 모든 구독자에게 브로드캐스트
-		tpl.convertAndSend("/topic/whiteboard/" + msg.getRoomId(), msg);
+	@MessageMapping("/whiteboard") // 클라이언트는 모두 /app/whiteboard 로 보냄
+	public void handle(WhiteboardMessage msg) {
+		// msg.getType() 으로 draw/add/modify/remove/clear 분기
+		switch (msg.getType()) {
+		case "draw":
+		case "add":
+		case "modify":
+		case "remove":
+		case "clear":
+			tpl.convertAndSend("/topic/whiteboard/" + msg.getRoomId(), msg);
+			break;
+		default:
+			// unknown type
+		}
 	}
 }

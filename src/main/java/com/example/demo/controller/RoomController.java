@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +34,9 @@ public class RoomController {
 		String username = (String) session.getAttribute("userName");
 		
 		if (username == null)	// 테스트용
-			username = "testname";
+			username = UUID.randomUUID().toString().split("-")[1];
 		
-		model.addAttribute("janusNum", room.getJanusNum());
+		model.addAttribute("room", room);
 		model.addAttribute("username", username);
 		return "room/videoroom";
 	}
