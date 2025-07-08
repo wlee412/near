@@ -44,133 +44,127 @@
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="container hide" id="videojoin">
-					<div class="row">
-						<div class="col-md-12" id="controls">
-							<div id="registernow">
-								<span class="label label-info" id="room"></span>
-								<div class="input-group margin-bottom-md "
-									style="width: 100% !important;">
-									<input autocomplete="off" class="form-control" type="text"
-										id="roomname" value="${room.janusNum}" readonly />
-								</div>
-								<span class="label label-info" id="you"></span>
-								<div class="input-group margin-bottom-md ">
-									<span class="input-group-addon">대화명</span> <input
-										autocomplete="off" class="form-control" type="text"
-										placeholder="My Name" id="username"
-										onkeypress="return checkEnter(this, event);"
-										value="${username}" /> <span class="input-group-btn">
-										<button class="btn btn-success" autocomplete="off"
-											id="register">대화방 참여</button>
-									</span>
-								</div>
-							</div>
+		<div class="container" id="videojoin">
+			<div class="row">
+				<div class="col-md-12" id="controls">
+					<div id="registernow">
+						<span class="label label-info" id="room"></span>
+						<div class="input-group margin-bottom-md "
+							style="width: 100% !important;">
+							<input autocomplete="off" class="form-control" type="text"
+								id="roomname" value="${room.janusNum}" readonly />
+						</div>
+						<span class="label label-info" id="you"></span>
+						<div class="input-group margin-bottom-md ">
+							<span class="input-group-addon">대화명</span> <input
+								autocomplete="off" class="form-control" type="text"
+								placeholder="My Name" id="username"
+								onkeypress="return checkEnter(this, event);" value="${username}" />
+							<span class="input-group-btn">
+								<button class="btn btn-success" autocomplete="off" id="register">대화방
+									참여</button>
+							</span>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
 
-				<div class="video-container hide layout" id="videos">
-					<!-- 상대 -->
-					<div class="video-main">
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">상대</h3>
-							</div>
-							<div class="panel-body" id="videoremote1"></div>
+		<div class="video-container hide layout" id="videos">
+			<!-- 상대 -->
+			<div class="video-main">
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">상대</h3>
+					</div>
+					<div class="panel-body" id="videoremote1"></div>
+				</div>
+			</div>
+
+			<aside class="video-sidebar">
+				<!-- 제어 -->
+				<div class="video-controls">
+					<div class="btn-group btn-group-xs pull-right hide">
+						<div class="btn-group btn-group-xs">
+							<button id="bitrateset" autocomplete="off"
+								class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								Bandwidth<span class="caret"></span>
+							</button>
+							<ul id="bitrate" class="dropdown-menu" role="menu">
+								<li><a href="#" id="0">No limit</a></li>
+								<li><a href="#" id="128">Cap to 128kbit</a></li>
+								<li><a href="#" id="256">Cap to 256kbit</a></li>
+								<li><a href="#" id="512">Cap to 512kbit</a></li>
+								<li><a href="#" id="1024">Cap to 1mbit</a></li>
+								<li><a href="#" id="1500">Cap to 1.5mbit</a></li>
+								<li><a href="#" id="2000">Cap to 2mbit</a></li>
+							</ul>
 						</div>
 					</div>
-
-					<aside class="video-sidebar">
-						<!-- 제어 -->
-						<div class="video-controls">
-							<div class="btn-group btn-group-xs pull-right hide">
-								<div class="btn-group btn-group-xs">
-									<button id="bitrateset" autocomplete="off"
-										class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-										Bandwidth<span class="caret"></span>
-									</button>
-									<ul id="bitrate" class="dropdown-menu" role="menu">
-										<li><a href="#" id="0">No limit</a></li>
-										<li><a href="#" id="128">Cap to 128kbit</a></li>
-										<li><a href="#" id="256">Cap to 256kbit</a></li>
-										<li><a href="#" id="512">Cap to 512kbit</a></li>
-										<li><a href="#" id="1024">Cap to 1mbit</a></li>
-										<li><a href="#" id="1500">Cap to 1.5mbit</a></li>
-										<li><a href="#" id="2000">Cap to 2mbit</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="controls">
-								<button id="whiteboardBtn" onclick="showWhiteboardMode()">화이트보드</button>
-								<button id="mute">마이크 끄기</button>
-								<button id="unpublish">카메라 끄기</button>
-							</div>
-							<label for="volumeSlider">Volume:</label> <input type="range"
-								id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
-							<button autocomplete="off" id="start">시작</button>
-						</div>
-
-						<!-- 나 -->
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">나</h3>
-							</div>
-							<div class="panel-body" id="videolocal"></div>
-						</div>
-					</aside>
+					<div class="controls">
+						<button id="whiteboardBtn" onclick="showWhiteboardMode()">화이트보드</button>
+						<button id="mute">마이크 끄기</button>
+						<button id="unpublish">카메라 끄기</button>
+					</div>
+					<label for="volumeSlider">Volume:</label> <input type="range"
+						id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
+					<button autocomplete="off" id="start">시작</button>
 				</div>
 
-				<div id="whiteboard-mode" class="layout hidden">
-					<div class="left-section">
-						<div class="whiteboard">
-							<canvas id="whiteboard-canvas"></canvas>
-						</div>
-						<div class="tools">
-							<button onclick="usePen()">그리기</button>
-							<button onclick="useEraser()">지우개</button>
-							<button onclick="useSelector()">선택</button>
-							<button onclick="clearCanvas()">전체 지우기</button>
-							<button onclick="saveCanvasAsImage()">다운로드</button>
-							<label> 배경색: <input type="color" id="bgColorPicker"
-								value="#ffffff" onchange="changeBackgroundColor(this.value)">
-							</label> <label> 색상: <input type="color" id="colorPicker"
-								value="#000000">
-							</label> <label> 굵기: <input type="range" id="brushWidth" min="1"
-								max="30" value="3">
-							</label>
-							<button onclick="saveCheckpoint()">중간 저장</button>
-							<button onclick="rollback()">롤백</button>
-							<button onclick="deleteSelected()">선택 삭제</button>
-						</div>
+				<!-- 나 -->
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">나</h3>
+					</div>
+					<div class="panel-body" id="videolocal"></div>
+				</div>
+			</aside>
+		</div>
 
-					</div>
-					<div class="right-section">
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">상대</h3>
-							</div>
-							<div class="panel-body-sm" id="videoremote1"></div>
-						</div>
-						<div class="controls">
-							<button id="mute">마이크 끄기</button>
-							<button id="unpublish">카메라 끄기</button>
-							<button id="backToVideo">영상 모드로</button>
-						</div>
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">나</h3>
-							</div>
-							<div class="panel-body" id="videolocal"></div>
-						</div>
-					</div>
+		<div id="whiteboard-mode" class="layout hidden">
+			<div class="left-section">
+				<div class="whiteboard">
+					<canvas id="whiteboard-canvas"></canvas>
+				</div>
+				<div class="tools">
+					<button onclick="usePen()">그리기</button>
+					<button onclick="useEraser()">지우개</button>
+					<button onclick="useSelector()">선택</button>
+					<button onclick="clearCanvas()">전체 지우기</button>
+					<button onclick="saveCanvasAsImage()">다운로드</button>
+					<label> 배경색: <input type="color" id="bgColorPicker"
+						value="#ffffff" onchange="changeBackgroundColor(this.value)">
+					</label> <label> 색상: <input type="color" id="colorPicker"
+						value="#000000">
+					</label> <label> 굵기: <input type="range" id="brushWidth" min="1"
+						max="30" value="3">
+					</label>
+					<button onclick="saveCheckpoint()">중간 저장</button>
+					<button onclick="rollback()">롤백</button>
+					<button onclick="deleteSelected()">선택 삭제</button>
 				</div>
 
 			</div>
+			<div class="right-section">
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">상대</h3>
+					</div>
+					<div class="panel-body-sm" id="videoremote1"></div>
+				</div>
+				<div class="controls">
+					<button id="mute">마이크 끄기</button>
+					<button id="unpublish">카메라 끄기</button>
+					<button id="backToVideo">영상 모드로</button>
+				</div>
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">나</h3>
+					</div>
+					<div class="panel-body" id="videolocal"></div>
+				</div>
+			</div>
 		</div>
-		<hr>
 	</div>
 	<script type="text/javascript" src="/js/VolumeControl.js"></script>
 	<script type="text/javascript" src="/js/roomlayout.js"></script>
