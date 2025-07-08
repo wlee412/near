@@ -21,7 +21,7 @@
       <a href="/admin/adminMember">회원관리</a>
     </div>
     <div class="menu-box">
-      <a href="/admin/adminStats">통계</a>
+      <a href="/admin/surveyStats">통계</a>
     </div>
   </div>
     <form id="bulkCancelForm" method="post">

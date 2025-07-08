@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.SurveyStatsMapper">
+
+  <!-- 1. 설문별 고위험군 비율 통계 -->
+  <select id="selectHighRiskStats" resultType="com.example.demo.model.SurveyHighRiskDTO">
+    SELECT
+      s.survey_id,
+      s.survey_name,
+      ROUND((COUNT(CASE
+        WHEN (
+          (s.survey_id = 1002 AND total_score &lt;= 15) OR
+          (s.survey_id = 1003 AND total_score &gt;= 22) OR
+          (s.survey_id = 1004 AND total_score &gt;= 21) OR
+          (s.survey_id = 1005 AND total_score &gt;= 15) OR
+          (s.survey_id = 1006 AND total_score &gt;= 25) OR
+          (s.survey_id = 1007 AND total_score &gt;= 16) OR
+          (s.survey_id = 1008 AND total_score &gt;= 40) OR
+          (s.survey_id = 1009 AND total_score &gt;= 27) OR
+          (s.survey_id = 1010 AND total_score &lt;= 20)
+        ) THEN 1 ELSE NULL
+      END) / COUNT(*)) * 100, 2) AS highRiskRate
+    FROM (
+      SELECT survey_id, client_id, SUM(score) AS total_score
+      FROM survey_feedback
+      GROUP BY survey_id, client_id
+    ) t
+    JOIN survey s ON t.survey_id = s.survey_id
+    GROUP BY s.survey_id, s.survey_name
+  </select>
+
+  <!-- 2. 증상 관심 그룹별 평균 점수 통계 -->
+  <select id="selectSymptomAvgStats" resultType="com.example.demo.model.SymptomAvgScoreDTO">
+  SELECT
+    symptom_name,
+    ROUND(AVG(score), 2) AS avgScore
+  FROM (
+    SELECT '우울' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%우울%' AND f.survey_id = 1004
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '불안' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%불안%' AND f.survey_id = 1005
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '자존감' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%자존감%' AND f.survey_id = 1002
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '수면 문제' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%수면 문제%' AND f.survey_id = 1003
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '스트레스' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%스트레스%' AND f.survey_id = 1009
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '섭식 문제' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%섭식 문제%' AND f.survey_id = 1006
+    GROUP BY f.client_id
+
+    UNION ALL
+
+    SELECT '대인관계' AS symptom_name, AVG(f.score) AS score
+    FROM survey_feedback f
+    JOIN client c ON f.client_id = c.client_id
+    WHERE c.interest LIKE '%대인관계%' AND f.survey_id = 1002
+    GROUP BY f.client_id
+
+  ) t
+  GROUP BY symptom_name
+</select>
+</mapper>

@@ -15,7 +15,7 @@
       <a href="/admin/adminHome">홈</a>
     </div>
     <div class="menu-box">
-      <a href="/admin/adminStats">통계</a>
+      <a href="/admin/surveyStats">통계</a>
     </div>
     <div class="menu-box">
       <a href="/admin/adminReservation">예약내역</a>
