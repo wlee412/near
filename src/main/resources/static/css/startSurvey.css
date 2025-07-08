@@ -1,0 +1,79 @@
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      color: #000;
+    }
+
+    .survey-wrapper {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #5daec5;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .survey-wrapper > p {
+      text-align: center;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .question-block {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .question-block p {
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .answer-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .answer-options label {
+      background: #eef6f9;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .answer-options input[type="radio"] {
+      margin-right: 6px;
+    }
+
+    .form-group {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .form-group button {
+      background-color: #5daec5;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #4996aa;
+    }

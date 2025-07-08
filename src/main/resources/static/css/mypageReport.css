@@ -1,0 +1,103 @@
+body {
+	background-color: white;
+	color: black;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.mypage-wrapper {
+	display: flex;
+	padding: 40px;
+}
+
+.mypage-sidebar {
+	width: 220px;
+	padding: 20px;
+	border-right: 1px solid #ccc;
+}
+
+.mypage-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.mypage-divider {
+	height: 1px;
+	background-color: #ccc;
+	margin-bottom: 20px;
+}
+
+.menu-item {
+	padding: 12px;
+	cursor: pointer;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+	background-color: #5daec5;
+	color: white;
+}
+
+.report-content {
+	flex: 1;
+	padding: 20px 40px;
+}
+
+.report-content h2 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #5daec5;
+}
+
+.report-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 40px;
+}
+
+.report-table th, .report-table td {
+	border: 1px solid #ccc;
+	padding: 12px;
+	text-align: center;
+}
+
+.report-table th {
+	background-color: #5daec5;
+	color: white;
+}
+
+.chart-container {
+	width: 100%;
+	max-width: 800px;
+	height: 400px; /* 추가 */
+	margin: 0 auto 40px;
+}
+
+.feedback-preview {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.toggle-btn {
+	padding: 4px 8px;
+	font-size: 12px;
+	background-color: #d3e8f7;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: #5daec5;
+  color: white;
+}
+
+.feedback-detail {
+  background-color: #f9f9f9;
+  font-size: 14px;
+  padding: 12px;
+  text-align: left;
+}

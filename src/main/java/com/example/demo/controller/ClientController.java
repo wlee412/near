@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -25,9 +24,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Client;
 import com.example.demo.model.Survey;
+import com.example.demo.model.SurveyFeedback;
+import com.example.demo.model.SurveyFeedbackJoin;
 import com.example.demo.service.ChatGptService;
 import com.example.demo.service.ClientService;
-import com.example.demo.service.EmailService;
+import com.example.demo.service.SurveyFeedbackService;
 import com.example.demo.service.SurveyService;
 import com.example.demo.service.VerifyService;
 
@@ -57,7 +58,9 @@ public class ClientController {
 	
 	@Autowired
 	private ChatGptService chatGptService;
-
+	
+	@Autowired
+	private SurveyFeedbackService surveyFeedbackService;
 
 	// 회원가입 화면
 	@GetMapping("/register")
@@ -239,6 +242,24 @@ public class ClientController {
 		model.addAttribute("client", client);
 		return "client/mypageProfile"; // /WEB-INF/views/client/mypageProfile.jsp
 	}
+	
+	// 설문조사 결과
+	@GetMapping("/mypageReport")
+	public String mypageReport(HttpSession session, Model model) {
+	    Client client = (Client) session.getAttribute("loginClient");
+
+	    if (client == null) {
+	        return "redirect:/login"; // 비로그인 사용자는 로그인 페이지로
+	    }
+
+	    String clientId = client.getClientId();
+	    List<SurveyFeedbackJoin> feedbackList = surveyFeedbackService.getFeedbackByClientId(clientId);
+
+	    model.addAttribute("client", client);
+	    model.addAttribute("feedbackList", feedbackList);
+	    return "client/mypageReport";
+	}
+
 
 	// 마이페이지 회원 정보 수정 화면
 	@GetMapping("/mypageUpdate")
@@ -444,6 +465,14 @@ public class ClientController {
 		Client client = (Client) session.getAttribute("loginClient");
 		model.addAttribute("loginClient", client);
 		return "client/delete";
+	}
+	//예약확인 
+	@GetMapping("/mypageReservation")
+	public String clientReservation(HttpSession session, Model model) {
+		Client client = (Client) session.getAttribute("loginClient");
+//		ClientReservation reservation = clientReservationService.getReservationList();
+		model.addAttribute("loginClient", client);
+		return "client/mypageReservation";
 	}
 
 	// ✅ 탈퇴 처리 POST

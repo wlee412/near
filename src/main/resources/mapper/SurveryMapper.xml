@@ -20,4 +20,8 @@
 			#{id}
 		</foreach>
 	</select>
+	
+	<select id="getAllSurveys" resultType="com.example.demo.model.Survey">
+    	SELECT * FROM survey WHERE state = 'active' ORDER BY survey_id
+  	</select>
 </mapper>

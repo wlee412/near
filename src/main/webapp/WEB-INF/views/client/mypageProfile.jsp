@@ -32,24 +32,13 @@
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 
-			<div class="mypage-divider"></div>
-
-			<div
-				class="menu-item <%= uri.contains("mypageProfile") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/client/mypageProfile'">프로필</div>
-
-			<div
-				class="menu-item <%= uri.contains("mypageUpdate") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/client/mypageUpdate'">정보수정</div>
-
-			<div
-				class="menu-item <%= uri.contains("mypagePassword") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/client/mypagePassword'">비밀번호
-				변경</div>
-
-			<div
-				class="menu-item <%= uri.contains("mypageDelete") ? "active" : "" %>"
-				onclick="location.href='${pageContext.request.contextPath}/client/mypageDelete'">회원탈퇴</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageReservation'">예약확인</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageReport'">검사기록</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageFavorite'">병원 즐겨찾기</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageProfile'">프로필</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageUpdate'">정보수정</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypagePassword'">비밀번호 변경</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageDelete'">회원탈퇴</div>
 		</div>
 
 		<!-- ✅ 콘텐츠 영역 -->

@@ -55,6 +55,11 @@ public class SurveyService {
         // 설문 ID 리스트를 Mapper로 전달하여 DB에서 가져오기
         return surveyMapper.getSurveysByIds(new ArrayList<>(surveyIdSet));
 	}
+
+
+	public List <Survey> getAllSurveys() {
+		return surveyMapper.getAllSurveys();
+	}
 	
 	
 

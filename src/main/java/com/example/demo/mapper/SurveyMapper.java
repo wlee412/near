@@ -14,6 +14,8 @@ public interface SurveyMapper {
 	Survey getSurveyById(int surveyId);
 
 	List<Survey> getSurveysByIds(List<Integer> ids);
+
+	List<Survey> getAllSurveys();
 	
 
 }
