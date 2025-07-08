@@ -254,7 +254,6 @@ public class ClientController {
 
 	    String clientId = client.getClientId();
 	    List<SurveyFeedbackJoin> feedbackList = surveyFeedbackService.getFeedbackByClientId(clientId);
-
 	    model.addAttribute("client", client);
 	    model.addAttribute("feedbackList", feedbackList);
 	    return "client/mypageReport";
