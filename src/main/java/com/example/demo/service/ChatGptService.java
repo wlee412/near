@@ -60,14 +60,14 @@ public class ChatGptService {
 		for (int i = 0; i < surveyNames.size(); i++) {
 			prompt.append("- ").append(surveyNames.get(i)).append(": ").append(surveyDescs.get(i)).append("\n");
 		}
-		prompt.append("\n이 내담자에게 위 설문들이 왜 유용한지 한문단으로 따듯한 존댓말투로 설명해주세요.");
+		prompt.append("\n이 내담자에게 위 설문들이 왜 유용한지 한문단으로 따듯한 말투와 존댓말로 설명해주세요.");
 
 		OkHttpClient client = new OkHttpClient();
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
 			// JSON 바디 생성
-			Map<String, Object> message1 = Map.of("role", "system", "content", "너는 심리 상담 도우미야.");
+			Map<String, Object> message1 = Map.of("role", "system", "content", "당신은 전문 심리 상담 도우미입니다.");
 			Map<String, Object> message2 = Map.of("role", "user", "content", prompt.toString());
 			Map<String, Object> requestMap = Map.of("model", "gpt-3.5-turbo", "messages", List.of(message1, message2),
 					"temperature", 0.7);
@@ -154,7 +154,7 @@ public class ChatGptService {
 						+ "GSE (일반 자기 효능감 척도)	1010" 
 						+ "내담자가 제출한 설문과 총점은 아래와 같습니다." 
 						+ "설문 ID: " + surveyId + "\n" + "응답자의 총 점수는 " + totalScore + "점입니다.\n"
-						+ "이 점수를 바탕으로 일반적인 해석을 단정적이지 않고 따뜻한 존대말투로 해주세요.";
+						+ "이 점수를 바탕으로 일반적인 해석을 단정적이지 않고 따뜻한 말투와 존댓말로 해주세요.";
 		return callOpenAi(prompt);
 	}
 
@@ -172,7 +172,7 @@ public class ChatGptService {
 			prompt.append("- ").append(answer).append("\n");
 		}
 
-		prompt.append("\n이 정보를 기반으로 응답자의 현재 상태를 정리하고, 존댓말로 부드럽고 진정성 있는 말투로 조언을 포함해 해석해주세요.");
+		prompt.append("\n이 정보를 기반으로 응답자의 현재 상태를 정리하고, 존댓말로 부드럽고 진정성 있는 말투와 존댓말로 조언을 포함해 해석해주세요.");
 
 		return callOpenAi(prompt.toString());
 	}
@@ -182,7 +182,7 @@ public class ChatGptService {
 	 */
 	private String callOpenAi(String prompt) {
 		try {
-			Map<String, Object> message1 = Map.of("role", "system", "content", "너는 공감적이고 신뢰가는 심리상담 AI야.	");
+			Map<String, Object> message1 = Map.of("role", "system", "content", "당신은 전문적이고 부드러운 심리상담 AI입니다.	");
 			Map<String, Object> message2 = Map.of("role", "user", "content", prompt);
 
 			Map<String, Object> requestMap = Map.of("model", "gpt-3.5-turbo", "messages", List.of(message1, message2),
