@@ -2,147 +2,140 @@ let savedState = null;
 window.canvas = null;
 let currentMode = null;
 let currentBgColor = '#ffffff';
-let currentBrushColor = '#000';
-const socket = new SockJS("/ws");
+let currentBrushColor = '#000000';
+const socket = new SockJS('/ws');
 const stompClient = Stomp.over(socket);
 stompClient.debug = () => { };
 
 document.addEventListener('DOMContentLoaded', function() {
-	// 캔버스 초기화
+	// 캔버스 초기화 (retina scaling 기본값 사용)
 	const canvas = new fabric.Canvas('whiteboard-canvas', {
-		isDrawingMode: true,
-		enableRetinaScaling: false
+		isDrawingMode: true
 	});
 	window.canvas = canvas;
+
+	// 기본 브러시 설정
 	canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
 	canvas.freeDrawingBrush.color = currentBrushColor;
 	canvas.freeDrawingBrush.width = 3;
 	usePen();
 
-	console.log('isDrawingMode:', canvas.isDrawingMode);  // true 여야 함
+	// 배경 초기화
+	canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
 
-	// 1) 자유 그리기
+	// 1) 자유 그리기 이벤트
 	canvas.on('path:created', e => {
 		const path = e.path;
-		path.id = crypto.randomUUID();
-		const data = path.toObject(['id']);
-		sendUpdate('draw', data);
+		path.id = path.id || crypto.randomUUID();
+		sendUpdate('draw', path.toObject(['id']));
 	});
 
-	// 2) 객체 추가 (canvas.add 호출 시)
+	// 2) 객체 추가
 	canvas.on('object:added', e => {
 		if (e.target._sync) return;
 		sendUpdate('add', e.target.toObject(['id']));
 	});
 
-	// 3) 객체 수정 (이동, 크기, 회전 등)
+	// 3) 객체 수정
 	canvas.on('object:modified', e => {
 		sendUpdate('modify', e.target.toObject(['id']));
 	});
 
 	// 4) 객체 삭제
+	let isClearing = false;
 	canvas.on('object:removed', e => {
 		if (e.target._sync || isClearing) return;
 		sendUpdate('remove', { id: e.target.id });
 	});
 
-	let isClearing = false;
-	// 5) 캔버스 초기화
-	clearButton.addEventListener('click', () => {
+	// 5) 캔버스 초기화 버튼
+	document.getElementById('clearButton').addEventListener('click', () => {
 		isClearing = true;
 		canvas.clear();
+		canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
 		sendUpdate('clear', null);
 		isClearing = false;
 	});
 
-	// 캔버스 크기 조절 함수
+	// 캔버스 리사이즈 (백스토어 포함)
 	const resizeCanvas = () => {
 		const left = document.querySelector('.left-section');
 		canvas.setDimensions({
 			width: left.clientWidth,
 			height: left.clientHeight
-		}, { cssOnly: true });
+		});
 	};
-	// 초기 사이즈 및 리사이즈 이벤트
 	resizeCanvas();
 	window.addEventListener('resize', resizeCanvas);
 	const target = document.querySelector('#whiteboard-mode');
 	new MutationObserver(() => {
-		if (!target.classList.contains('hidden')) requestAnimationFrame(resizeCanvas);
+		if (!target.classList.contains('hidden'))
+			requestAnimationFrame(resizeCanvas);
 	}).observe(target, { attributes: true, attributeFilter: ['class'] });
 
 	// UI 컨트롤 바인딩
 	document.getElementById('penButton').addEventListener('click', usePen);
 	document.getElementById('eraserButton').addEventListener('click', useEraser);
 	document.getElementById('selectorButton').addEventListener('click', useSelector);
-	document.getElementById('clearButton').addEventListener('click', clearCanvas);
+
+	// 브러시 색상 변경
 	document.getElementById('colorPicker').addEventListener('change', e => {
 		currentBrushColor = e.target.value;
-		usePen();
-	});
-	document.getElementById('brushWidth').addEventListener('input', e => {
-		canvas.freeDrawingBrush.width = parseInt(e.target.value, 10);
-		switch (currentMode) {
-			case 'draw':
-				usePen();
-				break;
-			case 'erase':
-				useEraser();
-				break;
-		}
-	});
-	document.addEventListener('keydown', function(e) {
-		if (e.key === 'Delete') {
-			deleteSelected();
-		}
+		canvas.freeDrawingBrush.color = currentBrushColor;
 	});
 
+	// 배경색 변경 및 동기화
+	document.getElementById('bgColorPicker').addEventListener('change', e => {
+		currentBgColor = e.target.value;
+		canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+		sendUpdate('bg', currentBgColor);
+	});
+
+	// 브러시 굵기 변경 및 즉시 적용
+	document.getElementById('brushWidth').addEventListener('input', e => {
+		const w = parseInt(e.target.value, 10);
+		canvas.freeDrawingBrush.width = w;
+		console.log("굵기:"+w)
+	});
+
+	// Delete 키로 선택 객체 삭제
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Delete') deleteSelected();
+	});
 });
 
-// 공통 sendUpdate 함수  
+// 공통 sendUpdate 함수
 function sendUpdate(type, payload) {
-	const msg = {
-		type,                 // 'draw' | 'add' | 'modify' | 'remove' | 'clear'
-		roomId: roomId,
-		sender: iAm,
-		payload
-	};
+	const msg = { type, roomId: roomId, sender: iAm, payload };
 	stompClient.send('/app/whiteboard', {}, JSON.stringify(msg));
 }
 
-// 모드 전환 및 커서 업데이트
-window.setMode = function(mode) {
+// 모드 전환 함수
+function setMode(mode) {
 	currentMode = mode;
+	console.log(currentMode + "모드");
 	const pencilCursor = "url('/cursor/cursor_pencil.png') 0 0, auto";
 	const eraserCursor = "url('/cursor/cursor_eraser.png') 5 5, auto";
-
+	let cursor;
 	switch (mode) {
 		case 'draw':
 			canvas.isDrawingMode = true;
-			canvas.freeDrawingCursor = pencilCursor;
-			canvas.defaultCursor = pencilCursor;
-			canvas.hoverCursor = pencilCursor;
-			canvas.moveCursor = pencilCursor;
-			canvas.upperCanvasEl.style.cursor = pencilCursor;
+			cursor = pencilCursor;
 			break;
 		case 'erase':
 			canvas.isDrawingMode = true;
-			canvas.freeDrawingCursor = eraserCursor;
-			canvas.defaultCursor = eraserCursor;
-			canvas.hoverCursor = eraserCursor;
-			canvas.moveCursor = eraserCursor;
-			canvas.upperCanvasEl.style.cursor = eraserCursor;
+			cursor = eraserCursor;
 			break;
 		case 'select':
 			canvas.isDrawingMode = false;
-			canvas.freeDrawingCursor = 'default';
-			canvas.defaultCursor = 'default';
-			canvas.hoverCursor = 'move';
-			canvas.moveCursor = 'move';
-			canvas.upperCanvasEl.style.cursor = 'default';
-		default:
+			cursor = 'default';
+			break;
 	}
-
+	canvas.freeDrawingCursor = cursor;
+	canvas.upperCanvasEl.style.cursor = cursor;
+	canvas.defaultCursor = cursor;
+	canvas.hoverCursor = cursor;
+	canvas.moveCursor = cursor;
 };
 
 // 펜 모드 활성화 함수
@@ -187,6 +180,7 @@ function deleteSelected() {
 		else canvas.remove(obj);
 		canvas.discardActiveObject();
 		canvas.requestRenderAll();
+		sendUpdate('clear', null);
 	}
 }
 
@@ -208,27 +202,22 @@ function saveCanvasAsImage() {
 	link.click();
 }
 
+// STOMP 연결 및 메시지 구독
 stompClient.connect({}, function(frame) {
 	console.log('STOMP 연결 성공:', frame);
 	stompClient.subscribe(`/topic/whiteboard/${roomId}`, frame => {
 		const msg = JSON.parse(frame.body);
 		if (msg.sender === iAm) return;
-
 		switch (msg.type) {
 			case 'draw':
 			case 'add':
 			case 'modify':
 				fabric.util.enlivenObjects([msg.payload], objs => {
 					const obj = objs[0];
-					obj._sync = true;         // 무한 루프 방지용 플래그
+					obj._sync = true;
 					const existing = canvas.getObjects().find(o => o.id === obj.id);
-					if (existing) {
-						// 수정
-						existing.setOptions(obj);
-					} else {
-						// 새로 추가
-						canvas.add(obj);
-					}
+					if (existing) existing.setOptions(msg.payload);
+					else canvas.add(obj);
 					canvas.renderAll();
 				});
 				break;
@@ -237,14 +226,13 @@ stompClient.connect({}, function(frame) {
 				if (toRemove) canvas.remove(toRemove);
 				break;
 			case 'clear':
-				// 기존 객체 모두 확실히 제거
-				canvas.getObjects().slice().forEach(o => canvas.remove(o));
-				// 선택된 객체도 초기화
-				canvas.discardActiveObject();
-				// 배경색 복원
-				canvas.setBackgroundColor(currentBgColor, () => {
-					canvas.renderAll();
-				});
+				canvas.clear();
+				canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+				break;
+			case 'bg':
+				currentBgColor = msg.payload;
+				canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+				console.log("배경색 변경"+msg.payload)
 				break;
 		}
 	});
