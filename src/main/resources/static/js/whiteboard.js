@@ -6,9 +6,12 @@ let currentBrushColor = '#000000';
 const container = document.querySelector('.left-section');
 const socket = new SockJS('/ws');
 const stompClient = Stomp.over(socket);
+let reconnectAttempts = 0;
+const MAX_RECONNECTS = 5;
 stompClient.debug = () => { };
 
 document.addEventListener('DOMContentLoaded', function() {
+	connectStomp();
 	// 캔버스 초기화
 	const canvas = new fabric.Canvas('whiteboard-canvas', {
 		isDrawingMode: true,
@@ -50,14 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
 	canvas.on('path:created', e => {
 		const path = e.path;
 		path.id = path.id || crypto.randomUUID();
-		sendUpdate('draw', path.toObject(['id']));
+		const minimalPayload = {
+			id: path.id,
+			type: path.type,
+			path: path.path,
+			stroke: path.stroke,
+			strokeWidth: path.strokeWidth,
+			fill: null
+		};
+		sendUpdate("draw", minimalPayload);
 	});
 
 	// 2) 객체 추가
-	canvas.on('object:added', e => {
-		if (e.target._sync) return;
-		sendUpdate('add', e.target.toObject(['id']));
-	});
+	//	canvas.on('object:added', e => {
+	//		if (e.target._sync) return;
+	//		sendUpdate('add', e.target.toObject(['id']));
+	//	});
 
 	// 3) 객체 수정
 	canvas.on('object:modified', e => {
@@ -65,21 +76,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// 4) 객체 삭제
-	let isClearing = false;
-	canvas.on('object:removed', e => {
-		if (e.target._sync || isClearing) return;
-		sendUpdate('remove', { id: e.target.id });
-	});
+	//	canvas.on('object:removed', e => {
+	//		console.log("remove fired", {
+	//			_sync: e.target._sync,
+	//			isClearing
+	//		});
+	//
+	//		if (e.target._sync || isClearing) return;
+	//		sendUpdate('remove', { id: e.target.id });
+	//	});
+
 
 	// 5) 캔버스 초기화 버튼
 	document.getElementById('clearButton').addEventListener('click', () => {
-		isClearing = true;
 		canvas.clear();
 		sendUpdate('clear', null);
 		canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
-		isClearing = false;
 	});
-
 
 
 	window.addEventListener('resize', resizeCanvas);
@@ -94,22 +107,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.getElementById('eraserButton').addEventListener('click', useEraser);
 	document.getElementById('selectorButton').addEventListener('click', useSelector);
 
-
-
 });
 
 // 공통 sendUpdate 함수
-function sendUpdate(type, payload) {
-	console.log(type);
-	console.log(payload);
-	const msg = { type, roomId: roomId, sender: iAm, payload };
-	stompClient.send('/app/whiteboard', {}, JSON.stringify(msg));
+function sendUpdate(type, payload = {}) {
+	const compressedPayload = LZString.compressToBase64(JSON.stringify(payload));
+	const msg = { type, roomId, sender: iAm, payload: compressedPayload };
+	stompClient.send(`/app/whiteboard/${roomId}`, {}, JSON.stringify(msg));
 }
+
 
 // 모드 전환 함수
 function setMode(mode) {
 	currentMode = mode;
-	console.log(currentMode + "모드");
 	const pencilCursor = "url('/cursor/cursor_pencil.png') 0 0, auto";
 	const eraserCursor = "url('/cursor/cursor_eraser.png') 5 5, auto";
 	let cursor;
@@ -171,13 +181,22 @@ function rollback() {
 // 선택된 객체 삭제 함수
 function deleteSelected() {
 	const obj = canvas.getActiveObject();
-	if (obj) {
-		if (obj.type === 'activeSelection') obj.forEachObject(o => canvas.remove(o));
-		else canvas.remove(obj);
-		canvas.discardActiveObject();
-		canvas.requestRenderAll();
+	if (!obj) return;
+
+	if (obj.type === 'activeSelection') {
+		obj.forEachObject(o => {
+			canvas.remove(o);
+			sendUpdate('remove', { id: o.id });
+		});
+	} else {
+		canvas.remove(obj);
+		sendUpdate('remove', { id: obj.id });
 	}
+
+	canvas.discardActiveObject();
+	canvas.requestRenderAll();
 }
+
 
 // 배경색
 function changeBackgroundColor(color) {
@@ -197,42 +216,67 @@ function saveCanvasAsImage() {
 	link.click();
 }
 
-// STOMP 연결 및 메시지 구독
-stompClient.connect({}, function(frame) {
-	console.log('STOMP 연결 성공:', frame);
-	stompClient.subscribe(`/topic/whiteboard/${roomId}`, frame => {
-		const msg = JSON.parse(frame.body);
-		if (msg.sender === iAm) return;
-		console.log(msg.type.trim());
-		switch (msg.type.trim()) {
-			case 'draw':
-			case 'add':
-			case 'modify':
-				fabric.util.enlivenObjects([msg.payload], objs => {
-					const obj = objs[0];
-					obj._sync = true;
-					const existing = canvas.getObjects().find(o => o.id === obj.id);
-					if (existing) existing.setOptions(msg.payload);
-					else canvas.add(obj);
-					canvas.renderAll();
-				});
-				break;
-			case 'remove':
-				const toRemove = canvas.getObjects().find(o => o.id === msg.payload.id);
-				if (toRemove) canvas.remove(toRemove);
-				break;
-			case 'clear':
-				canvas.clear();
-				canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
-				break;
-			case 'bg':
-				console.log("받음");
-				currentBgColor = msg.payload.color;
-				canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
-				break;
-		}
+function connectStomp() {
+	// STOMP 연결 및 메시지 구독
+	stompClient.connect({}, function(frame) {
+		console.log('STOMP 연결 성공:', frame);
+		stompClient.subscribe(`/topic/whiteboard/${roomId}`, frame => {
+			try {
+				const msg = JSON.parse(frame.body);
+				if (msg.sender === iAm) return;
+				const json = LZString.decompressFromBase64(msg.payload);
+				const payload = JSON.parse(json);
+				
+				switch (msg.type.trim()) {
+					case 'draw':
+					//case 'add':
+					case 'modify':
+						fabric.util.enlivenObjects([payload], objs => {
+							const obj = objs[0];
+							obj._sync = true;
+							const existing = canvas.getObjects().find(o => o.id === obj.id);
+							if (existing) existing.setOptions(payload);
+							else canvas.add(obj);
+							canvas.renderAll();
+						});
+						break;
+					case 'remove':
+						const toRemove = canvas.getObjects().find(o => o.id === payload.id);
+						if (toRemove) canvas.remove(toRemove);
+						break;
+					case 'clear':
+						canvas.getObjects().forEach(obj => obj._sync = true);
+						canvas.clear();
+						canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+						break;
+					case 'bg':
+						currentBgColor = payload.color;
+						canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
+						break;
+				}
+			} catch (e) {
+				console.error("압축 해제 실패:", e);
+			}
+
+		});
+	}, err => {
+		console.error('STOMP Error', err);
+		retryReconnect();
 	});
-}, err => console.error('STOMP Error', err));
+}
+
+function retryReconnect() {
+	if (reconnectAttempts >= MAX_RECONNECTS) {
+		alert("서버와의 연결이 지속적으로 실패했습니다.");
+		return;
+	}
+	reconnectAttempts++;
+
+	setTimeout(() => {
+		console.log(`STOMP 재연결 시도 (${reconnectAttempts}/${MAX_RECONNECTS})`);
+		connectStomp();
+	}, 2000); // 2초 후 재시도
+}
 
 // 굵기
 document.getElementById('brushWidth').addEventListener('input', e => {
@@ -257,4 +301,5 @@ document.getElementById('bgColorPicker').addEventListener('change', e => {
 	canvas.setBackgroundColor(currentBgColor, canvas.renderAll.bind(canvas));
 	sendUpdate('bg', { color: currentBgColor });
 });
+
 

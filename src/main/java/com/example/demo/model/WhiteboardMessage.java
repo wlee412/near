@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import java.util.Map;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +9,5 @@ public class WhiteboardMessage {
 	private String type; // draw, modify, remove, clear …
 	private String roomId;
 	private String sender;
-	private Map<String, Object> payload; // fabric.js JSON
+	private String payload; // json을 압축한 Base64 문자열
 }

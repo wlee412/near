@@ -22,11 +22,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-<script type="text/javascript" src="/js/janus.js"></script>
-<script type="text/javascript" src="/js/videoroom.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css"
 	type="text/css" />
+
+<script type="text/javascript" src="/js/janus.js"></script>
+<script type="text/javascript" src="/js/videoroom.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
 <script
@@ -130,7 +133,7 @@
 					<button onclick="usePen()">그리기</button>
 					<button onclick="useEraser()">지우개</button>
 					<button onclick="useSelector()">선택</button>
-					<button onclick="clearCanvas()">전체 지우기</button>
+					<button onclick="clearCanvas()" id="clearButton">전체 지우기</button>
 					<button onclick="saveCanvasAsImage()">다운로드</button>
 					<label> 배경색: <input type="color" id="bgColorPicker"
 						value="#ffffff" onchange="changeBackgroundColor(this.value)">
