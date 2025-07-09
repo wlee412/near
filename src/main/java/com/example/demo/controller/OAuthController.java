@@ -58,7 +58,7 @@ public class OAuthController {
         	redirectAttributes.addFlashAttribute("client", client);
 
         	
-        	return "redirect:/client/mypageUpdate";
+        	return "redirect:/mypage/mypageUpdate";
         }
         // 3. 세션에 사용자 저장
         if (client != null) {

@@ -3,22 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원탈퇴</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css">
+<title>비밀번호 변경</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 <body>
 <!-- 헤더 영역 -->
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true"/>
-
-	<!-- 회원탈퇴 페이지의 맨 위나 body 안에 삽입 -->
-	<c:if test="${not empty error}">
-		<script>
-			alert("${error}");
-		</script>
-	</c:if>
 
 	<!-- ✅ 마이페이지 wrapper 안에 타이틀 포함 -->
 	<div class="mypage-wrapper">
@@ -29,12 +21,12 @@
 		%>
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/mypage"
+				<a href="${pageContext.request.contextPath}/mypage/"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 
 			<div class="mypage-divider"></div>
-			
+
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReservation'">예약확인</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePharmFav'">즐겨찾기</div>
@@ -42,51 +34,75 @@
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageUpdate'">정보수정</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePassword'">비밀번호 변경</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageDelete'">회원탈퇴</div>
+			
 		</div>
 
 
 		<!-- ✅ 콘텐츠 영역 -->
 		<div class="mypage-content">
-			<h2 class="title">회원 탈퇴</h2>
+
+			<h2>비밀번호 변경</h2>
 			<div class="divider"></div>
 
-			<form action="/mypage/delete" method="post" onsubmit="return validateDeleteForm();">
+		
+			<c:if test="${not empty success}">
+				<p class="result-text" style="color: green;">${success}</p>
+			</c:if>
+			
 
+			<form id="passwordForm"
+				action="${pageContext.request.contextPath}/client/changePassword"
+				method="post" onsubmit="return validatePasswordForm()" >
+				<!-- 회원 ID -->
 				<div class="form-group">
-					<label>ID</label> <input type="text" name="id"
+					<label>회원 ID</label> <input type="text" name="id"
 						value="${loginClient.clientId}" readonly>
 				</div>
 
+				<!-- 현재 비밀번호 -->
 				<div class="form-group">
-					<label>비밀번호</label> 
-					<input type="password" name="pw" id="pw" required>
+					<label>현재 비밀번호</label> <input type="password" id="currentPassword"
+						name="currentPassword" required oninput="checkCurrentPassword()">
+					<p id="currentPwResult" class="result-text"></p>
 				</div>
 
+				<!-- 새 비밀번호 -->
 				<div class="form-group">
-					<label>비밀번호 확인</label> 
-					<input type="password" name="pwConfirm" id="pwConfirm" oninput="checkPasswordMatch()">
+					<label>새 비밀번호</label> <input type="password" id="newPw"
+						name="newPassword" required disabled oninput="checkNewPwValid()">
+					<p id="newPwMsg" class="result-text"></p>
 
+					<!-- ✅ 새 비밀번호 유효성 메시지 -->
 				</div>
-				<!-- 자바스크립트 결과 메시지 표시 -->
-				<p id="pwMatchResult" class="result-text"></p>
 
+				<!-- 새 비밀번호 확인 -->
+				<div class="form-group">
+					<label>새 비밀번호 확인</label> <input type="password" id="confirmPw"
+						name="confirmPassword" required disabled oninput="checkPwMatch()">
+					<p id="pwMatchMsg" class="result-text"></p>
+					
+					<c:if test="${not empty error}">
+						<c:out value="${error}" />
+					</c:if>
+					<!-- ✅ 비밀번호 일치 여부 메시지 -->
+				</div>
+
+				<!-- 버튼 -->
 				<div class="form-group button-row">
-					<button type="submit" class="btn btn-half">탈퇴하기</button>
+					<button type="submit" class="btn btn-half">변경하기</button>
 					<button type="button" class="btn btn-half"
 						onclick="location.href='/mypage/mypage'">취소</button>
 				</div>
-
 			</form>
 		</div>
 		
 		</div>
 
-		<div style="height:300px"></div>
 		<!-- js연결! -->
-		<script src="https://code.jquery.com/jquery-latest.js"></script>
-		<script src="${pageContext.request.contextPath}/js/mypageDelete.js"></script>
+		<script src="${pageContext.request.contextPath}/js/mypagePassword.js"></script>
 		
 		<!-- 프로필 아이콘 드롭박스 -->
+	<script src="<c:url value='/js/proFile.js'/>"></script>
 <!-- 푸터 영역 -->
 <jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 </body>

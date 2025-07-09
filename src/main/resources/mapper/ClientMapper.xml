@@ -118,7 +118,7 @@
 		social_platform,
 		social_id,
 		interest,
-		email_verified,
+		verified,
 		state,
 		reg_date
 		)
@@ -139,7 +139,7 @@
 		#{socialPlatform},
 		#{socialId},
 		#{interest},
-		#{emailVerified},
+		#{verified},
 		#{state},
 		NOW()
 		)
@@ -150,7 +150,8 @@
 
 
 	<!-- 회원정보 수정 -->
-	<update id="updateClient" parameterType="com.example.demo.model.Client">
+	<update id="updateClient"
+		parameterType="com.example.demo.model.Client">
 		UPDATE client
 		SET
 		name = #{name},
@@ -159,11 +160,13 @@
 		email_domain =
 		#{emailDomain},
 		gender = #{gender},
-		interest = #{interest},
+		interest =
+		#{interest},
 		zipcode =
 		#{zipcode},
 		addr_base = #{addrBase},
-		addr_detail = #{addrDetail}
+		addr_detail =
+		#{addrDetail}
 		<if test="birth != null">
 			, birth = #{birth}
 		</if>
@@ -235,6 +238,8 @@
 		SELECT * FROM client
 		WHERE PHONE = #{phone}
 	</select>
+
+
 
 
 </mapper>
