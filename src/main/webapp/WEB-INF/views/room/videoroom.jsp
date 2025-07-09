@@ -42,7 +42,8 @@
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 <link rel="stylesheet" href="/css/textroom.css" type="text/css" />
 <script>
-	var roomId = "${room.roomId}";
+	var roomId = ${room.roomId};
+	var myroom = ${room.janusNum};
 	var iAm = "${username}";
 </script>
 </head>

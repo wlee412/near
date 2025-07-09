@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.model.WhiteboardMessage;
 
 @Controller
-public class WhiteboardController {
+public class STOMPController {
 
 	private final SimpMessagingTemplate tpl;
 
-	public WhiteboardController(SimpMessagingTemplate tpl) {
+	public STOMPController(SimpMessagingTemplate tpl) {
 		this.tpl = tpl;
 	}
 

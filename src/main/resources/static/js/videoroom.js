@@ -6,7 +6,7 @@ var janus = null;
 var sfutest = null;
 var opaqueId = "videoroomtest-" + Janus.randomString(12);
 
-var myroom = 1234;	// Demo room
+//var myroom = 1234;	// Demo room
 if (getQueryStringValue("room") !== "")
 	myroom = parseInt(getQueryStringValue("room"));
 var myusername = null;
@@ -22,12 +22,6 @@ var doSimulcast2 = (getQueryStringValue("simulcast2") === "yes" || getQueryStrin
 var subscriber_mode = (getQueryStringValue("subscriber-mode") === "yes" || getQueryStringValue("subscriber-mode") === "true");
 
 var isPublished = true;
-
-// TextRoom용 전역 변수
-var textroom = null;
-var transactions = {};                     // transaction 콜백 저장소
-var myid = Janus.randomString(12); // TextRoom 고유 유저ID
-
 
 $(document).ready(function() {
 	// Initialize Janus (자동 시작)
@@ -302,53 +296,6 @@ $(document).ready(function() {
 							$('#bitrate a').unbind('click');
 						}
 					});	// videoroom plugin end
-
-					// [윤성찬] textroom
-					janus.attach({
-						plugin: "janus.plugin.textroom",
-						opaqueId: "textroomtest-" + Janus.randomString(12),
-						success: function(handle) {
-							textroom = handle;
-							// DataChannel 열라는 setup 메시지 전송
-							textroom.send({ message: { request: "setup" } });
-							console.log("텍스트룸 attached");
-						},
-						ondataopen: function() {
-							console.log(">> DataChannel opened!");
-						},
-						// 채팅 수신
-						ondata: function(raw) {
-							var msg = JSON.parse(raw);
-
-							switch (msg.textroom) {
-								case "message":
-									// 일반 채팅 메시지
-									var fromId = msg.from;                   // myid 기준
-									var name = msg.display || fromId;      // 표시명
-									var content = msg.text;                   // 실제 텍스트
-									var time = new Date(msg.date).toLocaleTimeString();
-									$('#chat-window')
-										.append("[" + time + "] <b>" + name + ":</b> " + content + "<br>");
-									break;
-
-								case "join":
-									// 누군가 들어왔을 때
-									var who = msg.display || msg.username;
-									$('#chat-window').append("<i>" + who + "님이 입장했습니다.</i><br>");
-									break;
-
-								case "leave":
-									// 누군가 나갔을 때
-									var who = msg.display || msg.username;
-									$('#chat-window').append("<i>" + who + "님이 퇴장했습니다.</i><br>");
-									break;
-
-								// case "announcement": …  // 공지 처리
-								// case "kicked": …        // 추방 처리
-							}
-						}
-					});	// textroom end
-
 				},
 				error: function(error) {
 					Janus.error(error);
@@ -901,88 +848,3 @@ function updateSimulcastButtons(feed, substream, temporal) {
 		$('#tl' + index + '-0').removeClass('btn-primary btn-success').addClass('btn-primary');
 	}
 }
-
-// [윤성찬] 채팅 전송
-function sendChatMessage() {
-	var text = $('#chat-input').val().trim();
-	if (!text) return;                          // 빈 메시지 차단
-
-	// 트랜잭션 ID 생성 (서버 응답을 받을 때 매핑 용)
-	var transaction = Janus.randomString(12);
-	transactions[transaction] = function(response) {
-		// (선택) 서버가 ack를 보내면 처리
-		if (response.textroom === "error") {
-			console.error("Chat send error:", response.error);
-		}
-	};
-
-	// textroom 메시지 페이로드
-	var chat = {
-		textroom: "message",   // 필수
-		transaction: transaction, // 필수
-		room: myroom,      // videoroom과 동일한 방 번호
-		text: text         // 실제 전송할 텍스트
-		// to: "",                // (선택) 귓속말 대상 user ID
-	};
-
-	// DataChannel로 전송
-	textroom.data({
-		text: JSON.stringify(chat),
-		success: function() { $('#chat-input').val(""); },   // 전송 후 입력 비우기
-		error: function(err) { console.error("Data send failed", err); }
-	});
-}
-
-function doVideoRoomJoin() {
-	var register = {
-		request: "join",
-		room: myroom,
-		ptype: "publisher",
-		display: myusername
-	};
-	sfutest.send({ message: register });
-}
-
-function doTextRoomJoin() {
-	var transaction = Janus.randomString(12);
-	transactions[transaction] = function(resp) {
-		if (resp.textroom === "error") {
-			console.error("TextRoom join error:", resp.error);
-		} else {
-			console.log("TextRoom joined:", resp);
-		}
-	};
-	var chatJoin = {
-		textroom: "join",
-		transaction: transaction,
-		room: myroom,
-		username: myid,
-		display: myusername
-	};
-	textroom.data({ text: JSON.stringify(chatJoin) });
-}
-
-// 3) sendChatMessage 도 ondataopen 이후에만 바인딩
-function sendChatMessage() {
-	var text = $('#chat-input').val().trim();
-	if (!text) return;
-
-	var transaction = Janus.randomString(12);
-	transactions[transaction] = resp => { /* send 응답 처리 */ };
-
-	var msg = {
-		textroom: "message",
-		transaction: transaction,
-		room: myroom,
-		text: text
-	};
-	textroom.data({ text: JSON.stringify(msg) });
-}
-
-// 3) UI 버튼/엔터키에 바인딩
-$('#chat-send').click(sendChatMessage);
-$('#chat-input').keypress(function(e) {
-	if (e.which === 13 && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
-});
-
-
