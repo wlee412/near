@@ -4,8 +4,8 @@ let currentMode = null;
 let currentBgColor = '#ffffff';
 let currentBrushColor = '#000000';
 const container = document.querySelector('.left-section');
-const socket = new SockJS('/ws');
-const stompClient = Stomp.over(socket);
+var socket = new SockJS('/ws');
+var stompClient = Stomp.over(socket);
 let reconnectAttempts = 0;
 const MAX_RECONNECTS = 5;
 stompClient.debug = () => { };
@@ -259,6 +259,7 @@ function connectStomp() {
 			}
 
 		});
+		window.textmsgSubscribe();
 	}, err => {
 		console.error('STOMP Error', err);
 		retryReconnect();

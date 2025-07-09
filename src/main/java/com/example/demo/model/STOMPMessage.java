@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class WhiteboardMessage {
+public class STOMPMessage {
 	private String type; // draw, modify, remove, clear …
 	private String roomId;
 	private String sender;

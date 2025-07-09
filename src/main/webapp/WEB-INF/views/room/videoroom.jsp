@@ -42,8 +42,14 @@
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 <link rel="stylesheet" href="/css/textroom.css" type="text/css" />
 <script>
-	var roomId = ${room.roomId};
-	var myroom = ${room.janusNum};
+	var roomId = $
+	{
+		room.roomId
+	};
+	var myroom = $
+	{
+		room.janusNum
+	};
 	var iAm = "${username}";
 </script>
 </head>
@@ -120,7 +126,8 @@
 				<div id="chat-ui">
 					<div id="chat-window"></div>
 					<div id="chat-input-area">
-						<input id="chat-input" placeholder="메시지 입력" />
+						<textarea id="chat-input" rows="1" placeholder="메시지 입력"
+							style="resize: none; overflow-y: auto;"></textarea>
 						<button id="chat-send" onclick="sendChatMessage()">전송</button>
 					</div>
 				</div>
@@ -184,5 +191,6 @@
 	<script type="text/javascript" src="/js/VolumeControl.js"></script>
 	<script type="text/javascript" src="/js/roomlayout.js"></script>
 	<script type="text/javascript" src="/js/whiteboard.js"></script>
+	<script type="text/javascript" src="/js/textmsg.js"></script>
 </body>
 </html>
