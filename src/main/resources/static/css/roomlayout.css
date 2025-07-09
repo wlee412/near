@@ -25,7 +25,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background: #f5f5f5;
 	box-sizing: border-box;
 	padding: 10px;
 }
@@ -54,7 +53,6 @@
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	background: #eee;
 }
 
 .controls > button {

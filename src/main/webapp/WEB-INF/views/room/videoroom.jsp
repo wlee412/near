@@ -37,8 +37,10 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
 <link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
+<link rel="stylesheet" href="/css/textroom.css" type="text/css" />
 <script>
 	var roomId = "${room.roomId}";
 	var iAm = "${username}";
@@ -46,8 +48,8 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="container" id="videojoin">
+	<div class="container wrapper">
+		<div id="videojoin">
 			<div class="row">
 				<div class="col-md-12" id="controls">
 					<div id="registernow">
@@ -113,6 +115,15 @@
 						id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
 					<button autocomplete="off" id="start">시작</button>
 				</div>
+
+				<div id="chat-ui">
+					<div id="chat-window"></div>
+					<div id="chat-input-area">
+						<input id="chat-input" placeholder="메시지 입력" />
+						<button id="chat-send" onclick="sendChatMessage()">전송</button>
+					</div>
+				</div>
+
 
 				<!-- 나 -->
 				<div class="panel">
