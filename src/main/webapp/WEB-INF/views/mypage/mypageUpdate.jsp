@@ -25,7 +25,7 @@
 		%>
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/mypage"
+				<a href="${pageContext.request.contextPath}/mypage/"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 
@@ -103,7 +103,6 @@
 								${client.emailDomain != 'gmail.com' && client.emailDomain != 'naver.com' && client.emailDomain != 'daum.net' ? 'selected' : ''}>직접입력</option>
 						</select>
 					</div>
-					<div id="emailCheckResult" class="result-text"></div>
 				</div>
 				
 				<!-- 주소 -->

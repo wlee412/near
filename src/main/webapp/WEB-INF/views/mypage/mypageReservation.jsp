@@ -5,11 +5,40 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>예약 확인</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/mypage.css">
+<style>
+/* 예약 카드 UI */
+.reservation-card {
+  border: 1px solid #d2e3ea;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.reservation-card:hover {
+  transform: translateY(-3px);
+  background-color: #f0fbff;
+}
+
+.reservation-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #0077b6;
+}
+
+.reservation-card p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
@@ -17,7 +46,7 @@
 	<div class="mypage-wrapper">
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/mypage"
+				<a href="${pageContext.request.contextPath}/mypage/"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 			<div class="mypage-divider"></div>
@@ -31,48 +60,39 @@
 		</div>
 
 		<div class="mypage-content">
-			<!-- ✅ 기본 정보 -->
-			<h2>${client.name}님 환영합니다!</h2>
+			<h2>예약 확인</h2>
+			<div class="mypage-divider" style="margin: 20px 0;"></div>
 
-			<!-- ✅ 구분선 -->
-			<div class="mypage-divider" style="margin-top: 40px; margin-bottom: 30px;"></div>
-			<!-- ✅ 추천 설문 -->
-			<h3>관심사 기반 추천 설문</h3>
-			<c:if test="${empty recommendedSurveys}">
-				<p>추천 설문이 없습니다.</p>
+			<c:if test="${empty reservationList}">
+				<p>예약 내역이 없습니다.</p>
 			</c:if>
 
-			<!-- ✅ 슬라이더 전체 컨테이너 -->
-			<div class="slider-wrapper-container">
-				<div class="slider-wrapper">
-					<button class="slider-button prev" onclick="moveSlide(-1)">&#8249;</button>
-
-					<div class="slider-track" id="sliderTrack">
-						<c:forEach var="survey" items="${recommendedSurveys}">
-							<div class="slider-card">
-								<h4>${survey.surveyName}</h4>
-								<p>${survey.desc}</p>
-								<a
-									href="${pageContext.request.contextPath}/survey/start?surveyId=${survey.surveyId}">설문
-									시작</a>
-							</div>
-						</c:forEach>
-					</div>
-
-					<button class="slider-button next" onclick="moveSlide(1)">&#8250;</button>
+			<c:forEach var="res" items="${reservationList}">
+				<div class="reservation-card">
+					<h3>예약번호: ${res.reservationNo}</h3>
+					<p>
+						<strong>상담사:</strong> ${res.counselorName}
+					</p>
+					<p>
+						<strong>내담자 ID:</strong> ${res.clientId}
+					</p>
+					<p>
+						<strong>상담 시작:</strong>
+						<fmt:formatDate value="${res.startTime}"
+							pattern="yyyy-MM-dd HH:mm" />
+					</p>
+					<p>
+						<strong>예약 상태:</strong> ${res.state}
+					</p>
+					<p>
+						<strong>등록일:</strong>
+						<fmt:formatDate value="${res.regDate}" pattern="yyyy-MM-dd HH:mm" />
+					</p>
 				</div>
-			</div>
-			
-			<c:if test="${not empty recommendExplanation}">
-			    <div class="recommend-explanation-box">
-			        <h3>추천 이유</h3>
-			        <p>${recommendExplanation}</p>
-			    </div>
-			</c:if>
+			</c:forEach>
 		</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
-	<script src="${pageContext.request.contextPath}/js/mypage.js" defer></script>
 </body>
 </html>

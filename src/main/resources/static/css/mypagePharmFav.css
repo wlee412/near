@@ -1,0 +1,28 @@
+#pagination button.active-page {
+	background-color: #5daec5;
+	color: white;
+	border: none;
+	font-weight: bold;
+}
+
+.delete-btn {
+	width: 50px;
+	height: 30px;
+	background-color: #5daec5;
+	color: white;
+	border: none;
+	font-weight: bold;
+	margin-left: 10px;
+	border-radius: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #4a96a8; /* 조금 더 진한 톤으로 변경 */
+  transform: translateY(-2px); /* 살짝 떠 있는 느낌 */
+  cursor: pointer;
+}
+
+.delete-btn:active {
+  background-color: #3d7a85; /* 클릭 시 더 어두운 톤 */
+  transform: translateY(0);   /* 원래 위치로 복귀 */
+}

@@ -17,7 +17,7 @@
 	<div class="mypage-wrapper">
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/mypage"
+				<a href="${pageContext.request.contextPath}/mypage/"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 			<div class="mypage-divider"></div>

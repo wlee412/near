@@ -100,6 +100,10 @@ public class ClientService {
 	public Client findByPhone(String phone) {
 		return clientMapper.findByPhone(phone);
 	}
+
+	public int deletePharmFav(String clientId, String pharmId) {
+		return clientMapper.deletePharmFav(clientId, pharmId);
+	}
 	
 
 

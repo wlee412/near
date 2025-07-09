@@ -21,19 +21,19 @@
 		%>
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/client/mypage"
+				<a href="${pageContext.request.contextPath}/mypage/mypage"
 					style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 
 			<div class="mypage-divider"></div>
 
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageReservation'">예약확인</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageReport'">검사기록</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageFavorite'">병원 즐겨찾기</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageProfile'">프로필</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageUpdate'">정보수정</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypagePassword'">비밀번호 변경</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/client/mypageDelete'">회원탈퇴</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReservation'">예약확인</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePharmFav'">즐겨찾기</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageUpdate'">정보수정</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePassword'">비밀번호 변경</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageDelete'">회원탈퇴</div>
 			
 		</div>
 
@@ -91,7 +91,7 @@
 				<div class="form-group button-row">
 					<button type="submit" class="btn btn-half">변경하기</button>
 					<button type="button" class="btn btn-half"
-						onclick="location.href='/client/mypage'">취소</button>
+						onclick="location.href='/mypage/'">취소</button>
 				</div>
 			</form>
 		</div>

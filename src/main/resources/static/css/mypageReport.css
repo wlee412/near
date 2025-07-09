@@ -100,4 +100,12 @@ body {
   font-size: 14px;
   padding: 12px;
   text-align: left;
+/*   display: none; */
+}
+
+#pagination button.active-page {
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  font-weight: bold;
 }

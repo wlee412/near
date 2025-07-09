@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.PharmFavoriteMapper">
+
+	<select id="getPharmFavoriteList" parameterType="String" resultType="com.example.demo.model.PharmFavorite">
+		SELECT
+		pf.client_id AS clientId,
+		pf.pharm_id AS pharmId,
+		p.pharm_name AS pharmName,
+		p.pharm_address AS pharmAddress,
+		p.pharm_tel AS pharmTel,
+		p.open_hour AS openHour
+		FROM pharm_favorite pf
+		JOIN pharm_info p
+		ON pf.pharm_id = p.pharm_id
+		WHERE pf.client_id = #{clientId}
+	</select>
+	
+	<delete id="deletePharmFav" parameterType="map">
+		DELETE FROM pharm_favorite
+		WHERE client_id = #{clientId}
+		AND pharm_id = #{pharmId}
+	</delete>
+
+</mapper>

@@ -54,6 +54,8 @@ public interface ClientMapper {
 
 	public Client findByPhone(String phone);
 
+	public int deletePharmFav(@Param("clientId") String clientId, @Param("pharmId") String pharmId);
+
 	
 
 
