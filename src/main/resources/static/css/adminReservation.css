@@ -79,3 +79,30 @@
   background-color: #5daec5;
   color: white;
 }
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.search-form select,
+.search-form input[type="text"] {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-form button {
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #3c93a9;
+}

@@ -5,9 +5,7 @@ import com.example.demo.model.AdminReservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -15,18 +13,13 @@ public class AdminReservationService {
 
     private final AdminReservationMapper reservationMapper;
 
-    public List<AdminReservation> getReservations(int page, int pageSize) {
+    public List<AdminReservation> getReservations(int page, int pageSize, String type, String keyword) {
         int startRow = (page - 1) * pageSize;
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("startRow", startRow);
-        params.put("pageSize", pageSize);
-
-        return reservationMapper.getReservationsWithPaging(params);
+        return reservationMapper.getReservations(startRow, pageSize, type, keyword);
     }
 
-    public int getTotalCount() {
-        return reservationMapper.getTotalReservationCount();
+    public int getTotalCount(String type, String keyword) {
+        return reservationMapper.getTotalCount(type, keyword);
     }
 
     public boolean cancelReservation(int reservationNo) {

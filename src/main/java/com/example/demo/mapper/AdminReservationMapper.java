@@ -1,13 +1,25 @@
 package com.example.demo.mapper;
 
-import java.util.List;
-import java.util.Map;
 import com.example.demo.model.AdminReservation;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface AdminReservationMapper {
-    List<AdminReservation> getReservationsWithPaging(Map<String, Object> params);
-    int getTotalReservationCount();
-    int cancelReservation(int reservationNo);
+
+    List<AdminReservation> getReservations(
+        @Param("startRow") int startRow,
+        @Param("pageSize") int pageSize,
+        @Param("type") String type,
+        @Param("keyword") String keyword
+    );
+
+    int getTotalCount(
+        @Param("type") String type,
+        @Param("keyword") String keyword
+    );
+
+    int cancelReservation(@Param("reservationNo") int reservationNo);
 }

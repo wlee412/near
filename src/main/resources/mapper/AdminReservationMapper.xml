@@ -5,26 +5,62 @@
 
 <mapper namespace="com.example.demo.mapper.AdminReservationMapper">
 
-    <select id="getReservationsWithPaging" resultType="com.example.demo.model.AdminReservation">
-        SELECT 
-            r.reservation_no,
-            csl.name AS counselorName,
-            cli.name AS clientName,
-            cli.client_id AS clientId,
-            cli.phone,
-            ca.start,
-            r.state
-        FROM counsel_reservation r
-        JOIN client cli ON r.client_id = cli.client_id
-        JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
-        JOIN counselor csl ON ca.counselor_id = csl.counselor_id
-        ORDER BY ca.start DESC
-        LIMIT #{startRow}, #{pageSize}
-    </select>
+    <select id="getReservations" resultType="com.example.demo.model.AdminReservation">
+  SELECT 
+      r.reservation_no,
+      csl.name AS counselorName,
+      cli.name AS clientName,
+      cli.client_id AS clientId,
+      cli.phone,
+      ca.start,
+      r.state
+  FROM counsel_reservation r
+  JOIN client cli ON r.client_id = cli.client_id
+  JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
+  JOIN counselor csl ON ca.counselor_id = csl.counselor_id
+  <where>
+    <if test="type != null and keyword != null">
+      <choose>
+        <when test="type == 'name'">
+          cli.name LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'phone'">
+          cli.phone LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'id'">
+          cli.client_id LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+      </choose>
+    </if>
+  </where>
+  ORDER BY ca.start DESC
+  LIMIT #{startRow}, #{pageSize}
+</select>
 
-    <select id="getTotalReservationCount" resultType="int">
-        SELECT COUNT(*) FROM counsel_reservation
-    </select>
+
+<select id="getTotalCount" resultType="int">
+  SELECT COUNT(*) 
+  FROM counsel_reservation r
+  JOIN client cli ON r.client_id = cli.client_id
+  JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
+  JOIN counselor csl ON ca.counselor_id = csl.counselor_id
+  <where>
+    <if test="type != null and keyword != null">
+      <choose>
+        <when test="type == 'name'">
+          cli.name LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'phone'">
+          cli.phone LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'id'">
+          cli.client_id LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+      </choose>
+    </if>
+  </where>
+</select>
+
 
     <update id="cancelReservation">
         UPDATE counsel_reservation

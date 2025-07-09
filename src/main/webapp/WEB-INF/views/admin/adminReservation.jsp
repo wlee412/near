@@ -24,6 +24,16 @@
       <a href="/admin/surveyStats">통계</a>
     </div>
   </div>
+  <form method="get" action="/admin/adminReservation" class="search-form">
+    <select name="type">
+        <option value="name" ${type == 'name' ? 'selected' : ''}>회원 이름</option>
+        <option value="phone" ${type == 'phone' ? 'selected' : ''}>연락처</option>
+        <option value="id" ${type == 'id' ? 'selected' : ''}>아이디</option>
+    </select>
+    <input type="text" name="keyword" value="${keyword}" placeholder="검색어 입력">
+    <button type="submit">검색</button>
+</form>
+  
     <form id="bulkCancelForm" method="post">
         <table class="reservation-table">
             <thead>
@@ -31,7 +41,8 @@
                     <th><input type="checkbox" id="selectAll"></th>
                     <th>번호</th>
                     <th>상담사</th>
-                    <th>회원</th>
+                    <th>내담자</th>
+                    <th>내담자 아이디</th>
                     <th>연락처</th>
                     <th>예약일시</th>
                     <th>상태</th>
@@ -45,6 +56,7 @@
                         <td>${r.reservationNo}</td>
                         <td>${r.counselorName}</td>
                         <td>${r.clientName}</td>
+                        <td>${r.clientId}</td>
                         <td>${r.phone}</td>
                         <td>${r.start}</td>
                         <td>${r.state}</td>
