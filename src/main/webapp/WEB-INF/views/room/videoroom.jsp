@@ -51,7 +51,17 @@
 <body>
 	<div class="container wrapper">
 		<div id="videojoin">
-			<div class="row">
+		<div class="row" id="camera-and-desc">
+				<div class="col-md-6" id="camera-test-container">
+					<video id="camera-test-video" autoplay playsinline muted></video>
+				</div>
+				<div class="col-md-6" id="description">
+					<div id="desc-content">
+						<h1>상담 내용</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 100px;">
 				<div class="col-md-12" id="controls">
 					<div id="registernow">
 						<span class="label label-info" id="room"></span>
@@ -62,13 +72,12 @@
 						</div>
 						<span class="label label-info" id="you"></span>
 						<div class="input-group margin-bottom-md ">
-							<span class="input-group-addon">대화명</span> <input
+							<span class="input-group-addon">이름</span> <input
 								autocomplete="off" class="form-control" type="text"
 								placeholder="My Name" id="username"
 								onkeypress="return checkEnter(this, event);" value="${username}" />
 							<span class="input-group-btn">
-								<button class="btn btn-success" autocomplete="off" id="register">대화방
-									참여</button>
+								<button class="btn btn-success" autocomplete="off" id="register">상담 시작</button>
 							</span>
 						</div>
 					</div>
@@ -186,5 +195,6 @@
 	<script type="text/javascript" src="/js/roomlayout.js"></script>
 	<script type="text/javascript" src="/js/whiteboard.js"></script>
 	<script type="text/javascript" src="/js/textmsg.js"></script>
+	<script type="text/javascript" src="/js/cameratest.js"></script>
 </body>
 </html>

@@ -3,9 +3,10 @@
 #chat-ui {
 	display: flex;
 	flex-direction: column;
-	height: 350px;
+	height: 100%;
 	border: 1px solid #ccc;
 	background-color: #e6f7ff;
+	margin-bottom: 20px;
 }
 
 #chat-window {
