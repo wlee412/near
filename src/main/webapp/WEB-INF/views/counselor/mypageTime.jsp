@@ -1,62 +1,30 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-  <title>FullCalendar 테스트 (로컬 JS 사용)</title>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-  <!-- ✅ 로컬 CSS 연결 -->
-  <link rel="stylesheet" href="/css/fullcalendar.min.css">
+<!-- FullCalendar CSS (비동기 로딩용, 중복되면 상위 JSP에서 제거) -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 
-  <!-- ✅ 로컬 JS 연결 -->
-  <script src="/js/fullcalendar.min.js"></script>
+<div class="time-box">
+  <h3 class="section-title">📅 예약 가능 시간 선택</h3>
 
-  <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      padding: 30px;
-      background: #f2f9ff;
-    }
+  <!-- 캘린더 영역 -->
+  <div id="calendar" class="calendar-container"></div>
 
-    #calendar {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+  <!-- 날짜 출력 -->
+  <div id="selected-date-box" style="margin-top: 20px;">
+    <p><strong>선택한 날짜:</strong> <span id="selected-date"></span></p>
+  </div>
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
+  <!-- 시간 버튼 영역 -->
+  <div id="time-buttons" class="time-buttons-container">
+    <%-- JS로 시간 버튼이 들어옵니다 --%>
+  </div>
 
-<h2>📅 상담 예약 달력</h2>
-<div id="calendar"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('calendar');
-
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      locale: 'ko',
-      dateClick: function(info) {
-        alert('선택한 날짜: ' + info.dateStr);
-      },
-      events: [
-        {
-          title: '🧠 예약됨',
-          start: new Date().toISOString().split('T')[0]
-        }
-      ]
-    });
-
-    calendar.render();
-  });
-</script>
-
-</body>
-</html>
+  <!-- 저장 버튼 -->
+  <div class="button-wrapper" style="margin-top: 20px;">
+    <button type="button" id="save-available-times" class="save-button">
+      예약 가능 시간 저장
+    </button>
+  </div>
+</div>

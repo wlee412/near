@@ -1,115 +1,183 @@
+// ✅ 전역 변수
+let disabledSlots = []; // DB에 저장된 시간들: ["2025-07-10 09:00", ...]
 
-// 비동기 fetch 섹션 나누기 
-function loadSection(section) {
-  fetch(`/counselor/section/${section}`)
-    .then(response => {
-      if (!response.ok) throw new Error("불러오기 실패");
-      return response.text();
-    })
-    .then(html => {
-      document.getElementById('contentArea').innerHTML = html;
-    })
-    .catch(error => {
-      document.getElementById('contentArea').innerHTML = "<p>오류가 발생했습니다.</p>";
-      console.error(error);
-    });
+// 비동기
+$(document).ready(function() {
+	// 사이드바 클릭 시
+	$('.sidebar-button').click(function(e) {
+		e.preventDefault();
+		const section = $(this).data('section');
+		if (section && section.trim() !== '') {
+			loadSection(section);
+			$('.sidebar-button').removeClass('active');
+			$(this).addClass('active');
+		}
+	});
+
+	handleSidebarNavigation(); // URL 해시 처리
+});
+
+// ✅ URL 해시로 섹션 로드
+function handleSidebarNavigation() {
+	const currentHash = window.location.hash?.substring(1);
+	$('.sidebar-button').removeClass('active');
+	$(`.sidebar-button[data-section="${currentHash}"]`).addClass('active');
+	loadSection(currentHash);
 }
 
-// 예약 가능시간 
-//document.addEventListener('DOMContentLoaded', () => {
-//  const selectedTimes = new Set();
-//
-//  window.generateTimeButtons = function () {
-//    const dateInput = document.getElementById("date");
-//    const timeContainer = document.getElementById("time-section");
-//    const hiddenInputArea = document.getElementById("hidden-inputs");
-//
-//    const date = dateInput.value;
-//    timeContainer.innerHTML = "";
-//    hiddenInputArea.innerHTML = "";
-//    selectedTimes.clear();
-//
-//    if (!date) {
-//      alert("날짜를 선택해주세요.");
-//      return;
-//    }
-//
-//    for (let hour = 9; hour <= 17; hour++) {
-//      const timeStr = (hour < 10 ? "0" + hour : hour) + ":00";
-//      const dateTime = date + " " + timeStr;
-//
-//      const btn = document.createElement("button");
-//      btn.type = "button";
-//      btn.innerText = timeStr;
-//      btn.className = "time-btn";
-//      btn.dataset.time = dateTime;
-//
-//      btn.addEventListener("click", () => toggleTime(dateTime, btn, hiddenInputArea));
-//      timeContainer.appendChild(btn);
-//    }
-//  };
-//
-//  function toggleTime(dateTime, button, hiddenInputArea) {
-//    if (selectedTimes.has(dateTime)) {
-//      selectedTimes.delete(dateTime);
-//      button.classList.remove("selected");
-//      hiddenInputArea.querySelector(`input[value="${dateTime}"]`)?.remove();
-//    } else {
-//      selectedTimes.add(dateTime);
-//      button.classList.add("selected");
-//      const input = document.createElement("input");
-//      input.type = "hidden";
-//      input.name = "selectedTimes";
-//      input.value = dateTime;
-//      hiddenInputArea.appendChild(input);
-//    }
-//  }
-//
-//  window.submitAvailableTimes = function () {
-//    const counselorId = document.querySelector("input[name='counselorId']").value;
-//    const selected = Array.from(document.querySelectorAll("input[name='selectedTimes']"))
-//                          .map(input => input.value);
-//
-//    if (selected.length === 0) {
-//      alert("선택된 시간이 없습니다.");
-//      return;
-//    }
-//
-//    fetch("/counselor/time/save", {
-//      method: "POST",
-//      headers: { "Content-Type": "application/json" },
-//      body: JSON.stringify({ counselorId, selectedTimes: selected })
-//    })
-//    .then(res => res.ok ? res.text() : Promise.reject("저장 실패"))
-//    .then(() => {
-//      alert("✅ 예약 가능 시간이 저장되었습니다.");
-//      selectedTimes.clear();
-//      document.getElementById("time-section").innerHTML = "";
-//      document.getElementById("hidden-inputs").innerHTML = "";
-//      document.getElementById("date").value = "";
-//    })
-//    .catch(err => {
-//      console.error(err);
-//      alert("❌ 저장 중 오류가 발생했습니다.");
-//    });
-//  };
-//});
-//
-//function initCalendar(savedDates) {
-//  flatpickr("#date", {
-//    dateFormat: "Y-m-d",
-//    minDate: "today",
-//    maxDate: new Date().fp_incr(30),
-//    onDayCreate: function(dObj, dStr, fp, dayElem) {
-//      const date = dayElem.dateObj.toISOString().slice(0, 10);
-//      if (savedDates.includes(date)) {
-//        dayElem.classList.add("booked-date");
-//      }
-//    },
-//    onChange: function(selectedDates, dateStr, instance) {
-//      document.getElementById("date").value = dateStr;
-//      generateTimeButtons();
-//    }
-//  });
-//}
+// ✅ 섹션 로드
+function loadSection(section) {
+	$('#contentArea').load(`/counselor/section/${section}`, function(response, status, xhr) {
+		if (status === "error") {
+			console.error(`❌ '${section}' 섹션 로드 실패:`, xhr.status, xhr.statusText);
+		}
+		if (section === 'time') {
+			setTimeout(() => initCalendar(), 50);
+		}
+	});
+}
 
+// ✅ FullCalendar 초기화
+function initCalendar() {
+	const calendarEl = document.getElementById('calendar');
+	if (!calendarEl) return;
+
+	let selectedDate = null;
+	let selectedTimes = new Set();
+	let selectedCell = null;
+
+	const calendar = new FullCalendar.Calendar(calendarEl, {
+		initialView: 'dayGridMonth',
+		locale: 'ko',
+		selectable: true,
+		validRange: {
+			start: new Date().toISOString().split('T')[0],
+			end: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split('T')[0]
+		},
+		dateClick: (info) => {
+			selectedDate = info.dateStr;
+			$('#selected-date').text(selectedDate);
+
+			if (selectedCell) selectedCell.classList.remove('selected-date');
+			selectedCell = info.dayEl;
+			selectedCell.classList.add('selected-date');
+
+			selectedTimes.clear();
+
+			// 🔄 AJAX로 최신 예약된 시간 불러오고 버튼 렌더링
+			$.ajax({
+				url: "/counselor/time/existing",
+				method: "GET",
+				success: function(data) {
+					disabledSlots = data;
+					renderTimeButtons(selectedDate, selectedTimes);
+				}
+			});
+		},
+		dayCellDidMount: function(info) {
+			const dateStr = info.date.toISOString().split('T')[0];
+			const storedDates = new Set(disabledSlots.map(dt => dt.split(' ')[0]));
+			if (storedDates.has(dateStr)) {
+				info.el.style.backgroundColor = '#e0f7fa';
+			}
+		}
+	});
+
+	calendar.render();
+
+	// 저장 버튼 클릭
+	$(document).off('click', '#save-available-times').on('click', '#save-available-times', function() {
+		//    if (!selectedDate || selectedTimes.size === 0) {
+		if (!selectedDate) {
+			alert('날짜와 시간을 선택해주세요.');
+			return;
+		}
+
+		const times = Array.from(selectedTimes);
+		$.ajax({
+			url: '/counselor/time/save',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({ date: selectedDate, times: times }),
+			success: () => alert('예약 가능 시간이 저장되었습니다!'),
+			error: () => alert('오류가 발생했습니다.')
+		});
+	});
+}
+
+// ✅ 시간 버튼 렌더링
+function renderTimeButtons(date, selectedTimes) {
+	const timeContainer = $("#time-buttons");
+	timeContainer.empty();
+
+	const todayStr = new Date().toISOString().split('T')[0];
+	if (date === todayStr) {
+		timeContainer.html('<p style="color:gray;">오늘은 예약 가능 시간을 설정할 수 없습니다.</p>');
+		return;
+	}
+
+	for (let hour = 9; hour <= 17; hour++) {
+		const hourStr = hour.toString().padStart(2, '0');
+		const timeStr = `${date} ${hourStr}:00`;
+
+		const isStored = disabledSlots.includes(timeStr);
+		if (isStored) selectedTimes.add(timeStr);
+
+		const button = $("<button>")
+			.text(`${hourStr}:00`)
+			.addClass("time-btn")
+			.toggleClass("selected", selectedTimes.has(timeStr));
+
+		button.on("click", function() {
+			$(this).toggleClass("selected");
+			if (selectedTimes.has(timeStr)) {
+				selectedTimes.delete(timeStr);
+			} else {
+				selectedTimes.add(timeStr);
+			}
+		});
+
+		timeContainer.append(button);
+	}
+}
+
+// 예약 현황용 캘린더
+function initReservationCalendar() {
+  const calendarEl = document.getElementById('calendar-reservation');
+  if (!calendarEl) return;
+
+  $.ajax({
+    url: '/counselor/reservations/calendar',
+    method: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      const events = data.map(item => ({
+        title: `${item.count}건`,
+        start: item.date,
+        allDay: true,
+        backgroundColor: '#5daec5',
+        borderColor: '#5daec5',
+        textColor: '#fff'
+      }));
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'ko',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+        },
+        events: events,
+        eventClick: function (info) {
+          alert(`선택한 날짜: ${info.event.startStr}\n예약: ${info.event.title}`);
+        }
+      });
+
+      calendar.render();
+    },
+    error: function (xhr, status, error) {
+      console.error('📛 캘린더 데이터 불러오기 실패:', status, error);
+    }
+  });
+}

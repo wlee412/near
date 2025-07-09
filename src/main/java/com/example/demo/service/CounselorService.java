@@ -3,7 +3,9 @@ package com.example.demo.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.CounselorMapper;
@@ -16,19 +18,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CounselorService {
 
-    private final CounselorMapper counselorMapper;
+    @Autowired
+    private CounselorMapper counselorMapper;
 
     // 상담사 로그인
-    public Counselor login(Counselor input) {
-        Counselor found = counselorMapper.findByCounselorId(input.getCounselorId());
-
-        if (found != null && found.getPassword().equals(input.getPassword())) {
-            System.out.println("✅ 로그인 성공: " + found.getName());
-            return found;
-        } else {
-            System.out.println("❌ 로그인 실패 - 아이디 또는 비밀번호 불일치");
-            return null;
-        }
+    public Counselor loginCounselor(Counselor loginCounselor) {
+        return counselorMapper.loginCounselor(loginCounselor);
     }
 
     // 상담사 ID로 예약 가능 시간 조회
@@ -36,31 +31,33 @@ public class CounselorService {
         return counselorMapper.findAvailableTimesByCounselorId(counselorId);
     }
 
-    // 상담사 예약 가능 시간 저장
-    public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
-        try {
-            for (String time : selectedTimes) {
-                String dateTime = selectedDate + " " + time;  // 예: "2025-07-08 09:00"
-                counselorMapper.insertAvailableTime(counselorId, dateTime);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+    //오늘 예약건수 
+	public int getTodayReservationCount(String counselorId) {
+		  return counselorMapper.countTodayReservations(counselorId);
+	}
 
-    public boolean saveAvailableTimes(String counselorId, List<String> selectedTimes) {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-            for (String timeStr : selectedTimes) {
-                LocalDateTime start = LocalDateTime.parse(timeStr, formatter);
-                counselorMapper.insertAvailableTimeWithDateTime(counselorId, start);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	// 예약 가능 시간 저장 (LocalDateTime 문자열 직접 파싱)
+	public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
+	     try {
+	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+	            for (String timeStr : selectedTimes) {
+	                LocalDateTime start = LocalDateTime.parse(timeStr, formatter);
+	                counselorMapper.insertAvailableTime(counselorId, start);
+	            }
+	            return true;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+
+	public void deleteAvailableTimesByTimes(String counselorId, List<String> timesToDelete) {
+	    counselorMapper.deleteAvailableTimesByTimes(counselorId, timesToDelete);  
+	}
+
+	//예약현황
+	public List<Map<String, Object>> getReservationCountByDate(String counselorId) {
+		return counselorMapper.countReservationsByDate(counselorId);
+
+	}
 }

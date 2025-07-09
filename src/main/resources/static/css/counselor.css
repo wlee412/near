@@ -1,11 +1,12 @@
-/* 전체 컨테이너 */
+/* 전체 레이아웃 */
+ 
 .counselor-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* 마이페이지 타이틀 */
+/* 타이틀 영역 */
 .mypage-title {
   width: 100%;
   border-bottom: 0.5px solid #666;
@@ -16,62 +17,66 @@
   font-size: 24px;
   font-weight: bold;
   padding-bottom: 8px;
+  color: #333;
 }
 
-/* 본문: 좌우 배치 */
+/* 좌우 구조 */
 .mypage-body {
   display: flex;
-  flex-wrap: nowrap;
   gap: 24px;
   align-items: flex-start;
 }
 
-/* 좌측 사이드바 */
+/* 사이드바 */
 .mypage-sidebar {
   width: 220px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.mypage-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mypage-sidebar li {
+.sidebar-button {
+  display: block;
   padding: 12px 20px;
-  margin-bottom: 12px;
-  font-size: 16px;
   background-color: #fff;
   border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
 }
 
-.mypage-sidebar li:hover {
+.sidebar-button:hover {
+  color: #13688a;
+}
+
+.sidebar-button.active {
   color: #5daec5;
+  font-weight: 500;
+  border-left: 2px solid #5daec5;
 }
 
-/* 오른쪽 메인 콘텐츠  */
+/* 메인 콘텐츠 */
 .main-section {
   flex-grow: 1;
   background-color: #fff;
   padding: 30px;
   border-radius: 16px;
-  min-width: 600px;
+  min-width: 700px;
   min-height: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
   word-break: keep-all;
 }
 
+/* 프로필 박스 */
 .profile-box {
   padding: 20px;
   border-radius: 12px;
-  max-width: 400px;
-  margin: 0px auto;
-  margin-top: 30px;  
-  align-items: center;
+  max-width: 700px;
+  margin: 30px auto 0;
 }
 
 .profile-box h3 {
@@ -86,31 +91,99 @@
 
 .profile-box li {
   margin-bottom: 8px;
+  color: #333;
 }
 
-/*캘린더*/
+.profile-img {
+  width: 150x;
+  height: 240px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-right: 24px;
+  display: block;
+}
+.profile-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
-.time-btn {
-  margin: 5px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  background-color: #f7f7f7;
-  cursor: pointer;
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* 환영 메시지 */
+.welcome-box {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.welcome-box h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.today-count {
+  font-size: 20px;
+  color: #333;
+}
+
+/* 캘린더 선택된 날짜 셀 강조 */
+.fc-daygrid-day.selected-date {
+  background-color: #d3f3ff !important;
   border-radius: 6px;
-  transition: all 0.2s ease;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.time-btn:hover {
-  background-color: #e0f2ff;
+/* 날짜 텍스트 강조 */
+#selected-date {
+  font-weight: bold;
+  color: #333;
 }
 
-.time-btn.selected {
-  background-color: #4caf50;
+/* 시간 버튼 영역 */
+.time-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* 시간 버튼 */
+.time-buttons-container .time-btn {
+  padding: 6px 12px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.time-buttons-container .time-btn:hover {
+  background-color: #e0f7ff;
+}
+
+.time-buttons-container .time-btn.selected {
+  background-color: #5daec5;
   color: white;
-  border-color: #388e3c;
+  font-weight: bold;
+  border: 1px solid #5daec5;
 }
 
-.save-btn {
+/* 저장 버튼 영역 */
+.button-wrapper {
+  margin-top: 20px;
+}
+
+.save-button {
   background-color: #2196f3;
   color: white;
   padding: 10px 20px;
@@ -118,8 +191,37 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.save-btn:hover {
-  background-color: #1976d2;
+.save-button:hover {
+  background-color: #5daec5;
 }
+/* 비활성화 버튼 */
+.time-btn.disabled {
+  background-color: #ccc;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.time-btn {
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.time-btn.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.time-btn.pre-registered {
+  background-color: #eee;
+  border-color: #999;
+  color: #555;
+  font-style: italic;
+}
+/*예약현황*/
+

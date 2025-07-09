@@ -29,6 +29,7 @@
     --df-messenger-font-color: #333333;
     --df-messenger-user-message: #f1f1f1;
     --df-messenger-bot-message: #e3f2fd;
+    
   }
 </style>
 

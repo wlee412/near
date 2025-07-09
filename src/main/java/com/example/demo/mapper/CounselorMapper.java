@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,17 +14,23 @@ import com.example.demo.model.Counselor;
 public interface CounselorMapper {
 
     // 상담사 로그인
-    Counselor findByCounselorId(@Param("counselorId") String counselorId);
+    Counselor loginCounselor(Counselor loginCounselor);
 
-    // 예약 가능 시간 등록
+    // 예약 가능 시간 저장 (하나씩 insert)
     void insertAvailableTime(@Param("counselorId") String counselorId,
-                             @Param("dateTime") String dateTime);
+                             @Param("start") LocalDateTime start);
 
-    // 예약 가능 시간 삭제 (번호로 삭제)
-    void deleteAvailableTimeById(int counselNo);
-
-    // 상담사 예약 가능 시간 목록 조회
+    // 상담사 ID로 예약 가능 시간 목록 조회
     List<CounselAvailable> findAvailableTimesByCounselorId(@Param("counselorId") String counselorId);
 
-	void insertAvailableTimeWithDateTime(@Param("counselorId") String counselorId, @Param("start") LocalDateTime start);
+    // 오늘 예약 수 조회
+    int countTodayReservations(@Param("counselorId") String counselorId);
+    
+    void deleteAvailableTimesByTimes(@Param("counselorId") String counselorId,
+            @Param("times") List<String> times);
+
+
+	List<Map<String, Object>> countReservationsByDate(String counselorId);
+
+
 }
