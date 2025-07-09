@@ -26,7 +26,8 @@ window.textmsgSubscribe = function() {
 					const text = payload;
 
 					const chatLine = document.createElement("div");
-					chatLine.innerHTML = `<span class="time">[${time}]</span> <b>${name}:</b> ${text}`;
+					chatLine.className = "chat-line";
+					chatLine.innerHTML = `<span class="time">[${time}]</span> <b>${name}:</b><br> ${text}`;
 					document.getElementById("chat-window").appendChild(chatLine);
 
 					// 스크롤 아래로

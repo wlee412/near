@@ -36,7 +36,9 @@ public class STOMPController {
 
 	@MessageMapping("/textmsg/{roomId}")
 	public void textmsg(@Payload STOMPMessage msg, @DestinationVariable("roomId") String roomId) {
-		System.out.println(msg.getPayload());
+		System.out.println("sender:" + msg.getSender());
+		System.out.println("type:" + msg.getType());
+		System.out.println("text:" + msg.getPayload());
 		switch (msg.getType()) {
 		case "chat":
 			tpl.convertAndSend("/topic/textmsg/" + msg.getRoomId(), msg);

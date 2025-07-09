@@ -20,10 +20,17 @@
 	padding: 5px;
 	background-color: white;
 }
+
 #chat-input {
 	flex: 1;
 	padding: 5px;
 }
+
 #chat-send {
 	padding: 5px 10px;
+}
+
+.chat-line {
+	white-space: pre-line;
+	font-size: 11pt;
 }
