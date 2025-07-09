@@ -41,6 +41,7 @@
 <link rel="stylesheet" href="/css/videoroom.css" type="text/css" />
 <link rel="stylesheet" href="/css/roomlayout.css" type="text/css" />
 <link rel="stylesheet" href="/css/textroom.css" type="text/css" />
+<link rel="stylesheet" href="/css/toolbar.css" type="text/css" />
 <script>
 	var roomId = ${room.roomId};
 	var myroom = ${room.janusNum};
@@ -120,10 +121,10 @@
 						<button id="whiteboardBtn" onclick="showWhiteboardMode()">화이트보드</button>
 						<button id="mute">마이크 끄기</button>
 						<button id="unpublish">카메라 끄기</button>
+						<label for="volumeSlider">Volume:</label> <input type="range"
+							id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
+						<button autocomplete="off" id="start">시작</button>
 					</div>
-					<label for="volumeSlider">Volume:</label> <input type="range"
-						id="volumeSlider" min="0" max="1.2" step="0.01" value="0.8" />
-					<button autocomplete="off" id="start">시작</button>
 				</div>
 
 				<div id="chat-ui">
@@ -151,22 +152,32 @@
 				<div class="whiteboard">
 					<canvas id="whiteboard-canvas"></canvas>
 				</div>
-				<div class="tools">
+				<div class="toolbar">
+				<div class="tool-group">
 					<button onclick="usePen()">그리기</button>
 					<button onclick="useEraser()">지우개</button>
+				</div>
+				<div class="tool-group">
 					<button onclick="useSelector()">선택</button>
+					<button onclick="deleteSelected()">선택 삭제</button>
 					<button onclick="clearCanvas()" id="clearButton">전체 지우기</button>
+				</div>
+				<div class="tool-group">
 					<button onclick="saveCanvasAsImage()">다운로드</button>
-					<label> 배경색: <input type="color" id="bgColorPicker"
-						value="#ffffff" onchange="changeBackgroundColor(this.value)">
-					</label> <label> 색상: <input type="color" id="colorPicker"
-						value="#000000">
-					</label> <label> 굵기: <input type="range" id="brushWidth" min="1"
-						max="30" value="3">
-					</label>
 					<button onclick="saveCheckpoint()">중간 저장</button>
 					<button onclick="rollback()">롤백</button>
-					<button onclick="deleteSelected()">선택 삭제</button>
+				</div>
+				<div class="tool-group">
+					<label> 색상: <input type="color" id="colorPicker"
+						value="#000000">
+					</label>
+					<label> 배경색: <input type="color" id="bgColorPicker"
+						value="#ffffff" onchange="changeBackgroundColor(this.value)">
+					</label>
+					<label> 굵기: <input type="range" id="brushWidth" min="1"
+						max="30" value="3">
+					</label>
+				</div>
 				</div>
 
 			</div>

@@ -35,14 +35,6 @@
 	padding: 20px;
 }
 
-.tools {
-	flex: 1;
-	background: #ccc;
-	align-items: center;
-	justify-content: center;
-	margin: 20px;
-}
-
 #videoremote1 {
 	flex: 2;
 	background: black;
@@ -55,10 +47,22 @@
 	flex-direction: column;
 }
 
-.controls > button {
+.controls button {
 	margin-bottom: 10px;
+	padding: 6px 12px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	border-radius: 30px;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
 }
 
+#volumeSlider {
+	margin-bottom: 10px;
+}
 
 .bottom-section {
 	display: flex;
@@ -71,8 +75,8 @@
 }
 
 .whiteboard canvas {
-    border: 1px solid #ccc;
-    width: 100% !important;
+	border: 1px solid #ccc;
+	width: 100% !important;
 	height: 100% !important;
 	max-width: 100% !important;
 	max-height: 100% !important;

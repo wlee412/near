@@ -1,7 +1,7 @@
 const txtBox = document.getElementById('chat-input');
 
-function sendChatMessage(){
-	if(txtBox.value.trim() == "")
+function sendChatMessage() {
+	if (txtBox.value.trim() == "")
 		return false;
 	sendTextMsg('chat', txtBox.value);
 	txtBox.value = "";
@@ -20,14 +20,29 @@ window.textmsgSubscribe = function() {
 
 			switch (msg.type.trim()) {
 				case "chat":
-					console.log(msg);
-					const time = new Date().toLocaleTimeString(); // 간단한 시간
+					const time = new Date().toLocaleTimeString();
 					const name = msg.sender || "익명";
 					const text = payload;
-
+					
 					const chatLine = document.createElement("div");
 					chatLine.className = "chat-line";
-					chatLine.innerHTML = `<span class="time">[${time}]</span> <b>${name}:</b><br> ${text}`;
+					
+					const bubble = document.createElement("div");
+					bubble.className = "chat-bubble";
+					bubble.innerHTML = `<b>${name}</b><br>${text}`;
+					
+					const timestamp = document.createElement("div");
+					timestamp.className = "chat-time";
+					timestamp.textContent = `[${time}]`;
+					
+					if (msg.sender === iAm) {
+						chatLine.classList.add("my-msg");
+					} else {
+						chatLine.classList.add("other-msg");
+					}
+					
+					chatLine.appendChild(bubble);
+					chatLine.appendChild(timestamp);
 					document.getElementById("chat-window").appendChild(chatLine);
 
 					// 스크롤 아래로

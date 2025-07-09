@@ -5,7 +5,6 @@
 	flex-direction: column;
 	height: 100%;
 	border: 1px solid #ccc;
-	background-color: #e6f7ff;
 	margin-bottom: 20px;
 }
 
@@ -13,11 +12,13 @@
 	flex: 1;
 	overflow-y: scroll;
 	padding: 10px;
+	background-color: white;
+	border-radius: 5pt;
 }
 
 #chat-input-area {
 	display: flex;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid #ddd;
 	padding: 5px;
 	background-color: white;
 }
@@ -25,13 +26,65 @@
 #chat-input {
 	flex: 1;
 	padding: 5px;
+	border: 1px solid #eee;
+	border-radius: 5pt;
 }
 
 #chat-send {
 	padding: 5px 10px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	border-radius: 30px;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
 }
 
 .chat-line {
 	white-space: pre-line;
 	font-size: 11pt;
+	margin: 5px 0;
+	max-width: 70%;
+	padding: 6px 10px;
+	border-radius: 8px;
+	line-height: 1.4;
+}
+
+.chat-bubble {
+  background-color: #dcf8c6;
+  padding: 8px 12px;
+  border-radius: 8px;
+  word-break: break-word;
+}
+
+.chat-time {
+  font-size: 0.75em;
+  color: #666;
+  margin-top: 4px;
+}
+
+.my-msg {
+	text-align: right;
+	margin-left: auto;
+}
+
+.my-msg .chat-bubble {
+	background-color: #dcf8c6;
+	text-align: right;
+	margin-left: auto;
+	border: 1px solid #ccc;
+}
+
+.other-msg {
+	text-align: left;
+	margin-right: auto;
+}
+
+.other-msg .chat-bubble {
+	background-color: #f1f0f0;
+	text-align: left;
+	margin-right: auto;
+	border: 1px solid #ddd;
 }
