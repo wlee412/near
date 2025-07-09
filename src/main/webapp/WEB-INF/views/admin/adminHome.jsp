@@ -23,9 +23,9 @@
     <div class="menu-box">
       <a href="/admin/adminReservation">예약내역</a>
     </div>
-    <%-- <div class="menu-box">
-       <%@ include file="/WEB-INF/views/game/gamedataMaster.jsp" %> 
-    </div> --%>
+ <div class="menu-box">
+      <a>병원 약국 데이터</a>
+    </div>
      <div class="menu-box">
     <a href="/admin/logout">로그아웃</a>
     </div>
