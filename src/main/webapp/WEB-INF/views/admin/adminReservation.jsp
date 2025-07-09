@@ -61,8 +61,13 @@
                         <td>${r.start}</td>
                         <td>${r.state}</td>
                         <td>
-                            <button type="button" class="cancel-btn" data-no="${r.reservationNo}">취소</button>
-                        </td>
+    <c:if test="${r.state == '예약완료'}">
+        <button type="button" class="cancel-btn" data-no="${r.reservationNo}">취소</button>
+    </c:if>
+    <c:if test="${r.state == '취소'}">
+        <span style="color: gray;">취소됨</span>
+    </c:if>
+</td>
                     </tr>
                 </c:forEach>
             </tbody>
