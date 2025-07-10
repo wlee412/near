@@ -22,7 +22,7 @@
     </div>
   </div>
 
-    <!-- 🔍 검색창 -->
+    <!-- 검색창 -->
     <div class="search-box">
         <form method="get" action="<c:url value='/admin/adminMember' />">
             <select name="type">
@@ -36,7 +36,7 @@
         </form>
     </div>
 
-    <!-- 📋 회원 목록 -->
+    <!-- 회원 목록 -->
     <table>
         <thead>
             <tr>
@@ -85,7 +85,7 @@
         </tbody>
     </table>
 
-    <!-- ⏩ 페이지네이션 -->
+    <!-- 페이지네이션 -->
     <div class="pagination">
         <c:forEach begin="${startPage}" end="${endPage}" var="i">
             <a href="<c:url value='/admin/adminMember?pageNum=${i}&type=${type}&keyword=${keyword}' />"

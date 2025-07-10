@@ -41,7 +41,7 @@
 </div>
 
 <script>
-  // ✅ JSP에서 전달된 데이터를 JS로 변환 (마지막 쉼표 주의!)
+  //  JSP에서 전달된 데이터를 JS로 변환
   const highRiskStats = [
     <c:forEach var="item" items="${highRiskStats}" varStatus="loop">
       { name: "${item.surveyName}", rate: ${item.highRiskRate} }<c:if test="${!loop.last}">,</c:if>
