@@ -139,6 +139,8 @@
 						</div>
 					</div>
 					<div class="controls">
+						<button id="rec-start">녹화 시작</button>
+						<button id="rec-stop">녹화 종료</button>
 						<button id="whiteboardBtn" onclick="showWhiteboardMode()">화이트보드</button>
 						<button id="mute">마이크 끄기</button>
 						<button id="unpublish">카메라 끄기</button>
@@ -228,5 +230,6 @@
 	<script type="text/javascript" src="/js/whiteboard.js"></script>
 	<script type="text/javascript" src="/js/textmsg.js"></script>
 	<script type="text/javascript" src="/js/cameratest.js"></script>
+	<script type="text/javascript" src="/js/mediaRecorder.js"></script>
 </body>
 </html>

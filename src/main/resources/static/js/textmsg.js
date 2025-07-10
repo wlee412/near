@@ -29,7 +29,7 @@ window.textmsgSubscribe = function() {
 					
 					const bubble = document.createElement("div");
 					bubble.className = "chat-bubble";
-					bubble.innerHTML = `<b>${name}</b><br>${text}`;
+					bubble.innerHTML = `<b class="nickname">[${name}]</b><p>${text}</p>`;
 					
 					const timestamp = document.createElement("div");
 					timestamp.className = "chat-time";

@@ -6,6 +6,8 @@
 	height: 100%;
 	border: 1px solid #ccc;
 	margin-bottom: 20px;
+	flex-grow: 1;
+	min-height: 0;
 }
 
 #chat-window {
@@ -14,6 +16,7 @@
 	padding: 10px;
 	background-color: white;
 	border-radius: 5pt;
+	min-height: 0;
 }
 
 #chat-input-area {
@@ -53,16 +56,16 @@
 }
 
 .chat-bubble {
-  background-color: #dcf8c6;
-  padding: 8px 12px;
-  border-radius: 8px;
-  word-break: break-word;
+	background-color: #dcf8c6;
+	padding: 8px 12px;
+	border-radius: 8px;
+	word-break: break-word;
 }
 
 .chat-time {
-  font-size: 0.75em;
-  color: #666;
-  margin-top: 4px;
+	font-size: 0.75em;
+	color: #666;
+	margin-top: 4px;
 }
 
 .my-msg {

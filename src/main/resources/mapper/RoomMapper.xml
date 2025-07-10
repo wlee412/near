@@ -6,4 +6,8 @@
 	<select id="findByToken" parameterType="String" resultType="room">
 		SELECT * FROM room WHERE room_token=#{token}
 	</select>
+	
+	<insert id="uploadRec" parameterType="rec">
+		INSERT INTO room_rec (name, room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
+	</insert>
 </mapper>

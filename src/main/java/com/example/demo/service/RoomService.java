@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.RoomMapper;
 import com.example.demo.model.Room;
+import com.example.demo.model.RoomRecording;
 
 @Service
 public class RoomService {
@@ -13,6 +14,10 @@ public class RoomService {
 	
 	public Room findByToken(String token) {
 		return roomMapper.findByToken(token);
+	}
+	
+	public void uploadRec(RoomRecording rec) {
+		roomMapper.uploadRec(rec);
 	}
 
 }

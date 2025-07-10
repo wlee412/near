@@ -14,6 +14,8 @@ var myid = null;
 var mystream = null;
 var mypvtid = null;
 
+var remotestream = null;
+
 var feeds = [];
 var bitrateTimer = [];
 
@@ -633,6 +635,7 @@ function newRemoteFeed(id, display, audio, video) {
 				// The subscriber stream is recvonly, we don't expect anything here
 			},
 			onremotestream: function(stream) {
+				remotestream = stream;
 				Janus.debug("Remote feed #" + remoteFeed.rfindex + ", stream:", stream);
 				var addButtons = false;
 				if ($('#remotevideo' + remoteFeed.rfindex).length === 0) {
@@ -698,6 +701,7 @@ function newRemoteFeed(id, display, audio, video) {
 				}
 			},
 			oncleanup: function() {
+				stopRec(); //[윤성찬] 녹화 종료
 				Janus.log(" ::: Got a cleanup notification (remote feed " + id + ") :::");
 				if (remoteFeed.spinner)
 					remoteFeed.spinner.stop();
