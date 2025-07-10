@@ -19,6 +19,7 @@ window.textmsgSubscribe = function() {
 			const payload = msg.payload;
 
 			switch (msg.type.trim()) {
+				case "sys":
 				case "chat":
 					const time = new Date().toLocaleTimeString();
 					const name = msg.sender || "익명";
@@ -29,16 +30,21 @@ window.textmsgSubscribe = function() {
 					
 					const bubble = document.createElement("div");
 					bubble.className = "chat-bubble";
-					bubble.innerHTML = `<b class="nickname">[${name}]</b><p>${text}</p>`;
+					bubble.innerHTML = `<b class="nickname">[${name}]</b><div>${text}</div>`;
 					
 					const timestamp = document.createElement("div");
 					timestamp.className = "chat-time";
 					timestamp.textContent = `[${time}]`;
 					
-					if (msg.sender === iAm) {
-						chatLine.classList.add("my-msg");
-					} else {
-						chatLine.classList.add("other-msg");
+					switch(msg.sender) {
+						case iAm:
+							chatLine.classList.add("my-msg");
+							break;
+						case "시스템":
+							chatLine.className = "sys-msg";
+							break;
+						default:
+							chatLine.classList.add("other-msg");
 					}
 					
 					chatLine.appendChild(bubble);

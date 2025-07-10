@@ -1,5 +1,6 @@
 let mediaRecorder;
 let recordedChunks = [];
+let mixedStream;
 const $recStart = $("#rec-start");
 const $recStop = $("#rec-stop");
 
@@ -9,7 +10,7 @@ $(function() {
 
 	$recStart.click(function() {
 		if (remotestream != null)
-			startRecording(remotestream);
+			startRecording();
 		else
 			alert("녹화 대상이 없습니다.");
 	});
@@ -18,12 +19,12 @@ $(function() {
 	});
 });
 
-// Janus에서 받은 remote stream 사용
-function startRecording(stream) {
+function startRecording() {
+	const stream = createMixedStream(remotestream, mystream);
 	recordedChunks = [];
 
 	mediaRecorder = new MediaRecorder(stream, {
-		mimeType: "video/webm;codecs=vp8" // 대부분의 브라우저에서 지원
+		mimeType: "video/webm;codecs=vp8"
 	});
 
 	mediaRecorder.ondataavailable = event => {
@@ -38,6 +39,7 @@ function startRecording(stream) {
 	};
 
 	mediaRecorder.start();
+	sendSysMessage("녹화가 시작되었습니다.");
 	$recStart.hide();
 	$recStop.show();
 }
@@ -45,6 +47,7 @@ function startRecording(stream) {
 function stopRecording() {
 	if (mediaRecorder && mediaRecorder.state !== "inactive") {
 		mediaRecorder.stop();
+		sendSysMessage("녹화가 종료되었습니다.");
 		$recStart.show();
 		$recStop.hide();
 	}
@@ -61,6 +64,23 @@ function uploadToServer(blob) {
 		body: formData
 	})
 		.then(res => res.text())
-//		.then(msg => console.log("업로드 완료:", msg))
+		//		.then(msg => console.log("업로드 완료:", msg))
 		.catch(err => console.error("업로드 실패:", err));
+}
+
+function createMixedStream(remoteStream, mystream) {
+	mixedStream = new MediaStream();
+
+	// 1. remote video + audio track 추가
+	remoteStream.getTracks().forEach(track => mixedStream.addTrack(track));
+
+	// 2. local audio track 추가
+	mystream.getAudioTracks().forEach(track => mixedStream.addTrack(track));
+
+	return mixedStream;
+}
+
+function sendSysMessage(payload) {
+	const msg = { type: "sys", roomId, sender: "시스템", payload };
+	stompClient.send(`/app/textmsg/${roomId}`, {}, JSON.stringify(msg));
 }

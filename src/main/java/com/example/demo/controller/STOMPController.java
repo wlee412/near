@@ -38,6 +38,7 @@ public class STOMPController {
 	public void textmsg(@Payload STOMPMessage msg, @DestinationVariable("roomId") String roomId) {
 		switch (msg.getType()) {
 		case "chat":
+		case "sys":
 			tpl.convertAndSend("/topic/textmsg/" + msg.getRoomId(), msg);
 			break;
 		default:

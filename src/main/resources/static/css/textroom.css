@@ -55,13 +55,6 @@
 	line-height: 1.4;
 }
 
-.chat-bubble {
-	background-color: #dcf8c6;
-	padding: 8px 12px;
-	border-radius: 8px;
-	word-break: break-word;
-}
-
 .chat-time {
 	font-size: 0.75em;
 	color: #666;
@@ -74,6 +67,9 @@
 }
 
 .my-msg .chat-bubble {
+	padding: 8px 12px;
+	border-radius: 8px;
+	word-break: break-word;
 	background-color: #dcf8c6;
 	text-align: right;
 	margin-left: auto;
@@ -86,8 +82,16 @@
 }
 
 .other-msg .chat-bubble {
+	padding: 8px 12px;
+	border-radius: 8px;
+	word-break: break-word;
 	background-color: #f1f0f0;
 	text-align: left;
 	margin-right: auto;
 	border: 1px solid #ddd;
+}
+
+.sys-msg {
+	text-align: center;
+	margin: 15px 0;
 }
