@@ -1,30 +1,79 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상담 가능 시간 설정</title>
+<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/css/counselor.css" />
 
-<!-- FullCalendar CSS (비동기 로딩용, 중복되면 상위 JSP에서 제거) -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- FullCalendar CSS & JS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 
-<div class="time-box">
-  <h3 class="section-title">📅 예약 가능 시간 선택</h3>
+<!-- 캘린더 기능용 JS -->
+<script src="/js/counselor.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<%@ include file="../includes/header.jsp"%>
 
-  <!-- 캘린더 영역 -->
-  <div id="calendar" class="calendar-container"></div>
+		<div class="counselor-container">
+			<!-- 타이틀 -->
+			<div class="mypage-title">
+				<h2>상담사 마이페이지</h2>
+			</div>
 
-  <!-- 날짜 출력 -->
-  <div id="selected-date-box" style="margin-top: 20px;">
-    <p><strong>선택한 날짜:</strong> <span id="selected-date"></span></p>
-  </div>
+			<div class="mypage-body">
+				<!-- 좌측 사이드바 -->
+				<aside class="mypage-sidebar">
+					<a href="/counselor/profile" class="sidebar-button">프로필</a> <a
+						href="/counselor/time" class="sidebar-button active">상담 가능시간
+						설정</a> <a href="/counselor/reservation" class="sidebar-button">상담
+						예약현황</a> <a href="/counselor/room" class="sidebar-button">상담 방
+						개설하기</a>
+				</aside>
 
-  <!-- 시간 버튼 영역 -->
-  <div id="time-buttons" class="time-buttons-container">
-    <%-- JS로 시간 버튼이 들어옵니다 --%>
-  </div>
+				<!-- 우측 콘텐츠 -->
+				<section class="main-section">
+					<div class="time-box">
+						<h3 class="section-title">예약가능한 날짜와 시간을 선택해주세요</h3>
 
-  <!-- 저장 버튼 -->
-  <div class="button-wrapper" style="margin-top: 20px;">
-    <button type="button" id="save-available-times" class="save-button">
-      예약 가능 시간 저장
-    </button>
-  </div>
-</div>
+						<!-- 캘린더 영역 -->
+						<div id="calendar" class="calendar-container"></div>
+
+						<!-- 날짜 출력 -->
+						<div id="selected-date-box" style="margin-top: 20px;">
+							<p>
+								<strong>선택한 날짜:</strong> <span id="selected-date"></span>
+							</p>
+						</div>
+
+						<!-- 시간 버튼 영역 -->
+						<div id="time-buttons" class="time-buttons-container">
+						</div>
+
+						<!-- 저장 버튼 -->
+						<div class="button-wrapper" style="margin-top: 20px;">
+							<button type="button" id="save-available-times"
+								class="save-button">예약 가능 시간 저장</button>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<%@ include file="../includes/footer.jsp"%>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			initCalendar();
+		});
+	</script>
+</body>
+</html>

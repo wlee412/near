@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +71,7 @@ public class CounselorController {
 //	}
 
 	// 마이페이지 내 각 섹션 요청
-	@GetMapping("/section/{part}")
+	@GetMapping("/{part}")
 	public String section(@PathVariable String part, HttpSession session, Model model) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null) {
@@ -111,7 +114,7 @@ public class CounselorController {
 	}
 
 	
-	@GetMapping("/section/profile")
+	@GetMapping("/profile")
 	public String loadCounselorProfile(Model model, HttpSession session) {
 	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 	    if (loginCounselor == null) return "redirect:/counselor/login";
@@ -121,7 +124,7 @@ public class CounselorController {
 	}
 
 
-	@GetMapping("/section/time")
+	@GetMapping("/time")
 	public String loadAvailableTime(Model model, HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
@@ -134,17 +137,21 @@ public class CounselorController {
 	}
 
 	// 상담 예약 현황
-	@GetMapping("/section/reservation")
+	@GetMapping("/reservation")
 	public String loadReservation(Model model, HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
 			return "redirect:/counselor/login";
-		// 예약 정보 model.addAttribute(...) 필요 시 추가
+		
+		// 상담 건수 가져오기
+	    int reservationCount = reservationService.getReservationCount(loginCounselor.getCounselorId());
+	    model.addAttribute("reservationCount", reservationCount);
+		
 		return "counselor/mypageReservation";
 	}
 
 	// 상담 방 개설
-	@GetMapping("/section/room")
+	@GetMapping("/room")
 	public String loadRoom(Model model, HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
@@ -153,7 +160,7 @@ public class CounselorController {
 	}
 
 	// 예약가능시간 저장
-//	@PostMapping("/time/save")
+//	@PostMapping("/save")
 //	public String saveAvailableTimes(@RequestParam("selectedDate") String selectedDate,
 //			@RequestParam(value = "selectedTimes", required = false) List<String> selectedTimes, HttpSession session,
 //			RedirectAttributes redirectAttributes) {
@@ -174,55 +181,30 @@ public class CounselorController {
 //			redirectAttributes.addFlashAttribute("msg", "선택된 시간이 없습니다.");
 //		}
 //
-//		return "redirect:/counselor/section/time";
+//		return "redirect:/counselor/time";
 //	}
 
 	// 예약 가능 시간 저장 (중복 제거 포함)
-	@PostMapping("/time/save")
+	@PostMapping("/save")
 	@ResponseBody
-	public String saveAvailableTimes(@RequestBody Map<String, Object> data, HttpSession session) {
+	public String saveAvailableTimes(@RequestBody Map<String, Object> requestData,
+	                                 HttpSession session) {
+
 	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-	    if (loginCounselor == null) return "unauthorized";
-
-	    String counselorId = loginCounselor.getCounselorId();
-	    String selectedDate = (String) data.get("date");
-	    List<String> selectedTimes = (List<String>) data.get("times");
-
-	    if (counselorId == null || selectedDate == null || selectedTimes == null) {
-	        return "입력 오류";
+	    if (loginCounselor == null) {
+	        return "unauthorized";
 	    }
 
-	    // 1. DB에 저장된 기존 시간 조회
-	    List<CounselAvailable> existing = counselorService.getAvailableTimes(counselorId);
-	    List<String> existingTimeStrs = existing.stream()
-	        .map(e -> e.getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
-	        .filter(t -> t.startsWith(selectedDate))  // 해당 날짜만 필터
-	        .toList();
+	    String selectedDate = (String) requestData.get("selectedDate");
+	    List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
 
-	    // 2. 추가할 시간 = UI에는 있지만 DB에는 없는 시간
-	    List<String> timesToAdd = selectedTimes.stream()
-	        .filter(t -> !existingTimeStrs.contains(t))
-	        .toList();
+	    boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate, selectedTimes);
 
-	    // 3. 삭제할 시간 = DB에는 있지만 UI에는 없는 시간
-	    List<String> timesToDelete = existingTimeStrs.stream()
-	        .filter(t -> !selectedTimes.contains(t))
-	        .toList();
-
-	    // 4. 삭제 먼저 수행
-	    if (!timesToDelete.isEmpty()) {
-	        counselorService.deleteAvailableTimesByTimes(counselorId, timesToDelete);
-	    }
-
-	    // 5. 추가 시간 insert
-	    boolean result = true;
-	    if (!timesToAdd.isEmpty()) {
-	        result = counselorService.saveAvailableTimes(counselorId, selectedDate, timesToAdd);
-	    }
-
-	    return result ? "success" : "fail";
+	    return success ? "success" : "error";
 	}
-	@GetMapping("/time/existing")
+
+
+	@GetMapping("/existing")
 	@ResponseBody
 	public List<String> getExistingAvailableTimes(HttpSession session) {
 	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
@@ -236,6 +218,15 @@ public class CounselorController {
 	            .toList();
 	}
 
-	
+	// 예약 현황
+	@GetMapping("/reservation/count")
+	@ResponseBody
+	public List<Map<String, Object>> getReservationCount(HttpSession session) {
+	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+	    if (loginCounselor == null) return Collections.emptyList();
+
+	    return counselorService.getReservationCountByDate(loginCounselor.getCounselorId());
+	}
+
 
 }

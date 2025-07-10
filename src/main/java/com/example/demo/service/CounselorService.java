@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,21 +40,46 @@ public class CounselorService {
 
 	// 예약 가능 시간 저장 (LocalDateTime 문자열 직접 파싱)
 	public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
-	     try {
-	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-	            for (String timeStr : selectedTimes) {
-	                LocalDateTime start = LocalDateTime.parse(timeStr, formatter);
-	                counselorMapper.insertAvailableTime(counselorId, start);
-	            }
-	            return true;
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
+	    try {
+	        // 1. DB에서 기존 시간 조회 (날짜별)
+	        List<CounselAvailable> existingList = counselorMapper.findAvailableTimesByDate(counselorId, selectedDate);
+	        List<String> existingTimes = existingList.stream()
+	            .map(av -> av.getStart().format(DateTimeFormatter.ofPattern("HH:mm")))
+	            .collect(Collectors.toList());
 
-	public void deleteAvailableTimesByTimes(String counselorId, List<String> timesToDelete) {
-	    counselorMapper.deleteAvailableTimesByTimes(counselorId, timesToDelete);  
+	        // 2. 삭제 대상 = 기존 - 현재 선택
+	        List<String> timesToDelete = new ArrayList<>(existingTimes);
+	        timesToDelete.removeAll(selectedTimes);
+
+	        // 3. 추가 대상 = 현재 선택 - 기존
+	        List<String> timesToInsert = new ArrayList<>(selectedTimes);
+	        timesToInsert.removeAll(existingTimes);
+
+	        // 4. 삭제
+	        if (!timesToDelete.isEmpty()) {
+	            counselorMapper.deleteAvailableTimesByTimes(counselorId, selectedDate, timesToDelete);
+	        }
+
+	        // 5. 저장
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+	        for (String time : timesToInsert) {
+	            String full = selectedDate + " " + time;
+	            LocalDateTime start = LocalDateTime.parse(full, formatter);
+	            counselorMapper.insertAvailableTime(counselorId, start);
+	        }
+
+	        return true;
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
+	public void deleteAvailableTimesByIds(List<Integer> counselNos) {
+	    if (!counselNos.isEmpty()) {
+	        counselorMapper.deleteAvailableTimesByIds(counselNos);
+	    }
 	}
 
 	//예약현황
@@ -60,4 +87,5 @@ public class CounselorService {
 		return counselorMapper.countReservationsByDate(counselorId);
 
 	}
+
 }
