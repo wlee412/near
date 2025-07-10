@@ -239,6 +239,13 @@
 		WHERE PHONE = #{phone}
 	</select>
 
+	<select id="checkPhoneExists" resultType="boolean">
+		SELECT COUNT(*) > 0
+		FROM client
+		WHERE phone = #{phone}
+		AND state = 0
+	</select>
+
 
 
 

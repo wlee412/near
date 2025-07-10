@@ -81,6 +81,10 @@ public class VerifyService{
 	    verifyMapper.insertClientIdByPhone(map);  // ✅ Mapper 호출
 	}
 
+	public void updateVerifiedById(String clientId) {
+		verifyMapper.updateVerifiedById(clientId);
+	}
+
 
 	
 	

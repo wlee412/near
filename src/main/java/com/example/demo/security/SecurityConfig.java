@@ -25,6 +25,7 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    private final CustomOidcUserService customOidcUserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -56,6 +57,8 @@ public class SecurityConfig {
                     })
                     .userInfoEndpoint(userInfo -> userInfo
                         .userService(customOAuth2UserService)
+                        .oidcUserService(customOidcUserService)
+
                     )
                 );
 
