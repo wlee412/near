@@ -45,6 +45,8 @@ public interface CounselorMapper {
 		    @Param("times") List<String> times
 		);
 
+	int getReservationCount(String counselorId);
+
 
 
 }

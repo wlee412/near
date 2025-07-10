@@ -144,7 +144,7 @@ public class CounselorController {
 			return "redirect:/counselor/login";
 		
 		// 상담 건수 가져오기
-	    int reservationCount = reservationService.getReservationCount(loginCounselor.getCounselorId());
+		int reservationCount = counselorService.getReservationCount(loginCounselor.getCounselorId());
 	    model.addAttribute("reservationCount", reservationCount);
 		
 		return "counselor/mypageReservation";

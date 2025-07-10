@@ -88,4 +88,7 @@ public class CounselorService {
 
 	}
 
+	public int getReservationCount(String counselorId) {
+	    return counselorMapper.getReservationCount(counselorId);
+	}
 }
