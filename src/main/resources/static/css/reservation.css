@@ -1,0 +1,138 @@
+/* 전체 레이아웃 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;  /* ← 제거! */
+  background-color: #f9f9f9;
+}
+
+.content-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 상담사 카드 컨테이너 */
+.counselor-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 30px 10px;
+}
+
+/* 각 상담사 카드 */
+.counselor-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.counselor-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 상담사 이미지 */
+.counselor-card img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px; /* 살짝 더 자연스럽게 */
+  border: 2px solid #ccc;
+}
+
+/* 날짜 선택 */
+.date-input {
+  margin-top: 10px;
+  padding: 6px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 시간대 영역 */
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 15px 0;
+}
+
+.time-slot {
+  padding: 6px 10px;
+  background-color: #e6f9ff;
+  color: #007bff;
+  border: 1px solid #b3e0f2;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.time-slot:hover {
+  background-color: #d4f0ff;
+}
+
+.time-slot.selected {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.time-slot.disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* 증상 체크박스 리스트 */
+.symptom-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 260px; /* 카드 안에서 너무 넓어지지 않도록 제한 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.symptom-list label {
+  white-space: nowrap;      /* 줄바꿈 시 단어 단위로 */
+  word-break: keep-all;     /* 단어 중간에서 끊기지 않도록 */
+  display: inline-block;
+}
+
+/* 예약 버튼 */
+.reserve-btn {
+  background-color: #5daec5;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.reserve-btn:hover {
+  background-color: #4a9cb1;
+}

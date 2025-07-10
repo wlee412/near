@@ -5,7 +5,9 @@ body {
 }
 
 .container {
-  padding: 40px;
+   max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 24px;
 }
 
 .tab-header {
@@ -50,7 +52,7 @@ body {
 
 .main-content {
   display: flex;
-  height: 70vh;
+  height: 60vh;
   border-top: 1px solid #ccc;
   padding-top: 15px;
 }
@@ -63,7 +65,7 @@ body {
 }
 
 #pharmacyList {
-  width: 300px;
+  width: 400px;
   max-height: 100%;
   overflow-y: auto;
   border-left: 1px solid #ccc;
@@ -75,10 +77,12 @@ body {
   border-bottom: 1px solid #eee;
   cursor: pointer;
   font-size: 15px;
+  color: #000; /* ✅ 글자 색 추가 */
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 #pharmacyList .item:hover {
-  background-color: #f6f6f6;
+  background-color: white;
 }
 
 /* 탭 기본 스타일 */

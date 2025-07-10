@@ -90,7 +90,7 @@ function loadMarkers() {
 
         const marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(p.lat, p.lng),
-          image: new kakao.maps.MarkerImage("/images/pharmacy-marker.png", new kakao.maps.Size(20, 25)),
+          image: new kakao.maps.MarkerImage("/images/pharmacy-marker.png", new kakao.maps.Size(24.5, 37.5)),
           map: map
         });
 

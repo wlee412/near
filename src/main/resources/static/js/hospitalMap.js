@@ -93,14 +93,14 @@ function loadMarkers() {
 
         const marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(h.lat, h.lng),
-          image: new kakao.maps.MarkerImage("/images/hospital-marker.png", new kakao.maps.Size(24, 22)),
+          image: new kakao.maps.MarkerImage("/images/hospital-marker.png", new kakao.maps.Size(24.5, 37.5)),
           map: map
         });
 
         const content = `
           <div style="font-size:13px; padding:5px; width:220px;">
             <b>${h.name}</b><br/>
-            📍 ${h.address}<br/>
+            ${h.address}<br/>
             ☎ ${h.tel || '-'}<br/>
             병원종류: ${h.type || '-'}<br/><br/>
             <button onclick="addFavorite('${h.id}', '${h.name}')">🧡 즐겨찾기</button>
