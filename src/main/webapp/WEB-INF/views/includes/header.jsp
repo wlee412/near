@@ -11,8 +11,7 @@
 		</div>
 
 		<nav class="center-menu">
-			<a href="/introduce">소개</a> <a href="/reservation">상담예약</a> <a
-				href="/chat">상담하기</a> <a href="/survey">심리검사</a> 
+			<a href="/introduce">소개</a> <a href="/reservation">상담예약</a> <a href="/survey">심리검사</a> 
 				<a href="/hospital">병원찾기</a> <a href="/mentalcare">멘탈케어</a>
 		</nav>
 

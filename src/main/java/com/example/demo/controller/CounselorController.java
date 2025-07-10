@@ -2,19 +2,28 @@ package com.example.demo.controller;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.CounselAvailable;
+import com.example.demo.model.CounselReservation;
 import com.example.demo.model.Counselor;
+import com.example.demo.model.CounselorReservation;
 import com.example.demo.service.CounselorService;
 
 import jakarta.servlet.http.HttpSession;
@@ -137,19 +146,30 @@ public class CounselorController {
 	}
 
 	// 상담 예약 현황
-	@GetMapping("/reservation")
-	public String loadReservation(Model model, HttpSession session) {
-		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-		if (loginCounselor == null)
-			return "redirect:/counselor/login";
-		
-		// 상담 건수 가져오기
-		int reservationCount = counselorService.getReservationCount(loginCounselor.getCounselorId());
-	    model.addAttribute("reservationCount", reservationCount);
-		
-		return "counselor/mypageReservation";
-	}
+//	@GetMapping("/reservation")
+//	public String loadReservation(Model model, HttpSession session) {
+//		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+//		if (loginCounselor == null)
+//			return "redirect:/counselor/login";
+//		
+//		// 상담 건수 가져오기
+//		int reservationCount = counselorService.getReservationCount(loginCounselor.getCounselorId());
+//	    model.addAttribute("reservationCount", reservationCount);
+//		
+//		return "counselor/mypageReservation";
+//	}
 
+	// 상담 예약 현황
+	@GetMapping("/reservation")
+	public String reservationList(HttpSession session, Model model) {
+	    Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+	    if (counselor == null) return "redirect:/counselor/login";
+
+	    List<CounselorReservation> list = counselorService.getReservationsByCounselor(counselor.getCounselorId());
+	    model.addAttribute("reservationList", list);
+	    return "counselor/mypageReservation";
+	}
+	
 	// 상담 방 개설
 	@GetMapping("/room")
 	public String loadRoom(Model model, HttpSession session) {
@@ -218,15 +238,104 @@ public class CounselorController {
 	            .toList();
 	}
 
-	// 예약 현황
-	@GetMapping("/reservation/count")
-	@ResponseBody
-	public List<Map<String, Object>> getReservationCount(HttpSession session) {
-	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-	    if (loginCounselor == null) return Collections.emptyList();
+//	// 예약 현황
+//	@GetMapping("/reservation/count")
+//	@ResponseBody
+//	public List<Map<String, Object>> getReservationCount(HttpSession session) {
+//	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+//	    if (loginCounselor == null) return Collections.emptyList();
+//
+//	    return counselorService.getReservationCountByDate(loginCounselor.getCounselorId());
+//	}
 
-	    return counselorService.getReservationCountByDate(loginCounselor.getCounselorId());
+//
+//	// 상담 예약 상세
+//	@GetMapping("/reservation/detail")
+//	@ResponseBody
+//	public CounselorReservation getReservationDetail(@RequestParam("no") int reservationNo) {
+//	    CounselorReservation res = counselorService.getReservationDetail(reservationNo);
+//
+//	    String gptResult = counselorService.analyzeClient(res);
+//	    res.setGptSummary(gptResult);
+//
+//	    return res;
+//	}
+//
+//	// 날짜별 상담 예약 리스트
+//	@GetMapping("/reservation/list")
+//	@ResponseBody
+//	public List<CounselorReservation> getReservationList(@RequestParam("date") String date, HttpSession session) {
+//	    Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+//	    if (counselor == null) return List.of();
+//
+//	    System.out.println("상담사 ID: " + counselor.getCounselorId());
+//	    System.out.println("요청 날짜: " + date);
+//
+//	    List<CounselorReservation> list = counselorService.getReservationsByDate(date, counselor.getCounselorId());
+//	    System.out.println("예약 수: " + list.size());
+//	    
+//	    for (CounselorReservation res : list) {
+//	        String summary = counselorService.analyzeClient(res);
+//	        res.setGptSummary(summary);
+//	    }
+//
+//	    return list;
+//	}
+
+	    // WebClient는 반드시 인스턴스로 선언! (Bean 주입 또는 직접 생성)
+	    @Autowired
+	    private WebClient webClient;
+
+	    @GetMapping("/reservation/detail")
+	    @ResponseBody
+	    public Map<String, Object> getReservationDetail(@RequestParam("no") int reservationNo) {
+	        CounselorReservation res = counselorService.getReservationDetail(reservationNo);
+
+	        String feedback = res.getFeedback();
+	        if (feedback == null || feedback.isBlank()) feedback = "피드백 데이터가 없습니다.";
+
+	        String prompt = String.format(
+	            "아래는 내담자의 최근 심리설문 피드백 내용입니다 이 피드백을 바탕으로 내담자의 심리상태와 상담 방향을 10줄 이내로 요약해 주세요.",
+	            feedback.replaceAll("\\r?\\n", " ") 
+	        );
+
+	        String gptSummary = callChatGPT(prompt);
+
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("start", res.getStart());
+	        map.put("clientId", res.getClientId());
+	        map.put("name", res.getName());
+	        map.put("birth", res.getBirth());
+	        map.put("gender", res.getGender());
+	        map.put("phone", res.getPhone());
+	        map.put("address", res.getAddress());
+	        map.put("state", res.getState());
+	        map.put("gptSummary", gptSummary);
+	        map.put("interest", res.getInterest());
+	        return map;
+	    }
+
+	    private String callChatGPT(String prompt) {
+	        try {
+	            Map<String, Object> requestBody = Map.of(
+	                "model", "gpt-3.5-turbo",
+	                "messages", List.of(
+	                    Map.of("role", "user", "content", prompt)
+	                )
+	            );
+	            Map response = webClient.post()
+	                .uri("/chat/completions")
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .bodyValue(requestBody)
+	                .retrieve().bodyToMono(Map.class).block();
+
+	            Map message = (Map) ((Map) ((List) response.get("choices")).get(0)).get("message");
+	            return message.get("content").toString().trim();
+	        } catch (Exception e) {
+	            return "죄송합니다. 답변 중 오류가 발생했습니다.";
+	        }
+	    }
+	    
 	}
 
 
-}

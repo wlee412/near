@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ChatbotMapper">
+
+    <insert id="insertChat" parameterType="Chatbot">
+        INSERT INTO chatbot (client_id, sender, message, reg_date)
+        VALUES (#{clientId}, #{sender}, #{message}, NOW())
+    </insert>
+
+    <select id="getChatsByClientId" parameterType="String" resultType="Chatbot">
+        SELECT * FROM chatbot
+        WHERE client_id = #{clientId}
+        ORDER BY reg_date ASC
+    </select>
+
+</mapper>

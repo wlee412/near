@@ -5,6 +5,24 @@
 
 <mapper namespace="com.example.demo.mapper.CounselorMapper">
 
+	<resultMap id="CounselorReservationMap"
+		type="com.example.demo.model.CounselorReservation">
+		<result property="start" column="start" />
+		<result property="counselorId" column="counselor_id" />
+		<result property="clientId" column="client_id" />
+		<result property="name" column="name" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="state" column="state" />
+		<result property="reservationNo" column="reservation_no" />
+		<result property="counselNo" column="counsel_no" />
+		<result property="feedback" column="feedback" />
+		<result property="gptSummary" column="gpt_summary" />
+		<result property="interest" column="interest" />
+	</resultMap>
+
 	<!-- 상담사 로그인 -->
 	<select id="loginCounselor"
 		parameterType="com.example.demo.model.Counselor"
@@ -90,8 +108,83 @@
 
 	<select id="getReservationCount" resultType="int">
 		SELECT COUNT(*)
-		FROM counsel_reservation
+		FROM
+		counsel_reservation
+		WHERE counsel_no IN (
+		SELECT counsel_no
+		FROM
+		counsel_available
 		WHERE counselor_id = #{counselorId}
+		)
 	</select>
+
+
+	<!-- 예약 번호로 상세 조회 -->
+	<select id="findReservationByNo" parameterType="int"
+		resultType="com.example.demo.model.CounselorReservation">
+		SELECT
+		r.reservation_no AS reservationNo,
+		r.counsel_no AS
+		counselNo,
+		r.client_id AS clientId,
+		c.name AS name,
+		c.birth AS birth,
+		c.gender AS gender,
+		c.phone AS phone,
+		CONCAT(c.addr_base, ' ',
+		c.addr_detail) AS address,
+		r.state AS state,
+		r.reg_date AS start,
+		ca.counselor_id AS counselorId
+		FROM
+		counsel_reservation r
+		JOIN client c
+		ON r.client_id = c.client_id
+		JOIN counsel_available ca ON r.counsel_no
+		= ca.counsel_no
+		WHERE
+		r.reservation_no = #{reservationNo}
+	</select>
+
+	<!-- 상담사 전체 예약 목록 조회 -->
+	<select id="findReservationsByCounselor"
+		resultType="CounselorReservation">
+		SELECT
+		r.reservation_no,
+		r.counsel_no,
+		r.client_id,
+		r.reg_date
+		AS start,
+		c.name,
+		c.birth,
+		c.gender,
+		c.phone,
+		c.addr_base AS address,
+		r.state
+		FROM counsel_reservation r
+		JOIN client c ON r.client_id =
+		c.client_id
+		JOIN counsel_available a ON r.counsel_no = a.counsel_no
+		WHERE a.counselor_id = #{counselorId}
+		ORDER BY r.reg_date DESC
+	</select>
+
+	<!-- 예약자상태파악 chat api활용 -->
+	<select id="getReservationDetail"
+		resultMap="CounselorReservationMap">
+		SELECT
+		cr.*,
+		GROUP_CONCAT(sf.feedback SEPARATOR '\n') AS feedback,   <!-- ★ -->
+		c.interest
+		FROM counsel_reservation cr
+		LEFT JOIN survey_feedback sf
+		ON cr.client_id = sf.client_id
+		LEFT JOIN client c
+		ON cr.client_id = c.client_id
+		WHERE cr.reservation_no = #{reservationNo}
+		GROUP BY cr.reservation_no
+		LIMIT 1
+	</select>
+
 
 </mapper>
