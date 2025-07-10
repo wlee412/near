@@ -70,41 +70,45 @@
 					</div>
 				</div>
 				<div class="col-md-6" id="description">
-					<div id="desc-content">
+					<div  id="desc-content">
 						<h2>심리 상담</h2>
 						<p>상담 일시: </p>
 						<p>상담사: </p>
 						<p>내담자: </p>
 						<p>상담 사유: </p>
 					</div>
-				</div>
-			</div>
-			<div class="row" style="margin-top: 100px;">
-				<div class="col-md-12" id="controls">
-					<div id="registernow">
-						<span class="label label-info" id="room"></span>
-						<div class="input-group margin-bottom-md "
-							style="width: 100% !important;">
-							<input autocomplete="off" class="form-control" type="text"
-								id="roomname" value="${room.janusNum}" readonly />
-						</div>
-						<span class="label label-info" id="you"></span>
-						<div class="input-group margin-bottom-md ">
-							<span class="input-group-addon">이름</span> <input
-								autocomplete="off" class="form-control" type="text"
-								placeholder="My Name" id="username"
-								onkeypress="return checkEnter(this, event);" value="${username}" />
-							<span class="input-group-btn">
-								<button class="btn" autocomplete="off" id="register">상담 시작</button>
-							</span>
+					<div id="controls">
+						<div id="registernow">
+							<span class="label label-info" id="room"></span>
+							<div class="input-group margin-bottom-md "
+								style="width: 100% !important;">
+								<span class="input-group-addon group-label">상담실 번호</span>
+								<input autocomplete="off" class="form-control" type="text"
+									id="roomname" value="${room.janusNum}" readonly />
+							</div>
+							<span class="label label-info" id="you"></span>
+							<div class="input-group margin-bottom-md ">
+								<span class="input-group-addon group-label">이름</span> <input
+									autocomplete="off" class="form-control" type="text"
+									placeholder="My Name" id="username"
+									onkeypress="return checkEnter(this, event);" value="${username}" />
+								<span class="input-group-btn">
+									<button class="btn" autocomplete="off" id="register">상담실 입장</button>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			<div class="row" align="center" id="exit">
+				<button>상담실 퇴장</button>
+			</div>
 		</div>
+<%-- ------------------------------video join end----------------------------------- --%>
 
 		<div class="video-container hide layout" id="videos">
-			<!-- 상대 -->
+			<%-- 상대 --%>
 			<div class="video-main">
 				<div class="panel">
 					<div class="panel-heading">
@@ -115,7 +119,7 @@
 			</div>
 
 			<aside class="video-sidebar">
-				<!-- 제어 -->
+				<%-- 제어 --%>
 				<div class="video-controls">
 					<div class="btn-group btn-group-xs pull-right hide">
 						<div class="btn-group btn-group-xs">
@@ -154,7 +158,7 @@
 				</div>
 
 
-				<!-- 나 -->
+				<%-- 나 --%>
 				<div class="panel">
 					<div class="panel-heading">
 						<h3 class="panel-title">나</h3>
