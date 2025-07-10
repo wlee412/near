@@ -10,8 +10,12 @@
 }
 
 #camera-test-container {
-	display: flex;
 	padding: 50px;
+	height: 100%;
+}
+
+.panel-body#cam-test {
+	height: calc(100% - 40px);
 }
 
 #camera-test-video {
@@ -21,6 +25,23 @@
 	height: 100%;
 	object-fit: contain;
 	border-radius: 5pt;
+}
+
+#camtest-btn button {
+	padding: 12px 30px;
+	font-size: 16px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	border-radius: 30px;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
+}
+
+#camtest-btn button:hover {
+	background-color: #4a9cb1;
 }
 
 #description {

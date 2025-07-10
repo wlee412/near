@@ -60,6 +60,10 @@
 	transition: background-color 0.3s ease;
 }
 
+.controls button:hover {
+	background-color: #4a9cb1;
+}
+
 #volumeSlider {
 	margin-bottom: 10px;
 }

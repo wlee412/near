@@ -30,8 +30,8 @@
   box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
   transition: background-color 0.3s ease;
 }
-button:hover {
-  background: #eee;
+.tool-group button:hover {
+  background-color: #4a9cb1;
 }
 
 input[type="color"],

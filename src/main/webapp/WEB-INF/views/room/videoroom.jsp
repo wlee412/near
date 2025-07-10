@@ -53,12 +53,29 @@
 	<div class="container wrapper">
 		<div id="videojoin">
 		<div class="row" id="camera-and-desc">
-				<div class="col-md-6" id="camera-test-container">
-					<video id="camera-test-video" autoplay playsinline muted></video>
+				<div class="col-md-6" style="height: 100%;">
+					<div id="camera-test-container">
+						<div class="panel" style="height: 100%">
+							<div class="panel-heading">
+								<h3 class="panel-title">카메라 테스트</h3>
+							</div>
+							<div class="panel-body" id="cam-test">
+								<video id="camera-test-video" autoplay playsinline muted></video>
+							</div>
+						</div>
+						<div id="camtest-btn" align="right">
+							<button id="camera-test-start" onclick="startCameraTest()">카메라 켜기</button>
+							<button id="camera-test-stop" onclick="stopCameraTest()">카메라 끄기</button>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-6" id="description">
 					<div id="desc-content">
-						<h1>상담 내용</h1>
+						<h2>심리 상담</h2>
+						<p>상담 일시: </p>
+						<p>상담사: </p>
+						<p>내담자: </p>
+						<p>상담 사유: </p>
 					</div>
 				</div>
 			</div>

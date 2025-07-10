@@ -1,15 +1,28 @@
 let previewStream;
+const camStart = $('#camera-test-start');
+const camStop = $('#camera-test-stop');
 
-onload = function startCameraTest() {
+$(function() {
+	camStart.show();
+	camStop.hide();
+
+	$('#register').click(stopCameraTest);
+
+});
+
+function startCameraTest() {
 	navigator.mediaDevices.getUserMedia({ video: true, audio: true })
 		.then(stream => {
 			previewStream = stream;
 			const video = document.getElementById('camera-test-video');
 			video.srcObject = stream;
-			document.getElementById('camera-test-container').classList.remove('hidden');
+			camStart.hide();
+			camStop.show();
 		})
 		.catch(err => {
 			alert("카메라 또는 마이크를 사용할 수 없습니다: " + err.message);
+			camStart.show();
+			camStop.hide();
 		});
 }
 
@@ -17,9 +30,6 @@ function stopCameraTest() {
 	if (previewStream) {
 		previewStream.getTracks().forEach(track => track.stop());
 	}
-	document.getElementById('camera-test-container').classList.add('hidden');
+	camStart.show();
+	camStop.hide();
 }
-
-$(function() {
-	$('#register').click(stopCameraTest);
-});
