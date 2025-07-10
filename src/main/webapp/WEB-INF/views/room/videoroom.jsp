@@ -95,7 +95,7 @@
 								placeholder="My Name" id="username"
 								onkeypress="return checkEnter(this, event);" value="${username}" />
 							<span class="input-group-btn">
-								<button class="btn btn-success" autocomplete="off" id="register">상담 시작</button>
+								<button class="btn" autocomplete="off" id="register">상담 시작</button>
 							</span>
 						</div>
 					</div>

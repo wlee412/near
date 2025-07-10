@@ -58,6 +58,35 @@
 	width: 100%;
 }
 
+#registernow {
+	border: 1px solid #ccc;
+	border-radius: 5pt;
+}
+
+#register {
+	font-size: 16px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
+}
+
+#register:hover {
+	background-color: #4a9cb1;
+}
+
+#register:focus {
+	outline: none;
+}
+
+input[type='text'] {
+	border-bottom: none;
+}
+
+/* ------------------------------------------------------------ */
 #videolocal video {
 	transform: scaleX(-1);
 	-webkit-transform: scaleX(-1); /* Safari 대응 */
