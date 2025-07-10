@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.YoutubeMapper">
+
+    <!-- 기분별 추천 영상 조회 -->
+    <select id="selectVideosByMood" resultType="string">
+        SELECT video_id
+        FROM youtube_recommend
+        WHERE mood = #{mood}
+        ORDER BY RAND()
+        LIMIT 3
+    </select>
+
+    <!-- 데이터 추가 (선택사항) -->
+    <insert id="insertYoutubeVideo">
+        INSERT INTO youtube_recommend (mood, keyword, video_id)
+        VALUES (#{mood}, #{keyword}, #{videoId})
+    </insert>
+
+</mapper>

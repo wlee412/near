@@ -24,9 +24,18 @@
             <div class="card" onclick="openCardModal()">
                 <span>오늘의 행운카드</span>
             </div>
-            <div class="card" onclick="openModal('dummy')">
+            <div class="card" onclick="openYoutubeModal()">
                 <span>기분전환 할까요</span>
             </div>
+            <div class="card" onclick="openGameModal()">
+    			<span>미니 게임</span>
+           <lottie-player
+  				src="https://assets2.lottiefiles.com/packages/lf20_x62chJ.json"
+  				background="transparent" speed="1"
+    			style="width: 280px; height: 260px;"
+    			loop autoplay>
+				</lottie-player>
+			</div>
         </div>
     </div>
 </div>
@@ -49,9 +58,32 @@
     </div>
 </div>
 
+<!-- 유튜브 영상 모달 -->
+<jsp:include page="youtubeView.jsp"/>
+
+<!-- 🎮 미니게임 모달 -->
+<div id="gameModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeGameModal()">&times;</span>
+    <h3>기분전환 미니게임 🎲</h3>
+
+    <div class="game-tabs">
+      <button onclick="showGame('typing')">감정 타자 게임</button>
+      <button onclick="showGame('matching')">감정 짝 맞추기</button>
+      <button onclick="showGame('balloon')">스트레스 풍선 게임</button>
+    </div>
+
+    <div id="gameContainer">
+      <iframe id="gameFrame" src="" width="100%" height="400px" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
 
 <!-- 차트 JS -->
 <script src="/js/chart.js"></script>
+
+<!-- 유튜브 기능 JS 분리 -->
+<script src="${pageContext.request.contextPath}/js/youtube.js"></script>
 
 <!-- 모달 제어 -->
 <script>
@@ -71,42 +103,33 @@
     function closeCardModal() {
         document.getElementById("cardModal").style.display = "none";
     }
-
-    window.onclick = function(event) {
-        if (event.target === document.getElementById("chartModal")) {
-            closeModal();
-        } else if (event.target === document.getElementById("cardModal")) {
-            closeCardModal();
-        }
-    }
 </script>
 
-<!-- 행운카드 선택 로직 (JS 포함이 핵심!) -->
 <script>
-    let cardSelected = false;
+    function openGameModal() {
+        document.getElementById("gameModal").style.display = "block";
+        showGame('typing'); // 기본 게임
+    }
 
-    function selectCard(cardElement, index) {
-        if (cardSelected) return;
-        cardSelected = true;
+    function closeGameModal() {
+        document.getElementById("gameModal").style.display = "none";
+        document.getElementById("gameFrame").src = "";
+    }
 
-        cardElement.classList.add('flipped');
+    function showGame(type) {
+        let url = "";
+        if (type === 'typing') url = "/relax/typing";
+        else if (type === 'matching') url = "/relax/matching";
+        else if (type === 'balloon') url = "/relax/balloon";
 
-        const messages = [
-            "🌟 당신은 생각보다 강합니다.",
-            "💖 오늘 누군가의 위로가 되어줄 거예요.",
-            "🍀 좋은 소식이 곧 찾아올 거예요.",
-            "🌈 당신의 존재만으로도 충분해요.",
-            "🪄 오늘은 기분 좋은 하루가 될 거예요.",
-            "🌼 실수해도 괜찮아요, 누구나 그래요.",
-            "🌻 오늘 당신을 위한 축복이 기다리고 있어요.",
-            "☀️ 지금 이 순간도 당신은 빛나고 있어요.",
-            "🌙 고요한 밤이 당신을 편안하게 해줄 거예요.",
-            "✨ 믿는 만큼 좋은 일이 생겨요."
-        ];
+        document.getElementById("gameFrame").src = url;
+    }
 
-        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-        const backDiv = document.getElementById("back-" + index);
-        backDiv.innerText = randomMsg;
+    // 모달 바깥 클릭 시 닫기
+    window.onclick = function(event) {
+        if (event.target === document.getElementById("chartModal")) closeModal();
+        else if (event.target === document.getElementById("cardModal")) closeCardModal();
+        else if (event.target === document.getElementById("gameModal")) closeGameModal(); // 추가
     }
 </script>
 

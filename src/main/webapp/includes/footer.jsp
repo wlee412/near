@@ -32,7 +32,7 @@
   }
 </style>
 
-<df-messenger>
+<df-messenger
   intent="WELCOME"
   chat-title="n:ear챗봇상담"
   agent-id="9f1618e2-0167-4e27-bb92-db0c60be0f6d"
