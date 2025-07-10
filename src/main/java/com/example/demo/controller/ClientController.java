@@ -68,6 +68,13 @@ public class ClientController {
 		boolean exists = clientService.checkIdExists(id);
 		return exists ? "duplicate" : "ok";
 	}
+	
+	@ResponseBody
+	@GetMapping("/check-phone")
+	public String checkPhone(@RequestParam("phone") String phone) {
+		boolean exists = clientService.checkPhoneExists(phone);
+		return exists ? "duplicate" : "ok";
+	}
 
 	// 이메일 중복 확인
 	@PostMapping("/checkEmailDuplicate")

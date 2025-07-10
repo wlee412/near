@@ -41,19 +41,15 @@
 
 				<!-- ID -->
 				<div class="form-group">
-					<label for="id">ID</label> <input type="text" name="clientId"
-						id="id" placeholder="영문+숫자 4자 이상 입력" required>
-					<div id="idCheckResult" class="result-text"
-						style="font-size: 14px; margin-top: 4px;"></div>
+					<label for="id">ID</label> 
+					<input type="text" name="clientId" id="id" placeholder="영문+숫자 4자 이상 입력" required>
+					<div id="idCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
 
 				<!-- 이름 -->
 				<div class="form-group">
-					<label for="name">이름</label> <input type="text" name="name"
-						id="name" oninput="validateName()" placeholder="이름을 입력하세요"
-						required>
-					<div id="nameCheckResult" class="result-text"
-						style="font-size: 14px; margin-top: 4px;"></div>
+					<label for="name">이름</label> <input type="text" name="name" id="name" oninput="validateName()" placeholder="이름을 입력하세요" required>
+					<div id="nameCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
 				<!-- 닉네임 -->
 				<!-- 			<div class="form-group"> -->
@@ -99,6 +95,7 @@
 					<button type="button" class="btn" id="verifyCodeBtn" style="margin-top: 8px;" id="verifyCodeBtn">인증 확인</button>
 					<div id="verifyResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
+				<input type="hidden" name="phoneVerified" id="phoneVerifiedField" value="N">
 
 				<!-- 📧 이메일 입력 -->
 				<div class="form-group">

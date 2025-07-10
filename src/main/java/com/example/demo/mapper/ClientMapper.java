@@ -56,6 +56,8 @@ public interface ClientMapper {
 
 	public int deletePharmFav(@Param("clientId") String clientId, @Param("pharmId") String pharmId);
 
+	public Boolean checkPhoneExists(String phone);
+
 	
 
 

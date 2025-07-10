@@ -110,7 +110,7 @@
 
 	<update id="updateVerificationForJoin"
 		parameterType="com.example.demo.model.AccountVerification">
-		UPDATE ACCOUNT_VERIFICATION
+		UPDATE account_verification
 		SET
 		CODE = #{code},
 		EXPIRES_AT
@@ -123,9 +123,24 @@
 	</update>
 
 	<update id="insertClientIdByPhone" parameterType="map">
-		UPDATE account_verification
+		UPDATE
+		account_verification
 		SET client_id = #{clientId}
 		WHERE phone = #{phone}
 		AND type = 'MEMBER_JOIN'
 	</update>
+
+	<select id="getVerifiedById" parameterType="int"
+		resultType="string">
+		SELECT verified
+		FROM account_verification
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateVerifiedById" parameterType="int">
+		UPDATE account_verification
+		SET verified = 'Y'
+		WHERE id = #{id}
+	</update>
+
 </mapper>

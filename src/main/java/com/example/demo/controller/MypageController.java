@@ -28,6 +28,7 @@ import com.example.demo.service.ClientService;
 import com.example.demo.service.PharmFavoriteService;
 import com.example.demo.service.SurveyFeedbackService;
 import com.example.demo.service.SurveyService;
+import com.example.demo.service.VerifyService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -51,7 +52,11 @@ public class MypageController {
 	@Autowired
 	private PharmFavoriteService pharmFavoriteService;
 	
-	@GetMapping("/")
+	@Autowired
+	private VerifyService verifiedService;
+
+	
+	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
 	    Client client = (Client) session.getAttribute("loginClient");
 	    model.addAttribute("client", client);
@@ -59,7 +64,7 @@ public class MypageController {
 	    // 관심사 유효성 체크
 	    if (client == null || client.getInterest() == null || client.getInterest().isEmpty()) {
 	        model.addAttribute("recommendExplanation", "관심사가 등록되지 않았습니다.");
-	        return "client/mypage";
+	        return "/mypage/mypage";
 	    }
 
 	    String interestStr = client.getInterest();
@@ -99,7 +104,7 @@ public class MypageController {
 		public String mypageProfile(HttpSession session, Model model) {
 			Client client = (Client) session.getAttribute("loginClient");
 			model.addAttribute("client", client);
-			return "client/mypageProfile"; // /WEB-INF/views/client/mypageProfile.jsp
+			return "mypage/mypageProfile"; // /WEB-INF/views/client/mypageProfile.jsp
 		}
 		
 		// 설문조사 결과
@@ -166,19 +171,19 @@ public class MypageController {
 			Client loginClient = (Client) session.getAttribute("loginClient");
 
 			if (loginClient == null) {
-				return "redirect:/client/login"; // 로그인 안 한 경우 login폼으로 이동
+				return "redirect:/client/login"; //로그인 안 한 경우 login폼으로 이동
 			}
 
-			// 세션의 ID로 고정 (보안상 중요!)
+			//세션의 ID로 고정 (보안상 중요!)
 			client.setClientId(loginClient.getClientId());
 			
 
-		    // ✅ 일반 로그인 사용자는 성별 수정 불가 (기존 값 유지)
+		    //일반 로그인 사용자는 성별 수정 불가 (기존 값 유지)
 		    if (!"N".equals(loginClient.getGender())) {
 		        client.setGender(loginClient.getGender());
 		    }
 
-		    // ✅ 관심사 체크박스를 문자열로 병합
+		    //관심사 체크박스를 문자열로 병합
 		    if (interestList != null && !interestList.isEmpty()) {
 		        client.setInterest(String.join(",", interestList));
 		    } else {
@@ -189,13 +194,15 @@ public class MypageController {
 			boolean result = clientService.updateClient(client);
 			
 			if (result) {
-				 // ✅ DB에서 최신 회원 정보 가져옴
+				 //DB에서 최신 회원 정보 가져옴
 			    Client refreshed = clientService.getClientById(client.getClientId());
-
-			    // ✅ 로그로 관심사 확인
+			    if(refreshed.getVerified().equals("N")) {
+			    	verifiedService.updateVerifiedById(refreshed.getClientId());
+			    }
+			    //로그로 관심사 확인
 			    System.out.println("[DEBUG] 수정 후 DB에서 가져온 관심사: " + refreshed.getInterest());
 
-			    // ✅ 세션에 최신 정보 저장
+			    //세션에 최신 정보 저장
 			    session.setAttribute("loginClient", refreshed);
 
 			    redirectAttributes.addFlashAttribute("message", "회원 정보가 성공적으로 수정되었습니다.");
@@ -215,7 +222,7 @@ public class MypageController {
 		    Client sessionClient = (Client) session.getAttribute("loginClient");
 		    if (sessionClient == null) {
 		        return "redirect:/login"; 
-		    }
+		    } 
 		    Client client = clientService.getClientById(sessionClient.getClientId());
 
 		    String interestStr = client.getInterest();

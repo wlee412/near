@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -21,6 +22,8 @@ import com.example.demo.model.Client;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
+import org.slf4j.LoggerFactory;
+
 @Service
 @RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
@@ -28,10 +31,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 	private final ClientMapper clientMapper;
 	private final HttpSession session;
 	
+	  private static final Logger log =
+		        LoggerFactory.getLogger(CustomOAuth2UserService.class);
 	
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest request) throws OAuth2AuthenticationException {
 		OAuth2User oAuth2User = super.loadUser(request);
+		log.info("### OAuth2UserRequest for {} : {}", request.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
 
 		String platform = request.getClientRegistration().getRegistrationId();
 		Map<String, Object> attributes = oAuth2User.getAttributes();
@@ -44,6 +50,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			socialId = attributes.get("sub").toString();
 			name = (String) attributes.get("name");
 			email = (String) attributes.get("email");
+			log.info(" → 구글 email: {}", email);
 		} else if ("naver".equals(platform)) {
 			attributes = (Map<String, Object>) attributes.get("response");
 			socialId = attributes.get("id").toString();
@@ -76,7 +83,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			client.setSocialId(socialId);
 			client.setPassword("SOCIAL");
 			client.setBirth(Date.valueOf("1900-01-01"));
-			client.setPhone("000-0000-0000");
+			client.setPhone(" ");
 			client.setGender("N");
 			client.setVerified("N");
 			client.setZipcode(" ");
@@ -85,9 +92,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			client.setZipcode(" ");
 			client.setEmailId(emailId);
 			client.setEmailDomain(emailDomain);
+			client.setState(0);
 			clientMapper.socialInsert(client);
+			log.info("신규 소셜유저이므로 socialInsert 실행");
+			log.info("socialInsert 후 client: {}", client);
+
 			
 			client = clientMapper.findBySocialIdAndPlatform(socialId, platform);
+			log.info(" → findByEmail 리턴: {}", client);
 		}
 		
 		session.setAttribute("loginClient", client);

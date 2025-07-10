@@ -104,6 +104,14 @@ public class ClientService {
 	public int deletePharmFav(String clientId, String pharmId) {
 		return clientMapper.deletePharmFav(clientId, pharmId);
 	}
+
+	public Boolean checkPhoneExists(String phone) {
+		boolean exists = clientMapper.checkPhoneExists(phone);
+		if (Boolean.TRUE.equals(exists)) {
+		    return true;
+		}
+		return false;
+	}
 	
 
 

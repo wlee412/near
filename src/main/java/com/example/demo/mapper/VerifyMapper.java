@@ -42,6 +42,8 @@ public interface VerifyMapper {
 
 	void insertClientIdByPhone(Map<String, Object> map);
 
+	public void updateVerifiedById(String clientId);
+
 
 
 }
