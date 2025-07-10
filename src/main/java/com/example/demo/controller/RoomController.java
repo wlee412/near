@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.model.RoomRecording;
 import com.example.demo.service.RoomService;
@@ -42,12 +43,14 @@ public class RoomController {
 		if (room == null) {
 			return "errorPage"; // 잘못된 토큰
 		}
+		Reservation rsv = roomService.getReservationInfo(room.getReservationNo());
 		String username = (String) session.getAttribute("userName");
 
 		if (username == null) // 테스트용
 			username = UUID.randomUUID().toString().split("-")[1];
 
 		model.addAttribute("room", room);
+		model.addAttribute("reservation", rsv);
 		model.addAttribute("username", username);
 		return "room/videoroom";
 	}
@@ -67,9 +70,7 @@ public class RoomController {
 			roomService.uploadRec(rec);
 			return ResponseEntity.ok("저장 완료: " + filename);
 		} catch (IOException ioe) {
-			return ResponseEntity
-					.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("서버 오류");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류");
 		}
 	}
 

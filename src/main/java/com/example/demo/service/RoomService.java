@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.mapper.RoomMapper;
+import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.model.RoomRecording;
 
@@ -18,6 +19,10 @@ public class RoomService {
 	
 	public void uploadRec(RoomRecording rec) {
 		roomMapper.uploadRec(rec);
+	}
+
+	public Reservation getReservationInfo(int reservationNo) {
+		return roomMapper.getReservationInfo(reservationNo);
 	}
 
 }

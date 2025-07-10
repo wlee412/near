@@ -12,7 +12,7 @@ public class Room {
     private int roomId;                // PK
     private int janusNum;              // Janus room 번호
     private String roomToken;          // UUID - NOT NULL (입장 토큰)
-    private Integer counselNo;         // 상담번호 (nullable)
+    private int reservationNo;     		// 예약번호
     private String counselorId;        // 상담사 ID
     private String clientId;           // 내담자 ID
     private LocalDateTime start;       // 시작시간

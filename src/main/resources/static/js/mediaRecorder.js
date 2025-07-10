@@ -64,7 +64,6 @@ function uploadToServer(blob) {
 		body: formData
 	})
 		.then(res => res.text())
-		//		.then(msg => console.log("업로드 완료:", msg))
 		.catch(err => console.error("업로드 실패:", err));
 }
 
