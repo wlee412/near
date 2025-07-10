@@ -13,22 +13,7 @@
 		room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
 	</insert>
 
-	<select id="getReservationInfo" parameterType="int"
-		resultType="reservation">
-		SELECT
-		r.reservation_no,
-		r.counsel_no,
-		r.client_id,
-		r.state,
-		r.reg_date,
-		a.counselor_id,
-		a.start,
-		GROUP_CONCAT(s.symp) AS symp_csv
-		FROM counsel_reservation r
-		JOIN counsel_available a ON r.counsel_no = a.counsel_no
-		JOIN counsel_reason cr ON r.reservation_no = cr.reservation_no
-		JOIN symptom s ON cr.symp_code = s.symp_code
-		WHERE r.reservation_no = #{reservationNo}
-		GROUP BY r.reservation_no;
+	<select id="getReservationInfo" parameterType="int" resultType="reservation">
+		SELECT * FROM v_reservation_summary WHERE reservation_no=#{reservationNo}
 	</select>
 </mapper>

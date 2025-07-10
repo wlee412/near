@@ -25,7 +25,7 @@ public class Reservation {
 	private String state;
 	private Timestamp reg_date;
 
-	public String[] getSymp() {
+	public String[] getSympArray() {
 		return sympCsv != null ? sympCsv.split(",") : new String[0];
 	}
 }

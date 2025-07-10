@@ -50,7 +50,7 @@ public class RoomController {
 			username = UUID.randomUUID().toString().split("-")[1];
 
 		model.addAttribute("room", room);
-		model.addAttribute("reservation", rsv);
+		model.addAttribute("rsv", rsv);
 		model.addAttribute("username", username);
 		return "room/videoroom";
 	}
