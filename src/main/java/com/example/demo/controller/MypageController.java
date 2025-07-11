@@ -56,7 +56,7 @@ public class MypageController {
 	private VerifyService verifiedService;
 
 	
-	@GetMapping("/mypage")
+	@GetMapping({"/mypage", "/"})
 	public String mypage(HttpSession session, Model model) {
 	    Client client = (Client) session.getAttribute("loginClient");
 	    model.addAttribute("client", client);
@@ -167,7 +167,7 @@ public class MypageController {
 				  				   @RequestParam(value = "interestList", required = false) List<String> interestList,
 								   HttpSession session,
 				                   RedirectAttributes redirectAttributes) {
-			
+			System.out.println("update 함수 진입.");
 			Client loginClient = (Client) session.getAttribute("loginClient");
 
 			if (loginClient == null) {

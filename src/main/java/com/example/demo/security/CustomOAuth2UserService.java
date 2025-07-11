@@ -31,11 +31,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 	private final ClientMapper clientMapper;
 	private final HttpSession session;
 	
-	  private static final Logger log =
-		        LoggerFactory.getLogger(CustomOAuth2UserService.class);
-	
+	  private static final Logger log = LoggerFactory.getLogger(CustomOAuth2UserService.class);
+	 
+
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest request) throws OAuth2AuthenticationException {
+		log.info("✅ CustomOAuth2UserService 진입함");
 		OAuth2User oAuth2User = super.loadUser(request);
 		log.info("### OAuth2UserRequest for {} : {}", request.getClientRegistration().getRegistrationId(), oAuth2User.getAttributes());
 
@@ -83,13 +84,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 			client.setSocialId(socialId);
 			client.setPassword("SOCIAL");
 			client.setBirth(Date.valueOf("1900-01-01"));
-			client.setPhone(" ");
+			client.setPhone("");
 			client.setGender("N");
 			client.setVerified("N");
-			client.setZipcode(" ");
-			client.setAddrBase(" ");
-			client.setAddrDetail(email);
-			client.setZipcode(" ");
+			client.setZipcode("");
+			client.setAddrBase("");
+			client.setAddrDetail("");
+			client.setZipcode("");
 			client.setEmailId(emailId);
 			client.setEmailDomain(emailDomain);
 			client.setState(0);

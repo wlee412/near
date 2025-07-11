@@ -21,7 +21,6 @@ import com.example.demo.model.Client;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-
 @Service
 @RequiredArgsConstructor
 public class CustomOidcUserService extends OidcUserService {
@@ -32,6 +31,7 @@ public class CustomOidcUserService extends OidcUserService {
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
+		log.info("✅ CustomOidcUserService 진입함");
         // 1) OIDC 유저 정보 가져오기
         OidcUser oidcUser = super.loadUser(userRequest);
         log.info("### OIDC Attributes: {}", oidcUser.getAttributes());
@@ -61,9 +61,11 @@ public class CustomOidcUserService extends OidcUserService {
             client.setPhone("000-0000-0000");
             client.setGender("N");
             client.setVerified("N");
-            client.setZipcode(" ");
-            client.setAddrBase(" ");
-            client.setAddrDetail(" ");
+            client.setZipcode("");
+            client.setAddrBase("");
+            client.setAddrDetail("");
+            client.setAlarm(false);
+            client.setPersonalInfo(true);
             client.setEmailId(emailId);
             client.setEmailDomain(emailDomain);
             clientMapper.socialInsert(client);

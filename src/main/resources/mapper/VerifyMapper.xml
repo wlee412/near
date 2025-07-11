@@ -137,10 +137,10 @@
 		WHERE id = #{id}
 	</select>
 
-	<update id="updateVerifiedById" parameterType="int">
+	<update id="updateVerifiedById" parameterType="String">
 		UPDATE account_verification
 		SET verified = 'Y'
-		WHERE id = #{id}
+		WHERE client_id = #{client_id}
 	</update>
 
 </mapper>
