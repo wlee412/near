@@ -1,3 +1,4 @@
+// 지금은 테스트 js(로그인 정보 넣어둠 client123)
 document.addEventListener("DOMContentLoaded", () => {
   const dateInputs = document.querySelectorAll(".date-input");
   const today = new Date();
@@ -7,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("change", async (e) => {
       const counselorId = e.target.dataset.counselorId;
       const dateStr = e.target.value;
+	  
+	  if (!dateStr) {
+	     alert("날짜를 선택해 주세요.");
+	     return; // 여기서 중단
+	   }
+	  
       const container = document.querySelector(`.time-slots[data-counselor-id="${counselorId}"]`);
       const selectedDate = new Date(dateStr);
 

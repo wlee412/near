@@ -44,7 +44,7 @@ public class ReservationService {
         dto.setCounselNo(counselNo);
         dto.setStart(start);
         dto.setSympCode(sympCode);
-        dto.setState("예약완료");
+        dto.setState("예약");
         dto.setRegDate(Timestamp.valueOf(LocalDateTime.now()));
         return dto;
     }

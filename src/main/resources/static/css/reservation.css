@@ -48,11 +48,15 @@ h2 {
 
 /* 상담사 이미지 */
 .counselor-card img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 20px; /* 살짝 더 자연스럽게 */
-  border: 2px solid #ccc;
+  width: 178px;          /* ← 너비 축소 */
+  height: 248px;         /* 기존 유지 */
+  object-fit: contain;   /* 전체 이미지 표시 (잘리지 않음) */
+  object-position: center top;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
 }
 
 /* 날짜 선택 */

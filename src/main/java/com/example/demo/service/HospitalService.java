@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import org.w3c.dom.Document;
@@ -29,11 +30,14 @@ public class HospitalService {
     @Autowired
     private KakaoGeoUtil kakaoGeo;
 
+    // ✅ application.properties에서 API 키 주입
+    @Value("${publicdata.api.key}")
+    private String apiKey;
+
     public void fetchAndSaveAllHospitals() throws Exception {
         int page = 1;
         int totalCount = 0;
         int numOfRows = 1000;
-        String apiKey = "G9LUxeQUl%2FwfYZeaoLoZ2IRdK%2Bg9QiBi9%2BCdfAqDOD2bJb5InTwkSg3CQCvd6l%2BjiIXjxLqkDiCX9%2Brz14fTSg%3D%3D";
 
         do {
             String urlStr = "https://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList"
@@ -44,13 +48,12 @@ public class HospitalService {
             List<HospitalInfo> list = parseHospitalsFromXml(urlStr);
 
             for (HospitalInfo h : list) {
-                h.setHospId(h.getHospId().trim()); // 혹시 모를 공백 제거
+                h.setHospId(h.getHospId().trim());
 
                 if (h.getHospDepartment() == null || h.getHospDepartment().isBlank()) {
                     h.setHospDepartment("없음");
                 }
-                
-                // ✅ 중복 확인 로깅
+
                 HospitalInfo existing = mapper.findById(h.getHospId());
                 System.out.println(">> 삽입 시도 ID: " + h.getHospId());
                 System.out.println(">> DB에 존재 여부: " + (existing != null));
@@ -60,10 +63,6 @@ public class HospitalService {
                         double[] latLng = kakaoGeo.getLatLngFromAddress(h.getHospAddress());
                         h.setHospLat(latLng[0]);
                         h.setHospLng(latLng[1]);
-                    }
-
-                    if (h.getHospDepartment() == null) {
-                        h.setHospDepartment("없음");
                     }
 
                     if (h.getHospLat() != 0.0 && h.getHospLng() != 0.0) {
@@ -91,8 +90,7 @@ public class HospitalService {
         Document doc = getXmlDoc(urlStr);
         NodeList nodes = doc.getElementsByTagName("item");
         List<HospitalInfo> result = new ArrayList<>();
-        System.out.println("값 확인");
-        
+
         for (int i = 0; i < nodes.getLength(); i++) {
             Element e = (Element) nodes.item(i);
             HospitalInfo h = new HospitalInfo();
@@ -104,6 +102,7 @@ public class HospitalService {
             h.setHospDepartment(getTagValue("dgsbjtCdNm", e));
             result.add(h);
         }
+
         return result;
     }
 
@@ -120,7 +119,7 @@ public class HospitalService {
         Node n = nl.item(0).getFirstChild();
         return (n != null) ? n.getNodeValue() : null;
     }
-    
+
     public List<Map<String, Object>> getHospitals(String name, String area, String dept, String type) {
         return mapper.searchHospitals(name, area, dept, type);
     }

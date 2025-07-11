@@ -8,7 +8,9 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,11 +29,14 @@ public class PharmacyService {
     @Autowired
     private KakaoGeoUtil kakaoGeo;
 
+    // ✅ API 키를 외부 설정에서 불러오기
+    @Value("${publicdata.api.key}")
+    private String apiKey;
+
     public void fetchAndSaveAllPharmacies() throws Exception {
         int page = 1;
         int totalCount = 0;
         int numOfRows = 1000;
-        String apiKey = "G9LUxeQUl%2FwfYZeaoLoZ2IRdK%2Bg9QiBi9%2BCdfAqDOD2bJb5InTwkSg3CQCvd6l%2BjiIXjxLqkDiCX9%2Brz14fTSg%3D%3D";
 
         do {
             String urlStr = "https://apis.data.go.kr/B551182/pharmacyInfoService/getParmacyBasisList"
@@ -42,14 +47,11 @@ public class PharmacyService {
             List<PharmacyInfo> list = parsePharmaciesFromXml(urlStr);
 
             for (PharmacyInfo p : list) {
-
-                // ✅ ID 유효성 검사 먼저!
                 if (p.getPharmId() == null || p.getPharmId().isEmpty()) {
                     System.out.println("⚠️ pharmId가 null이거나 비어 있음 → 저장 생략");
                     continue;
                 }
 
-                // 중복 여부 체크
                 PharmacyInfo existing = mapper.findById(p.getPharmId());
                 if (existing == null) {
                     double[] latLng = kakaoGeo.getLatLngFromAddress(p.getPharmAddress());
@@ -104,7 +106,7 @@ public class PharmacyService {
         Node n = nl.item(0).getFirstChild();
         return (n != null) ? n.getNodeValue() : null;
     }
-    
+
     public List<Map<String, Object>> getPharmacies(String name, String area) {
         return mapper.searchPharmacies(name, area);
     }
