@@ -11,6 +11,8 @@ public interface RoomMapper {
 
 	public Room findByToken(String token);
 
+	public Room findByRoomId(int roomId);
+
 	public void uploadRec(RoomRecording rec);
 
 	public Reservation getReservationInfo(int reservationNo);

@@ -17,6 +17,10 @@ public class RoomService {
 		return roomMapper.findByToken(token);
 	}
 	
+	public Room findByRoomId(int roomId) {
+		return roomMapper.findByRoomId(roomId);
+	}
+	
 	public void uploadRec(RoomRecording rec) {
 		roomMapper.uploadRec(rec);
 	}
