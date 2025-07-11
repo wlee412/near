@@ -104,7 +104,7 @@
 			</div>
 			
 			<div class="row" align="center" id="exit">
-				<button>상담실 퇴장</button>
+				<button onclick="location.href='/'">상담실 퇴장</button>
 			</div>
 		</div>
 <%-- ------------------------------video join end----------------------------------- --%>

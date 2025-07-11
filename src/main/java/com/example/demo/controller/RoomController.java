@@ -34,7 +34,7 @@ public class RoomController {
 
 	@GetMapping("")
 	public String main() {
-		return "room/doorlock";
+		return "room/door";
 	}
 	
 	
