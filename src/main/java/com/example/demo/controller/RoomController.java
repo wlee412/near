@@ -33,9 +33,11 @@ public class RoomController {
 	private RoomService roomService;
 
 	@GetMapping("")
-	public String door() {
-		return "room/door";
+	public String main() {
+		return "room/doorlock";
 	}
+	
+	
 
 	@GetMapping("/room")
 	public String room(@RequestParam("token") String token, Model model, HttpSession session) {
