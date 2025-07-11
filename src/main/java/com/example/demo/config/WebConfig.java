@@ -15,7 +15,20 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ProfileCompletionInterceptor())
-                .addPathPatterns("/mypage/**", "/survey/**", "/reservation/**")
-                .excludePathPatterns("/mypage/mypageUpdate", "/client/logout"); // 예외도 설정 가능
+                .addPathPatterns("/mypage/mypageUpdage",
+                		         "/mypage/mypageDelete",
+                		         "/mypage/mypagePharmFav",
+                		         "/mypageProfile",
+                		         "/mypage/mypageReport",
+                		         "/mypage/mypageReservation",
+                		         "/survey/**", 
+                		         "/reservation/**") // 차단설정
+                .excludePathPatterns( 
+                		"/mypage/mypageUpdate", // 예외로 등록
+                        "/mypage/update",       // 업데이트 요청도 예외로 등록
+                        "/static/**", 
+                        "/css/**", 
+                        "/js/**", 
+                        "/images/**"); // 예외설정
     }
 }

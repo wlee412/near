@@ -18,14 +18,13 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-	@Lazy
 	private final CustomOAuth2UserService customOAuth2UserService;
+	private final CustomOidcUserService customOidcUserService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    private final CustomOidcUserService customOidcUserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

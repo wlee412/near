@@ -24,15 +24,27 @@ public class ProfileCompletionInterceptor implements HandlerInterceptor {
             response.sendRedirect("/client/login"); // 로그인 페이지로 이동
             return false;
         }
-
+        
         // 2. 회원 정보 누락 여부 체크
         boolean incomplete = 
-               client.getName() == null || client.getName().isEmpty()
-            || client.getPhone() == null || client.getPhone().isEmpty()
-            || client.getGender() == null || client.getGender().isEmpty()
-            || client.getBirth() == null
-            || client.getInterest() == null || client.getInterest().isEmpty();
-
+        	       isNullOrEmpty(client.getName())
+        	       || isNullOrEmpty(client.getPhone())
+        	       || isNullOrEmpty(client.getGender())
+        	       || client.getBirth() == null
+        	       || isNullOrEmpty(client.getInterest())
+        	       || isNullOrEmpty(client.getAddrBase())
+        	       || isNullOrEmpty(client.getAddrDetail())
+        	       || isNullOrEmpty(client.getZipcode());
+        	
+        System.out.println("client.getName(): " + client.getName());
+        System.out.println("client.getPhone(): " + client.getPhone());
+        System.out.println("client.getGender(): " + client.getGender());
+        System.out.println("client.getBirth(): " + client.getBirth());
+        System.out.println("client.getInterest(): " + client.getInterest());
+        System.out.println("client.getAddrBase(): " + client.getAddrBase());
+        System.out.println("client.getAddrDetail(): " + client.getAddrDetail());
+        System.out.println("client.getZipcode(): " + client.getZipcode());
+        
         if (incomplete) {
             // 회원정보 수정 페이지로 리다이렉트
             response.sendRedirect("/mypage/mypageUpdate");
@@ -40,5 +52,9 @@ public class ProfileCompletionInterceptor implements HandlerInterceptor {
         }
 
         return true; // ✅ 통과
+    }
+    
+    private boolean isNullOrEmpty(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }
