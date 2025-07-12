@@ -71,7 +71,13 @@ public class ClientController {
 	
 	@ResponseBody
 	@GetMapping("/check-phone")
-	public String checkPhone(@RequestParam("phone") String phone) {
+	public String checkPhone(@RequestParam("phone") String phone,
+							 @SessionAttribute("loginClient") Client me) {
+		
+	    if (phone.equals(me.getPhone())) {
+	        return "ok";
+	    }
+	    
 		boolean exists = clientService.checkPhoneExists(phone);
 		return exists ? "duplicate" : "ok";
 	}
@@ -311,36 +317,51 @@ public class ClientController {
 
 	// ✅ 탈퇴 처리 POST
 	@PostMapping("/delete")
-	public String deleteClient(@RequestParam("id") String id, 
-							   @RequestParam("pw") String pw,
-							   @RequestParam("pwConfirm") String pwConfirm, 
-							   HttpSession session, 
-							   RedirectAttributes redirectAttributes) {
-		Client loginClient = (Client) session.getAttribute("loginClient");
+	public String deleteClient(
+	        @RequestParam(value="social",    required=false) String social,
+	        @RequestParam(value="pw",        required=false) String pw,
+	        @RequestParam(value="pwConfirm", required=false) String pwConfirm,
+	        HttpSession session,
+	        RedirectAttributes redirectAttributes) {
 
-		// 비밀번호 일치 확인
-		if (!pw.equals(pwConfirm)) {
-			redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
-			return "redirect:/client/mypageDelete";
-		}
+	    Client loginClient = (Client) session.getAttribute("loginClient");
+	    String clientId = loginClient.getClientId();
 
-		// 실제 비밀번호 비교 (암호화된 비밀번호와 비교)
-		if (!passwordEncoder.matches(pw, loginClient.getPassword())) {
-			redirectAttributes.addFlashAttribute("error", "비밀번호가 올바르지 않습니다.");
-			return "redirect:/client/mypageDelete";
-		}
+	    // ① 소셜 로그인 사용자는 비밀번호 없이 바로 탈퇴/연동 해제
+	    if (loginClient.getSocialPlatform() != null || "true".equals(social)) {
+	        boolean result = clientService.deleteClient(clientId);
+	        if (!result) {
+	            redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다.");
+	            return "redirect:/mypage";
+	        }
+	        session.invalidate();
+	        return "redirect:/main";
+	    }
 
-		// 탈퇴처리
-		boolean result = clientService.deleteClient(loginClient.getClientId());
-		if (!result) {
-			redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다.");
-			return "redirect:/client/mypage";
-		}
+	    // ② 일반 회원은 기존대로 pw 검사
+	    if (pw == null || pwConfirm == null) {
+	        redirectAttributes.addFlashAttribute("error", "비밀번호를 입력해 주세요.");
+	        return "redirect:/mypage/mypageDelete";
+	    }
+	    if (!pw.equals(pwConfirm)) {
+	        redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+	        return "redirect:/mypage/mypageDelete";
+	    }
+	    if (!passwordEncoder.matches(pw, loginClient.getPassword())) {
+	        redirectAttributes.addFlashAttribute("error", "비밀번호가 올바르지 않습니다.");
+	        return "redirect:/mypage/mypageDelete";
+	    }
 
-		// 탈퇴 성공시 세션 끊고 메인으로 이동하기
-		session.invalidate();
-		return "redirect:/main";
+	    // ③ 일반 회원 탈퇴 처리
+	    boolean result = clientService.deleteClient(clientId);
+	    if (!result) {
+	        redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다.");
+	        return "redirect:/mypage/";
+	    }
+	    session.invalidate();
+	    return "redirect:/main";
 	}
+
 
 
 }

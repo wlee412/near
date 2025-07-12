@@ -246,6 +246,24 @@
 		AND state = 0
 	</select>
 
+	<select id="getReservationList"
+		resultType="com.example.demo.model.ClientReservation">
+		SELECT
+		cr.reservation_no AS reservationNo,
+		co.name AS counselorName,
+		cr.client_id AS clientId,
+		ca.start AS startTime,
+		cr.state AS state,
+		cr.reg_date AS regDate
+		FROM counsel_reservation AS cr
+		JOIN counsel_available AS ca
+		ON cr.counsel_no = ca.counsel_no
+		JOIN counselor AS co
+		ON ca.counselor_id = co.counselor_id
+		WHERE cr.client_id = #{clientId} 
+		ORDER BY ca.start DESC;
+
+	</select>
 
 
 

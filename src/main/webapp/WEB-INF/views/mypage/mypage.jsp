@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
@@ -17,11 +15,10 @@
 	<div class="mypage-wrapper">
 		<div class="mypage-sidebar">
 			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/"
-					style="text-decoration: none; color: inherit;">마이페이지</a>
+				<a href="${pageContext.request.contextPath}/mypage/" style="text-decoration: none; color: inherit;">마이페이지</a>
 			</h1>
 			<div class="mypage-divider"></div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReservation'">예약확인</div>
+			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageClientReservation'">예약확인</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePharmFav'">즐겨찾기</div>
 			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>

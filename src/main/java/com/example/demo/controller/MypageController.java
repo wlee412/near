@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Client;
+import com.example.demo.model.CounselReservation;
 import com.example.demo.model.PharmFavorite;
 import com.example.demo.model.Survey;
 import com.example.demo.model.SurveyFeedbackJoin;
@@ -232,6 +233,20 @@ public class MypageController {
 		    model.addAttribute("client", client);
 
 		    return "mypage/mypageUpdate";
+		}
+		
+		@GetMapping("/mypageClientReservation")
+		public String mypageClientReservation(HttpSession session, Model model) {
+		    Client client = (Client) session.getAttribute("loginClient");
+		    if (client == null) {
+		        return "redirect:/login"; 
+		    } 
+		    List<CounselReservation> reservationList = clientService.getReservationList(client.getClientId());
+
+		    model.addAttribute("client", client);
+		    model.addAttribute("reservationList", reservationList);
+		    
+		    return "mypage/mypageClientReservation";
 		}
 
 		// 마이페이지 비밀번호 변경 화면
