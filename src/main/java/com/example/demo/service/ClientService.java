@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.mapper.ClientMapper;
 import com.example.demo.model.Client;
+import com.example.demo.model.CounselReservation;
 
 @Service
 @Transactional
@@ -111,6 +113,10 @@ public class ClientService {
 		    return true;
 		}
 		return false;
+	}
+
+	public List<CounselReservation> getReservationList(String clientId) {
+		return clientMapper.getReservationList(clientId);
 	}
 	
 

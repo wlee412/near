@@ -23,13 +23,11 @@
 		</c:if>
 		
 		
-		<form
-			action="${pageContext.request.contextPath}/member/changePassword"
-			method="post">
+		<form action="${pageContext.request.contextPath}/client/changePassword" method="post">
 			<!-- 회원ID -->
 			<div class="form-group">
 				<label>회원 ID</label> <input type="text" name="id"
-					value="${loginMember.id}" readonly>
+					value="${loginClient.clientId}" readonly>
 			</div>
 
 			<!--현재 비밀번호 -->
@@ -59,7 +57,7 @@
 			<div class="form-group button-row">
 				<button type="submit" class="btn btn-half">변경하기</button>
 				<button type="button" class="btn btn-half"
-					onclick="location.href='/member/mypage'">취소</button>
+					onclick="location.href='/mypage/'">취소</button>
 			</div>
 		</form>
 	</div>

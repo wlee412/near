@@ -52,7 +52,7 @@ public class ChatGptService {
 				+ "ASRS 전체형 (ADHD 18문항)	1008\r\n"
 				+ "PSS (스트레스 지각 척도)	1009\r\n" 
 				+ "GSE (일반 자기 효능감 척도)	1010" 
-				+ "사용자의 (정신/심리)관심사는 다음과 같습니다: ");
+				+ "내담자의 (정신/심리)관심사는 다음과 같습니다: ");
 		prompt.append(String.join(", ", interests));
 		prompt.append(".\n\n");
 
@@ -67,7 +67,7 @@ public class ChatGptService {
 
 		try {
 			// JSON 바디 생성
-			Map<String, Object> message1 = Map.of("role", "system", "content", "당신은 전문 심리 상담 도우미입니다.");
+			Map<String, Object> message1 = Map.of("role", "system", "content", "당신은 내담자의 상태를 해석해주는 전문 심리 상담 도우미입니다.");
 			Map<String, Object> message2 = Map.of("role", "user", "content", prompt.toString());
 			Map<String, Object> requestMap = Map.of("model", "gpt-3.5-turbo", "messages", List.of(message1, message2),
 					"temperature", 0.7);
@@ -154,7 +154,7 @@ public class ChatGptService {
 						+ "GSE (일반 자기 효능감 척도)	1010" 
 						+ "내담자가 제출한 설문과 총점은 아래와 같습니다." 
 						+ "설문 ID: " + surveyId + "\n" + "응답자의 총 점수는 " + totalScore + "점입니다.\n"
-						+ "이 점수를 바탕으로 일반적인 해석을 단정적이지 않고 따뜻한 말투와 존댓말로 해주세요.";
+						+ "내담자에게 이 점수를 바탕으로 일반적인 해석을 단정적이지 않고 따뜻한 말투와 존댓말로 해주세요.";
 		return callOpenAi(prompt);
 	}
 
@@ -166,13 +166,13 @@ public class ChatGptService {
 		prompt.append("당신은 심리상담 전문가 AI입니다.\n\n")
 			  .append("설문명: ").append(surveyName).append("\n").append("설문 ID: ")
 				.append(surveyId).append("\n").append("총 점수: ").append(totalScore).append("점\n\n")
-				.append("응답자는 아래와 같은 문항에 대해 다음과 같이 응답했습니다:\n");
+				.append("내담자는 아래와 같은 문항에 대해 다음과 같이 응답했습니다:\n");
 
 		for (String answer : userAnswers) {
 			prompt.append("- ").append(answer).append("\n");
 		}
 
-		prompt.append("\n이 정보를 기반으로 응답자의 현재 상태를 정리하고, 존댓말로 부드럽고 진정성 있는 말투와 존댓말로 조언을 포함해 해석해주세요.");
+		prompt.append("\n이 정보를 기반으로 내담자의 현재 상태를 정리하고, 존댓말로 부드럽고 진정성 있는 말투와 존댓말로 조언을 포함해 해석해주세요.");
 
 		return callOpenAi(prompt.toString());
 	}
