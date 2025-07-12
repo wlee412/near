@@ -98,7 +98,7 @@
 							    <td>${r.reservationNo}</td>
 							    <td>${r.state}</td>
 							    <td>
-							      <fmt:formatDate value="${r.startTime}" pattern="yy.MM.dd (E)" />
+							      <fmt:formatDate value="${r.startTime}" pattern="yy.MM.dd (E) HH:mm" />
 							    </td>
 							    <td>${r.name}</td>
 							    <td>${r.counselorPhone}</td>
