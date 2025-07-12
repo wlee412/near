@@ -1,255 +1,557 @@
 /* 전체 레이아웃 */
- 
 .counselor-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 40px 20px;
 }
 
 /* 타이틀 영역 */
 .mypage-title {
-  width: 100%;
-  border-bottom: 0.5px solid #666;
-  margin-bottom: 30px;
+	text-decoration: none !important; 
+	width: 100%;
+	border-bottom: 0.5px solid #666;
+	margin-bottom: 30px;
+}
+.mypage-title a {
+    text-decoration: none !important; 
+    color: #333 !important;  
+}
+
+.mypage-title a:hover {
+    color: #333 !important; 
+}
+
+.mypage-title a:active {
+    color: #333 !important;  
 }
 
 .mypage-title h2 {
-  font-size: 24px;
-  font-weight: bold;
-  padding-bottom: 8px;
-  color: #333;
+	text-decoration: none !important; 
+	font-size: 24px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	color: #333;
 }
 
 /* 좌우 구조 */
 .mypage-body {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
 }
 
 /* 사이드바 */
 .mypage-sidebar {
-  width: 220px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+	width: 220px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
 }
 
 .sidebar-button {
-  display: block;
-  padding: 12px 20px;
-  background-color: #fff;
-  border-radius: 12px;
-  text-decoration: none;
-  color: #333;
-  font-size: 16px;
-  font-weight: 500;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
-  transition: all 0.2s ease;
+	display: block;
+	padding: 12px 20px;
+	background-color: #fff;
+	border-radius: 12px;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: 500;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+	transition: all 0.2s ease;
 }
 
 .sidebar-button:hover {
-  color: #13688a;
+	color: #13688a;
 }
 
 .sidebar-button.active {
-  color: #5daec5;
-  font-weight: 500;
-  border-left: 2px solid #5daec5;
+	color: #5daec5;
+	font-weight: 500;
+	border-left: 2px solid #5daec5;
 }
 
 /* 메인 콘텐츠 */
 .main-section {
-  flex-grow: 1;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  min-width: 700px;
-  min-height: 300px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
-  word-break: keep-all;
+	flex-grow: 1;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 16px;
+	min-width: 800px;
+	min-height: 300px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+	word-break: keep-all;
 }
 
 /* 프로필 박스 */
 .profile-box {
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 700px;
-  margin: 30px auto 0;
+	padding: 20px;
+	border-radius: 12px;
+	max-width: 700px;
+	margin: 10px auto 0;
 }
 
 .profile-box h3 {
-  margin-bottom: 10px;
-  color: #5daec5;
+    font-size: 30px;  /* 글씨 크기 키우기 */
+    font-weight: bold;
 }
 
 .profile-box ul {
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 .profile-box li {
-  margin-bottom: 8px;
-  color: #333;
+	margin-bottom: 8px;
+	color: #333;
 }
 
 .profile-img {
-  width: 150x;
-  height: 240px;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-right: 24px;
-  display: block;
+	width: 180px;
+	height: 250px;
+	max-width: 100%;
+	object-fit: cover;
+	border-radius: 16px;
+	margin-right: 24px;
+	display: block;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .profile-content {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+	display: flex;
+	gap: 24px;
+	align-items: center;
+	justify-content: center;
 }
 
 .profile-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
-
 
 /* 환영 메시지 */
 .welcome-box {
-  text-align: center;
-  margin-top: 50px;
+	text-align: center;
+	margin-top: 50px;
+	justify-content: center;
 }
 
 .welcome-box h2 {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 20px;
+	font-size: 28px;
+	margin-bottom: 60px;
 }
 
 .today-count {
-  font-size: 20px;
-  color: #333;
+	font-size: 20px;
+	color: #333;
 }
 
-/* 캘린더 선택된 날짜 셀 강조 */
+.section-title {
+    font-size: 24px; /* 제목 크기 */
+    font-family: 'Gowun Batang', serif; /* 폰트 스타일 */
+    position: relative;
+    font-weight: bold; /* 글씨 두껍게 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+/* 달력 전체 레이아웃 */
+.calendar-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 캘린더 본체 */
+#calendar {
+  width: 100% !important;
+  height: 600px;
+}
+
+.fc {
+  width: 100% !important;
+  max-width: 500px !important;
+  margin: 0 auto;
+}
+
+.fc-scrollgrid {
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+/* 날짜 숫자 정렬 */
+.fc-daygrid-day-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  height: 50px;
+}
+
+ 
+/* ───── FullCalendar 헤더 정렬 ───── */
+.fc-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.fc-toolbar-title {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+}
+.fc-prev-button,
+.fc-next-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 30px;
+  display: inline-block;
+}
+.fc-prev-button:hover,
+.fc-next-button:hover {
+  color: #6EBBFF;
+}
+
+/* ───── 날짜 셀 스타일 ───── */
+.fc-daygrid-day {
+  background-color: transparent;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.fc-daygrid-day:hover {
+  background-color: #d3f3ff;
+  border-radius: 6px;
+}
+.fc-daygrid-day.selected {
+  background-color: #B3DAF2;
+  border: 2px dashed #6EBBFF;
+}
 .fc-daygrid-day.selected-date {
   background-color: #d3f3ff !important;
   border-radius: 6px;
+  font-weight: 700;
   transition: background-color 0.3s ease;
-  cursor: pointer;
 }
 
-/* 날짜 텍스트 강조 */
+.fc-daygrid-day.fc-day-past,
+.fc-daygrid-day.out-of-range {
+  color: #bbb;
+  opacity: 0.5;
+  pointer-events: none;
+  font-style: italic;
+}
+.fc-daygrid-day.pre-selected {
+  background-color: #DCEFFC;
+  border: 2px dotted #91CDE8;
+  color: #337DAA;
+}
+
+/* 날짜 출력 박스 */
+#selected-date-box {
+  max-width: 420px;
+  margin: 30px auto 0 auto;
+  text-align: center;
+}
 #selected-date {
   font-weight: bold;
+  font-size: 18px;
   color: #333;
+  font-family: 'Gowun Batang', serif;
 }
 
-/* 시간 버튼 영역 */
+/* 시간 버튼 묶음 박스 */
+#time-buttons-wrapper {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
 .time-buttons-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  justify-content: center;
+  gap: 15px;
+  max-width : 500px; 
+  margin: 0 auto;
 }
 
 /* 시간 버튼 */
-.time-buttons-container .time-btn {
-  padding: 6px 12px;
-  margin: 4px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.time-btn {
+  flex: 1 1 50px;  
+  padding: 10px;
+  font-size: 15px;
+  font-family: 'Gowun Batang', serif;
+  border: 1px solid #5daec5;
+  border-radius: 6px;
+  background-color: #fff;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(93, 179, 206, 0.4);
 }
-
-.time-buttons-container .time-btn:hover {
+.time-btn:hover {
   background-color: #e0f7ff;
 }
-
-.time-buttons-container .time-btn.selected {
+.time-btn.selected {
   background-color: #5daec5;
   color: white;
   font-weight: bold;
   border: 1px solid #5daec5;
 }
-
-/* 저장 버튼 영역 */
-.button-wrapper {
-  margin-top: 20px;
-}
-
-.save-button {
-  background-color: #2196f3;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.save-button:hover {
-  background-color: #5daec5;
-}
-/* 비활성화 버튼 */
 .time-btn.disabled {
   background-color: #ccc;
   color: #777;
   cursor: not-allowed;
 }
-
-.time-btn {
-  margin: 5px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.time-btn.selected {
-  background-color: #4caf50;
-  color: white;
-}
-
 .time-btn.pre-registered {
   background-color: #eee;
   border-color: #999;
   color: #555;
   font-style: italic;
 }
-/*예약현황*/
-.modal {
-  display: none;  /* 처음엔 숨김 */
-  position: fixed;
-  top: 0;
-  left: 0;
+
+/* 저장 버튼 */
+.button-wrapper {
+  max-width: 500px;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 999;
+  margin: 0 auto 40px auto;
+  text-align: center;
 }
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 30px;
-  border-radius: 10px;
-  width: 500px;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 20px;
-  font-size: 20px;
-  font-weight: bold;
+.save-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-family: 'Gowun Batang', serif;
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+}
+.save-button:hover {
+  background-color: #4a9cb1;
 }
 
+/* FullCalendar 내부 테두리 제거 */
+.fc,
+.fc-scrollgrid,
+.fc-scrollgrid-section,
+.fc-scrollgrid-sync-table,
+.fc-col-header-cell,
+.fc-daygrid-body,
+.fc-daygrid-week,
+.fc-daygrid-day-frame {
+  border: none !important;
+}
+
+
+
+
+
+/* 테이블 전체 스타일 */
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: 'Gowun Batang', serif; /* 글씨체 적용 */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3); 
+    border-radius: 12px;
+}
+
+/* 헤더 스타일 */
+
+
+.reservation-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    background-color: #5daec5;
+    color : #ffffff;
+    font-family: 'Gowun Batang', serif; /* 헤더에 글씨체 적용 */
+}
+
+/* 정렬 화살표 스타일 */
+#state-sort-arrow, #start-sort-arrow {
+    font-size: 18px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+
+/* 표 본문 스타일 */
+.reservation-table tbody {
+    background-color: #f9f9f9;
+}
+
+.reservation-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Gowun Batang', serif; /* 셀에 글씨체 적용 */
+}
+
+.reservation-table tr:hover {
+    background-color: #f0f8ff;
+}
+   
+/* 선택된 체크박스 스타일 */
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin: 0 auto;
+    cursor: pointer;
+    background-color: #f0f8ff;
+    
+}
+
+/* 링크 스타일 */
+.reservation-table a {
+    text-decoration: none;
+    font-weight: bold;
+    color : black;
+   
+}
+
+.reservation-table a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+/* 선택된 예약 강조 */
+.row-check:checked {
+    background-color: #e0f7ff;
+    border: 1px solid #2196f3;
+}
+
+/* 취소 버튼 스타일 */
+.reservation-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.cancelSelectedBtn {
+	align-self: flex-end;
+    padding: 12px 30px; /* 버튼 크기 */
+    font-size: 16px; /* 글자 크기 */
+    font-family: 'Gowun Batang', serif; /* 폰트 스타일 */
+    border: none; /* 테두리 없음 */
+    border-radius: 12px; /* 모서리 살짝 둥글게 설정 */
+    background-color: #5daec5; /* 배경 색상 */
+    color: white; /* 텍스트 색상 */
+    cursor: pointer; /* 마우스 포인터 */
+    box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3); /* 그림자 효과 */
+    transition: background-color 0.3s ease; /* 배경 색상 변화 */
+   	align-items: right;
+}
+
+.cancelSelectedBtn:hover {
+    background-color: #4a9cb1; /* 마우스 오버 시 색상 변경 */
+}
+
+
+
+/* 페이지 네비게이션 */
+.pagination {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.pagination a, .pagination .current-page {
+	margin: 0 5px;
+	text-decoration: none;
+	color: #333;
+	
+}
+
+.pagination .current-page {
+	font-weight: bold;
+	color: #4a9cb1;
+    text-align: center;
+}
+
+.pagination a:hover {
+	text-decoration: underline;
+	
+}
+
+#loading-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8); /* 반투명 배경 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	text-align: center;
+	flex-direction: column; /* 수직 배치 */
+	gap: 10px;
+}
+
+#start-sort-arrow, #state-sort-arrow {
+	font-size: 16px;
+	margin-left: 4px;
+	color: #555;
+}
+
+/* 애니메이션 효과 */
+.spinner {
+	border: 8px solid rgba(255, 255, 255, 0.3); /* 배경색 */
+	border-top: 8px solid #A7C8FF; /* 파스텔톤 색상 */
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 1s linear infinite; /* 빠른 애니메이션 */
+}
+
+/* 빙글빙글 도는 애니메이션 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* 페이지 컨텐츠가 로딩되었을 때 표시 */
+#content {
+	display: block;
+}
+
+.sortable {
+	cursor: pointer;
+}
+@media (max-width: 768px) {
+  #calendar-wrapper {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+}
+.detail-wrapper {
+	padding: 30px; 
+    background-color: #f3faff; 
+    border-radius: 12px;
+}
+.back-button {
+    text-align: left;  
+    text-decoration: none;  
+    color: #333; 
+    display: inline-block; 
+    margin-top:20px;
+}
+.back-button:hover {
+	
+    color: white; 
+    color: #5c85d6;  
+    text-decoration: underline; 
+}

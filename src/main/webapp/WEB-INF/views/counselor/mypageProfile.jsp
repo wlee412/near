@@ -15,8 +15,10 @@
     <div class="counselor-container">
       <!-- 타이틀 -->
       <div class="mypage-title">
-        <h2>상담사 마이페이지</h2>
-      </div>
+			<a href="/counselor/mypage">
+				<h2>상담사 마이페이지</h2>
+				</a>
+			</div>
 
       <div class="mypage-body">
         <!-- 좌측 사이드바 -->
@@ -24,7 +26,6 @@
           <a href="/counselor/profile" class="sidebar-button active">프로필</a>
           <a href="/counselor/time" class="sidebar-button">상담 가능시간 설정</a>
           <a href="/counselor/reservation" class="sidebar-button">상담 예약현황</a>
-          <a href="/counselor/room" class="sidebar-button">상담 방 개설하기</a>
         </aside>
 
         <!-- 우측 콘텐츠 -->

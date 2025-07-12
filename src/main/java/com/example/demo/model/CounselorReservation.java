@@ -15,7 +15,7 @@ public class CounselorReservation {
 	private String phone;
 	private String address;
 	
-	private String state; // 예약 상태
+	private String state; //예약 상태
 	private int reservationNo;
 	private int counselNo;
 	private int reason; 

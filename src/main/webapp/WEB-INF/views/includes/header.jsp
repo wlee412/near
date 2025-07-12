@@ -11,15 +11,19 @@
 		</div>
 
 		<nav class="center-menu">
-			<a href="/introduce">소개</a> <a href="/reservation">상담예약</a> <a href="/survey">심리검사</a> 
-				<a href="/hospital">병원찾기</a> <a href="/mentalcare">멘탈케어</a>
+			<a href="/introduce">소개</a> 
+			<a href="/reservation">상담예약</a> 
+			<a href="/room/door">상담하기</a>
+			<a href="/survey/selfSurveyList">심리검사</a> 
+			<a href="/hospitalMap">병원찾기</a> 
+		    <a href="/mental/mentalDashboard">멘탈케어</a>
 		</nav>
 
 		<div class="login">
 			<c:choose>
-				<c:when test="${not empty sessionScope.loginMember}">
+				<c:when test="${not empty sessionScope.loginClient}">
 					<a href="/client/logout">로그아웃</a>
-					<a href="/client/mypage">마이페이지</a>
+					<a href="/mypage">마이페이지</a>
 				</c:when>
 				<c:when test="${not empty sessionScope.loginCounselor}">
 					<a href="/client/logout">로그아웃</a>

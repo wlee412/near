@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,8 @@ public interface CounselorMapper {
     
     // 예약 가능 시간 저장 (하나씩 insert)
     void insertAvailableTime(@Param("counselorId") String counselorId,
-    		@Param("start") LocalDateTime start);
+    		@Param("start") Timestamp start);
+   
 
 //	List<Map<String, Object>> countReservationsByDate(@Param("counselorId") String counselorId);
 
@@ -57,5 +59,18 @@ public interface CounselorMapper {
         @Param("counselorId") String counselorId);
 
 	List<CounselorReservation> findReservationsByCounselor(String counselorId);
+
+	int updateReservationState(int reservationNo, String string);
+
+	int cancelReservationByCounselor(int reservationNo);
+
+	//페이징처리
+
+	int countReservationsByCounselor(String counselorId);
+
+//	void insertAvailableLocalDateTime(String counselorId, LocalDateTime start);
+
+	List<CounselorReservation> findReservationsByCounselorWithPaging(Map<String, Object> param);
+
 
 }
