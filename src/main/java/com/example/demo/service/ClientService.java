@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.mapper.ClientMapper;
 import com.example.demo.model.Client;
-import com.example.demo.model.CounselReservation;
+import com.example.demo.model.ClientReservation;
 
 @Service
 @Transactional
@@ -115,7 +115,7 @@ public class ClientService {
 		return false;
 	}
 
-	public List<CounselReservation> getReservationList(String clientId) {
+	public List<ClientReservation> getReservationList(String clientId) {
 		return clientMapper.getReservationList(clientId);
 	}
 	

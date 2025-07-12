@@ -3,23 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.example.demo.mapper.ClientReservationMapper">
+<mapper namespace="com.example.demo.mapper.ClientReservationMapper">
+	
+	<select id="getReservationList" parameterType="String" resultType="com.example.demo.model.ClientReservation">
+		  SELECT
+		    cr.reservation_no   AS reservationNo,
+		    cr.state            AS state,
+		    ca.start            AS startTime,
+		    co.name             AS name,
+		    co.phone            AS counselorPhone,
+		    s.symp              AS symptom
+		  FROM counsel_reservation cr
+		  JOIN counsel_available ca
+		    ON cr.counsel_no = ca.counsel_no
+		  JOIN counselor co
+		    ON ca.counselor_id = co.counselor_id
+		  JOIN counsel_reason crs
+		    ON cr.reservation_no = crs.reservation_no
+		  JOIN symptom s
+		    ON crs.symp_code = s.symp_code
+		  WHERE cr.client_id = #{clientId}
+		  ORDER BY ca.start DESC
+	</select>
 
-<!-- 	<select id="getReservationList" -->
-<!-- 		resultType="com.example.demo.dto.ReservationInfoDTO"> -->
-<!-- 		SELECT -->
-<!-- 		cr.reservation_no, -->
-<!-- 		co.name AS counselor_name, -->
-<!-- 		cr.client_id, -->
-<!-- 		ca.start AS start_time, -->
-<!-- 		cr.state, -->
-<!-- 		cr.reg_date -->
-<!-- 		FROM counsel_reservation cr -->
-<!-- 		JOIN counsel_available ca ON cr.counsel_no = ca.counsel_no -->
-<!-- 		JOIN counselor co ON ca.counselor_id = co.counselor_id -->
-<!-- 		ORDER BY cr.reg_date DESC -->
-<!-- 	</select> -->
 
 
 </mapper>
