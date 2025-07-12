@@ -1,9 +1,5 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,14 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Client;
-import com.example.demo.model.PharmFavorite;
-import com.example.demo.model.Survey;
-import com.example.demo.model.SurveyFeedbackJoin;
-import com.example.demo.service.ChatGptService;
 import com.example.demo.service.ClientService;
-import com.example.demo.service.PharmFavoriteService;
-import com.example.demo.service.SurveyFeedbackService;
-import com.example.demo.service.SurveyService;
 import com.example.demo.service.VerifyService;
 
 import jakarta.servlet.http.Cookie;
@@ -186,7 +175,7 @@ public class ClientController {
 		cookie.setMaxAge(0);
 		cookie.setPath("/");
 		response.addCookie(cookie);
-		return "redirect:/login";
+		return "redirect:client/login";
 	}
 
 	

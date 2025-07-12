@@ -43,7 +43,7 @@
 			<div class="menu-item"
 				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
 			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePharmFav'">즐겨찾기</div>
+				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageFavorite'">즐겨찾기</div>
 			<div class="menu-item"
 				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
 			<div class="menu-item"

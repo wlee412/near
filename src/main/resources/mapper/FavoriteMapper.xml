@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.mapper.PharmFavoriteMapper">
+<mapper namespace="com.example.demo.mapper.FavoriteMapper">
 
 	<select id="getPharmFavoriteList" parameterType="String" resultType="com.example.demo.model.PharmFavorite">
 		SELECT
@@ -11,18 +11,35 @@
 		pf.pharm_id AS pharmId,
 		p.pharm_name AS pharmName,
 		p.pharm_address AS pharmAddress,
-		p.pharm_tel AS pharmTel,
-		p.open_hour AS openHour
+		p.pharm_tel AS pharmTel
 		FROM pharm_favorite pf
 		JOIN pharm_info p
 		ON pf.pharm_id = p.pharm_id
 		WHERE pf.client_id = #{clientId}
+	</select>
+		<select id="getHospFavoriteList" parameterType="String" resultType="com.example.demo.model.HospFavorite">
+		SELECT
+		hf.client_id AS clientId,
+		hf.hosp_id AS hospId,
+		h.hosp_name AS hospName,
+		h.hosp_address AS hospAddress,
+		h.hosp_tel AS hospTel
+		FROM hosp_favorite hf
+		JOIN hosp_info h
+		ON hf.hosp_id = h.hosp_id
+		WHERE hf.client_id = #{clientId}
 	</select>
 	
 	<delete id="deletePharmFav" parameterType="map">
 		DELETE FROM pharm_favorite
 		WHERE client_id = #{clientId}
 		AND pharm_id = #{pharmId}
+	</delete>
+	
+	<delete id="deleteHospFav" parameterType="map">
+		DELETE FROM hosp_favorite
+		WHERE client_id = #{clientId}
+		AND hosp_id = #{hospId}
 	</delete>
 
 </mapper>

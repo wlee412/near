@@ -21,13 +21,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Client;
 import com.example.demo.model.ClientReservation;
+import com.example.demo.model.HospFavorite;
 import com.example.demo.model.PharmFavorite;
 import com.example.demo.model.Survey;
 import com.example.demo.model.SurveyFeedbackJoin;
 import com.example.demo.service.ChatGptService;
 import com.example.demo.service.ClientReservationService;
 import com.example.demo.service.ClientService;
-import com.example.demo.service.PharmFavoriteService;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.service.SurveyFeedbackService;
 import com.example.demo.service.SurveyService;
 import com.example.demo.service.VerifyService;
@@ -52,7 +53,7 @@ public class MypageController {
 	private SurveyFeedbackService surveyFeedbackService;
 	
 	@Autowired
-	private PharmFavoriteService pharmFavoriteService;
+	private FavoriteService FavoriteService;
 	
 	@Autowired
 	private VerifyService verifiedService;
@@ -129,7 +130,7 @@ public class MypageController {
 		}
 		
 		// 약국 즐겨찾기
-		@GetMapping("/mypagePharmFav")
+		@GetMapping("/mypageFavorite")
 		public String mypagePharmFav(HttpSession session, Model model) {
 			Client client = (Client) session.getAttribute("loginClient");
 			
@@ -138,10 +139,13 @@ public class MypageController {
 			}
 			
 			String clientId = client.getClientId();
-			List<PharmFavorite> favoriteList = pharmFavoriteService.getPharmFavoriteList(clientId);
+			List<PharmFavorite> pharmList = FavoriteService.getPharmFavoriteList(clientId);
+			List<HospFavorite> hospList = FavoriteService.getHospFavoriteList(clientId);
+			System.out.println("hospList:" + hospList);
 			model.addAttribute("client", client);
-			model.addAttribute("favList", favoriteList);
-			return "mypage/mypagePharmFav";
+			model.addAttribute("pharmList", pharmList);
+			model.addAttribute("hospList", hospList);
+			return "mypage/mypageFavorite";
 		}
 		
 		@PostMapping("/pharmDelete")
@@ -150,8 +154,16 @@ public class MypageController {
 	                           HttpSession session) {
 	        String clientId = body.get("clientId");
 	        String pharmId  = body.get("pharmId");
-	        return pharmFavoriteService.deletePharmFav(clientId, pharmId);
+	        return FavoriteService.deletePharmFav(clientId, pharmId);
 	    }
+		@PostMapping("/hospDelete")
+		@ResponseBody
+		public int hospDelete(@RequestBody Map<String, String> body,
+				HttpSession session) {
+			String clientId = body.get("clientId");
+			String hospId  = body.get("hospId");
+			return FavoriteService.deleteHospFav(clientId, hospId);
+		}
 
 		
 		@GetMapping("/update")

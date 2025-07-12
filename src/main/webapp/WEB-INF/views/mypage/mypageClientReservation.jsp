@@ -58,7 +58,7 @@
 			<div class="menu-item"
 				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
 			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePharmFav'">즐겨찾기</div>
+				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageFavorite'">즐겨찾기</div>
 			<div class="menu-item"
 				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
 			<div class="menu-item"
@@ -71,8 +71,6 @@
 		</div>
 
 		<div class="mypage-content">
-			<h2>예약 확인</h2>
-			<div class="mypage-divider" style="margin: 20px 0;"></div>
 
 			<c:if test="${empty reservationList}">
 				<p>예약 내역이 없습니다.</p>
