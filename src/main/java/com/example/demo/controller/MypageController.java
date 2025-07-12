@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Client;
-import com.example.demo.model.CounselReservation;
+import com.example.demo.model.ClientReservation;
 import com.example.demo.model.PharmFavorite;
 import com.example.demo.model.Survey;
 import com.example.demo.model.SurveyFeedbackJoin;
@@ -233,7 +233,7 @@ public class MypageController {
 		    model.addAttribute("client", client);
 
 		    return "mypage/mypageUpdate";
-		}
+		} 
 		
 		@GetMapping("/mypageClientReservation")
 		public String mypageClientReservation(HttpSession session, Model model) {
@@ -241,11 +241,11 @@ public class MypageController {
 		    if (client == null) {
 		        return "redirect:/login"; 
 		    } 
-		    List<CounselReservation> reservationList = clientService.getReservationList(client.getClientId());
+		    List<ClientReservation> reservationList = clientService.getReservationList(client.getClientId());
+		    System.out.println("reservationList: " + reservationList);
 
 		    model.addAttribute("client", client);
 		    model.addAttribute("reservationList", reservationList);
-		    
 		    return "mypage/mypageClientReservation";
 		}
 

@@ -2,10 +2,12 @@ package com.example.demo.mapper;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import com.example.demo.model.Client;
-import com.example.demo.model.CounselReservation;
+import com.example.demo.model.ClientReservation;
 
 @Mapper
 public interface ClientMapper {
@@ -59,8 +61,8 @@ public interface ClientMapper {
 
 	public Boolean checkPhoneExists(String phone);
 
-	public List<CounselReservation> getReservationList(String clientId);
-
+	public List<ClientReservation> getReservationList(String clientId);
+ 
 	
 
 
