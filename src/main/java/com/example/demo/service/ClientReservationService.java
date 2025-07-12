@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,12 @@ public class ClientReservationService {
 	@Autowired
 	ClientReservationMapper clientReservationMapper;
 	
-	public ClientReservation getReservationList() {
-		return  clientReservationMapper.getReservationList();
+	public List<ClientReservation> getReservationList(String clientId) {
+		return  clientReservationMapper.getReservationList(clientId);
+	}
+
+	public boolean cancelReservation(String reservationNo) {
+		return clientReservationMapper.cancelReservation(reservationNo) > 0;
 	}
 
 }

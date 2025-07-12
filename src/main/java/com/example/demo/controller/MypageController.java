@@ -25,6 +25,7 @@ import com.example.demo.model.PharmFavorite;
 import com.example.demo.model.Survey;
 import com.example.demo.model.SurveyFeedbackJoin;
 import com.example.demo.service.ChatGptService;
+import com.example.demo.service.ClientReservationService;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.PharmFavoriteService;
 import com.example.demo.service.SurveyFeedbackService;
@@ -55,6 +56,9 @@ public class MypageController {
 	
 	@Autowired
 	private VerifyService verifiedService;
+	
+	@Autowired
+	private ClientReservationService clientReservationService;
 
 	
 	@GetMapping({"/mypage", "/"})
@@ -241,12 +245,26 @@ public class MypageController {
 		    if (client == null) {
 		        return "redirect:/login"; 
 		    } 
-		    List<ClientReservation> reservationList = clientService.getReservationList(client.getClientId());
-		    System.out.println("reservationList: " + reservationList);
+		    List<ClientReservation> reservationList = clientReservationService.getReservationList(client.getClientId());
 
 		    model.addAttribute("client", client);
 		    model.addAttribute("reservationList", reservationList);
 		    return "mypage/mypageClientReservation";
+		}
+		
+		@PostMapping("/mypageCancelReservation")
+		public String mypageCancelReservation(HttpSession session,
+											  @RequestParam("reservationNo") String reservationNo,
+											  RedirectAttributes redirectAttributes) {
+			Client client = (Client)session.getAttribute("loginClient");
+			if (client == null) {
+				return "redirect:/client/login"; 
+			}
+			
+			boolean result = clientReservationService.cancelReservation(reservationNo);
+			redirectAttributes.addFlashAttribute("msg", result ? "예약이 취소되었습니다." : "취소에 실패했습니다.");
+			
+			return "redirect:/mypage/mypageClientReservation";
 		}
 
 		// 마이페이지 비밀번호 변경 화면

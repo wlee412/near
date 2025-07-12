@@ -12,23 +12,26 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ProfileCompletionInterceptor())
-                .addPathPatterns("/mypage/mypageUpdage",
-                		         "/mypage/mypageDelete",
-                		         "/mypage/mypagePharmFav",
-                		         "/mypageProfile",
-                		         "/mypage/mypageReport",
-                		         "/mypage/mypageReservation",
-                		         "/survey/**", 
-                		         "/reservation/**") // 차단설정
-                .excludePathPatterns( 
-                		"/mypage/mypageUpdate", // 예외로 등록
-                        "/mypage/update",       // 업데이트 요청도 예외로 등록
-                        "/static/**", 
-                        "/css/**", 
-                        "/js/**", 
-                        "/images/**"); // 예외설정
-    }
+	 @Override
+	    public void addInterceptors(InterceptorRegistry registry) {
+	        registry.addInterceptor(new ProfileCompletionInterceptor())
+	                .addPathPatterns(
+	                		         "/mypage/mypageDelete",
+	                		         "/mypage/mypagePharmFav",
+	                		         "/mypageProfile",
+	                		         "/mypage/mypageReport",
+	                		         "/mypage/mypageReservation",
+	                		         "/survey/**", 
+	                		         "/reservation/**"
+	                		         ) // 차단설정
+	                .excludePathPatterns( 
+	                		
+	                		"/mypage/mypageUpdate", 
+	                        "/mypage/update", 
+	                        "mypage/mypageCancelReservation",
+	                        "/static/**", 
+	                        "/css/**", 
+	                        "/js/**", 
+	                        "/images/**"); // 예외설정
+	    }
 }

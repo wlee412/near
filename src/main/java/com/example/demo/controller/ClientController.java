@@ -142,7 +142,7 @@ public class ClientController {
 
 	@PostMapping("/login")
 	public String login(@ModelAttribute Client login,
-				        @RequestParam(name = "reclientMe", required = false) String reclientMe, 
+				        @RequestParam(name = "rememberMe", required = false) String rememberMe, 
 				        Model model, 
 				        HttpSession session,
 				        HttpServletResponse response) {
@@ -151,13 +151,9 @@ public class ClientController {
 		Client client = clientService.login(login);
 		System.out.println("DB에서 찾은 Client: " + client);
 		if (client != null) {
-//			if ("N".equals(client.getVerified())) {
-//	            model.addAttribute("error", "휴대폰 인증이 완료되지 않았습니다.");
-//	            return "client/login";
-//	        }
 			session.setAttribute("loginClient", client);
 			session.setAttribute("id", client.getClientId());
-			if (reclientMe != null) {
+			if (rememberMe != null) {
 				Cookie cookie = new Cookie("reclientId", client.getClientId());
 				cookie.setMaxAge(60 * 60 * 24 * 3);
 				cookie.setPath("/");
@@ -183,7 +179,6 @@ public class ClientController {
 		return "client/find";
 	}
 
-	// 추가함 25.06.20 (영교님꺼)
 	@GetMapping("/logout")
 	public String logout(HttpSession session, HttpServletResponse response) {
 		session.invalidate();
