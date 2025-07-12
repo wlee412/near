@@ -2,7 +2,6 @@ package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -35,10 +34,13 @@ public class SecurityConfig {
                 .requestMatchers("/client/update", "/", "/client/login", "/css/**", "/js/**", "/images/**", "/icons/**").permitAll()
                 .anyRequest().permitAll()
             )
-            .formLogin(form -> form.disable())
+            .formLogin(form -> form
+            	    .loginPage("/login")      
+            	    .permitAll()
+             )
             .logout(logout -> logout
                 .logoutUrl("/client/logout")
-                .logoutSuccessUrl("/client/login")
+                .logoutSuccessUrl("/client/login?logout")
                 .permitAll()
             )
             
