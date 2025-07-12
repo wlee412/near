@@ -61,7 +61,6 @@ public interface ClientMapper {
 
 	public Boolean checkPhoneExists(String phone);
 
-	public List<ClientReservation> getReservationList(String clientId);
  
 	
 

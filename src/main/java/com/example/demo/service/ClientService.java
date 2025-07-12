@@ -115,9 +115,6 @@ public class ClientService {
 		return false;
 	}
 
-	public List<ClientReservation> getReservationList(String clientId) {
-		return clientMapper.getReservationList(clientId);
-	}
 	
 
 
