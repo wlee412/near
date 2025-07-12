@@ -5,71 +5,35 @@
 <head>
 <meta charset="UTF-8" />
 <title>즐겨찾는 목록</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypagePharmFav.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageFavorite.css" />
 </head>
 
 <style>
-.fav-tabs {
-	margin: 20px;
-}
 
-.fav-tab {
-	padding: 8px 16px;
-	border: none;
-	background: #f0f0f0;
-	cursor: pointer;
-	font-weight: bold;
-	margin-right: 4px;
-}
-
-.fav-tab.active {
-	background: #fff;
-	border-bottom: 2px solid #007bff;
-	color: #007bff;
-}
-
-.fav-section {
-	display: none;
-}
-
-.fav-section.active {
-	display: block;
-}
 </style>
 <body>
+	<div class="wrapper">
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
-
-	<div class="mypage-wrapper">
-		<div class="mypage-sidebar">
-			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/"
-					style="text-decoration: none; color: inherit;">마이페이지</a>
-			</h1>
-			<div class="mypage-divider"></div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageClientReservation'">예약확인</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageFavorite'">즐겨찾기</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageUpdate'">정보수정</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePassword'">비밀번호
-				변경</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageDelete'">회원탈퇴</div>
-		</div>
-
+		<div class="client-container">
+				<div class="mypage-title">
+			<a href="${pageContext.request.contextPath}/mypage/"><h2>마이페이지</h2></a>
+	    </div>
+	    <div class="mypage-body">
+		<aside class="mypage-sidebar">
+			<a href="${pageContext.request.contextPath}/mypage/mypageClientReservation" class="sidebar-button">예약확인</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageReport" class="sidebar-button">검사기록</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageFavorite" class="sidebar-button">즐겨찾기</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageProfile" class="sidebar-button">프로필</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageUpdate" class="sidebar-button">정보수정</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
+		</aside>
+		<section class="main-section" id="contentArea">
+		<h3>즐겨찾기</h3>
+			<div class="divider"></div>
 		<div class="report-content">
-			<h2>즐겨찾기</h2>
 			<div class="fav-tabs">
 				<button id="tab-pharm" class="fav-tab active">약국 즐겨찾기</button>
 				<button id="tab-hosp" class="fav-tab">병원 즐겨찾기</button>
@@ -141,10 +105,11 @@
 						</c:if>
 					</tbody>
 				</table>
-				<div id="hospPagination" class="pagination"
-					style="text-align: center; margin-top: 20px;"></div>
+				<div id="hospPagination" class="pagination" style="text-align: center; margin-top: 20px;"></div>
 			</div>
-
+		</div>
+		</section>
+		</div>
 		</div>
 	</div>
 

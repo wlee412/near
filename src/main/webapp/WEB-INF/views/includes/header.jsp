@@ -1,5 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 
 <!-- 공통 헤더 -->
 <header>
@@ -9,15 +11,19 @@
 		</div>
 
 		<nav class="center-menu">
-			<a href="/introduce">소개</a> <a href="/reservation">상담예약</a> <a
-				href="/chat">상담하기</a> <a href="/survey/list">심리검사</a> <a href="/hospital">병원찾기</a>
+			<a href="/introduce">소개</a> 
+			<a href="/reservation">상담예약</a> 
+			<a href="/room/door">상담하기</a>
+			<a href="/survey/list">심리검사</a> 
+			<a href="/hospitalMap">병원찾기</a> 
+		    <a href="/mental/mentalDashboard">멘탈케어</a>
 		</nav>
 
 		<div class="login">
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginClient}">
 					<a href="/client/logout">로그아웃</a>
-					<a href="/mypage/">마이페이지</a>
+					<a href="/mypage/mypage">마이페이지</a>
 				</c:when>
 				<c:when test="${not empty sessionScope.loginCounselor}">
 					<a href="/client/logout">로그아웃</a>
