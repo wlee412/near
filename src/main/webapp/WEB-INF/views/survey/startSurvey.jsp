@@ -5,10 +5,13 @@
 <head>
   <meta charset="UTF-8">
   <title>${survey.surveyName} 설문</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/startSurvey.css">
 </head>
 <body>
-  <div class="survey-wrapper">
+<%@ include file="../includes/header.jsp" %>
+
+  <div class="wrapper">
     <h2>${survey.surveyName}</h2>
     <p>${survey.desc}</p>
 
@@ -32,6 +35,8 @@
         <button type="submit">제출하기</button>
       </div>
     </form>
-  </div>
+    </div>
+    <%@ include file="../includes/footer.jsp" %>
+  
 </body>
 </html>

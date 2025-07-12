@@ -1,104 +1,97 @@
-/* ===============================
-📌 마이페이지 전체 레이아웃
-=============================== */
-.mypage-wrapper {
+.mypage-sidebar {
+  width: 220px;
+  flex-shrink: 0;
   display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 1300px;
-  margin: 40px auto 0;
-  padding: 60px 40px;
-  box-sizing: border-box;
-  min-height: 1000px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ===============================
-📌 사이드바
-=============================== */
-.mypage-sidebar {
-  width: 200px;
-  flex-shrink: 0;
-  padding: 20px;
+.client-container {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 40px 20px;
+}
+
+.sidebar-button {
+  display: block;
+  padding: 12px 20px;
+  background-color: #fff;
   border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+.sidebar-button:hover {
+  color: #13688a;
+}
+.sidebar-button.active {
+  color: #5daec5;
+  font-weight: 500;
+  border-left: 2px solid #5daec5;
 }
 
 .mypage-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #111;
-  margin: 0;
-  padding-left: 4px;
+	text-decoration: none !important; 
+	width: 100%;
+	border-bottom: 0.5px solid #666;
+	margin-bottom: 30px;
+}
+.mypage-title a {
+    text-decoration: none !important; 
+    color: #333 !important;  
 }
 
-.mypage-divider {
-  height: 2px;
-  background-color: #ccc;
-  margin: 8px 0 30px;
+.mypage-title a:hover {
+    color: #333 !important; 
 }
 
-.menu-item {
-  margin-bottom: 15px;
-  padding: 12px 16px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.2s;
+.mypage-title a:active {
+    color: #333 !important;  
 }
 
-.menu-item:hover {
-  background-color: #e9ecef;
+.mypage-title h2 {
+	text-decoration: none !important; 
+	font-size: 24px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	color: #333;
 }
 
-.menu-item.active {
-  background-color: #e9ecef;
-  border-left: 4px solid red;
-  font-weight: bold;
-  padding-left: 12px;
-}
-
-/* ===============================
-📌 콘텐츠 박스
-=============================== */
-.mypage-content {
-  flex: 1;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+.mypage-body {
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  
+  gap: 24px;
+  align-items: flex-start;
 }
 
-/* ===============================
-📌 기본 인사 텍스트
-=============================== */
-.mypage-welcome-box {
+.main-section {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 800px;
+  min-height: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  word-break: keep-all;
+}
+
+.welcome-box {
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  justify-content: center;
 }
-
-.welcome-title {
+.welcome-box h2 {
   font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 24px;
+  margin-bottom: 60px;
 }
 
-.welcome-date, .welcome-dday {
-  font-size: 18px;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-/* ===============================
-📌 추천 설문 카드 & 슬라이더
-=============================== */
 .slider-wrapper-container {
   position: relative;
   max-width: 600px;
   margin: 0 auto;
 }
-
 .slider-wrapper {
   position: relative;
   max-width: 600px;
@@ -107,14 +100,12 @@
   display: flex;
   align-items: center;
 }
-
 .slider-track {
   display: flex;
   transition: transform 0.3s ease;
   width: 100%;
   margin-left: 15px;
 }
-
 .slider-card {
   flex: 0 0 100%;
   max-width: 100%;
@@ -124,8 +115,6 @@
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
-
-/* 슬라이드 버튼 */
 .slider-button {
   position: absolute;
   top: 50%;
@@ -139,38 +128,23 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
-
 .slider-button:hover {
   background-color: #eee;
 }
-
 .slider-button.prev {
   left: -5px;
 }
-
 .slider-button.next {
   right: -5px;
 }
 
-.survey-card h4 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-
-.survey-card a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #3498db;
-  text-decoration: none;
-  font-weight: bold;
-}
 .recommend-explanation-box {
-    background-color: #f9f9fc;
-    padding: 20px;
-    margin-top: 30px;
-    border-left: 5px solid #4c8bf5;
-    border-radius: 8px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #333;
+  background-color: #f9f9fc;
+  padding: 20px;
+  margin-top: 30px;
+  border-left: 5px solid #4c8bf5;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
 }

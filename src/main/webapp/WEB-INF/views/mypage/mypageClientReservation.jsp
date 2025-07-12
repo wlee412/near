@@ -8,76 +8,34 @@
 <title>예약 확인</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageClientReservation.css">
 </head>
-<style>
-
-.reservation-table {
-  width: 100%;
-  border-collapse: collapse;    /* 셀 간 경계를 겹치지 않도록 */
-  table-layout: fixed;          /* 컬럼 너비 균일 배분 */
-  font-size: 0.95rem;
-}
-
-.reservation-table th,
-.reservation-table td {
-  border: 1px solid #ddd;       /* 연한 회색 실선으로 경계 */
-  padding: 0.75em 0.5em;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.reservation-table th {
-  background-color: #f7f7f7;    /* 헤더 배경 약간 다른 색 */
-  font-weight: 600;
-}
-
-.reservation-table tr:nth-child(even) {
-  background-color: #fafafa;    /* 짝수 행에 은은한 배경색으로 가독성 향상 */
-}
-
-.reservation-table input[type="button"] {
-  padding: 0.3em 0.6em;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-</style>
 <body>
+	<div class="wrapper">
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
+		<div class="client-container">
+		<div class="mypage-title">
+			<a href="${pageContext.request.contextPath}/mypage/"><h2>마이페이지</h2></a>
+	    </div>
+		<div class="mypage-body">
+		<aside class="mypage-sidebar">
+			<a href="${pageContext.request.contextPath}/mypage/mypageClientReservation" class="sidebar-button">예약확인</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageReport" class="sidebar-button">검사기록</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageFavorite" class="sidebar-button">즐겨찾기</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageProfile" class="sidebar-button">프로필</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageUpdate" class="sidebar-button">정보수정</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
+		</aside>
 
-	<div class="mypage-wrapper">
-		<div class="mypage-sidebar">
-			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/"
-					style="text-decoration: none; color: inherit;">마이페이지</a>
-			</h1>
-			<div class="mypage-divider"></div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageClientReservation'">예약확인</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageFavorite'">즐겨찾기</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageUpdate'">정보수정</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePassword'">비밀번호
-				변경</div>
-			<div class="menu-item"
-				onclick="location.href='${pageContext.request.contextPath}/mypage/mypageDelete'">회원탈퇴</div>
-		</div>
-
-		<div class="mypage-content">
-
+		<section class="main-section" id="contentArea">
+		<h3>예약확인</h3>
+			<div class="divider"></div>
 			<c:if test="${empty reservationList}">
 				<p>예약 내역이 없습니다.</p>
 			</c:if>
-			<section class="main-section">
 				<div class="reservation-box">
-					<h3 class="section-title">📅 상담 예약 현황</h3>
 					<table class="reservation-table" id="reservation-table">
 						<thead>
 							<tr>
@@ -109,11 +67,11 @@
 						</tbody>
 					</table>
 				</div>
-			</section>
 			<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
+		</section>
 		</div>
 	</div>
-
+	</div>
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
 	<script>
 	document.addEventListener('DOMContentLoaded', function() {

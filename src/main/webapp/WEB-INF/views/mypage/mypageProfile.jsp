@@ -5,48 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>내 프로필</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageProfile.css">
 
 </head>
 <body>
 <!-- 헤더 영역 -->
-<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true"/>
 	<c:if test="${not empty message}">
 		<script>
 			alert("${message}");
 		</script>
 	</c:if>
 
-	<!-- ✅ 마이페이지 wrapper 안에 타이틀 포함 -->
-	<div class="mypage-wrapper">
+	<div class="wrapper">
+		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true"/>
+		<div class="client-container">
+			<div class="mypage-title">
+				<a href="${pageContext.request.contextPath}/mypage/"><h2>마이페이지</h2></a>
+	    	</div>
+	    <div class="mypage-body">
+		<aside class="mypage-sidebar">
+			<a href="${pageContext.request.contextPath}/mypage/mypageClientReservation" class="sidebar-button">예약확인</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageReport" class="sidebar-button">검사기록</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageFavorite" class="sidebar-button">즐겨찾기</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageProfile" class="sidebar-button">프로필</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageUpdate" class="sidebar-button">정보수정</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
+			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
+		</aside>
 
-		<!-- ✅사이드바 -->
-		<%
-		String uri = request.getRequestURI();
-		%>
-		<div class="mypage-sidebar">
-			<h1 class="mypage-title">
-				<a href="${pageContext.request.contextPath}/mypage/"
-					style="text-decoration: none; color: inherit;">마이페이지</a>
-			</h1>
-
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageClientReservation'">예약확인</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageReport'">검사기록</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageFavorite'">즐겨찾기</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageProfile'">프로필</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageUpdate'">정보수정</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypagePassword'">비밀번호 변경</div>
-			<div class="menu-item" onclick="location.href='${pageContext.request.contextPath}/mypage/mypageDelete'">회원탈퇴</div>
-		</div>
-
-		<!-- ✅ 콘텐츠 영역 -->
-		<div class="mypage-content">
-
-			<h2 class="title">내 프로필</h2>
+		<section class="main-section" id="contentArea">
+			<h3>정보수정</h3>
 			<div class="divider"></div>
-
 			<!-- 아이디 -->
 			<div class="form-group">
 				<label>아이디</label> <input type="text" value="${client.clientId}" readonly>
@@ -75,13 +66,10 @@
 				<label>생년월일</label> <input type="text" value="${client.birth}"
 					readonly>
 			</div>
-
+		</section>
 		</div>
-
+		</div>
 	</div>
-	<!-- 프로필 아이콘 드롭박스 -->
-	<script src="<c:url value='/js/proFile.js'/>"></script>
-<!-- 푸터 영역 -->
-<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 </body>
 </html>

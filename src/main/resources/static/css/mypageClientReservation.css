@@ -1,0 +1,230 @@
+/* ──────────────────────────────────────
+   사이드바
+────────────────────────────────────── */
+.mypage-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-button {
+  display: block;
+  padding: 12px 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+.sidebar-button:hover {
+  color: #13688a;
+}
+.sidebar-button.active {
+  color: #5daec5;
+  font-weight: 500;
+  border-left: 2px solid #5daec5;
+}
+
+/* ──────────────────────────────────────
+   페이지 제목
+────────────────────────────────────── */
+.client-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.mypage-title {
+  text-decoration: none !important;
+  width: 100%;
+  border-bottom: 0.5px solid #666;
+  margin-bottom: 30px;
+}
+.mypage-title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #333;
+}
+
+/* ──────────────────────────────────────
+   레이아웃 & 메인 섹션
+────────────────────────────────────── */
+.mypage-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.main-section {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 800px;
+  min-height: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  word-break: keep-all;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+/* ──────────────────────────────────────
+   환영 박스
+────────────────────────────────────── */
+.welcome-box {
+  text-align: center;
+  margin-top: 50px;
+  justify-content: center;
+}
+.welcome-box h2 {
+  font-size: 28px;
+  margin-bottom: 60px;
+}
+
+/* ──────────────────────────────────────
+   슬라이더 (추천 설문)
+────────────────────────────────────── */
+.slider-wrapper-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.slider-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+  width: 100%;
+  margin-left: 15px;
+}
+.slider-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.slider-button:hover {
+  background-color: #eee;
+}
+.slider-button.prev {
+  left: -5px;
+}
+.slider-button.next {
+  right: -5px;
+}
+
+/* ──────────────────────────────────────
+   추천 이유 박스
+────────────────────────────────────── */
+.recommend-explanation-box {
+  background-color: #f9f9fc;
+  padding: 20px;
+  margin-top: 30px;
+  border-left: 5px solid #4c8bf5;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ──────────────────────────────────────
+   예약 테이블
+────────────────────────────────────── */
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.95rem;
+}
+.reservation-table th,
+.reservation-table td {
+  border: 1px solid #ddd;
+  padding: 0.75em 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+.reservation-table th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+}
+.reservation-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ──────────────────────────────────────
+   예약 취소 버튼
+────────────────────────────────────── */
+.cancel-btn {
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.cancel-btn:hover {
+  background-color: #4a96a8;
+  transform: translateY(-2px);
+}
+.cancel-btn:active {
+  background-color: #3d7a85;
+  transform: translateY(0);
+}
+
+/* ──────────────────────────────────────
+   페이징 버튼
+────────────────────────────────────── */
+#pagination button {
+  background-color: #e4f1f5;
+  color: #2e6f7f;
+  border: none;
+  margin: 0 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+#pagination button:hover {
+  background-color: #b6dce7;
+  color: #1f4f5a;
+}
+#pagination button.active-page {
+  background-color: #2e6f7f;
+  color: white;
+}

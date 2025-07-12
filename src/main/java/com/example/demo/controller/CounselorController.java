@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import com.example.demo.model.Client;
 import com.example.demo.model.Counselor;
 import com.example.demo.service.CounselorService;
 
@@ -59,4 +60,39 @@ public class CounselorController {
         session.invalidate();
         return "redirect:/";
     }
+    
+   @GetMapping("/mypage")
+   public String mypageCounselor(HttpSession session) {
+	   Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+		if (counselor == null) {
+			return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
+		}
+       return "counselor/mypage";
+   }
+   
+   @GetMapping("/profile")
+   public String profile(HttpSession session) {
+	   Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+		if (counselor == null) {
+			return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
+		}
+       return "counselor/mypageProfile";
+   }
+   @GetMapping("/time")
+   public String time(HttpSession session) {
+	   Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+	   if (counselor == null) {
+		   return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
+	   }
+	   return "counselor/mypageTime";
+   }
+   
+   @GetMapping("/reservation")
+   public String reservation(HttpSession session) {
+	   Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+	   if (counselor == null) {
+		   return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
+	   }
+	   return "counselor/mypageReservation";
+   }
 }
