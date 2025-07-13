@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/client.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
@@ -79,7 +77,7 @@
 					<label for="phone">휴대폰 번호</label>
 					<div class="input-row">
 						<input type="tel" name="phone" id="phone" required placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
-						<button type="button" class="btn" id="sendCodeBtn">인증코드 전송</button>
+						<button type="button" class="btn-sendcode" id="sendCodeBtn">인증코드 전송</button>
 					</div>
 					<div id="phoneCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
 				</div>

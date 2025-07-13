@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/startSurvey.css">
 </head>
 <body class="start-survey">
-<%@ include file="../includes/header.jsp" %>
 
+	<%@ include file="../includes/header.jsp" %>
   <div class="wrapper">
     <h2>${survey.surveyName}</h2>
     <p>${survey.desc}</p>

@@ -11,8 +11,8 @@
 </head>
 
 <body>
-<%@ include file="../includes/header.jsp" %>
-  <div class="survey-list-wrapper">
+  <div class="wrapper">
+	<%@ include file="../includes/header.jsp" %>
     <h2>심리검사 목록</h2>
     <ul class="survey-list">
       <c:forEach var="survey" items="${surveyList}">
@@ -33,4 +33,5 @@
   </div>
 
 <%@ include file="../includes/footer.jsp" %>
-	</html>
+</body>
+</html>
