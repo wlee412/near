@@ -8,7 +8,7 @@
 
 </head>
 <%@ include file="../includes/header.jsp"%>
-<body>
+<body class="login-page">
 	<c:if test="${not empty message}">
 		<script>
 			alert("${message}");
@@ -21,7 +21,7 @@
 	</c:if>
 	
 
-	<div class="container">
+	<div class="wrapper">
 		<div class="login-box">
 			<div class="logo-global">
 				<div class="logo">

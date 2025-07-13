@@ -1,3 +1,4 @@
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 .container {
 	max-width: 1300px;
 	margin: 0 auto;
@@ -38,6 +39,8 @@
 	color: #222;
 }
 
+
+
 .login-box input[type="text"], .login-box input[type="password"] {
 	width: 100%;
 	box-sizing: border-box;
@@ -50,39 +53,67 @@
 	margin-bottom: 15px;
 }
 
-.login-box input[type="submit"] {
-	width: 100%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px 0;
-	font-weight: bold;
-	font-size: 15px;
-	color: white;
-	border: none;
-	border-radius: 8px;
-	cursor: pointer;
-	margin-top: 30px;
-	text-align: center;
-	text-decoration: none;
-	transition: background-color 0.2s ease;
-	background-color: #5daec5;
+
+body.login-page .login-box input[type="submit"] {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  font-weight: normal;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #5daec5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(93,174,197,0.3);
+  margin-top: 30px;
 }
 
-.login-btn:hover {
-	background-color: red;
+/* Login button hover */
+body.login-page .login-box input[type="submit"]:hover {
+  background-color: #69b1c1; /* soft teal hover */
+  box-shadow: 0 4px 8px rgba(93,174,197,0.4);
 }
+
+
+.login-box input:focus {
+  outline: none;
+  border-color: #5daec5;     
+  box-shadow: 0 0 0 2px rgba(93,174,197,0.2);
+}
+
 
 .login-options {
+	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-weight: normal;
+	color: #555;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	font-size: 13px;
+	font-size: 12px;
+	line-height: 1.4; 
 	margin: 10px 0;
 }
 
+body.login-page .login-options label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+/* 링크 폰트 크기 맞추기 */
+body.login-page .login-options a {
+  font-size: 12px;
+  color: #555;
+}
+
+
 .find-link {
-	color: #333;
+	color: #555;
 	text-decoration: none;
 }
 
@@ -90,51 +121,43 @@
 	text-decoration: underline;
 }
 
-.sns-title {
-	font-weight: bold;
-	text-align: center;
-	font-size: 15px;
-	margin-bottom: 12px;
-	color: #444;
+/* SNS login section */
+body.login-page .sns-title {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 12px;
+  color: #555;
 }
 
-.sns-buttons {
-	display: flex;
-	justify-content: center;
-	gap: 12px;
-	margin: 20px 0;
+body.login-page .sns-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
 }
 
-.sns-icon {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	overflow: hidden;
-	/* 	border: 1px solid #ccc; */
-	/* 	background-color: white; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
+body.login-page .sns-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sns-icon img {
-	width: 35px;
-	height: 35px;
+body.login-page .sns-icon img {
+  width: 35px;
+  height: 35px;
 }
 
-.sns-signup {
-	margin-top: 20px;
-	display: flex;
-	justify-content: center;
-}
-
-.sns-signup a {
-	padding: 10px 24px;
-	font-size: 14px;
-	border: 1px solid #aaa;
-	border-radius: 24px;
-	text-decoration: none;
-	color: #222;
+/* SNS icon hover animation */
+body.login-page .sns-icon:hover {
+  background-color: rgba(93,174,197,0.15);
+  box-shadow: 0 2px 6px rgba(93,174,197,0.2);
 }
 
 .bottom-links {
@@ -161,34 +184,39 @@
 	margin-bottom: 100px;
 }
 
-.signup-btn {
-	display: inline-block;
-	width: 100%;
-	padding: 10px 0;
-	font-weight: bold;
-	font-size: 15px;
-	color: #000;
-	background-color: #fff;
-	border: 1px solid #000;
-	border-radius: 8px;
-	text-align: center;
-	margin-top: 10px;
-	cursor: pointer;
-	text-decoration: none;
+body.login-page .signup-btn {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;	
+  display: inline-block;
+  width: 100%;
+  padding: 12px 0;
+  font-weight: normal;
+  font-size: 15px;
+  color: #444;
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.signup-btn:hover {
-	background-color: #fff;
-	color: #000;
-	text-decoration: none !important;
+body.login-page .signup-btn:hover {
+  background-color: #e0f0f2; /* soft pastel hover */
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
 
 .role-toggle {
 	float: right;
 	display: flex;
 	align-items: center;
 	gap: 5px;
-	font-size: 0.9em;
+	font-size: 12px;
+	
 }
 
 .toggle-switch {
@@ -238,3 +266,4 @@ input:checked+.slider:before {
 .bottom-links {
 	transition: all 0.3s ease-in-out;
 }
+
