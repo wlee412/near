@@ -1,79 +1,105 @@
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-      color: #000;
-    }
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 
-    .wrapper {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 20px;
-    }
+body.start-survey .wrapper{
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
 
-    h2 {
-      font-size: 28px;
-      color: #5daec5;
-      text-align: center;
-      margin-bottom: 8px;
-    }
+body {
+  background-color: #f2f9fa;  /* 페이지 전체 배경 */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-    .survey-wrapper > p {
-      text-align: center;
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 40px;
-    }
+.wrapper {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
 
-    .question-block {
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    }
+h2 {
+  font-size: 28px;
+  color: #5daec5;  /* 기존 포인트 컬러 유지 */
+  text-align: center;
+  margin-bottom: 8px;
+}
 
-    .question-block p {
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
+.wrapper > p {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 40px;
+}
 
-    .answer-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+/* ──────────────────────────────────────
+   질문 블록 디자인
+────────────────────────────────────── */
+.question-block {
+  background-color: #ffffff;       /* 순수 흰색 백그라운드 */
+  border: none;                    /* 테두리 제거 */
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);  /* 부드러운 그림자 */
+}
 
-    .answer-options label {
-      background: #eef6f9;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.question-block p {
+  margin-bottom: 16px;
+  font-weight: 200;
+  color: #2c3e50;
+}
 
-    .answer-options input[type="radio"] {
-      margin-right: 6px;
-    }
+/* ──────────────────────────────────────
+   답변 옵션 디자인
+────────────────────────────────────── */
+.answer-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-    .form-group {
-      text-align: center;
-      margin-top: 30px;
-    }
+.answer-options label {
+  display: flex;
+  align-items: center;
+  background-color: #edf6fb;  /* 연한 파스텔 블루 */
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: #2c3e50;
+}
 
-    .form-group button {
-      background-color: #5daec5;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.answer-options label:hover {
+  background-color: #d5eef7;  /* 호버 시 강조 */
+}
 
-    .form-group button:hover {
-      background-color: #4996aa;
-    }
+.answer-options input[type="radio"] {
+  accent-color: #5daec5;  /* 라디오버튼 색상을 포인트 컬러로 */
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+}
+
+/* ──────────────────────────────────────
+   제출 버튼 디자인
+────────────────────────────────────── */
+.form-group {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.form-group button {
+  background-color: #5daec5;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-group button:hover {
+  background-color: #478fa3;  /* 약간 어두운 톤으로 호버 */
+}

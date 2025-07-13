@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/startSurvey.css">
 </head>
-<body>
+<body class="start-survey">
 <%@ include file="../includes/header.jsp" %>
 
   <div class="wrapper">
