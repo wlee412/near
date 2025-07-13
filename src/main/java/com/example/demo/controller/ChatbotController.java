@@ -19,9 +19,8 @@ import com.example.demo.service.ChatbotService;
 
 import jakarta.servlet.http.HttpSession;
 
-
-@Controller
-@RequestMapping("/chatbot")
+@RestController
+@RequestMapping("/chat")
 public class ChatbotController {
 
     private final ChatbotService chatbotService;
@@ -31,28 +30,21 @@ public class ChatbotController {
         this.chatbotService = chatbotService;
     }
 
-    // Webhook 처리
-    @PostMapping("/webhook")
-    public ResponseEntity<?> webhook(@RequestBody Map<String, Object> request, HttpSession session) {
-        // Dialogflow에서 전달한 데이터 추출
-        String clientId = (String) request.get("clientId");  // 클라이언트 ID
-        
-        // client_id가 없을 경우 임시 client_id 생성
+    @PostMapping("/chatMessage")
+    public String handleChatMessage(@RequestBody String userMessage, HttpSession session) {
+        // 세션에서 client_id 추출
+        String clientId = (String) session.getAttribute("client_id");
+
+        // client_id가 없으면 대화 저장하지 않음
         if (clientId == null) {
-            clientId = "guest_" + System.currentTimeMillis();  // 예시: guest_123456789
+            return "대화 저장을 원하시면 로그인이 필요합니다.";
         }
 
-        String sender = (String) request.get("sender"); // 발신자 (user, bot)
-        String message = (String) request.get("message"); // 사용자 메시지
+        // 사용자 메시지와 챗봇 응답을 DB에 저장
+        chatbotService.saveMessage(clientId, "user", userMessage);  // 사용자 메시지 저장
+        String botReply = "챗봇의 응답: " + userMessage;  // 예시 챗봇 응답
+        chatbotService.saveMessage(clientId, "bot", botReply); // 챗봇 응답 저장
 
-        // DB에 메시지 저장
-        chatbotService.saveMessage(clientId, sender, message);
-
-        // Dialogflow에 응답
-        Map<String, Object> response = new HashMap<>();
-        response.put("fulfillmentText", "Message saved to DB.");
-
-        return ResponseEntity.ok(response);
+        return botReply;
     }
 }
-

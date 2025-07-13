@@ -120,7 +120,7 @@ function renderTimeButtons(date, selectedTimes) {
           selectedTimes.add(timeStr);  // 선택
         }
 
-        console.log("응답받은 데이터:", selectedTimes);
+        console.log("선택된 데이터:", selectedTimes);
       });
 
     // 버튼을 time-container에 추가
