@@ -6,8 +6,11 @@
   <title>검사 결과</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/clientResult.css">
 </head>
-<body>
-  <div class="result-wrapper">
+<body class="clientResult">
+ <div class="wrapper">
+ <%@ include file="../includes/header.jsp" %>
+ 
+  <div class="content-wrapper">
     <h2>${surveyName} 결과</h2>
 
     <div class="score-box">
@@ -22,5 +25,7 @@
       <a href="${pageContext.request.contextPath}/mypage/mypageReport">검사 기록 보기</a>
     </div>
   </div>
+  </div>
+  <%@ include file="../includes/footer.jsp" %>
 </body>
 </html>
