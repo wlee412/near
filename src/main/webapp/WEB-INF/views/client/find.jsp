@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
-<%@ include file="../includes/header.jsp" %>
 <body>
+<div class="wrapper">
+	<%@ include file="../includes/header.jsp" %>
 	<div class="containerbox">
 		<h2 class="title">아이디 / 비밀번호 찾기</h2>
 		<div class="divider"></div>
@@ -78,6 +79,7 @@
 			</div>
 			<p id="resetResult" class="result-text"></p>
 		</div>
+	</div>
 	</div>
 		<%@ include file="../includes/footer.jsp" %>
 	<script>

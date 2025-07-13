@@ -60,15 +60,18 @@ public class ClientController {
 	
 	@ResponseBody
 	@GetMapping("/check-phone")
-	public String checkPhone(@RequestParam("phone") String phone,
-							 @SessionAttribute("loginClient") Client me) {
-		
-	    if (phone.equals(me.getPhone())) {
+	public String checkPhone(
+	    @RequestParam String phone,
+	    HttpSession session) {
+
+	    Client me = (Client) session.getAttribute("loginClient");
+
+	    if (me != null && phone.equals(me.getPhone())) {
 	        return "ok";
 	    }
-	    
-		boolean exists = clientService.checkPhoneExists(phone);
-		return exists ? "duplicate" : "ok";
+
+	    boolean exists = clientService.checkPhoneExists(phone);
+	    return exists ? "duplicate" : "ok";
 	}
 
 	// 이메일 중복 확인

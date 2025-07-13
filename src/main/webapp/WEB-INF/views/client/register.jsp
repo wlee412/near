@@ -13,8 +13,8 @@
 
 </head>
 <body>
+	<div class="wrapper">
 	<%@ include file="../includes/header.jsp"%>
-	<div class="content-wrapper">
 
 		<!-- 가입 중 스피너 -->
 		<div id="registerOverlay"

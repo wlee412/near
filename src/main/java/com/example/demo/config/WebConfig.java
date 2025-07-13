@@ -24,8 +24,10 @@ public class WebConfig implements WebMvcConfigurer {
 	                		         "/survey/**", 
 	                		         "/reservation/**"
 	                		         ) // 차단설정
-	                .excludePathPatterns( 
-	                		
+	                .excludePathPatterns(
+	                		"/mental/**",
+	                		"/hospitalMap/**",
+	                		"/survey/**",
 	                		"/mypage/mypageUpdate", 
 	                        "/mypage/update", 
 	                        "mypage/mypageCancelReservation",
