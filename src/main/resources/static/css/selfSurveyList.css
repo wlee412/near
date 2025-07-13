@@ -12,6 +12,17 @@
 	margin: 0;
 }
 
+/* .survey-list h2 { */
+/*   display: block;         블록 요소로 만들어서 width가 먹히게 */
+/*   width: 40%;             .survey-item 과 동일한 너비 */
+/*   margin: 1% auto 1%;    상단 0, 좌우 auto(가로 중앙), 하단 20px */
+/*   font-family: 'Spoqa Han Sans Neo', sans-serif; */
+/*   font-size: 22px; */
+/*   color: #2c3e50; */
+/*   text-align: left; */
+/*   font-weight: normal; */
+/* } */
+
 .survey-item {
 	font-family: 'Spoqa Han Sans Neo', sans-serif;
 	font-weight: normal;
@@ -22,6 +33,8 @@
 	padding: 20px 24px;
 	margin-bottom: 20px;
 	box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+	margin: 1% auto;
+	width: 40%;
 }
 
 

@@ -13,7 +13,7 @@
 <body>
   <div class="wrapper">
 	<%@ include file="../includes/header.jsp" %>
-    <h2>심리검사 목록</h2>
+    
     <ul class="survey-list">
       <c:forEach var="survey" items="${surveyList}">
         <li class="survey-item">
