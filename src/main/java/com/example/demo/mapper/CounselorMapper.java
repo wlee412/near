@@ -25,10 +25,10 @@ public interface CounselorMapper {
     // 오늘 예약 수 조회
     int countTodayReservations(@Param("counselorId") String counselorId);
     
-    // 예약 가능 시간 저장 (하나씩 insert)
-    void insertAvailableTime(@Param("counselorId") String counselorId,
-    		@Param("start") Timestamp start);
-   
+//    // 예약 가능 시간 저장 (하나씩 insert)
+//    void insertAvailableTime(@Param("counselorId") String counselorId,
+//    		@Param("start") Timestamp start);
+//   
 
 //	List<Map<String, Object>> countReservationsByDate(@Param("counselorId") String counselorId);
 
@@ -72,5 +72,10 @@ public interface CounselorMapper {
 
 	List<CounselorReservation> findReservationsByCounselorWithPaging(Map<String, Object> param);
 
+
+	// 예약 가능 시간 저장 (하나씩 insert)
+
+	void insertCounselAvailable(@Param("counselorId") String counselorId, 
+            @Param("timestamp") Timestamp timestamp);
 
 }

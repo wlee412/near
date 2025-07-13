@@ -37,7 +37,7 @@
 						<h3 class="section-title">상담 전 상세정보 분석</h3>
 						
 						<div class = "detail-wrapper">
-						<!-- 예약 상세 정보 표시 -->
+						<!-- 예약 상세정보 표시 -->
 						<p>
 							<strong>상담일시:</strong>
 							<fmt:formatDate value="${reservation.start}"

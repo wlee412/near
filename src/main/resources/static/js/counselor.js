@@ -1,10 +1,12 @@
+let selectedTimes = new Set(); // 시간들을 저장할 Set
+let selectedCell = null;
+  
+  
 // ✅ FullCalendar: 예약 가능 시간 설정용
 function initCalendar() {
   const calendarEl = document.getElementById('calendar');
   if (!calendarEl) return;
 
-  let selectedTimes = new Set(); // 시간들을 저장할 Set
-  let selectedCell = null;
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
@@ -79,28 +81,6 @@ function initCalendar() {
   });
 
   calendar.render();
-
-  // ✅ 저장 버튼
-  $(document).off('click', '#save-available-times').on('click', '#save-available-times', function() {
-    if (!selectedDate) {
-      alert('날짜와 시간을 선택해주세요.');
-      return;
-    }
-
-    const times = Array.from(selectedTimes);  // selectedTimes에서 시간 배열로 변환
-
-    $.ajax({
-      url: '/counselor/save',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        selectedDate: selectedDate,
-        selectedTimes: times
-      }),
-      success: () => alert('예약 가능 시간이 저장되었습니다!'),
-      error: () => alert('오류가 발생했습니다.')
-    });
-  });
 }
 
 // ✅ 시간 버튼 렌더링 (선택된 시간만 표시)
@@ -139,12 +119,36 @@ function renderTimeButtons(date, selectedTimes) {
         } else {
           selectedTimes.add(timeStr);  // 선택
         }
+
+        console.log("응답받은 데이터:", selectedTimes);
       });
 
     // 버튼을 time-container에 추가
     timeContainer.append(button);
   }
 }
+
+// ✅ 저장 버튼 클릭 시 동작
+$(document).off('click', '#save-available-times').on('click', '#save-available-times', function() {
+  if (!selectedDate) {
+    alert('날짜와 시간을 선택해주세요.');
+    return;
+  }
+
+  const times = Array.from(selectedTimes);  // selectedTimes에서 시간 배열로 변환
+
+  $.ajax({
+    url: '/counselor/save',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      selectedDate: selectedDate,
+      selectedTimes: times
+    }),
+    success: () => alert('예약 가능 시간이 저장되었습니다!'),
+    error: () => alert('오류가 발생했습니다.')
+  });
+});
 
 // ✅ 페이지 로드 시 캘린더 초기화
 $(document).ready(function() {

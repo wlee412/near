@@ -2,46 +2,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>n:ear 챗봇</title>
-    <script>
-        function sendMessage() {
-            const msg = document.getElementById("msg").value;
-            const clientId = "guest123"; // 로그인시 아이디, 비회원이면 임시 ID
+   	<!-- Dialogflow 챗봇 UI -->
+<style>
+  df-messenger {
+    position: fixed !important;
+    bottom: 80px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
 
-            fetch("/chatbot/save", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    clientId: clientId,
-                    sender: "user",
-                    message: msg
-                })
-            }).then(() => {
-                loadChat();
-                document.getElementById("msg").value = "";
-            });
-        }
+    transform: scale(0.8); /* 챗봇창 전체를 70%로 축소함 */
+    transform-origin: bottom right; /* 우하단 기준으로 줄이기 */
 
-        function loadChat() {
-            const clientId = "guest123";
-            fetch("/chatbot/history/" + clientId)
-                .then(response => response.json())
-                .then(data => {
-                    const area = document.getElementById("chatArea");
-                    area.innerHTML = "";
-                    data.forEach(chat => {
-                        area.innerHTML += `<div><b>${chat.sender}</b>: ${chat.message}</div>`;
-                    });
-                });
-        }
+    --df-messenger-button-titlebar-color: #7bb8cc;
+    --df-messenger-chat-background-color: #ffffff;
+    --df-messenger-font-color: #333333;
+    --df-messenger-user-message: #f1f1f1;
+    --df-messenger-bot-message: #e3f2fd;
+    
+  }
+</style>
 
-        window.onload = loadChat;
-    </script>
-</head>
-<body>
-    <h2>n:ear 챗봇</h2>
-    <div id="chatArea" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:scroll;"></div>
-    <input type="text" id="msg" placeholder="메시지 입력" />
-    <button onclick="sendMessage()">전송</button>
+<df-messenger 
+    agent-id="$9f1618e2-0167-4e27-bb92-db0c60be0f6d" 
+    intent="WELCOME" 
+    chat-title="n:ear챗봇상담" 
+    language-code="ko"
+    chat-icon="/images/chatbot.png">
+</df-messenger>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+
+   
 </body>
 </html>

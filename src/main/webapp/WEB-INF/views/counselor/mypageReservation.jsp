@@ -37,7 +37,7 @@
 					<div class="reservation-box">
 						<h3 class="section-title"> 상담 예약 현황</h3>
 
-						<!-- 전체 선택 체크박스 -->
+						<!-- 전체선택 체크박스 -->
 						<table class="reservation-table">
 							<thead>
 								<tr>
@@ -137,7 +137,7 @@
 	  const currentSortColumn = urlParams.get("sortColumn") || "start";
 	  const currentSortOrder = urlParams.get("sortOrder") || "desc";
 
-	  // 🔄 정렬 버튼 클릭
+	  //  정렬 버튼 클릭
 	  $("[data-sort='start']").on("click", function () {
 	    const newOrder = currentSortColumn === "start" && currentSortOrder === "asc" ? "desc" : "asc";
 	    window.location.href = `/counselor/reservation?page=1&sortColumn=start&sortOrder=${newOrder}`;
@@ -148,13 +148,13 @@
 	    window.location.href = `/counselor/reservation?page=1&sortColumn=state&sortOrder=${newOrder}`;
 	  });
 
-	  // 🔘 전체 선택 체크박스
+	  //  전체 선택 체크박스
 	  $("#select-all").on("change", function () {
 	    const isChecked = $(this).prop("checked");
 	    $(".row-check").prop("checked", isChecked);
 	  });
 
-	  // 🗑️ 예약 취소 버튼
+	  //  예약 취소 버튼
 	  $(".cancelSelectedBtn").on("click", function () {
 	    const selectedReservations = [];
 	    $(".row-check:checked").each(function () {

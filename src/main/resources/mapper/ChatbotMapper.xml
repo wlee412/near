@@ -6,10 +6,10 @@
 <mapper namespace="com.example.demo.mapper.ChatbotMapper">
 
        <!-- 채팅 내용 저장 -->
-    <insert id="insertMessage" parameterType="com.example.demo.model.Chatbot">
-        INSERT INTO chatbot (client_id, sender, message, reg_date)
-        VALUES (#{clientId}, #{sender}, #{message}, #{regDate})
-    </insert>
+ <insert id="insertMessage" parameterType="com.example.demo.model.Chatbot">
+    INSERT INTO chatbot (client_id, sender, message, reg_date)
+    VALUES (#{clientId}, #{sender}, #{message}, #{regDate})
+</insert>
     
 </mapper>
 

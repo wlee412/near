@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.example.demo.config.WebCounselorConfig;
 import com.example.demo.model.CounselAvailable;
 import com.example.demo.model.CounselReservation;
 import com.example.demo.model.Counselor;
@@ -153,56 +154,65 @@ public class CounselorController {
 
 
 	// 예약 가능 시간 저장 (중복 제거 포함)
+//	@PostMapping("/save")
+//	@ResponseBody
+//	public String saveAvailableTimes(@RequestBody Map<String, Object> requestData, HttpSession session) {
+//
+//	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+//	    if (loginCounselor == null) {
+//	        return "unauthorized";
+//	    }
+//
+//	    String selectedDate = (String) requestData.get("selectedDate");
+//
+//	    // selectedTimes를 null 체크하고, null인 경우 빈 리스트로 초기화
+//	    List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
+//	    if (selectedTimes == null) {
+//	        selectedTimes = new ArrayList<>();
+//	    }
+//	    
+//	    System.out.println("날짜: " + selectedDate);                         // ✅ 로그 찍기
+//	    System.out.println("시간들: " + selectedTimes);
+//	    
+//
+//	    // selectedTimes가 List<String> 형태로 제대로 전달되지 않는 경우 처리
+//	    if (!(selectedTimes instanceof List)) {
+//	        return "error: invalid selectedTimes format";
+//	    }
+//
+//	    boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate, selectedTimes);
+//
+//	    return success ? "success" : "error";
+//	}
+
+
+	// 예약 가능 시간 저장 (중복 제거 포함)
 	@PostMapping("/save")
 	@ResponseBody
 	public String saveAvailableTimes(@RequestBody Map<String, Object> requestData, HttpSession session) {
-
 	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 	    if (loginCounselor == null) {
 	        return "unauthorized";
 	    }
 
+	    // selectedDate와 selectedTimes 추출
 	    String selectedDate = (String) requestData.get("selectedDate");
-
-	    // selectedTimes를 null 체크하고, null인 경우 빈 리스트로 초기화
 	    List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
+
+	    // selectedTimes가 null인 경우 빈 리스트로 초기화
 	    if (selectedTimes == null) {
 	        selectedTimes = new ArrayList<>();
 	    }
-	    
-	    System.out.println("날짜: " + selectedDate);                         // ✅ 로그 찍기
-	    System.out.println("시간들: " + selectedTimes);
-	    
 
-	    // selectedTimes가 List<String> 형태로 제대로 전달되지 않는 경우 처리
-	    if (!(selectedTimes instanceof List)) {
-	        return "error: invalid selectedTimes format";
-	    }
-
+	    // 상담사 ID, selectedDate, selectedTimes를 서비스 메서드에 전달
 	    boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate, selectedTimes);
 
+	    // 성공 여부에 따라 응답 반환
 	    return success ? "success" : "error";
 	}
 
 
-//	@PostMapping("/save")
-//	@ResponseBody
-//	public String saveAvailableTimes(@RequestParam Map<String, Object> requestData, HttpSession session) {
-//
-//		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-//		if (loginCounselor == null) {
-//			return "unauthorized";
-//		}
-//
-//		String selectedDate = (String) requestData.get("selectedDate");
-//		List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
-//
-//		boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate,
-//				selectedTimes);
-//
-//		return success ? "success" : "error";
-//	}
-
+	
 	@GetMapping("/existing")
 	@ResponseBody
 	public List<String> getExistingAvailableTimes(HttpSession session) {
@@ -217,7 +227,6 @@ public class CounselorController {
 				.toList();
 	}
 
-// 예약디테일
 	// 예약 상세 보기 페이지
 	
 	
@@ -346,4 +355,5 @@ public class CounselorController {
 
 		return "counselor/mypageReservation";
 	}
+	
 }

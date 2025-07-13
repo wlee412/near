@@ -44,18 +44,18 @@
 		= CURDATE()
 	</select>
 
-	<!-- 상담 가능 시간 등록 -->
-	<insert id="insertAvailableTime">
-		INSERT INTO counsel_available (counselor_id, start)
+	<!-- 예약 가능시간 설정 -->
+	<insert id="insertCounselAvailable">
+		INSERT INTO counselor_available (counselor_id, start)
 		VALUES (#{counselorId}, #{start})
 	</insert>
-
 
 	<!-- 예약 가능 시간 삭제 (선택 날짜 전체 삭제) -->
 	<delete id="deleteAvailableTimesByTimes">
 		DELETE FROM counsel_available
 		WHERE counselor_id = #{counselorId}
-		AND DATE(start) = #{selectedDate}
+		AND
+		DATE(start) = #{selectedDate}
 		AND DATE_FORMAT(start, '%H:%i') IN
 		<foreach collection="times" item="time" open="(" separator=","
 			close=")">

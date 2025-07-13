@@ -80,25 +80,25 @@ public class CounselorService {
 //		}
 //	}
 
-	 // 예약 가능 시간 저장
-    public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
-        try {
-            // 날짜와 시간을 합쳐서 LocalDateTime으로 변환
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            for (String time : selectedTimes) {
-                String full = selectedDate + " " + time;
-                LocalDateTime start = LocalDateTime.parse(full, formatter);
-                Timestamp timestampStart = Timestamp.valueOf(start);
-
-                // DB에 시간 삽입
-                counselorMapper.insertAvailableTime(counselorId, timestampStart);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+//	 // 예약 가능 시간 저장
+//    public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
+//        try {
+//            // 날짜와 시간을 합쳐서 LocalDateTime으로 변환
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//            for (String time : selectedTimes) {
+//                String full = selectedDate + " " + time;
+//                LocalDateTime start = LocalDateTime.parse(full, formatter);
+//                Timestamp timestampStart = Timestamp.valueOf(start);
+//
+//                // DB에 시간 삽입
+//                counselorMapper.insertAvailableTime(counselorId, timestampStart);
+//            }
+//            return true;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
 
 
 	public void deleteAvailableTimesByIds(List<Integer> counselNos) {
@@ -107,15 +107,6 @@ public class CounselorService {
 		}
 	}
 
-//	// 예약현황
-//	public List<Map<String, Object>> getReservationCountByDate(String counselorId) {
-//		return counselorMapper.countReservationsByDate(counselorId);
-//
-//	}
-
-//	public int getReservationCount(String counselorId) {
-//		return counselorMapper.getReservationCount(counselorId);
-//	}
 
 	// 예약 상세 조회
 	public CounselorReservation getReservationDetail(int reservationNo) {
@@ -145,17 +136,6 @@ public class CounselorService {
 		return counselorMapper.findReservationsByCounselor(counselorId);
 	}
 	
-//	public boolean cancelReservationByCounselor(int reservationNo) {
-//	    return counselorMapper.cancelReservationByCounselor(reservationNo) > 0;
-//	}
-
-	// 예약 취소 처리
-//    public boolean cancelReservationByCounselor(int reservationNo) {
-//        // 예약 번호로 상태를 변경
-//        int result = counselorMapper.cancelReservationByCounselor(reservationNo);
-//        return result > 0; 
-//    }
-    
 
 	public List<CounselorReservation> getPagedReservations(String counselorId, int page, int size, String sortColumn, String sortOrder) {
 	    int offset = (page - 1) * size;
@@ -196,6 +176,8 @@ public class CounselorService {
 	}
 
 
+	//페이징
+	
 	public List<CounselorReservation> getPagedReservations(Map<String, String> param) {
 	    String counselorId = param.get("counselorId");
 	    int page = Integer.parseInt(param.getOrDefault("page", "1"));
@@ -216,6 +198,36 @@ public class CounselorService {
 	    param.put("sortOrder", "DESC");     // 기본 정렬 방향
 
 	    return counselorMapper.findReservationsByCounselorWithPaging(param);
+	}
+	// 예약 가능 시간 저장 (중복 제거)
+	public boolean saveAvailableTimes(String counselorId, String selectedDate, List<String> selectedTimes) {
+	    for (String time : selectedTimes) {
+	        // 날짜와 시간 결합
+	        String formattedTime = selectedDate + " " + time;  // "yyyy-MM-dd HH" 형식으로 변환
+	        
+	        try {
+	            // 시간 형식에 문제가 있는 경우, :00:00을 추가하여 시간 문자열을 완전하게 만듬
+	            if (formattedTime.length() == 16) {  // "yyyy-MM-dd HH" 형식일 경우
+	                formattedTime += ":00:00";  // :00:00을 추가하여 "yyyy-MM-dd HH:mm:ss" 형식으로 변환
+	            }
+
+	            // 변환된 시간 로그 출력
+	            System.out.println("Formatted time: " + formattedTime);  // 디버깅 로그
+
+	            // Timestamp 변환
+	            Timestamp timestamp = Timestamp.valueOf(formattedTime);  // Timestamp 형식으로 변환
+
+	            // DB에 저장
+	            counselorMapper.insertCounselAvailable(counselorId, timestamp);  // 실제로 insert 수행
+
+	            System.out.println("Inserted into DB: " + counselorId + " at " + timestamp);  // 디버깅 로그
+	        } catch (Exception e) {
+	            // 예외 처리
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	    return true;
 	}
 
 }

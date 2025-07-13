@@ -28,7 +28,7 @@ public class ChatbotService {
         chatbotMessage.setClientId(clientId);
         chatbotMessage.setSender(sender);
         chatbotMessage.setMessage(message);
-        chatbotMessage.setRegDate(new Timestamp(System.currentTimeMillis()));  // 현재 시간 설정
+        chatbotMessage.setRegdate(new Timestamp(System.currentTimeMillis()));  // 현재 시간 설정
 
         // DB에 메시지 저장
         chatbotMapper.insertMessage(chatbotMessage);
