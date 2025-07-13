@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mentalDashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lottie 애니메이션 추가 -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <jsp:include page="/includes/header.jsp"/>   	    		<!-- 2개로 동작 -->   
@@ -17,25 +19,46 @@
 <div class="wrapper">
     <div class="dashboard-container">
         <h2></h2>
-        <div class="card-container">
+       <div class="card-container">
             <div class="card" onclick="openModal('young')">
-                <span>혼자가 아니에요</span>
+                <span>연령별 정신건강 통계</span>
+                <lottie-player
+                    src="${pageContext.request.contextPath}/lottie/chartWebble.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 180px; height: 180px;"
+                    loop autoplay>
+                </lottie-player>
             </div>
             <div class="card" onclick="openCardModal()">
                 <span>오늘의 행운카드</span>
+                <lottie-player
+                    src="${pageContext.request.contextPath}/lottie/wheelOfFate.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 180px; height: 180px;"
+                    loop autoplay>
+                </lottie-player>
             </div>
             <div class="card" onclick="openYoutubeModal()">
-                <span>기분전환 할까요</span>
+                <span>맞춤 추천 영상</span>
+                <lottie-player
+                    src="${pageContext.request.contextPath}/lottie/video.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 180px; height: 180px;"
+                    loop autoplay>
+                </lottie-player>
             </div>
             <div class="card" onclick="openGameModal()">
-    			<span>미니 게임</span>
-           <lottie-player
-  				src="https://assets2.lottiefiles.com/packages/lf20_x62chJ.json"
-  				background="transparent" speed="1"
-    			style="width: 280px; height: 260px;"
-    			loop autoplay>
-				</lottie-player>
-			</div>
+                <span>미니 게임</span>
+                <lottie-player
+                    src="https://assets2.lottiefiles.com/packages/lf20_x62chJ.json"
+                    background="transparent" speed="1"
+                    style="width: 280px; height: 260px;"
+                    loop autoplay>
+                </lottie-player>
+            </div>
         </div>
     </div>
 </div>
