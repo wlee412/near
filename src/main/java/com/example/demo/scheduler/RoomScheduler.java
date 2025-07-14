@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.service.RoomService;
 
@@ -31,6 +32,12 @@ public class RoomScheduler {
 					);
 			tpl.convertAndSend("/topic/room/expired/" + room.getRoomId(), payload);
 		}
+	}
+	
+	@Scheduled(cron = "0 40 * * * *")
+	public void sendRoomToken() {
+		List<Reservation> rsv = roomService.getBooked();
+		// 이메일 전송
 	}
 
 }

@@ -10,6 +10,9 @@ import org.apache.ibatis.type.Alias;
 import lombok.Getter;
 import lombok.Setter;
 
+// 예약과 내담자, 상담사 모든 정보
+// v_reservation_summary 뷰에 대한 DTO
+
 @Getter
 @Setter
 @Alias("reservation")
@@ -22,15 +25,17 @@ public class Reservation {
 	private String counselorId;
 	private String counselorName;
 	private String counselorPhone;
-	private String sympCsv;
+	private String sympCsv;		// , 구분으로 증상 열거
 	private LocalDateTime start;
 	private String state;
 	private Timestamp reg_date;
 	
+	// Date형 - fmt 포맷팅 가능
 	public Date getStartDate() {
 		return Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
+	// 배열형 - 증상 체크박스
 	public String[] getSympArray() {
 		return sympCsv != null ? sympCsv.split(",") : new String[0];
 	}

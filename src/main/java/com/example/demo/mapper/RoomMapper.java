@@ -19,6 +19,8 @@ public interface RoomMapper {
 
 	public Reservation getReservationInfo(int reservationNo);
 
+	public List<Reservation> getBooked();
+
 	public List<Integer> janusNums();
 
 	public List<Room> getExpiredRooms();

@@ -35,6 +35,10 @@ public class RoomService {
 		return roomMapper.getReservationInfo(reservationNo);
 	}
 	
+	public List<Reservation> getBooked() {
+		return roomMapper.getBooked();
+	}
+	
 	public void createRoom(int rsv, String counselor, String client, LocalDateTime start) {
 		List<Integer> usedJanusNums = roomMapper.janusNums();
 		Set<Integer> usedSet = new HashSet<>(usedJanusNums);
@@ -60,5 +64,4 @@ public class RoomService {
 		roomMapper.expireRooms();	// 방 상태: 진행 -> 완료 
 		return ExpiredRooms;
 	}
-
 }

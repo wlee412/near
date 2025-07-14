@@ -23,6 +23,14 @@
 		reservation_no=#{reservationNo}
 	</select>
 	
+	<select id="getBooked" resultType="reservation">
+		SELECT *
+		FROM room
+		WHERE state = '예약'
+		  AND start BETWEEN DATE_ADD(NOW(), INTERVAL 78 MINUTE)
+		                AND DATE_ADD(NOW(), INTERVAL 82 MINUTE)
+	</select>
+	
 	<select id="janusNums" resultType="int">
     	SELECT janus_num FROM room
 	</select>
