@@ -17,7 +17,7 @@ function loadChartData() {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: '정신건강 이슈',
+                        label: '정신문제 호소',
                         data: values,
                         backgroundColor: 'rgba(75, 192, 192, 0.4)',
                         borderColor: 'rgba(75, 192, 192, 1)',

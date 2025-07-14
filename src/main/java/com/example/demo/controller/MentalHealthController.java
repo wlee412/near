@@ -28,7 +28,7 @@ public class MentalHealthController {
         System.out.println("data: " + data);
     }
 
-    // 2. 청소년 + 대학생 + 청소년 아님 차트용 요약 데이터
+    // 2. 청소년 + 대학생 요약 데이터
     @GetMapping("/chart-data/total")
     public List<MentalHealthItem> getTotalChartData() {
         List<MentalHealthItem> list = new ArrayList<>();
@@ -47,12 +47,14 @@ public class MentalHealthController {
             else if (level.contains("중학")) ageGroup = "중학생";
             else if (level.contains("고등")) ageGroup = "고등학생";
             else if (level.contains("대학")) ageGroup = "대학생";
-            else if (level.contains("청소년아님")) ageGroup = "청소년아님";
+            
 
-            grouped.put(ageGroup, grouped.getOrDefault(ageGroup, 0.0) + value);
+            if (!ageGroup.equals("기타")) {
+                grouped.put(ageGroup, grouped.getOrDefault(ageGroup, 0.0) + value);
+            }
         }
 
-        List<String> order = Arrays.asList("미취학", "초등학생", "중학생", "고등학생", "대학생", "청소년아님");
+        List<String> order = Arrays.asList("미취학", "초등학생", "중학생", "고등학생", "대학생"); // 청소년아님 제거
 
         return order.stream()
                 .filter(grouped::containsKey)
@@ -81,8 +83,7 @@ public class MentalHealthController {
     @GetMapping("/mental/lucky")
     public String luckyCardPage(Model model) {
         model.addAttribute("cardText", "오늘도 잘 하고 있어요! 당신은 충분히 소중한 사람입니다 🌟");
-        return "mental/luckyCard"; // JSP 경로에 맞게
+        return "mental/luckyCard"; 
     }
-
 
 }

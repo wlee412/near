@@ -67,8 +67,39 @@
 <div id="chartModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h3>2010-2023 연령대별 정신건강 이슈</h3>
-        <canvas id="mentalChart" width="800" height="400"></canvas>
+
+        <!-- 버튼 영역 -->
+        <div class="chart-tab-buttons">
+            <button onclick="showChart('youth')">청소년/대학생</button>
+            <button onclick="showChart('adult')">성인</button>
+        </div>
+
+        <!-- 기존 차트 -->
+        <div id="youthChartSection">
+            <h3>2010-2023 청소년 정신문제 호소</h3>
+            <canvas id="mentalChart" width="800" height="400"></canvas>
+        </div>
+
+        <!-- 성인용 차트 -->
+        <div id="adultChartSection" style="display: none;">
+            <h3>2023 성인 정신문제 호소</h3>
+
+            <!-- 🔽 추가된 병명 필터 -->
+            <div style="margin-bottom: 10px;">
+                <label for="diseaseSelect">질병 선택:</label>
+                <select id="diseaseSelect" onchange="loadAdultChartDataByDisease()">
+                    <option value="전체">전체</option>
+                    <option value="조현병">조현병</option>
+                    <option value="조울증">조울증</option>
+                    <option value="우울증">우울증</option>
+                    <option value="불안장애">불안장애</option>
+                    <option value="불면증">불면증</option>
+                    <option value="ADHD">ADHD</option>
+                </select>
+            </div>
+
+            <canvas id="mentalAdult" width="800" height="400"></canvas>
+        </div>
     </div>
 </div>
 
@@ -104,6 +135,7 @@
 
 <!-- 차트 JS -->
 <script src="/js/chart.js"></script>
+<script src="/js/mentalAdult.js"></script> <!-- 🔽 추가 -->
 
 <!-- 유튜브 기능 JS 분리 -->
 <script src="${pageContext.request.contextPath}/js/youtube.js"></script>
@@ -112,6 +144,7 @@
 <script>
     function openModal(type) {
         document.getElementById("chartModal").style.display = "block";
+        showChart('youth'); // 🔽 열릴 때 기본 차트는 청소년
         loadChartData(type);
     }
 
@@ -125,6 +158,18 @@
 
     function closeCardModal() {
         document.getElementById("cardModal").style.display = "none";
+    }
+
+    // 추가: 청소년/성인 차트 토글
+    function showChart(type) {
+        if (type === 'youth') {
+            document.getElementById('youthChartSection').style.display = 'block';
+            document.getElementById('adultChartSection').style.display = 'none';
+        } else {
+            document.getElementById('youthChartSection').style.display = 'none';
+            document.getElementById('adultChartSection').style.display = 'block';
+            loadAdultChartDataByDisease(); // 🔽 수정된 함수 호출
+        }
     }
 </script>
 

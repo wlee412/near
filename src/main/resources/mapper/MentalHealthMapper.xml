@@ -42,24 +42,22 @@
     </select>
 
     <!-- 연령대별 평균 -->
-   <select id="selectAvgByAgeGroup" resultType="map">
-    SELECT 
-        CASE
-            WHEN cht_x_cn = '미취학' THEN '미취학'
-            WHEN cht_x_cn LIKE '초등%' THEN '초등학생'
-            WHEN cht_x_cn LIKE '중학%' THEN '중학생'
-            WHEN cht_x_cn LIKE '고등%' THEN '고등학생'
-            WHEN cht_x_cn LIKE '대학%' THEN '대학생'
-            WHEN cht_x_cn = '청소년아님' THEN '청소년아님'
-            ELSE '기타'
-        END AS chtXCn,
-        ROUND(AVG(cht_vl), 2) AS chtVl
-    FROM mental_health_data
-    WHERE cht_se_nm = '정신건강'
-      AND cht_x_cn REGEXP '^(미취학|초등|중학|고등|대학|청소년아님)'
-    GROUP BY chtXCn
-    ORDER BY FIELD(chtXCn, '미취학', '초등학생', '중학생', '고등학생', '대학생', '청소년아님')
-</select>
-
+    <select id="selectAvgByAgeGroup" resultType="map">
+        SELECT 
+            CASE
+                WHEN cht_x_cn = '미취학' THEN '미취학'
+                WHEN cht_x_cn LIKE '초등%' THEN '초등학생'
+                WHEN cht_x_cn LIKE '중학%' THEN '중학생'
+                WHEN cht_x_cn LIKE '고등%' THEN '고등학생'
+                WHEN cht_x_cn LIKE '대학%' THEN '대학생'
+                ELSE '기타'
+            END AS chtXCn,
+            ROUND(AVG(cht_vl), 2) AS chtVl
+        FROM mental_health_data
+        WHERE cht_se_nm = '정신건강'
+          AND cht_x_cn REGEXP '^(미취학|초등|중학|고등|대학)'  
+        GROUP BY chtXCn
+        ORDER BY FIELD(chtXCn, '미취학', '초등학생', '중학생', '고등학생', '대학생')  
+    </select>
 
 </mapper>
