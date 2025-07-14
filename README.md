@@ -34,7 +34,7 @@
 ### 2. 심리 설문 및 자가 테스트
 
 * 제공 설문: ASRS(ADHD 간이/전체형), Rosenberg 자존감 척도, ISI(불면증), CES-D(우울), BAI(불안), K-EDI(섭식장애), K-PSQI(수면 질), PSS(스트레스), GSE(자기효능감)
-* 설문 결과에 따른 상태 해석 및 맞춤형 조언 제공 (ChatGPT API 사용)
+* 설문 결과에 따른 상태 해석 및 맞춤형 조언 제공 (ChatGPT API & Dialogflow CX API 사용)
 * 심리 상태 변화 추이 리포트 제공
 
 ### 3. 병원 및 약국 찾기
