@@ -62,7 +62,6 @@
 ────────────────────────────────────── */
 .mypage-sidebar {
   width: 220px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;

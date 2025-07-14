@@ -1,0 +1,42 @@
+
+.mypage-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.client-container {
+  box-sizing: border-box;   /* padding이 max-width/width 안에 계산되도록 */
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.mypage-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+.mypage-content-wrapper {
+  width: 1000px;
+  max-width: 960px;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+.mypage-content-wrapper .main-section {
+  box-sizing: border-box;  /* padding 이 width 안에 포함 */
+  width: 100%;             /* wrapper 폭만큼 */
+  max-width: 100%;         /* 절대 넘지 않음 */
+  /* min-width:800px; */    /* 필요 없으면 제거 */
+/*   padding: 30px;           */
+}
+
+/* .input-sm  { max-width: 200px; } */
+/* .input-md  { max-width: 350px; } */
+/* .input-lg  { max-width: 600px; } */
+/* .mypage-content-wrapper .form-group { */
+/*   max-width: 500px;      원하는 최대 폭(px 단위) */
+/*   width: 100%;           wrapper 폭에 맞춰 줄어들되 */
+/*   margin: 0 auto 20px;   위아래 여백, 가로 중앙 정렬 */
+/*   box-sizing: border-box; */
+/* } */

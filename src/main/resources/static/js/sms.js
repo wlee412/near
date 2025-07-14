@@ -34,7 +34,7 @@ $('#sendCodeBtn').click(async function() {
 		$('#verifyResult').text('').css('color', '');
 		$('#verificationSection').show();
 		
-		startTimer(5, document.getElementById('timerDisplay'));
+		startTimer(15, document.getElementById('timerDisplay'));
 
 	} catch (err) {
 		console.error(err);
@@ -120,7 +120,7 @@ function sendIdCode() {
 		.then(data => {
 			if (data === "success") {
 				msgEl.innerText = "✅ 인증번호가 전송되었습니다.";
-				startTimer(180, timerEl);
+				startTimer(15, timerEl);
 			} else {
 				msgEl.innerText = "❌ 전송 실패. 다시 시도해주세요.";
 				timerEl.textContent = "";
@@ -155,8 +155,8 @@ function checkIdCode() {
 				resultEl.style.color = "green";
 
 				idTextEl.style.display = "block";
-				idTextEl.innerHTML = `📌 회원님의 아이디는 <strong>${result.clientId}</strong> 입니다.<br>
-            <a href="/client/login" style="text-decoration:none; color:blue;">로그인 하러 가기</a>`;
+				idTextEl.innerHTML = `📌회원님의 아이디는 <strong>${result.clientId}</strong> 입니다.<br><br>
+				<a href="/client/login" class="btn-confirm-small">로그인 하러 가기</a>`;
 			} else {
 				resultEl.innerText = "❌ 인증 실패: " + result.message;
 				resultEl.style.color = "red";

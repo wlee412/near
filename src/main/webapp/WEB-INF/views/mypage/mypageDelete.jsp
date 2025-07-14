@@ -6,6 +6,7 @@
 <title>회원탈퇴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageLayout.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageDelete.css">
 </head>
 <body>
@@ -34,7 +35,7 @@
 			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
 			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
 		</aside>
-		
+		<div class="mypage-content-wrapper">
 		<section class="main-section" id="contentArea">
 			<h3>회원탈퇴</h3>
 			<div class="divider"></div>
@@ -86,13 +87,17 @@
 			</c:choose>
 		</section>
 		</div>
+		</div>
 	</div>
+		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+		<div class="spinner"></div>
+		<div class="loading-text">Loading...</div>
 	</div>
 
 	<!-- js연결! -->
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
 	<script src="${pageContext.request.contextPath}/js/mypageDelete.js"></script>
-
+	<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>
 	<!-- 프로필 아이콘 드롭박스 -->
 	<!-- 푸터 영역 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />

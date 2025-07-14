@@ -61,7 +61,7 @@ public class ClientController {
 	@ResponseBody
 	@GetMapping("/check-phone")
 	public String checkPhone(
-	    @RequestParam String phone,
+	    @RequestParam("phone") String phone,
 	    HttpSession session) {
 
 	    Client me = (Client) session.getAttribute("loginClient");

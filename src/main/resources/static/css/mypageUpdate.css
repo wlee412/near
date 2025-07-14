@@ -24,6 +24,9 @@
   display: flex;
   gap: 24px;
   align-items: flex-start;
+/*   display: flex; */
+/*   gap: 24px; */
+/*   align-items: stretch;  두 칸을 같은 높이로 */
 }
 .main-section {
   flex-grow: 1;
@@ -170,16 +173,19 @@ input[readonly] {
   margin-top: 5px;
 }
 
-/* 버튼 행 & 버튼 */
+/* 버튼 행: 가로 flex, 가운데 정렬, 버튼 간격 */
 .button-row {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 10px;
-  width: 100%;
+  display: flex;
+  justify-content: center;  /* 가운데 정렬 */
+  gap: 16px;                /* 버튼 사이 간격 */
   margin-top: 30px;
 }
+
+/* 공통 버튼 스타일 */
 .btn {
-  padding: 12px 30px;
+  flex: 0 1 auto;           /* 내용 크기만큼만 늘어남 */
+  min-width: 120px;         /* 최소 너비 */
+  padding: 10px 20px;       /* 패딩 줄임 */
   font-size: 16px;
   border: none;
   border-radius: 30px;
@@ -189,12 +195,21 @@ input[readonly] {
   box-shadow: 0 4px 8px rgba(93,174,197,0.3);
   transition: background-color 0.3s ease;
 }
+
+/* hover 색상 */
 .btn:hover {
   background-color: #4a9cb1;
 }
-.btn-half {
-  flex: 1;
-}
+
+/* /* 취소 버튼만 살짝 다른 스타일 */ */
+/* .btn-cancel { */
+/*   background-color: #ccc; */
+/*   color: #333; */
+/* } */
+/* .btn-cancel:hover { */
+/*   background-color: #bbb; */
+/* } */
+
 
 /* 이메일 도메인 필드 너비 */
 #emailId {
