@@ -28,7 +28,7 @@
 	
 	<update id="cancelReservation">
 		UPDATE counsel_reservation
-		SET state = '내담자 취소'
+		SET state = '취소'
 		WHERE reservation_no = #{reservationNo}
 	</update>
 </mapper>

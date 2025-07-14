@@ -70,9 +70,25 @@
 											<td>${r.name}</td>
 											<td>${r.counselorPhone}</td>
 											<td>${r.symptom}</td>
-											<td><input type="button" class="cancel-btn"
-												name="cancel-btn" id="cancel-btn"
-												data-no="${r.reservationNo}" value="예약취소"></td>
+											<td>
+											<c:choose>
+										        <c:when test="${r.state eq '예약'}">
+										          <!-- 예약 상태일 때만 활성화 -->
+										          <input type="button"
+										                 class="cancel-btn"
+										                 data-no="${r.reservationNo}"
+										                 value="예약취소" />
+										        </c:when>
+										        <c:otherwise>
+										          <!-- 그 외 상태일 땐 비활성화 -->
+										          <input type="button"
+										                 class="cancel-btn"
+										                 value="예약취소"
+										                 disabled
+										                 style="opacity:0.5; cursor:not-allowed;" />
+										        </c:otherwise>
+										      </c:choose>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
