@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypagePassword.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageLayout.css">
 </head>
 <body>
 
@@ -26,6 +27,7 @@
 			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
 			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
 		</aside>
+		<div class="mypage-content-wrapper">
 		<section class="main-section" id="contentArea">
 			<h3>비밀번호 변경</h3>
 			<div class="divider"></div>
@@ -91,10 +93,13 @@
 		</section>
 		</div>
 		</div>
-	</div>
-		
+		</div>
+		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+		<div class="spinner"></div>
+		<div class="loading-text">Loading...</div>
+	</div>	
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true"/>
 	<script src="${pageContext.request.contextPath}/js/mypagePassword.js"></script>
-		
+	<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>	
 </body>
 </html>

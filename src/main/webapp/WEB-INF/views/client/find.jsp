@@ -31,7 +31,7 @@
 				<button class="btn-small" onclick="checkIdCode()">확인</button>
 			</div>
 			<p id="idResult" class="result-text"></p>
-			<p id="foundIdText" class="result-text" style="display: none;"></p>
+			<p id="foundIdText" class="result-text" style="display: none; text-align: right;"></p>
 			
 		</div>
 
@@ -50,7 +50,7 @@
 				<button class="btn-slim" onclick="sendPwCode()">인증번호 전송</button>
 			</div>
 			<p id="pwMessage" class="result-text"></p>
-			<p id="pwTimerDisplay" class="result-text" style="color: gray;"></p>
+			<p id="pwTimerDisplay" class="result-text" style="color: gray; text-align: right"></p>
 
 			<div class="form-group" id="pwCodeGroup" style="display: none;">
 				<label for="findPwCode">인증번호</label> 

@@ -7,6 +7,7 @@
 <title>즐겨찾는 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageLayout.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageFavorite.css" />
 </head>
 
@@ -30,6 +31,7 @@
 			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
 			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
 		</aside>
+		<div class="mypage-content-wrapper">
 		<section class="main-section" id="contentArea">
 		<h3>즐겨찾기</h3>
 			<div class="divider"></div>
@@ -111,10 +113,14 @@
 		</section>
 		</div>
 		</div>
+		</div>
+		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+		<div class="spinner"></div>
+		<div class="loading-text">Loading...</div>
 	</div>
 
 		<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
-
+		<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>
 		<script>
 	  const tabPharm = document.getElementById('tab-pharm');
 	    const tabHosp  = document.getElementById('tab-hosp');
@@ -248,5 +254,6 @@
     setupPaging("hospTable",  "hospPagination");
   });
   </script>
+  
 </body>
 </html>

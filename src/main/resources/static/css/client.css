@@ -375,22 +375,17 @@ input[readonly] {
 	margin-bottom: 10px;
 }
 
-
-/*회원가입 로딩시.. 스피너 추가 */
-.input-row span {
-	width: 16px;
-	text-align: center;
+.btn-confirm-small {
+  display: inline-block;
+  background-color: #5daec5;     /* 버튼 배경색 */
+  color: #ffffff;               /* 글자색 */
+  padding: 6px 12px;            /* 상하 6px, 좌우 12px */
+  font-size: 13px;              /* 글자 크기 */
+  border-radius: 8px;           /* 둥근 모서리 */
+  text-decoration: none;        /* 밑줄 제거 */
+  text-align: center;           /* 가운데 정렬 */
+  transition: background-color .2s ease;
 }
-
-
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    animation: rotate 1s linear infinite;
-    margin-top: 80px;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.btn-confirm-small:hover {
+  background-color: #478fa3;    /* 호버 시 어두운 톤 */
 }

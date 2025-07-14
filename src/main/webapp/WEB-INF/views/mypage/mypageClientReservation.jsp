@@ -8,69 +8,85 @@
 <title>예약 확인</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageClientReservation.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/mypage.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/mypageLayout.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/mypageClientReservation.css">
 </head>
 <body>
 	<div class="wrapper">
-	<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
+		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 		<div class="client-container">
-		<div class="mypage-title">
-			<a href="${pageContext.request.contextPath}/mypage/"><h2>마이페이지</h2></a>
-	    </div>
-		<div class="mypage-body">
-		<aside class="mypage-sidebar">
-			<a href="${pageContext.request.contextPath}/mypage/mypageClientReservation" class="sidebar-button">예약확인</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypageReport" class="sidebar-button">검사기록</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypageFavorite" class="sidebar-button">즐겨찾기</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypageProfile" class="sidebar-button">프로필</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypageUpdate" class="sidebar-button">정보수정</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypagePassword" class="sidebar-button">비밀번호 변경</a>
-			<a href="${pageContext.request.contextPath}/mypage/mypageDelete" class="sidebar-button">회원탈퇴</a>
-		</aside>
-
-		<section class="main-section" id="contentArea">
-		<h3>예약확인</h3>
-			<div class="divider"></div>
-			<c:if test="${empty reservationList}">
-				<p>예약 내역이 없습니다.</p>
-			</c:if>
-				<div class="reservation-box">
-					<table class="reservation-table" id="reservation-table">
-						<thead>
-							<tr>
-								<th>예약번호</th>
-								<th>예약상태</th>
-								<th>예약일시</th>
-								<th>상담사명</th>
-								<th>전화번호</th>
-								<th>상담사유</th>
-								<th>예약취소</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="r" items="${reservationList}">
-							  <tr>
-							    <td>${r.reservationNo}</td>
-							    <td>${r.state}</td>
-							    <td>
-							      <fmt:formatDate value="${r.startTime}" pattern="yy.MM.dd (E) HH:mm" />
-							    </td>
-							    <td>${r.name}</td>
-							    <td>${r.counselorPhone}</td>
-							    <td>${r.symptom}</td>
-							    <td>
-							    	<input type="button" class="cancel-btn" name="cancel-btn" id="cancel-btn" data-no="${r.reservationNo}" value="예약취소">
-							    </td>
-							  </tr>
-							</c:forEach>
-						</tbody>
-					</table>
+			<div class="mypage-title">
+				<a href="${pageContext.request.contextPath}/mypage/"><h2>마이페이지</h2></a>
+			</div>
+			<div class="mypage-body">
+				<aside class="mypage-sidebar">
+					<a
+						href="${pageContext.request.contextPath}/mypage/mypageClientReservation"
+						class="sidebar-button">예약확인</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypageReport"
+						class="sidebar-button">검사기록</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypageFavorite"
+						class="sidebar-button">즐겨찾기</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypageProfile"
+						class="sidebar-button">프로필</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypageUpdate"
+						class="sidebar-button">정보수정</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypagePassword"
+						class="sidebar-button">비밀번호 변경</a> <a
+						href="${pageContext.request.contextPath}/mypage/mypageDelete"
+						class="sidebar-button">회원탈퇴</a>
+				</aside>
+				<div class="mypage-content-wrapper">
+					<section class="main-section" id="contentArea">
+						<h3>예약확인</h3>
+						<div class="divider"></div>
+						<c:if test="${empty reservationList}">
+							<p>예약 내역이 없습니다.</p>
+						</c:if>
+						<div class="reservation-box">
+							<table class="reservation-table" id="reservation-table">
+								<thead>
+									<tr>
+										<th>예약번호</th>
+										<th>예약상태</th>
+										<th>예약일시</th>
+										<th>상담사명</th>
+										<th>전화번호</th>
+										<th>상담사유</th>
+										<th>예약취소</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="r" items="${reservationList}">
+										<tr>
+											<td>${r.reservationNo}</td>
+											<td>${r.state}</td>
+											<td><fmt:formatDate value="${r.startTime}"
+													pattern="yy.MM.dd (E) HH:mm" /></td>
+											<td>${r.name}</td>
+											<td>${r.counselorPhone}</td>
+											<td>${r.symptom}</td>
+											<td><input type="button" class="cancel-btn"
+												name="cancel-btn" id="cancel-btn"
+												data-no="${r.reservationNo}" value="예약취소"></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+						<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
+					</section>
 				</div>
-			<div id="pagination" style="text-align: center; margin-top: 20px;"></div>
-		</section>
+			</div>
 		</div>
 	</div>
+		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+		<div class="spinner"></div>
+		<div class="loading-text">Loading...</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
 	<script>
@@ -148,5 +164,6 @@
 		  showPage(1);
 		}); // ← 여기서 DOMContentLoaded 핸들러 닫기
 	</script>
+	<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>
 </body>
 </html>

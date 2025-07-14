@@ -29,7 +29,7 @@ public class SurveyService {
 	public List<Survey> getRecommendedSurveys(String[] interestArr) {
 		
 		Map<String, List<Integer>> interestMap = new HashMap<>();
-
+		interestMap.put("우울감", Arrays.asList(1004));
 		interestMap.put("불안", Arrays.asList(1005));
 		interestMap.put("자존감", Arrays.asList(1002, 1010));
 		interestMap.put("수면 문제", Arrays.asList(1003, 1007));

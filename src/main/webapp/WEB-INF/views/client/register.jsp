@@ -5,20 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/client.css">
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/client.css">
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
 <body>
 	<div class="wrapper">
-	<%@ include file="../includes/header.jsp"%>
-
-		<!-- 가입 중 스피너 -->
-		<div id="registerOverlay"
-			style="display: none; text-align: center; padding: 20px;">
-			<img src="" class="loading-spinner" alt="로딩 중">
-			<p>가입 중입니다... 잠시만 기다려주세요</p>
+		<%@ include file="../includes/header.jsp"%>
+		
+		<div id="loadingOverlay" class="loading-overlay"
+			style="display: none;">
+			<div class="spinner"></div>
+			<div class="loading-text">Loading...</div>
 		</div>
 
 		<c:if test="${not empty error}">
@@ -39,15 +41,19 @@
 
 				<!-- ID -->
 				<div class="form-group">
-					<label for="id">ID</label> 
-					<input type="text" name="clientId" id="id" placeholder="영문+숫자 4자 이상 입력" required>
-					<div id="idCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+					<label for="id">ID</label> <input type="text" name="clientId"
+						id="id" placeholder="영문+숫자 4자 이상 입력" required>
+					<div id="idCheckResult" class="result-text"
+						style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
 
 				<!-- 이름 -->
 				<div class="form-group">
-					<label for="name">이름</label> <input type="text" name="name" id="name" oninput="validateName()" placeholder="이름을 입력하세요" required>
-					<div id="nameCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+					<label for="name">이름</label> <input type="text" name="name"
+						id="name" oninput="validateName()" placeholder="이름을 입력하세요"
+						required>
+					<div id="nameCheckResult" class="result-text"
+						style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
 				<!-- 닉네임 -->
 				<!-- 			<div class="form-group"> -->
@@ -76,24 +82,31 @@
 				<div class="form-group">
 					<label for="phone">휴대폰 번호</label>
 					<div class="input-row">
-						<input type="tel" name="phone" id="phone" required placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
-						<button type="button" class="btn-sendcode" id="sendCodeBtn">인증코드 전송</button>
+						<input type="tel" name="phone" id="phone" required
+							placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
+						<button type="button" class="btn-sendcode" id="sendCodeBtn">인증코드
+							전송</button>
 					</div>
-					<div id="phoneCheckResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+					<div id="phoneCheckResult" class="result-text"
+						style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
-				
+
 				<!-- 인증번호 입력 및 타이머 -->
-				<div class="form-group" id="verificationSection" style="display:none;">
+				<div class="form-group" id="verificationSection"
+					style="display: none;">
 					<label for="verificationCode">인증번호</label>
 					<div class="input-row">
 						<input type="text" id="verificationCode" placeholder="인증번호 입력">
-						<span id="timerDisplay" style="margin-left: 6px; color: red;">03:00</span>
-
 					</div>
-					<button type="button" class="btn" id="verifyCodeBtn" style="margin-top: 8px;" id="verifyCodeBtn">인증 확인</button>
-					<div id="verifyResult" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
+					<span id="timerDisplay"
+						style="margin-top: 4px; color: red; font-size: 14px; align-content: flex-end; text-align: right;">03:00</span>
+					<button type="button" class="btn" id="verifyCodeBtn"
+						style="margin-top: 8px;" id="verifyCodeBtn">인증 확인</button>
+					<div id="verifyResult" class="result-text"
+						style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
-				<input type="hidden" name="phoneVerified" id="phoneVerifiedField" value="N">
+				<input type="hidden" name="phoneVerified" id="phoneVerifiedField"
+					value="N">
 
 				<!-- 📧 이메일 입력 -->
 				<div class="form-group">
@@ -101,8 +114,9 @@
 					<div class="input-row">
 						<input type="text" id="emailId" name="emailId"
 							placeholder="이메일 아이디" required> <span>@</span>
-						<div id="emailIdMessage" class="result-text" style="font-size: 14px; margin-top: 4px;"></div>
-						
+						<div id="emailIdMessage" class="result-text"
+							style="font-size: 14px; margin-top: 4px;"></div>
+
 						<!-- 직접입력 input (초기에는 숨김) -->
 						<input type="text" id="customEmailDomain" placeholder="직접입력"
 							style="display: none;" disabled>
@@ -122,19 +136,24 @@
 				</div>
 
 				<!-- 주소 -->
-			   <div class="form-group">
+				<div class="form-group">
 					<label>주소</label>
 					<div class="input-row">
-						<input type="text" name="zipcode" id="postcode" placeholder="우편번호" readonly style="width: 150px;">
-						<button type="button" onclick="execDaumPostcode()" class="btn">주소 찾기</button>
+						<input type="text" name="zipcode" id="postcode" placeholder="우편번호"
+							readonly style="width: 150px;">
+						<button type="button" onclick="execDaumPostcode()" class="btn">주소
+							찾기</button>
 					</div>
-					<input type="text" id="roadAddress" placeholder="도로명 주소" name="addrBase" readonly required style="margin-top: 8px;"> 
-					<input type="text" id="detailAddress" placeholder="상세 주소 입력" name="addrDetail" required style="margin-top: 8px;">
+					<input type="text" id="roadAddress" placeholder="도로명 주소"
+						name="addrBase" readonly required style="margin-top: 8px;">
+					<input type="text" id="detailAddress" placeholder="상세 주소 입력"
+						name="addrDetail" required style="margin-top: 8px;">
 				</div>
-				
+
 				<!-- 생년월일 -->
 				<div class="form-group">
-					<label for="birth">생년월일</label> <input type="date" name="birth" id="birth" required>
+					<label for="birth">생년월일</label> <input type="date" name="birth"
+						id="birth" required>
 				</div>
 
 
@@ -186,6 +205,7 @@
 	<script src="https://code.jquery.com/jquery-latest.js" defer></script>
 	<script src="${pageContext.request.contextPath}/js/client.js" defer></script>
 	<script src="${pageContext.request.contextPath}/js/sms.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>
 </body>
 </html>
 
