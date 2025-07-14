@@ -310,3 +310,35 @@
 .report-table button.delete-btn:hover {
   background-color: #3b7d91;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensure at least full-height */
+  padding-bottom: 0;
+  
+}
+
+/* ② this wrapper will expand to push footer down */
+.wrapper {
+  flex: 1;                 /* grow to fill available space */
+  display: flex;
+  flex-direction: column;  /* if you want to flex inner content too */
+}
+
+/* if you need your inner content area to scroll when tall, you can also: */
+.client-container {
+  flex: 1;       /* take all remaining space inside wrapper */
+}
+
+/* ③ footer in normal flow, no fixed */
+footer {
+  position: static; /* 또는 생략 */
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}

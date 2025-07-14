@@ -89,6 +89,8 @@
 		</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
+	</div>
 		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
 		<div class="spinner"></div>
 		<div class="loading-text">Loading...</div>
@@ -100,6 +102,5 @@
 	<script src="${pageContext.request.contextPath}/js/loading.js" defer></script>
 	<!-- 프로필 아이콘 드롭박스 -->
 	<!-- 푸터 영역 -->
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
 </body>
 </html>
