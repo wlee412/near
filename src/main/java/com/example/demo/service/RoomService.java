@@ -1,5 +1,11 @@
 package com.example.demo.service;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +33,26 @@ public class RoomService {
 
 	public Reservation getReservationInfo(int reservationNo) {
 		return roomMapper.getReservationInfo(reservationNo);
+	}
+	
+	public void createRoom(int rsv, String counselor, String client, LocalDateTime start) {
+		List<Integer> usedJanusNums = roomMapper.janusNums();
+		Set<Integer> usedSet = new HashSet<>(usedJanusNums);
+
+		int janusNum;
+		do {
+		    janusNum = (int)(Math.random() * 10000) + 10000;
+		} while (usedSet.contains(janusNum));
+
+		Room room = new Room();
+		room.setRoomToken(UUID.randomUUID().toString());
+		room.setReservationNo(rsv);
+		room.setCounselorId(counselor);
+		room.setClientId(client);
+		room.setStart(start);
+		room.setEnd(start.plusMinutes(30));
+		room.setState("예약");
+		room.setJanusNum(janusNum);
 	}
 
 }

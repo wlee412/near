@@ -1,5 +1,7 @@
 package com.example.demo.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.model.Reservation;
@@ -16,5 +18,7 @@ public interface RoomMapper {
 	public void uploadRec(RoomRecording rec);
 
 	public Reservation getReservationInfo(int reservationNo);
+
+	public List<Integer> janusNums();
 
 }

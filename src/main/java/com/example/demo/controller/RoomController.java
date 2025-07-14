@@ -86,7 +86,7 @@ public class RoomController {
 		
 		// 세션 없음 - 로그인
 		session.setAttribute("roomToken", token);
-		return "client/login";
+		return "redirect:client/login";
 	}
 
 	// 상담실 정보, 예약정보 보여준 후 webRTC 화상채팅
@@ -123,7 +123,7 @@ public class RoomController {
 		model.addAttribute("rsv", rsv);
 		return "room/videoroom";
 	}
-
+	
 	// 영상 녹화
 	@ResponseBody
 	@PostMapping("/rec")
