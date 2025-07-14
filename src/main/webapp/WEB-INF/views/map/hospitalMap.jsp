@@ -34,7 +34,7 @@
   <div class="loading-text">Loading...</div>
 </div>
 
-<%@ include file="../includes/header.jsp"%>
+<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 
 <div class="content-wrapper">
 
@@ -42,8 +42,8 @@
   <!-- 탭 영역 -->
   <!-- 탭 -->
   <div class="tab-header">
-    <a href="/hospital/map" class="tab" style="text-decoration:none">병원</a> /
-    <a href="/pharmacy/map" class="tab active" style="text-decoration:none">약국</a>
+    <a href="/hospital/map" class="tab" >병원</a> /
+    <a href="/pharmacy/map" class="tab active">약국</a>
   </div>
 
   <!-- 필터 -->
@@ -76,6 +76,6 @@
 
 </div>
 
-<%@ include file="../includes/footer.jsp"%>
+<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>

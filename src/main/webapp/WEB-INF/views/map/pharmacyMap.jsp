@@ -28,7 +28,7 @@
   <div class="loading-text">Loading...</div>
 </div>
 
-<%@ include file="../includes/header.jsp"%>
+<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 
 <div class="content-wrapper">
 
@@ -57,6 +57,6 @@
 
 </div>
 
-<%@ include file="../includes/footer.jsp"%>
+<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>
