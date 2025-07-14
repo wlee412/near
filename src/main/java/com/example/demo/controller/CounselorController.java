@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CounselorController {
 
+    private final HttpFirewall allowDoubleSlashFirewall;
+
 	@Autowired
 	private CounselorService counselorService;
+
+//    CounselorController(HttpFirewall allowDoubleSlashFirewall) {
+//        this.allowDoubleSlashFirewall = allowDoubleSlashFirewall;
+//    }
 
 	@GetMapping("/login")
 	public String loginForm() {
@@ -82,33 +89,33 @@ public class CounselorController {
 //	}
 
 	// 마이페이지 내 각 섹션 요청
-	@GetMapping("/{part}")
-	public String section(@PathVariable String part, HttpSession session, Model model) {
-		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-		if (loginCounselor == null) {
-			return "redirect:/counselor/login";
-		}
-		model.addAttribute("counselor", loginCounselor);
-
-		switch (part) {
-		case "profile":
-			return "counselor/mypageProfile";
-
-		case "time":
-			List<CounselAvailable> times = counselorService.getAvailableTimes(loginCounselor.getCounselorId());
-			model.addAttribute("availableTimes", times);
-			return "counselor/mypageTime";
-
-		case "reservation":
-			return "counselor/mypageReservation";
-
-		case "room":
-			return "counselor/mypageRoom";
-
-		default:
-			return "error/404";
-		}
-	}
+//	@GetMapping("/{part}")
+//	public String section(@PathVariable String part, HttpSession session, Model model) {
+//		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+//		if (loginCounselor == null) {
+//			return "redirect:/counselor/login";
+//		}
+//		model.addAttribute("counselor", loginCounselor);
+//
+//		switch (part) {
+//		case "profile":
+//			return "counselor/mypageProfile";
+//
+//		case "time":
+//			List<CounselAvailable> times = counselorService.getAvailableTimes(loginCounselor.getCounselorId());
+//			model.addAttribute("availableTimes", times);
+//			return "counselor/mypageTime";
+//
+//		case "reservation":
+//			return "counselor/mypageReservation";
+//
+//		case "room":
+//			return "counselor/mypageRoom";
+//
+//		default:
+//			return "error/404";
+//		}
+//	}
 
 	@GetMapping("/mypage")
 	public String loadMypage(Model model, HttpSession session) {
@@ -134,18 +141,20 @@ public class CounselorController {
 		model.addAttribute("counselor", loginCounselor);
 		return "counselor/mypageProfile";
 	}
-
 	@GetMapping("/time")
 	public String loadAvailableTime(Model model, HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
 			return "redirect:/counselor/login";
 
+		// 문제 발생 부분
 		List<CounselAvailable> times = counselorService.getAvailableTimes(loginCounselor.getCounselorId());
+
 		model.addAttribute("availableTimes", times);
 		model.addAttribute("counselor", loginCounselor);
 		return "counselor/mypageTime";
 	}
+
 
 	@GetMapping("/reservationDetail")
 	public String showCounselorPage() {
@@ -199,32 +208,29 @@ public class CounselorController {
 	    String selectedDate = (String) requestData.get("selectedDate");
 	    List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
 
-	    // selectedTimes가 null인 경우 빈 리스트로 초기화
 	    if (selectedTimes == null) {
 	        selectedTimes = new ArrayList<>();
 	    }
 
-	    // 상담사 ID, selectedDate, selectedTimes를 서비스 메서드에 전달
 	    boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate, selectedTimes);
 
-	    // 성공 여부에 따라 응답 반환
 	    return success ? "success" : "error";
 	}
 
-
 	
-	@GetMapping("/existing")
+	@GetMapping("/existing/selectedDate/{selectedDate}")
 	@ResponseBody
-	public List<String> getExistingAvailableTimes(HttpSession session) {
+	public List<String> getExistingAvailableTimes(@PathVariable("selectedDate") String selectedDate,
+												  HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
 			return List.of();
 
-		List<CounselAvailable> list = counselorService.getAvailableTimes(loginCounselor.getCounselorId());
+		List<CounselAvailable> list = counselorService.getAvailableTimes(loginCounselor.getCounselorId(), selectedDate);
 
-		// 문자열 리스트로 변환: "2025-07-24 09:00"
-		return list.stream().map(item -> item.getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
-				.toList();
+		return list.stream()
+			.map(item -> item.getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+			.toList();
 	}
 
 	// 예약 상세 보기 페이지

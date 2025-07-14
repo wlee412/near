@@ -9,7 +9,5 @@ public class CounselAvailable {
     private int counselNo;   
     private String counselorId;  
     private LocalDateTime start;
-		
-
-
+    
 }

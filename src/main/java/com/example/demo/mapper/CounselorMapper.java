@@ -18,64 +18,50 @@ public interface CounselorMapper {
     // 상담사 로그인
     Counselor loginCounselor(Counselor loginCounselor);
 
+    // 특정 날짜의 예약 가능 시간 조회
+    List<CounselAvailable> findAvailableTimesByCounselorId(
+        @Param("counselorId") String counselorId,
+        @Param("selectedDate") String selectedDate);
 
-    // 상담사 ID로 예약 가능 시간 목록 조회
-    List<CounselAvailable> findAvailableTimesByCounselorId(@Param("counselorId") String counselorId);
+    // 전체 예약 가능 시간 조회
+    List<CounselAvailable> findAvailableTimesByCounselorIdAll(
+        @Param("counselorId") String counselorId);
 
-    // 오늘 예약 수 조회
+    // 날짜별 예약 가능 시간 조회
+    List<CounselAvailable> findAvailableTimesByDate(
+        @Param("counselorId") String counselorId,
+        @Param("selectedDate") String selectedDate);
+
+    // 선택 해제된 시간 삭제
+    void deleteAvailableTimesByTimes(
+        @Param("counselorId") String counselorId,
+        @Param("selectedDate") String selectedDate,
+        @Param("times") List<String> times);
+
+    // 개별 시간 삭제 (by PK)
+    void deleteAvailableTimesByIds(@Param("counselNos") List<Integer> counselNos);
+
+    // 예약 가능 시간 저장
+    void insertCounselAvailable(
+        @Param("counselorId") String counselorId,
+        @Param("start") LocalDateTime start);
+
+    // 오늘 상담 예약 수
     int countTodayReservations(@Param("counselorId") String counselorId);
-    
-//    // 예약 가능 시간 저장 (하나씩 insert)
-//    void insertAvailableTime(@Param("counselorId") String counselorId,
-//    		@Param("start") Timestamp start);
-//   
 
-//	List<Map<String, Object>> countReservationsByDate(@Param("counselorId") String counselorId);
-
-
-//	void deleteAvailableTimesByDate(@Param("counselorId") String counselorId, @Param("selectedDate") String selectedDate);
-
-
-	// 날짜별 예약 가능 시간 조회
-	List<CounselAvailable> findAvailableTimesByDate(@Param("counselorId") String counselorId,
-	                                                 @Param("selectedDate") String selectedDate);
-	// 시간 삭제 (시간만 받음)
-	void deleteAvailableTimesByIds(@Param("counselNos") List<Integer> counselNos);
-
-	void deleteAvailableTimesByTimes(
-			@Param("counselorId") String counselorId,
-		    @Param("selectedDate") String selectedDate,
-		    @Param("times") List<String> times
-		);
-
-//	int getReservationCount(String counselorId);
-	
-	  // 예약 번호로 예약 상세 조회
+    // 예약 상세 조회
     CounselorReservation findReservationByNo(@Param("reservationNo") int reservationNo);
 
-    // 특정 날짜의 상담사 예약 목록 조회
+    // 예약 조회
     List<CounselorReservation> findReservationsByDate(
         @Param("date") String date,
         @Param("counselorId") String counselorId);
 
-	List<CounselorReservation> findReservationsByCounselor(String counselorId);
+    List<CounselorReservation> findReservationsByCounselor(String counselorId);
 
-	int updateReservationState(int reservationNo, String string);
+    int countReservationsByCounselor(String counselorId);
 
-	int cancelReservationByCounselor(int reservationNo);
+    int cancelReservationByCounselor(int reservationNo);
 
-	//페이징처리
-
-	int countReservationsByCounselor(String counselorId);
-
-//	void insertAvailableLocalDateTime(String counselorId, LocalDateTime start);
-
-	List<CounselorReservation> findReservationsByCounselorWithPaging(Map<String, Object> param);
-
-
-	// 예약 가능 시간 저장 (하나씩 insert)
-
-	void insertCounselAvailable(@Param("counselorId") String counselorId, 
-            @Param("timestamp") Timestamp timestamp);
-
+    List<CounselorReservation> findReservationsByCounselorWithPaging(Map<String, Object> param);
 }
