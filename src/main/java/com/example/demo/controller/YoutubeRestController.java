@@ -56,9 +56,4 @@ public class YoutubeRestController {
         return result;
     }
 
-    // DB에서 기분 기반 추천 영상 가져오기
-    @GetMapping("/recommend")
-    public List<String> getRecommendedVideos(@RequestParam String mood) {
-        return youtubeService.getRecommendedVideosByMood(mood);
-    }
 }

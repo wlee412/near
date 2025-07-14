@@ -14,10 +14,4 @@
         LIMIT 3
     </select>
 
-    <!-- 데이터 추가 (선택사항) -->
-    <insert id="insertYoutubeVideo">
-        INSERT INTO youtube_recommend (mood, keyword, video_id)
-        VALUES (#{mood}, #{keyword}, #{videoId})
-    </insert>
-
 </mapper>
