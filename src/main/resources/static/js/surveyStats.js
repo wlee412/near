@@ -41,13 +41,20 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+		indexAxis: "y",
         scales: {
+			x: {
+			       beginAtZero: true,
+			       max: 100,
+			       title: {
+			         display: true,
+			         text: "비율 (%)"
+			}
+			},
           y: {
-            beginAtZero: true,
-            max: 100,
             title: {
-              display: true,
-              text: "비율 (%)"
+              display: false,
+  
             }
           }
         }
@@ -73,12 +80,19 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+		indexAxis: "y",
         scales: {
+			x: {
+			       beginAtZero: true,
+			       max: 100,
+			       title: {
+			         display: true,
+			         text: "점수"
+			}
+			},
           y: {
-            beginAtZero: true,
             title: {
-              display: true,
-              text: "점수"
+              display: false,
             }
           }
         }

@@ -6,23 +6,33 @@ canvas {
   display: block;
 }
 .content-wrapper {
+
   padding: 20px;
   font-family: 'Gowun Batang', serif;
 }
 
 .tab-menu {
   display: flex;
+  justify-content: center;  /* ⭐ 중앙 정렬 추가 */
+  gap: 10px;                /* 버튼 간 간격 */
   margin-bottom: 15px;
 }
 
 .tab-button {
   padding: 10px 20px;
-  margin-right: 10px;
   background-color: #5daec5;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 8px;
+}
+
+/* 반응형에서만 width: 100% */
+@media (max-width: 768px) {
+  .tab-button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
 
 .tab-button.active {

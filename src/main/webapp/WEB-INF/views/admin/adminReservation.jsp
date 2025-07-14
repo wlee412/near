@@ -55,7 +55,7 @@
 					<c:forEach var="r" items="${reservations}">
 						<tr>
 							<td><c:choose>
-									<c:when test="${r.state == '취소'}">
+									<c:when test="${r.state == '취소' or r.state == '상담사 취소'}">
 										<input type="checkbox" disabled>
 									</c:when>
 									<c:otherwise>
@@ -70,10 +70,10 @@
 							<td>${r.phone}</td>
 							<td>${r.start}</td>
 							<td>${r.state}</td>
-							<td><c:if test="${r.state == '예약완료'}">
+							<td><c:if test="${r.state == '예약완료' or r.state == '예약'}">
 									<button type="button" class="cancel-btn"
 										data-no="${r.reservationNo}">취소</button>
-								</c:if> <c:if test="${r.state == '취소'}">
+								</c:if> <c:if test="${r.state == '취소' or r.state == '상담사 취소'}">
 									<span style="color: gray;">취소됨</span>
 								</c:if></td>
 						</tr>
@@ -86,7 +86,7 @@
 
 		<div class="pagination">
 			<c:forEach var="i" begin="1" end="${totalPages}">
-				<a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+        <a href="?page=${i}&type=${type}&keyword=${keyword}" class="${i == currentPage ? 'active' : ''}">${i}</a>
 			</c:forEach>
 		</div>
 	</div>
