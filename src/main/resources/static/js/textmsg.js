@@ -24,19 +24,19 @@ window.textmsgSubscribe = function() {
 					const time = new Date().toLocaleTimeString();
 					const name = msg.sender || "익명";
 					const text = payload;
-					
+
 					const chatLine = document.createElement("div");
 					chatLine.className = "chat-line";
-					
+
 					const bubble = document.createElement("div");
 					bubble.className = "chat-bubble";
 					bubble.innerHTML = `<b class="nickname">[${name}]</b><div>${text}</div>`;
-					
+
 					const timestamp = document.createElement("div");
 					timestamp.className = "chat-time";
 					timestamp.textContent = `[${time}]`;
-					
-					switch(msg.sender) {
+
+					switch (msg.sender) {
 						case iAm:
 							chatLine.classList.add("my-msg");
 							break;
@@ -46,7 +46,7 @@ window.textmsgSubscribe = function() {
 						default:
 							chatLine.classList.add("other-msg");
 					}
-					
+
 					chatLine.appendChild(bubble);
 					chatLine.appendChild(timestamp);
 					document.getElementById("chat-window").appendChild(chatLine);
@@ -70,3 +70,18 @@ document.getElementById("chat-input").addEventListener("keypress", function(e) {
 		sendChatMessage();
 	}
 });
+
+window.expireSub = function() {
+	stompClient.subscribe(`/topic/room/expired/${roomId}`, msg => {
+		sfutest.send({ message: { request: "leave" } });
+		alert("상담 시간이 종료되었습니다. 퇴장합니다.");
+		window.location.href = "/chat/exit";
+	});
+}
+
+pluginHandle.onmessage = (msg, jsep) => {
+	const event = msg["videoroom"];
+	if (event === "event" && msg["leaving"]) {
+		sfutest.detach();
+	}
+};

@@ -26,9 +26,8 @@ public class RoomScheduler {
 
 		for (Room room : expiredRooms) {
 			Map<String, Object> payload = Map.of(
-					"type", "system", 
-					"roomId", room.getRoomId(),
-					"message", "상담이 종료되었습니다."
+					"type", "expired", 
+					"roomId", room.getRoomId()
 					);
 			tpl.convertAndSend("/topic/room/expired/" + room.getRoomId(), payload);
 		}
