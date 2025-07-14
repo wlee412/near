@@ -380,14 +380,6 @@
     font-family: 'Gowun Batang', serif; /* 헤더에 글씨체 적용 */
 }
 
-/* 정렬 화살표 스타일 */
-#state-sort-arrow, #start-sort-arrow {
-    font-size: 18px;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-
-
 /* 표 본문 스타일 */
 .reservation-table tbody {
     background-color: #f9f9f9;

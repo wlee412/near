@@ -49,7 +49,7 @@
 						<!-- 캘린더 영역 -->
 						<div id="calendar" class="calendar-container"></div>
 									</div>
-						<!-- 날짜 출력 -->
+						<!-- 날짜출력 -->
 						<div id="selected-date-box" style="margin-top: 20px;">
 							<p>
 								<span id="selected-date"></span>

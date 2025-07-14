@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CounselorController {
 
-    private final HttpFirewall allowDoubleSlashFirewall;
+	private final HttpFirewall allowDoubleSlashFirewall;
 
 	@Autowired
 	private CounselorService counselorService;
@@ -141,6 +141,7 @@ public class CounselorController {
 		model.addAttribute("counselor", loginCounselor);
 		return "counselor/mypageProfile";
 	}
+
 	@GetMapping("/time")
 	public String loadAvailableTime(Model model, HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
@@ -155,12 +156,10 @@ public class CounselorController {
 		return "counselor/mypageTime";
 	}
 
-
 	@GetMapping("/reservationDetail")
 	public String showCounselorPage() {
-	    return "counselor/reservationDetail"; 
+		return "counselor/reservationDetail";
 	}
-
 
 	// 예약 가능 시간 저장 (중복 제거 포함)
 //	@PostMapping("/save")
@@ -194,48 +193,45 @@ public class CounselorController {
 //	    return success ? "success" : "error";
 //	}
 
-
 	// 예약 가능 시간 저장 (중복 제거 포함)
 	@PostMapping("/save")
 	@ResponseBody
 	public String saveAvailableTimes(@RequestBody Map<String, Object> requestData, HttpSession session) {
-	    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
-	    if (loginCounselor == null) {
-	        return "unauthorized";
-	    }
+		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+		if (loginCounselor == null) {
+			return "unauthorized";
+		}
 
-	    // selectedDate와 selectedTimes 추출
-	    String selectedDate = (String) requestData.get("selectedDate");
-	    List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
+		// selectedDate와 selectedTimes 추출
+		String selectedDate = (String) requestData.get("selectedDate");
+		List<String> selectedTimes = (List<String>) requestData.get("selectedTimes");
 
-	    if (selectedTimes == null) {
-	        selectedTimes = new ArrayList<>();
-	    }
+		if (selectedTimes == null) {
+			selectedTimes = new ArrayList<>();
+		}
 
-	    boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate, selectedTimes);
+		boolean success = counselorService.saveAvailableTimes(loginCounselor.getCounselorId(), selectedDate,
+				selectedTimes);
 
-	    return success ? "success" : "error";
+		return success ? "success" : "error";
 	}
 
-	
 	@GetMapping("/existing/selectedDate/{selectedDate}")
 	@ResponseBody
 	public List<String> getExistingAvailableTimes(@PathVariable("selectedDate") String selectedDate,
-												  HttpSession session) {
+			HttpSession session) {
 		Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
 		if (loginCounselor == null)
 			return List.of();
 
 		List<CounselAvailable> list = counselorService.getAvailableTimes(loginCounselor.getCounselorId(), selectedDate);
 
-		return list.stream()
-			.map(item -> item.getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
-			.toList();
+		return list.stream().map(item -> item.getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+				.toList();
 	}
 
 	// 예약 상세 보기 페이지
-	
-	
+
 	@GetMapping("/reservation/detail/{reservationNo}")
 	public String getReservationDetail(@PathVariable("reservationNo") int reservationNo, Model model) {
 		// 예약 상세 데이터 조회
@@ -259,24 +255,23 @@ public class CounselorController {
 		// 예약 상세 페이지로 이동
 		return "counselor/reservationDetail"; // JSP 또는 HTML 페이지로 이동
 	}
-	
+
 	@Autowired
 	private WebClient webClient;
-	
+
 	private String callChatGPT(String prompt) {
-	try {
-		Map<String, Object> requestBody = Map.of("model", "gpt-3.5-turbo", "messages",
-				List.of(Map.of("role", "user", "content", prompt)));
-		Map response = webClient.post().uri("/chat/completions").contentType(MediaType.APPLICATION_JSON)
-				.bodyValue(requestBody).retrieve().bodyToMono(Map.class).block();
+		try {
+			Map<String, Object> requestBody = Map.of("model", "gpt-3.5-turbo", "messages",
+					List.of(Map.of("role", "user", "content", prompt)));
+			Map response = webClient.post().uri("/chat/completions").contentType(MediaType.APPLICATION_JSON)
+					.bodyValue(requestBody).retrieve().bodyToMono(Map.class).block();
 
-		Map message = (Map) ((Map) ((List) response.get("choices")).get(0)).get("message");
-		return message.get("content").toString().trim();
-	} catch (Exception e) {
-		return "죄송합니다. 답변 중 오류가 발생했습니다.";
+			Map message = (Map) ((Map) ((List) response.get("choices")).get(0)).get("message");
+			return message.get("content").toString().trim();
+		} catch (Exception e) {
+			return "죄송합니다. 답변 중 오류가 발생했습니다.";
+		}
 	}
-}
-
 
 	// 예약취소
 	@PostMapping("/reservation/cancel")
@@ -295,71 +290,39 @@ public class CounselorController {
 		return "redirect:/counselor/reservation"; // 예약 현황 페이지로 리다이렉트
 	}
 
-	// 페이징처리
+	// 상담 예약 리스트 (페이징 + 정렬)
 	@GetMapping("/reservation")
-	public String reservationList(@RequestParam(name = "page", defaultValue = "1") int page,
-			@RequestParam(name = "size", defaultValue = "10") int size, HttpSession session, Model model) {
-		// 페이지 처리 로직
-		Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
-		if (counselor == null) {
-			return "redirect:/counselor/login";
-		}
-
-		List<CounselorReservation> list = counselorService
-				.getReservationsByCounselorWithPaging(counselor.getCounselorId(), page, size);
+	public String getReservationList
+		   (@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size,
+			@RequestParam(name = "sortColumn", defaultValue = "start") String sortColumn,
+			@RequestParam(name = "sortOrder", defaultValue = "DESC") String sortOrder, HttpSession session,
+			Model model) {
 		
-		// 로그를 찍어 start 값을 확인
-	    for (CounselorReservation reservation : list) {
-	        System.out.println("Reservation start: " + reservation.getStart());
+		Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
+		if (counselor == null)
+			return "redirect:/counselor/login";
+
+		// 정렬 컬럼을 SQL용 컬럼명으로 변환
+		String sqlSortColumn = "a.start";
+	    if ("state".equals(sortColumn)) {
+	        sqlSortColumn = "r.state";
 	    }
+
+		// 정렬 + 페이징된 데이터 조회
+		List<CounselorReservation> list = counselorService.getPagedReservations(counselor.getCounselorId(), page, size,
+				sqlSortColumn, sortOrder);
+
 		int totalCount = counselorService.getTotalReservations(counselor.getCounselorId());
 		int totalPages = (int) Math.ceil((double) totalCount / size);
 
 		model.addAttribute("reservationList", list);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
-
-		return "counselor/mypageReservation";
-	}
-
-
-	@GetMapping("/counselor/reservation")
-	public String getReservationList(
-	    @RequestParam(defaultValue = "1") int page,
-	    @RequestParam(defaultValue = "10") int size,
-	    @RequestParam(defaultValue = "start") String sortColumn,
-	    @RequestParam(defaultValue = "DESC") String sortOrder,
-	    HttpSession session,
-	    Model model
-	) {
-	    Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
-	    if (counselor == null) return "redirect:/counselor/login";
-
-	    // SQL용 정렬 컬럼 변수 따로 분리
-	    String sqlSortColumn;
-	    if ("start".equals(sortColumn)) {
-	        sqlSortColumn = "a.start";
-	    } else if ("state".equals(sortColumn)) {
-	        sqlSortColumn = "r.state";
-	    } else {
-	        sqlSortColumn = "a.start";
-	    }
-
-	    // 데이터 조회
-	    List<CounselorReservation> list = counselorService.getPagedReservations(
-	        counselor.getCounselorId(), page, size, sqlSortColumn, sortOrder
-	    );
-	    int totalCount = counselorService.getTotalReservations(counselor.getCounselorId());
-	    int totalPages = (int) Math.ceil((double) totalCount / size);
-
-	    // JSP에서 필요한 model 값 모두 전달!
-	    model.addAttribute("reservationList", list);
-	    model.addAttribute("currentPage", page);
-	    model.addAttribute("totalPages", totalPages);
-	    model.addAttribute("sortColumn", sortColumn); // JSP 조건 비교용
+		model.addAttribute("sortColumn", sortColumn);
 		model.addAttribute("sortOrder", sortOrder);
 
 		return "counselor/mypageReservation";
 	}
-	
+
 }
