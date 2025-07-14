@@ -1,9 +1,7 @@
 <img width="345" height="113" alt="image" src="https://github.com/user-attachments/assets/60ac6585-1227-414c-9aaa-52c6ba52cc70" />
----
 
-> 💬 **의미**
 > ‘near’(가까운)와 ‘ear’(귀)의 조합으로, 언제나 가까이에서 귀 기울이며 당신의 이야기를 들어주는 사람을 의미합니다.
-
+---
 
 **기간:** 2025년 7월 1일 \~ 7월 27일
 
