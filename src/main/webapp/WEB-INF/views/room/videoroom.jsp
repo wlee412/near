@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -72,12 +74,16 @@
 				<div class="col-md-6" id="description">
 					<div  id="desc-content">
 						<h2>심리 상담</h2>
-						<p>상담 일시: ${rsv.start }</p>
-						<p>상담사: ${rsv.counselorName }</p>
-						<p>내담자: ${rsv.clientName }</p>
+						<p>상담 일시: <fmt:formatDate value="${rsv.startDate }" pattern="yy-M-d E요일 HH:mm"/></p>
+						<c:if test="${who eq 'client' }">
+							<p>상담사: ${rsv.counselorName }</p>
+							<p>상담사 연락처: ${rsv.counselorPhone }</p>
+						</c:if>
+						<c:if test="${who eq 'counselor' }">
+							<p>내담자: ${rsv.clientName }</p>
+							<p>내담자 연락처: ${rsv.clientPhone }</p>
+						</c:if>
 						<p>상담 사유: ${rsv.sympCsv }</p>
-						<p>상담사 연락처: ${rsv.counselorPhone }</p>
-						<p>내담자 연락처: ${rsv.clientPhone }</p>
 					</div>
 					<div id="controls">
 						<div id="registernow">
