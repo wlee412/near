@@ -34,7 +34,8 @@ public class RoomController {
 
 	@GetMapping("")
 	public String main(HttpSession session) {
-		session.setAttribute("loginCounselor", "test_counselor");
+//		session.setAttribute("loginCounselor", "test_counselor");
+		session.invalidate();
 		return "room/door";
 	}
 
