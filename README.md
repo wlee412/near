@@ -18,7 +18,7 @@
 * 심리상태 자가진단 설문조사 및 ChatGPT 기반 해석과 리포트 제공
 * 지도 API를 통한 병원 및 약국 검색과 즐겨찾기 기능 제공
 * 스트레스 완화를 위한 멘탈 케어 컨텐츠 제공
-* Chatbot을 이용한 상담사 정보 및 예약 정보 문의 (ChatGPT API 연동)
+* Chatbot을 이용한 상담사 정보 및 예약 정보 문의 (Dialogflow CX API & ChatGPT API 연동)
 
 ---
 
