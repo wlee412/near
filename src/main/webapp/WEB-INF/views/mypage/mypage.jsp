@@ -43,7 +43,7 @@
 				<div class="mypage-content-wrapper">
 					<section class="main-section" id="contentArea">
 						<div class="welcome-box">
-							<h2>${client.name}님환영합니다!</h2>
+							<h2>${client.name}님 환영합니다!</h2>
 						</div>
 						<h3>관심사 기반 추천 설문</h3>
 						<c:if test="${empty recommendedSurveys}">
