@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 public class Chatbot {
-
 	private int pk;
     private String clientId;
     private String sender;

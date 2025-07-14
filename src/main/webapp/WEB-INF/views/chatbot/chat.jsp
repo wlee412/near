@@ -1,38 +1,46 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-   	<!-- Dialogflow 챗봇 UI -->
-<style>
-  df-messenger {
-    position: fixed !important;
-    bottom: 80px !important;
-    right: 20px !important;
-    z-index: 9999 !important;
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    transform: scale(0.8); /* 챗봇창 전체를 70%로 축소함 */
-    transform-origin: bottom right; /* 우하단 기준으로 줄이기 */
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/chat.css" />
 
-    --df-messenger-button-titlebar-color: #7bb8cc;
-    --df-messenger-chat-background-color: #ffffff;
-    --df-messenger-font-color: #333333;
-    --df-messenger-user-message: #f1f1f1;
-    --df-messenger-bot-message: #e3f2fd;
-    
-  }
-</style>
+<!-- 챗봇 아이콘: 우측 하단에 고정 -->
+<div class="chatbot-icon" onclick="toggleChatModal()">
+	<img src="images/chatbot.png" alt="챗봇 아이콘" />
+</div>
 
-<df-messenger 
-    agent-id="$9f1618e2-0167-4e27-bb92-db0c60be0f6d" 
-    intent="WELCOME" 
-    chat-title="n:ear챗봇상담" 
-    language-code="ko"
-    chat-icon="/images/chatbot.png">
-</df-messenger>
+<!-- 챗봇 모달 (처음엔 숨겨짐) -->
+<div class="chat-modal" style="display: none;">
+	<div class="chat-header">
+		<span>n:ear 챗봇상담</span>
+		<button onclick="toggleChatModal()">-</button>
+	</div>
+	<div class="chat-log">
+		<c:choose>
+			<c:when test="${not empty chatList}">
+				<c:forEach var="chat" items="${chatList}">
+					<div class="chat-bubble ${chat.sender eq 'user' ? 'user' : 'bot'}">
+						<div class="message">${chat.message}</div>
+					</div>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<div class="chat-bubble bot">
+					<div class="message">
+						안녕하세요! n:ear입니다.<br> 어떤 도움이 필요하신가요? 😊<br> 심리상담이 필요하거나
+						다른 것에 대해 이야기 나누고 싶으시면 말씀해주세요.
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+	<div class="chat-input">
+		<input type="text" class="chat-input-field" placeholder="메시지를 입력하세요"
+			onkeydown="if(event.key==='Enter') sendMessage()" />
+		<button onclick="sendMessage()">전송</button>
+	</div>
+</div>
 
-
-   
-</body>
-</html>
+<!-- JS 파일 -->
+<script src="${pageContext.request.contextPath}/js/chat.js"></script>
