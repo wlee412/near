@@ -21,4 +21,8 @@ public interface RoomMapper {
 
 	public List<Integer> janusNums();
 
+	public List<Room> getExpiredRooms();
+
+	public void expireRooms();
+
 }

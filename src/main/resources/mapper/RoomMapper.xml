@@ -8,7 +8,6 @@
 		AND NOW() BETWEEN start - INTERVAL 10 MINUTE AND end
 	</select>
 
-
 	<select id="findByRoomId" parameterType="int" resultType="room">
 		SELECT * FROM room WHERE room_id=#{roomId}
 		AND NOW() BETWEEN start - INTERVAL 10 MINUTE AND end
@@ -19,8 +18,7 @@
 		room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
 	</insert>
 
-	<select id="getReservationInfo" parameterType="int"
-		resultType="reservation">
+	<select id="getReservationInfo" parameterType="int" resultType="reservation">
 		SELECT * FROM v_reservation_summary WHERE
 		reservation_no=#{reservationNo}
 	</select>
@@ -28,5 +26,13 @@
 	<select id="janusNums" resultType="int">
     	SELECT janus_num FROM room
 	</select>
+	
+	<select id="getExpiredRooms" resultType="room">
+		SELECT * FROM room WHERE state='진행' AND end &lt;= NOW()
+	</select>
+	
+	<update id="expireRooms">
+		UPDATE room SET state='완료' WHERE state='진행';
+	</update>
 	
 </mapper>

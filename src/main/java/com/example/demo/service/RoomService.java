@@ -55,4 +55,10 @@ public class RoomService {
 		room.setJanusNum(janusNum);
 	}
 
+	public List<Room> expireRooms() {
+		List<Room> ExpiredRooms = roomMapper.getExpiredRooms();
+		roomMapper.expireRooms();	// 방 상태: 진행 -> 완료 
+		return ExpiredRooms;
+	}
+
 }
