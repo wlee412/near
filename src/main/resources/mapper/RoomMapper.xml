@@ -4,11 +4,19 @@
 
 <mapper namespace="com.example.demo.mapper.RoomMapper">
 	<select id="findByToken" parameterType="String" resultType="room">
-		SELECT * FROM room WHERE room_token=#{token}
+		SELECT *
+		FROM room
+		WHERE room_token = #{token}
+		AND start &lt;= NOW()
+		AND end &gt;= NOW()
 	</select>
-	
+
+
 	<select id="findByRoomId" parameterType="int" resultType="room">
-		SELECT * FROM room WHERE room_id=#{roomId}
+		SELECT * FROM room 
+		WHERE room_id=#{roomId}
+		AND start &lt;= NOW()
+		AND end &gt;= NOW()
 	</select>
 
 	<insert id="uploadRec" parameterType="rec">
@@ -16,7 +24,9 @@
 		room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
 	</insert>
 
-	<select id="getReservationInfo" parameterType="int" resultType="reservation">
-		SELECT * FROM v_reservation_summary WHERE reservation_no=#{reservationNo}
+	<select id="getReservationInfo" parameterType="int"
+		resultType="reservation">
+		SELECT * FROM v_reservation_summary WHERE
+		reservation_no=#{reservationNo}
 	</select>
 </mapper>

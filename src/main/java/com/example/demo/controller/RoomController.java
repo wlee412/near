@@ -41,17 +41,29 @@ public class RoomController {
 
 	// 토큰과 로그인 세션 체크
 	@GetMapping("/token")
-	public String whoRU(@RequestParam("token") String token, Model model, HttpSession session) {
+	public String whoRU(@RequestParam("t") String token, Model model, HttpSession session) {
+		// 토큰 입력 -> 로그인 -> 돌아옴
+		if (token == null) {
+			token = (String) session.getAttribute("roomToken");
+			session.removeAttribute("roomToken");
+		}
+		
+		//방 정보
 		Room room = roomService.findByToken(token);
+		
+		// 토큰 틀림
 		if (room == null) {
 			model.addAttribute("msg", "유효하지 않은 상담방 토큰입니다.");
 			return "room/errmsg"; // 잘못된 토큰
 		}
+		
+		// 방 번호 전달
 		model.addAttribute("roomId", room.getRoomId());
 
 		String client = (String) session.getAttribute("loginClient");
 		String counselor = (String) session.getAttribute("loginCounselor");
 
+		// 내담자 세션
 		if (client != null && counselor == null) {
 			if (client.equals(room.getClientId())) {
 				model.addAttribute("who", "client");
@@ -60,6 +72,8 @@ public class RoomController {
 				model.addAttribute("msg", "유효하지 않은 상담방입니다.");
 				return "room/errmsg";
 			}
+			
+		// 상담사 세션
 		} else if (client == null && counselor != null) {
 			if (counselor.equals(room.getCounselorId())) {
 				model.addAttribute("who", "counselor");
@@ -69,8 +83,10 @@ public class RoomController {
 				return "room/errmsg";
 			}
 		}
-		session.invalidate();
-		return "room/login";
+		
+		// 세션 없음 - 로그인
+		session.setAttribute("roomToken", token);
+		return "client/login";
 	}
 
 	// 상담실 정보, 예약정보 보여준 후 webRTC 화상채팅

@@ -12,7 +12,7 @@
 	<img src="https://i.imgur.com/H5grzMN.png" alt="logo-img">
 	<form action="/chat/token" method="get">
 		<div id="token-input">
-			<input type="text" name="token" id="token" required>
+			<input type="text" name="t" id="token" required>
 			<button type="submit">입장</button>
 		</div>
 		<h1>상담실 입장 코드를 입력하세요</h1>
