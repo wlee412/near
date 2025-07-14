@@ -98,6 +98,11 @@ public class RoomController {
 			model.addAttribute("msg", "유효하지 않은 상담방입니다.");
 			return "room/errmsg";
 		}
+		if (!room.getState().equals("진행")) {
+			model.addAttribute("msg", "상담 시작 10분 전부터 입장 가능합니다.");
+			model.addAttribute("goto", "/chat");
+			return "room/errmsg";
+		}
 		Reservation rsv = roomService.getReservationInfo(room.getReservationNo());
 
 		String username;

@@ -8,8 +8,13 @@
 </head>
 <body>
 	<script>
+		const path = "${goto}";
 		alert("${msg}");
-		location.href="/";
+		
+		if(path == "")
+			location.href="/";
+		else
+			location.href=path;
 	</script>
 </body>
 </html>
