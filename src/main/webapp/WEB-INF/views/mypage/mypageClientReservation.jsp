@@ -99,12 +99,12 @@
 				</div>
 			</div>
 		</div>
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
 	</div>
 		<div id="loadingOverlay" class="loading-overlay" style="display: none;">
 		<div class="spinner"></div>
 		<div class="loading-text">Loading...</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" flush="true" />
 	<script>
 	document.addEventListener('DOMContentLoaded', function() {
 	    // 모든 cancel-btn 에 리스너 부착
