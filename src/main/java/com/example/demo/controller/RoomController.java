@@ -83,6 +83,24 @@ public class RoomController {
 		}
 		Reservation rsv = roomService.getReservationInfo(room.getReservationNo());
 
+		String username;
+		String opponent;
+		switch (who) {
+		case "client":
+			username = rsv.getClientName();
+			opponent = rsv.getCounselorName();
+			break;
+		case "counselor":
+			username = rsv.getCounselorName();
+			opponent = rsv.getClientName();
+			break;
+		default:
+			model.addAttribute("msg", "유효하지 않은 사용자입니다.");
+			return "room/errmsg";
+		}
+
+		model.addAttribute("username", username);
+		model.addAttribute("opponent", opponent);
 		model.addAttribute("who", who);
 		model.addAttribute("room", room);
 		model.addAttribute("rsv", rsv);
@@ -95,7 +113,7 @@ public class RoomController {
 	public ResponseEntity<String> uploadRecording(@RequestParam("file") MultipartFile file,
 			@ModelAttribute RoomRecording rec) {
 
-		String savePath = "C:/recordings/";	// 배포 전 수정 필요: /home/ubuntu/
+		String savePath = "C:/recordings/"; // 배포 전 수정 필요: /home/ubuntu/
 		String filename = UUID.randomUUID() + ".webm";
 		Path path = Paths.get(savePath + filename);
 

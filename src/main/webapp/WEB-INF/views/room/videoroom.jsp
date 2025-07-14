@@ -74,7 +74,7 @@
 				<div class="col-md-6" id="description">
 					<div  id="desc-content">
 						<h2>심리 상담</h2>
-						<p>상담 일시: <fmt:formatDate value="${rsv.startDate }" pattern="yy-M-d E요일 HH:mm"/></p>
+						<p>상담 일시: <fmt:formatDate value="${rsv.startDate }" pattern="yyyy년 M월 d일 E요일 HH:mm"/></p>
 						<c:if test="${who eq 'client' }">
 							<p>상담사: ${rsv.counselorName }</p>
 							<p>상담사 연락처: ${rsv.counselorPhone }</p>
@@ -99,7 +99,8 @@
 								<span class="input-group-addon group-label">이름</span> <input
 									autocomplete="off" class="form-control" type="text"
 									placeholder="My Name" id="username"
-									onkeypress="return checkEnter(this, event);" value="${username}" />
+									onkeypress="return checkEnter(this, event);" value="${username}" 
+									readonly/>
 								<span class="input-group-btn">
 									<button class="btn" autocomplete="off" id="register">상담실 입장</button>
 								</span>
@@ -120,7 +121,7 @@
 			<div class="video-main">
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">상대</h3>
+						<h3 class="panel-title">${opponent }</h3>
 					</div>
 					<div class="panel-body" id="videoremote1"></div>
 				</div>
@@ -171,7 +172,7 @@
 				<%-- 나 --%>
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">나</h3>
+						<h3 class="panel-title">${username }</h3>
 					</div>
 					<div class="panel-body" id="videolocal"></div>
 				</div>
@@ -215,7 +216,7 @@
 			<div class="right-section">
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">상대</h3>
+						<h3 class="panel-title">${opponet }</h3>
 					</div>
 					<div class="panel-body-sm" id="videoremote1"></div>
 				</div>
@@ -226,7 +227,7 @@
 				</div>
 				<div class="panel">
 					<div class="panel-heading">
-						<h3 class="panel-title">나</h3>
+						<h3 class="panel-title">${username }</h3>
 					</div>
 					<div class="panel-body" id="videolocal"></div>
 				</div>

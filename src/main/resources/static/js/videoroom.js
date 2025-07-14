@@ -359,21 +359,22 @@ function registerUsername() {
 
 		var username = $('#username').val();
 		if (username === "") {
-			$('#you')
-				.removeClass().addClass('label label-warning')
-				.html("채팅방에서 사용할 닉네임을 입력해주세요.");
-			$('#username').removeAttr('disabled');
-			$('#register').removeAttr('disabled').click(registerUsername);
+//			$('#you')
+//				.removeClass().addClass('label label-warning')
+//				.html("채팅방에서 사용할 이름을 입력해주세요.");
+//			$('#username').removeAttr('disabled');
+//			$('#register').removeAttr('disabled').click(registerUsername);
+			$('#username').focus();
 			return;
 		}
-		if (/[^a-zA-Z0-9]/.test(username)) {
-			$('#you')
-				.removeClass().addClass('label label-warning')
-				.html('닉네임은 영문만 가능합니다.');
-			$('#username').removeAttr('disabled').val("");
-			$('#register').removeAttr('disabled').click(registerUsername);
-			return;
-		}
+//		if (/[^a-zA-Z0-9]/.test(username)) {
+//			$('#you')
+//				.removeClass().addClass('label label-warning')
+//				.html('닉네임은 영문만 가능합니다.');
+//			$('#username').removeAttr('disabled').val("");
+//			$('#register').removeAttr('disabled').click(registerUsername);
+//			return;
+//		}
 
 		//alert("room id:" + roomname);
 		myroom = Number(roomname); //사용자 입력 방 아이디
