@@ -59,13 +59,18 @@ public class MainController {
 
     // 상담하기 페이지
     @GetMapping("/room/door")
-    public String consultationRoom(HttpSession session, RedirectAttributes redirectAttributes) {
-        if (session.getAttribute("loggedInClient") == null && session.getAttribute("loggedInCounselor") == null) {
-        	redirectAttributes.addFlashAttribute("message", "로그인 회원만 접근 가능합니다.");
-        	return "redirect:/" ;
+    public String consultationRoom() {
+        return "room/door";
     }
-        return "room/door"; 
-    }
+    
+//    @GetMapping("/room/door")
+//    public String consultationRoom(HttpSession session, RedirectAttributes redirectAttributes) {
+//        if (session.getAttribute("loggedInClient") == null && session.getAttribute("loggedInCounselor") == null) {
+//        	redirectAttributes.addFlashAttribute("message", "로그인 회원만 접근 가능합니다.");
+//        	return "redirect:/" ;
+//    }
+//        return "room/door"; 
+//    }
         
     // 심리검사 페이지
     @GetMapping("/survey/selfSurveyList")
@@ -82,7 +87,7 @@ public class MainController {
     // 멘탈케어 페이지
     @GetMapping("/mental/mentalDashboard")
     public String mentalDashboard() {
-        return "mental/mentalDashboard";  // 어디를 첫페이지로 하나요? mem 오타 있음
+        return "mental/mentalDashboard";   // 어디로 이동해야할까요
     }
 
     @GetMapping("/mypage")

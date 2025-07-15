@@ -29,6 +29,11 @@ public class ChatbotService {
     public List<Chatbot> getChatHistory(String clientId) {
         return chatbotMapper.findChatsByClientId(clientId);
     }
+
+    //예약시간 불러오기 
+	public List<String> getReservationTimes(String clientId) {
+		return chatbotMapper.findReservationTimesByClientId(clientId);
+	}
 }
 
     

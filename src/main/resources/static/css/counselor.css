@@ -95,6 +95,7 @@
 .profile-box h3 {
     font-size: 30px;  /* 글씨 크기 키우기 */
     font-weight: bold;
+    text-align: left; 
 }
 
 .profile-box ul {
@@ -120,9 +121,10 @@
 
 .profile-content {
 	display: flex;
-	gap: 24px;
+	gap: 40px;
 	align-items: center;
 	justify-content: center;
+	margin-bottom :10px;
 }
 
 .profile-info {

@@ -16,7 +16,7 @@
 
   <div class="counselor-container">
     <div class="mypage-title">
-      <a href="/counselor/mypage"><h2>상담사 마이페이지</h2></a>
+      <a href="/counselor/mypage"> <h2>상담사 마이페이지</h2></a>
     </div>
 
     <div class="mypage-body">

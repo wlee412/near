@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 @PropertySource("classpath:secret.properties")
 public class WebCounselorConfig {
-	
+	 
     @Bean
     public WebClient webClient(@Value("${openai.api.key}") String apiKey) {
         return WebClient.builder()

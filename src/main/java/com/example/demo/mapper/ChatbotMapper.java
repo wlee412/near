@@ -10,5 +10,8 @@ import com.example.demo.model.Chatbot;
 public interface ChatbotMapper {
 	
 	  void insertChat(Chatbot chat);
-	  List<Chatbot> findChatsByClientId(String clientId);
+
+		List<Chatbot> findChatsByClientId(String clientId);
+
+		List<String> findReservationTimesByClientId(String clientId);
 }

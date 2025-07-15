@@ -27,10 +27,12 @@ function initCalendar() {
     dateClick: function (info) {
       const clickedDate = new Date(info.dateStr);
       const today = new Date();
-      const maxDate = new Date();
       today.setHours(0, 0, 0, 0);
-      maxDate.setMonth(maxDate.getMonth() + 1);
-      maxDate.setHours(23, 59, 59, 999);
+	  
+	   const maxDate = new Date();
+	   maxDate.setMonth(maxDate.getMonth() + 1);
+	   maxDate.setDate(today.getDate());
+	   maxDate.setHours(23, 59, 59, 999);
 
       if (clickedDate < today || clickedDate > maxDate) return;
 
@@ -61,13 +63,23 @@ function initCalendar() {
     dayCellDidMount: function (info) {
       const cellDate = new Date(info.dateStr);
       const today = new Date();
-      const maxDate = new Date();
       today.setHours(0, 0, 0, 0);
+	  
+      const maxDate = new Date();
       maxDate.setMonth(maxDate.getMonth() + 1);
+	  maxDate.setDate(today.getDate()); 
       maxDate.setHours(23, 59, 59, 999);
 
       if (cellDate < today || cellDate > maxDate) {
         info.el.classList.add('out-of-range');
+		info.el.style.pointerEvents = 'none';
+		info.el.style.opacity = '0.3';
+		
+		// 툴팁 추가
+		    info.el.setAttribute('title', '한 달 이내 날짜만 선택할 수 있습니다.');
+		    info.el.style.cursor = 'not-allowed';  // 마우스 커서 변경
+		
+		
       }
     }
   });
