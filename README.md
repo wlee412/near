@@ -39,7 +39,7 @@
 
 <p align="center">
   <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
-    <img width="376" height="100" alt="Group 2" src="https://github.com/user-attachments/assets/3b87370a-f9f7-41e0-a180-84ee04df84c2" />
+    <img width="369" height="100" alt="Group 3" src="https://github.com/user-attachments/assets/0b2edc25-ef31-4515-8305-68c86ec131c7" />
   </a>
 </p>
 
