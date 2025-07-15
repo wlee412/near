@@ -25,7 +25,7 @@
       <a href="${pageContext.request.contextPath}/mypage/mypageReport">검사 기록 보기</a>
     </div>
   </div>
-  </div>
   <%@ include file="../includes/footer.jsp" %>
+  </div>
 </body>
 </html>

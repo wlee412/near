@@ -114,8 +114,7 @@
 					<div class="input-row">
 						<input type="text" id="emailId" name="emailId"
 							placeholder="이메일 아이디" required> <span>@</span>
-						<div id="emailIdMessage" class="result-text"
-							style="font-size: 14px; margin-top: 4px;"></div>
+						
 
 						<!-- 직접입력 input (초기에는 숨김) -->
 						<input type="text" id="customEmailDomain" placeholder="직접입력"
@@ -129,8 +128,11 @@
 							<option value="daum.net">daum.net</option>
 							<option value="custom">직접입력</option>
 						</select>
+						
 
 					</div>
+					<div id="emailIdMessage" class="result-text"
+							style="font-size: 14px; margin-top: 4px;"></div>
 					<div id="emailCheckResult" class="result-text"
 						style="font-size: 14px; margin-top: 4px;"></div>
 				</div>
@@ -199,8 +201,8 @@
 				<button type="submit" class="btn btn-full" id="registerBtn">가입하기</button>
 			</form>
 		</div>
-	</div>
 	<%@ include file="../includes/footer.jsp"%>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-latest.js" defer></script>
 	<script src="${pageContext.request.contextPath}/js/client.js" defer></script>

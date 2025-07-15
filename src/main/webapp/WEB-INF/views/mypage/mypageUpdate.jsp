@@ -83,29 +83,20 @@
 							<label>이메일</label>
 							<div class="input-row">
 								<input type="text" id="emailId" name="emailId" class="input-sm"
-									placeholder="이메일 아이디" readonly value="${client.emailId}"
+									placeholder="이메일 아이디" value="${client.emailId}"
 									required> <span>@</span>
 
 								<!-- 직접입력 input -->
-								<input type="text" id="customEmailDomain" name="emailDomain" class="input-sm" 
-									placeholder="직접입력" readonly
-									style="${client.emailDomain != 'gmail.com' && client.emailDomain != 'naver.com' && client.emailDomain != 'daum.net' ? 'display:inline-block;' : 'display:none;'}"
-									value="${client.emailDomain}"
-									${client.emailDomain !='gmail.com' && client.emailDomain !='naver.com' && client.emailDomain !='daum.net' ? 'name="emailDomain"' : 'disabled'}>
-
+								<input type="text" id="customEmailDomain" name="emailDomain" class="input-sm" placeholder="직접입력" style="${client.emailDomain != 'gmail.com' && client.emailDomain != 'naver.com' && client.emailDomain != 'daum.net' ? 'display:inline-block;' : 'display:none;'}"
+								value="${client.emailDomain}" ${client.emailDomain !='gmail.com' && client.emailDomain !='naver.com' && client.emailDomain !='daum.net' ? 'name="emailDomain"' : 'disabled'}>
+								
 								<!-- select 도메인 -->
-								<select id="emailDomainSelect" class="input-sm"
-									${client.emailDomain=='gmail.com' || client.emailDomain=='naver.com' || client.emailDomain=='daum.net' ? 'name="emailDomain"' : ''}
-									name="emailDomain" onchange="handleDomainChange()" required>
-									<option value="">도메인 선택</option>
-									<option value="gmail.com"
-										${client.emailDomain=='gmail.com' ? 'selected' : ''}>gmail.com</option>
-									<option value="naver.com"
-										${client.emailDomain=='naver.com' ? 'selected' : ''}>naver.com</option>
-									<option value="daum.net"
-										${client.emailDomain=='daum.net' ? 'selected' : ''}>daum.net</option>
-									<option value="custom"
-										${client.emailDomain !='gmail.com' && client.emailDomain !='naver.com' && client.emailDomain !='daum.net' ? 'selected' : ''}>직접입력</option>
+								<select id="emailDomainSelect" class="input-sm" ${client.emailDomain=='gmail.com' || client.emailDomain=='naver.com' || client.emailDomain=='daum.net' ? 'name="emailDomain"' : ''} name="emailDomain" onchange="handleDomainChange()" required>
+								    <option value="">도메인 선택</option>
+								    <option value="gmail.com" ${client.emailDomain=='gmail.com' ? 'selected' : ''}>gmail.com</option>
+								    <option value="naver.com" ${client.emailDomain=='naver.com' ? 'selected' : ''}>naver.com</option>
+								    <option value="daum.net" ${client.emailDomain=='daum.net' ? 'selected' : ''}>daum.net</option>
+								    <option value="custom" ${client.emailDomain !='gmail.com' && client.emailDomain !='naver.com' && client.emailDomain !='daum.net' ? 'selected' : ''}>직접입력</option>
 								</select>
 							</div>
 						</div>

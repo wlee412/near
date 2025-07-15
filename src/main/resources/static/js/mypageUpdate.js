@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+	handleDomainChange(); // 강제로 초기 설정 적용
+	emailDomainTrim();
+});
+
 function handleDomainChange() {
 	const select = document.getElementById("emailDomainSelect");
 	const input = document.getElementById("customEmailDomain");
@@ -5,18 +10,16 @@ function handleDomainChange() {
 
 	if (selected === "custom") {
 		input.style.display = "inline-block";
-		input.removeAttribute("disabled");
+		input.disabled = false;
 		input.setAttribute("name", "emailDomain");
 
 		select.removeAttribute("name");
-		select.disabled = true;
 	} else {
 		input.style.display = "none";
-		input.setAttribute("disabled", true);
+		input.disabled = true;
 		input.removeAttribute("name");
 
 		select.setAttribute("name", "emailDomain");
-		select.disabled = false;
 	}
 }
 
@@ -58,8 +61,23 @@ function isPhoneUnique(phone) {
     }
   }
 
+function emailDomainTrim(){
+	document.getElementById("updateForm").addEventListener("submit", () => {
+		const select = document.getElementById("emailDomainSelect");
+		const input = document.getElementById("customEmailDomain");
+
+		if (select.value === "custom") {
+			select.removeAttribute("name");
+			input.setAttribute("name", "emailDomain");
+		} else {
+			select.setAttribute("name", "emailDomain");
+			input.removeAttribute("name");
+		}
+	});
+}
 
 function validateUpdateForm() {
+	emailDomainTrim();
 	const name = document.getElementById("name")?.value.trim();
 	const phone = document.getElementById("phone")?.value.trim();
 	const emailId = document.getElementById("emailId")?.value.trim();
@@ -72,7 +90,6 @@ function validateUpdateForm() {
 	const detailAddress = document.getElementById("detailAddress")?.value.trim();
 	const gender = document.querySelector('input[name="gender"]:checked');
 	const interests = document.querySelectorAll('input[name="interestList"]:checked');
-
 	const emailDomain = emailDomainSelect.value === "custom"
 		? customEmailInput?.value.trim()
 		: emailDomainSelect?.value;

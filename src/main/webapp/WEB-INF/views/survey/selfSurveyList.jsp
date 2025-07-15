@@ -30,8 +30,8 @@
         </li>
       </c:forEach>
     </ul>
+	<%@ include file="../includes/footer.jsp" %>
   </div>
 
-<%@ include file="../includes/footer.jsp" %>
 </body>
 </html>

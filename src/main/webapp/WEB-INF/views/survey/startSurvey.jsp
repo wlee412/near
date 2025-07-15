@@ -39,8 +39,8 @@
 				<button type="submit">제출하기</button>
 			</div>
 		</form>
+		<%@ include file="../includes/footer.jsp"%>
 	</div>
-	<%@ include file="../includes/footer.jsp"%>
 	<div id="loadingOverlay" class="loading-overlay" style="display: none;">
 		<div class="spinner"></div>
 		<div class="loading-text">Loading...</div>
