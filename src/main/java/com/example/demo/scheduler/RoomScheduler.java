@@ -64,5 +64,10 @@ public class RoomScheduler {
 		    roomService.sendEmailToken(rsv.getCounselorEmail(), htmlContent2);
 		}
 	}
+	
+	@Scheduled(cron = "0 49 * * * *")
+	public void roomOpen() {
+		roomService.roomOpen();
+	}
 
 }

@@ -27,4 +27,6 @@ public interface RoomMapper {
 
 	public void expireRooms();
 
+	public void roomOpen();
+
 }

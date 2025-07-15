@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,7 @@ import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.model.RoomRecording;
 import com.example.demo.service.RoomService;
+import com.example.demo.util.EmailTemplate;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -34,8 +39,8 @@ public class RoomController {
 
 	@GetMapping("")
 	public String main(HttpSession session) {
-		session.setAttribute("loginCounselor", "test_counselor");
 //		session.invalidate();
+//		session.setAttribute("loginCounselor", "test_counselor");
 		return "room/door";
 	}
 
@@ -47,16 +52,16 @@ public class RoomController {
 			token = (String) session.getAttribute("roomToken");
 			session.removeAttribute("roomToken");
 		}
-		
-		//방 정보
+
+		// 방 정보
 		Room room = roomService.findByToken(token);
-		
+
 		// 토큰 틀림
 		if (room == null) {
 			model.addAttribute("msg", "유효하지 않은 상담방 토큰입니다.");
 			return "room/errmsg"; // 잘못된 토큰
 		}
-		
+
 		// 방 번호 전달
 		model.addAttribute("roomId", room.getRoomId());
 
@@ -72,8 +77,8 @@ public class RoomController {
 				model.addAttribute("msg", "유효하지 않은 상담방입니다.");
 				return "room/errmsg";
 			}
-			
-		// 상담사 세션
+
+			// 상담사 세션
 		} else if (client == null && counselor != null) {
 			if (counselor.equals(room.getCounselorId())) {
 				model.addAttribute("who", "counselor");
@@ -83,7 +88,7 @@ public class RoomController {
 				return "room/errmsg";
 			}
 		}
-		
+
 		// 세션 없음 - 로그인
 		session.setAttribute("roomToken", token);
 		return "redirect:/client/login";
@@ -100,7 +105,7 @@ public class RoomController {
 		}
 		if (!room.getState().equals("진행")) {
 			model.addAttribute("msg", "상담 시작 10분 전부터 입장 가능합니다.");
-			model.addAttribute("goto", "/chat");
+			model.addAttribute("path", "/chat");
 			return "room/errmsg";
 		}
 		Reservation rsv = roomService.getReservationInfo(room.getReservationNo());
@@ -128,7 +133,7 @@ public class RoomController {
 		model.addAttribute("rsv", rsv);
 		return "room/videoroom";
 	}
-	
+
 	// 영상 녹화
 	@ResponseBody
 	@PostMapping("/rec")
@@ -149,4 +154,30 @@ public class RoomController {
 		}
 	}
 
+	@PostMapping("/mail")
+	@ResponseBody
+	public String emailTest() throws IOException {
+		System.out.println("토큰 발송");
+		List<Reservation> rsvList = roomService.getBooked();
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy년 M월 d일 E요일 a h:mm");
+		EmailTemplate emailTpl = new EmailTemplate("roomTokenEmail.html");
+
+		System.out.println(rsvList.size());
+		for (Reservation rsv : rsvList) {
+			Map<String, String> data = Map.of("start_time", sd.format(rsv.getStartDate()), "room_token",
+					rsv.getRoomToken(), "counselor_name", rsv.getCounselorName(), "client_name", rsv.getClientName(),
+					"opponent_phone", "상담사 전화번호: " + rsv.getCounselorPhone());
+
+			// 내담자에게 발송
+			String htmlContent = emailTpl.loadEmailTemplate(data);
+			roomService.sendEmailToken(rsv.getClientEmail(), htmlContent);
+
+			// 상담사에게 발송 (상대 전화번호만 교체)
+			Map<String, String> data2 = new HashMap<>(data);
+			data2.put("opponent_phone", "내담자 전화번호: " + rsv.getClientPhone());
+			String htmlContent2 = emailTpl.loadEmailTemplate(data2);
+			roomService.sendEmailToken(rsv.getCounselorEmail(), htmlContent2);
+		}
+		return "이메일 발송 완료";
+	}
 }

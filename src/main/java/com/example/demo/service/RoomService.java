@@ -89,4 +89,8 @@ public class RoomService {
 			e.printStackTrace();
 		}
 	}
+
+	public void roomOpen() {
+		roomMapper.roomOpen();
+	}
 }

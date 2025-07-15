@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		const path = "${goto}";
+		const path = "${path}";
 		alert("${msg}");
 		
 		if(path == "")

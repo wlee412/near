@@ -44,4 +44,11 @@
 		UPDATE room SET state='완료' WHERE state='진행';
 	</update>
 	
+	<update id="roomOpen">
+		UPDATE room SET state='진행'
+		WHERE state='예약'
+			AND start BETWEEN DATE_ADD(NOW(), INTERVAL 13 MINUTE)
+			                AND DATE_ADD(NOW(), INTERVAL 9 MINUTE)
+	</update>
+	
 </mapper>
