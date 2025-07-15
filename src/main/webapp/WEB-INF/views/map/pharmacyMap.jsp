@@ -43,9 +43,17 @@
   <div class="filter-bar">
     <input type="text" id="searchName" placeholder="약국명">
     <input type="text" id="searchArea" placeholder="지역 (예: 강남구)">
-    <button onclick="loadMarkers()">🔍 검색</button>
+    <button onclick="loadMarkers()">
+    	<img src="/images/magnifier.png" alt="검색"
+  		style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+    	검색
+    </button>
     
-    <button id="goMyLocationBtn">📍 내 위치로</button>
+    <button id="goMyLocationBtn">
+    	<img src="/images/my-location.png" alt="내 위치로"
+  		style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+  		내 위치로
+  	</button>
   </div>
 
   <!-- 지도 + 리스트 -->

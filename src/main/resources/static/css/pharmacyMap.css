@@ -143,3 +143,34 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/*약국 상세 창*/
+.infowindow-box {
+  font-size: 14px;
+  width: 240px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  line-height: 1.6;
+}
+
+.infowindow-box b {
+  font-size: 16px;
+  color: #0ABAB5;
+}
+
+.infowindow-box button {
+  padding: 5px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #5daec5;
+  color: white;
+}
+
+.infowindow-box button:hover {
+  background-color: #4a9cb1;
+}

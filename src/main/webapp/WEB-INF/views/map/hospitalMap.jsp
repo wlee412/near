@@ -59,10 +59,17 @@
       <option value="병원">병원</option>
       <option value="요양병원">요양병원</option>
     </select>
-    <button onclick="loadMarkers()">🔍 검색</button>
+    <button onclick="loadMarkers()">
+    	<img src="/images/magnifier.png" alt="검색"
+  		style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+    	검색
+    </button>
     
         <!-- ✅ 내 위치로 이동 버튼 -->
-  <button id="goMyLocationBtn">📍 내 위치로</button>
+  <button id="goMyLocationBtn">
+  	<img src="/images/my-location.png" alt="내 위치로"
+  	style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+  	내 위치로</button>
   </div>
 
   <!-- 지도 + 리스트 -->

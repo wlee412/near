@@ -120,9 +120,17 @@ h2 {
 }
 
 .symptom-list label {
-  white-space: nowrap;      /* 줄바꿈 시 단어 단위로 */
-  word-break: keep-all;     /* 단어 중간에서 끊기지 않도록 */
-  display: inline-block;
+  display: flex;
+  align-items: center;   /* 수직 정렬 */
+  gap: 6px;              /* 체크박스와 텍스트 간격 */
+  width: 110px;          /* 고정 너비로 정렬 */
+}
+
+.symptom-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 20px auto 6px;
+  text-align: center;
 }
 
 /* 예약 버튼 */

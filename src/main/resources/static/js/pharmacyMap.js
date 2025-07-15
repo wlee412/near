@@ -35,7 +35,7 @@ function initMap() {
 
       const circle = new kakao.maps.Circle({
         center: locPosition,
-        radius: 50,
+        radius: 100,
         strokeWeight: 2,
         strokeColor: '#007aff',
         strokeOpacity: 0.8,
@@ -95,12 +95,19 @@ function loadMarkers() {
         });
 
         const content = `
-          <div style="font-size:13px; padding:5px; width:220px;">
+          <div class="infowindow-box">
             <b>${p.name}</b><br/>
-            📍 ${p.address}<br/>
+            ${p.address}<br/>
             ☎ ${p.tel || '-'}<br/><br/>
-            <button onclick="addFavorite('${p.id}', '${p.name}')">🧡 즐겨찾기</button>
-            <button onclick="goToMap('${p.address}')">📍 길찾기</button>
+            <button onclick="addFavorite('${p.id}', '${p.name}')">			
+			<img src="/images/heart.png" alt="즐겨찾기"
+			style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+			즐겨찾기</button>
+			
+            <button onclick="goToMap('${p.address}')">			
+			<img src="/images/my-location.png" alt="길찾기"
+			style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+			길찾기</button>
           </div>`;
 
         const infoWindow = new kakao.maps.InfoWindow({ content });
