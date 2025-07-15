@@ -29,7 +29,7 @@
 			class="search-form">
 			<select name="type">
 				<option value="name" ${type == 'name' ? 'selected' : ''}>내담자 이름</option>
-				<option value="phone" ${type == 'phone' ? 'selected' : ''}>연락처</option>
+				<option value="phone" ${type == 'phone' ? 'selected' : ''}>내담자 연락처</option>
 				<option value="id" ${type == 'id' ? 'selected' : ''}>아이디</option>
 			</select> <input type="text" name="keyword" value="${keyword}"
 				placeholder="검색어 입력">
@@ -45,7 +45,7 @@
 						<th>상담사</th>
 						<th>내담자</th>
 						<th>내담자 아이디</th>
-						<th>연락처</th>
+						<th>내담자 연락처</th>
 						<th>예약일시</th>
 						<th>상태</th>
 						<th>취소</th>

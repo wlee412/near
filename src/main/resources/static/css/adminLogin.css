@@ -1,10 +1,11 @@
 @charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 /* ==========================
    관리자 로그인 화면 기본 스타일
    ========================== */
 body {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   background: linear-gradient(145deg, #e0f7ff, #f8fcff);
   display: flex;
   justify-content: center;
@@ -44,7 +45,7 @@ body {
   padding: 12px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   border: none;
   border-radius: 8px;
   background-color: #5daec5;

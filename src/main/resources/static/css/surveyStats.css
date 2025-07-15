@@ -1,3 +1,7 @@
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+
 canvas {
   width: 100% !important;
   max-width: 700px;
@@ -8,7 +12,7 @@ canvas {
 .content-wrapper {
 
   padding: 20px;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
 .tab-menu {

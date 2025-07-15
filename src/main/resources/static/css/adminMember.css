@@ -1,7 +1,8 @@
 @charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   background-color: #f5f9ff;
   margin: 0;
   padding: 40px;
