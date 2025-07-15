@@ -27,7 +27,7 @@
       <a href="${pageContext.request.contextPath}/survey/list">다른 검사하기</a>
     </div>
   </div>
-  </div>
   <%@ include file="../includes/footer.jsp" %>
+  </div>
 </body>
 </html>

@@ -359,6 +359,7 @@ input[readonly] {
 #emailId {
 	flex: 1;
 	min-width: 100px;
+	max-width: 180px;
 }
 
 #emailDomainSelect {
@@ -388,4 +389,39 @@ input[readonly] {
 }
 .btn-confirm-small:hover {
   background-color: #478fa3;    /* 호버 시 어두운 톤 */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensure at least full-height */
+}
+
+/* ② this wrapper will expand to push footer down */
+.wrapper {
+  flex: 1;                 /* grow to fill available space */
+  display: flex;
+  flex-direction: column;  /* if you want to flex inner content too */
+}
+
+/* if you need your inner content area to scroll when tall, you can also: */
+.client-container {
+  flex: 1;       /* take all remaining space inside wrapper */
+  overflow: auto;/* scroll if its contents exceed the view */
+}
+
+/* ③ footer in normal flow, no fixed */
+footer {
+  background-color: #fff;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+  /* no position:absolute/fixed at all */
+}
+
+/* drop your “padding-bottom” hack—Flex takes care of it */
+body {
+  padding-bottom: 0;
 }
