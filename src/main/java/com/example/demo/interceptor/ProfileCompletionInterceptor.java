@@ -18,7 +18,7 @@ public class ProfileCompletionInterceptor implements HandlerInterceptor {
     	System.out.println("인터셉터 작동함: " + request.getRequestURI());
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("loginClient");
-
+        
         // 1. 로그인 여부 체크
         if (client == null) {
             response.sendRedirect("/client/login"); // 로그인 페이지로 이동

@@ -1,4 +1,3 @@
-@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 
 body.start-survey .wrapper{
@@ -125,6 +124,7 @@ body {
 
 /* if you need your inner content area to scroll when tall, you can also: */
 .client-container {
+  font-family: 'Noto Sans KR', sans-serif;	
   flex: 1;       /* take all remaining space inside wrapper */
   overflow: auto;/* scroll if its contents exceed the view */
 }

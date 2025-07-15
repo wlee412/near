@@ -9,7 +9,7 @@
 }
 
 .client-container {
-	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	max-width: 1300px;
 	margin: 0 auto;
 	padding: 40px 20px;
@@ -110,7 +110,6 @@
 .slider-track {
   display: flex;
   align-items: center;
-  /* justify-content: center; <- 삭제 */
   height: 100%;
   transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
   will-change: transform;
@@ -126,7 +125,9 @@
   position: relative;
 }
 
-
+.slider-card p{
+	font-size: 15px;
+}
 /* 4) 비활성 카드 (측면) */
 .slider-card.inactive {
   transform: rotateY(30deg) scale(0.8);
@@ -189,4 +190,8 @@
 }
 .slider-card a:hover {
   background: #3a8dab;
+}
+
+.recommend-explanation-box p{
+	font-size: 14px;
 }

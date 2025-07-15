@@ -154,6 +154,8 @@ body {
 .client-container {
   flex: 1;       /* take all remaining space inside wrapper */
   overflow: auto;/* scroll if its contents exceed the view */
+  font-family: 'Noto Sans KR', sans-serif;
+  
 }
 
 /* ③ footer in normal flow, no fixed */
