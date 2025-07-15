@@ -26,7 +26,6 @@
     <div class="search-box">
         <form method="get" action="<c:url value='/admin/adminMember' />">
             <select name="type">
-                <option value="all" ${param.type == 'all' ? 'selected' : ''}>전체</option>
                 <option value="name" ${type == 'name' ? 'selected' : ''}>이름</option>
                 <option value="email" ${type == 'email' ? 'selected' : ''}>이메일</option>
                 <option value="state" ${type == 'state' ? 'selected' : ''}>상태</option>

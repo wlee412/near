@@ -24,18 +24,18 @@
 				<a href="/admin/surveyStats">통계</a>
 			</div>
 		</div>
+		<div class="search-box">
 		<form method="get" action="/admin/adminReservation"
 			class="search-form">
 			<select name="type">
-				<option value="name" ${type == 'name' ? 'selected' : ''}>회원
-					이름</option>
+				<option value="name" ${type == 'name' ? 'selected' : ''}>내담자 이름</option>
 				<option value="phone" ${type == 'phone' ? 'selected' : ''}>연락처</option>
 				<option value="id" ${type == 'id' ? 'selected' : ''}>아이디</option>
 			</select> <input type="text" name="keyword" value="${keyword}"
 				placeholder="검색어 입력">
 			<button type="submit">검색</button>
 		</form>
-
+</div>
 		<form id="bulkCancelForm" method="post">
 			<table class="reservation-table">
 				<thead>
