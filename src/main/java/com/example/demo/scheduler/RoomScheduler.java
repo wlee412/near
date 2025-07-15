@@ -9,12 +9,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.service.RoomService;
 import com.example.demo.util.EmailTemplate;
 
+@Component
 public class RoomScheduler {
 	@Autowired
 	private RoomService roomService;
@@ -37,6 +39,7 @@ public class RoomScheduler {
 
 	@Scheduled(cron = "0 40 * * * *")
 	public void sendRoomToken() throws IOException {
+		System.out.println("토큰 발송");
 		List<Reservation> rsvList = roomService.getBooked();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy년 M월 d일 E요일 a h:mm");
 		EmailTemplate emailTpl = new EmailTemplate("roomTokenEmail.html");
