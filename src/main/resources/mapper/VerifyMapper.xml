@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.VerifyMapper">
+
+	<insert id="insertVerification"
+		parameterType="com.example.demo.model.AccountVerification">
+		INSERT INTO account_verification (
+		CLIENT_ID,
+		PHONE,
+		CODE,
+		TYPE,
+		EXPIRES_AT,
+		VERIFIED,
+		CREATED_AT,
+		USED_AT
+		) VALUES (
+		#{clientId},
+		#{phone},
+		#{code},
+		#{type},
+		#{expiresAt},
+		'N',
+		NOW(),
+		#{usedAt}
+		)
+	</insert>
+
+	<select id="findByCode" parameterType="map"
+		resultType="com.example.demo.model.AccountVerification">
+		SELECT *
+		FROM account_verification
+		WHERE CODE = #{code}
+		AND
+		TYPE = #{type}
+	</select>
+
+	<update id="updateEmailVerified">
+		UPDATE client
+		SET EMAIL_VERIFIED = 'Y'
+		WHERE CLIENT_ID
+		= (
+		SELECT CLIENT_ID
+		FROM account_verification
+		WHERE CODE = #{code}
+		AND
+		TYPE = 'client_JOIN'
+		)
+	</update>
+
+	<update id="updateClientTable" parameterType="String">
+		UPDATE client
+		SET
+		EMAIL_VERIFIED = 'Y'
+		WHERE client_id = #{clientId}
+	</update>
+
+	<update id="updateVerificationTable" parameterType="map">
+		UPDATE
+		account_verification
+		SET VERIFIED = 'Y', USED_AT = NOW()
+		WHERE CODE =
+		#{code}
+		AND TYPE = #{type}
+	</update>
+
+
+	<select id="findIdClient" parameterType="String"
+		resultType="Client">
+		SELECT * FROM client
+		WHERE CONCAT(email_id, '@',
+		email_domain) = #{email}
+	</select>
+
+	<select id="isEmailExist" resultType="int">
+		SELECT CASE
+		WHEN COUNT(*) >
+		0 THEN 1
+		ELSE 0
+		END
+		FROM client
+		WHERE CONCAT(email_id, '@', email_domain)
+		= #{email}
+	</select>
+
+	<select id="findByEmailAndType"
+		resultType="com.example.demo.model.AccountVerification">
+		SELECT av.*
+		FROM account_verification av
+		JOIN client m ON
+		av.client_id = m.client_id
+		WHERE CONCAT(m.email_id, '@',
+		m.email_domain) = #{email}
+		AND av.type = #{type}
+		ORDER BY av.created_at
+		DESC
+		LIMIT 1
+	</select>
+
+	<select id="findByPhoneAndType" parameterType="map"
+		resultType="com.example.demo.model.AccountVerification">
+		SELECT * FROM account_verification
+		WHERE phone = #{phone}
+		AND type = #{type}
+		AND verified = 'N'
+		ORDER BY created_at DESC
+		LIMIT 1
+	</select>
+
+	<update id="updateVerificationForJoin"
+		parameterType="com.example.demo.model.AccountVerification">
+		UPDATE account_verification
+		SET
+		CODE = #{code},
+		EXPIRES_AT
+		= #{expiresAt}
+		WHERE
+		PHONE = #{phone}
+		AND TYPE = #{type}
+		AND VERIFIED =
+		'N'
+	</update>
+
+	<update id="insertClientIdByPhone" parameterType="map">
+		UPDATE
+		account_verification
+		SET client_id = #{clientId}
+		WHERE phone = #{phone}
+		AND type = 'MEMBER_JOIN'
+	</update>
+
+	<select id="getVerifiedById" parameterType="int"
+		resultType="string">
+		SELECT verified
+		FROM account_verification
+		WHERE id = #{id}
+	</select>
+
+	<update id="updateVerifiedById" parameterType="String">
+		UPDATE account_verification
+		SET verified = 'Y'
+		WHERE client_id = #{client_id}
+	</update>
+
+</mapper>

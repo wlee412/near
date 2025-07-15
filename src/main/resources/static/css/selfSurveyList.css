@@ -1,0 +1,83 @@
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
+.survey-list-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.survey-list {
+	list-style: none; 
+	padding: 0;
+	margin: 0;
+}
+
+/* .survey-list h2 { */
+/*   display: block;         블록 요소로 만들어서 width가 먹히게 */
+/*   width: 40%;             .survey-item 과 동일한 너비 */
+/*   margin: 1% auto 1%;    상단 0, 좌우 auto(가로 중앙), 하단 20px */
+/*   font-family: 'Spoqa Han Sans Neo', sans-serif; */
+/*   font-size: 22px; */
+/*   color: #2c3e50; */
+/*   text-align: left; */
+/*   font-weight: normal; */
+/* } */
+
+.survey-item {
+	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-weight: normal;
+	font-size: 14px;
+	background: #ffffff;
+	border: none;
+	border-radius: 12px;
+	padding: 20px 24px;
+	margin-bottom: 20px;
+	box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+	margin: 1% auto;
+	width: 40%;
+}
+
+
+.survey-content {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 20px; /* 또는 적절히 8~24px 조절 */
+}
+
+.survey-info h3 {
+	margin: 0;
+	color: #5daec5;
+}
+
+.survey-info p {
+	margin: 8px 0 0;
+	color: #333;
+	line-height: 1.5;
+}
+
+.survey-form {
+  margin-left: 32px; /* 원하는 거리만큼 수동으로 조정 */
+  flex-shrink: 0;
+}
+
+.survey-form button {
+	background-color: #5daec5;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.survey-form button:hover {
+	background-color: #4996aa;
+}
+
+.survey-info {
+  flex-grow: 1;
+  min-width: 0;
+}

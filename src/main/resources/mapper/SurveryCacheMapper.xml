@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.SurveyCacheMapper">
+
+	<select id="findLatestByClientId"
+		resultType="com.example.demo.model.SurveyCache">
+		SELECT * FROM survey_cache
+		WHERE client_id = #{clientId}
+		ORDER BY created_at DESC
+		LIMIT 1
+	</select>
+
+	<insert id="insertSurveyCache">
+		INSERT INTO survey_cache (client_id, interest, survey_id, explanation,
+		created_at)
+		VALUES (#{clientId}, #{interest}, #{surveyId}, #{explanation}, NOW())
+	</insert>
+	
+
+
+</mapper>

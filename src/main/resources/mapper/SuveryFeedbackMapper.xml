@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.SurveyFeedbackMapper">
+
+
+	<insert id="saveFeedback"
+		parameterType="com.example.demo.model.SurveyFeedback">
+		INSERT INTO survey_feedback (
+		client_id,
+		survey_id,
+		feedback,
+		score,
+		reg_date
+		) VALUES (
+		#{clientId},
+		#{surveyId},
+		#{feedback},
+		#{score},
+		NOW()
+		)
+	</insert>
+
+	<select id="getFeedbackByClientId" resultType="com.example.demo.model.SurveyFeedbackJoin">
+    SELECT
+      f.response_id,
+      f.client_id,
+      f.survey_id,
+      f.feedback,
+      f.score,
+      f.reg_date,
+      s.survey_name
+    FROM
+      survey_feedback f
+    JOIN
+      survey s ON f.survey_id = s.survey_id
+    WHERE
+      f.client_id = #{clientId}
+    ORDER BY 
+      f.reg_date DESC
+  </select>
+
+
+
+</mapper>

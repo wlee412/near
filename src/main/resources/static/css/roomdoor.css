@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+body {
+	height: 100vh;
+}
+
+.container {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #eafaff;
+	font-family: 'Gowun Batang', serif;
+}
+
+form {
+	text-align: center;
+	width: 50vw;
+}
+
+#token-input {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	margin-top: 30px;
+}
+
+form button {
+	padding: 12px 30px;
+	font-size: 20px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	border-radius: 30px;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
+	white-space: nowrap;
+}
+
+form button:hover {
+	background-color: #4a9cb1;
+}
+
+.svg-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
+#token {
+	border: 1pt solid #5daec5;
+	border-radius: 30pt;
+	font-size: 20px;
+	font-family: 'Gowun Batang', serif;
+	padding: 12px 30px;
+	width: 70%;
+	outline: none;
+}
+
+#token:focus {
+	box-shadow: 0 0 5px #5daec5;
+}
