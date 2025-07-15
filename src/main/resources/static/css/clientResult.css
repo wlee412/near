@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
   
   
 body {
@@ -8,11 +8,11 @@ body {
   padding: 0;
 }
 
-body.nonClientResult .wrapper .content-wrapper {
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
+.content-wrapper {
 }
 
 .content-wrapper {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   max-width: 700px;
   margin: auto auto;
   padding: 40px;

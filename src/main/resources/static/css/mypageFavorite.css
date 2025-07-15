@@ -1,5 +1,4 @@
-@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
-
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 /* ──────────────────────────────────────
    탭 스타일
 ────────────────────────────────────── */
@@ -154,7 +153,7 @@
    페이지 제목
 ────────────────────────────────────── */
 .client-container {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
