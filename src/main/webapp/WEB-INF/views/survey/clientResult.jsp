@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <title>검사 결과</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/clientResult.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/clientResult.css">
+  
 </head>
 <body class="clientResult">
  <div class="wrapper">

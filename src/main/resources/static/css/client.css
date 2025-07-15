@@ -1,7 +1,7 @@
 /* =============================
 📌 기본세팅
 ============================= */
-@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 html,body {
 	
@@ -20,7 +20,7 @@ html,body {
 }
 
 .container {
-	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 	max-width: 480px;
 	margin: 30px auto;
 	padding: 24px;

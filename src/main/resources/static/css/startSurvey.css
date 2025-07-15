@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
-
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 body.start-survey .wrapper{
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
 body {
@@ -56,6 +56,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
 }
 
 .answer-options label {
@@ -68,6 +69,7 @@ h2 {
   transition: background-color 0.2s ease;
   font-size: 14px;
   color: #2c3e50;
+  justify-content: center; 
 }
 
 .answer-options label:hover {
