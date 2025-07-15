@@ -12,6 +12,7 @@ import lombok.Setter;
 
 // 예약과 내담자, 상담사 모든 정보
 // v_reservation_summary 뷰에 대한 DTO
+// roomToken 은 room 테이블과 조인 필요
 
 @Getter
 @Setter
