@@ -13,7 +13,7 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 			<div class="container">
 				<img src="https://i.imgur.com/H5grzMN.png" alt="logo-img">
-				<form action="/chat/token" method="get">
+				<form action="/room/token" method="get">
 					<div id="token-input">
 						<input type="text" name="t" id="token" required>
 						<button type="submit" class="svg-btn">
