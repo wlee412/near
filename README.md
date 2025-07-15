@@ -35,8 +35,7 @@
 
 <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
   <img width="50" height="50" alt="notion-near" src="https://github.com/user-attachments/assets/ab390b77-7c1d-42cd-abae-bb7cb3f8467f" />
-</a>
-<p style="color:#5DAEC5"> n:ear 프로젝트 노션 링크</p>
+</a><p style="color:#5DAEC5"> n:ear 프로젝트 노션 링크</p>
 
 ---
 
