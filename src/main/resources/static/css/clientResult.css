@@ -1,0 +1,70 @@
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+  
+  
+body {
+  background-color: #f2f9fa;   /* 페이지 전체 배경 연하게 */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+body.nonClientResult .wrapper .content-wrapper {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+.content-wrapper {
+  max-width: 700px;
+  margin: auto auto;
+  padding: 40px;
+  background-color: #ffffff;            /* 순수 흰색 */
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08); /* 은은한 그림자 */
+}
+
+.content-wrapper h2 {
+  font-size: 30px;
+  color: #2c3e50;     /* 짙은 차콜톤 */
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.score-box {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 24px;
+}
+
+.feedback-box {
+  background-color: #f9f9f9;   /* 연한 그레이 */
+  border-left: 5px solid #5daec5; /* 포인트 컬러 선 */
+  padding: 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 32px;
+}
+
+.history-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.history-link a {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: #5daec5;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.history-link a:hover {
+  background-color: #4897b0;
+}
+
