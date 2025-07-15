@@ -32,20 +32,11 @@
 
 
 상담자와 내담자 모두에게 쉽고 편리한 상담 환경을 제공하고, 정신 건강 상태를 자가 진단 및 관리할 수 있는 다양한 도구와 컨텐츠를 제공하는 웹 플랫폼입니다.
-<table cellspacing="0" cellpadding="0" border="0">
-  <tr>
-    <td>
-      <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
-        <img width="50" height="50" alt="notion-near" src="https://github.com/user-attachments/assets/ab390b77-7c1d-42cd-abae-bb7cb3f8467f" />
-      </a>
-    </td>
-    <td style="padding-left: 10px;">
-      <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank" style="text-decoration: none; color: #5DAEC5;">
-        <strong>n:ear 프로젝트 노션 링크</strong>
-      </a>
-    </td>
-  </tr>
-</table>
+<a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
+  <img src="https://github.com/user-attachments/assets/ab390b77-7c1d-42cd-abae-bb7cb3f8467f" alt="notion-near" width="50" height="50" />
+</a>  
+<a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">**n:ear 프로젝트 노션 링크**</a>
+
 
 ---
 
