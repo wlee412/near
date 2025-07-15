@@ -81,7 +81,7 @@
 
 ### 5. Chatbot 서비스
 
-* 상담사 정보 및 예약 정보 등 사용자 질문 응답 서비스 제공 (Dialogflow, ChatGPT API 활용)
+* 상담사 정보 및 예약 정보 등 사용자 질문 응답 서비스 제공 (Dialogflow)
 
 ---
 
