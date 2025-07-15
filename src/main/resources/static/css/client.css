@@ -32,7 +32,7 @@ html,body {
 /* 아이디비번찾기 */
 .containerbox {
 	font-family: 'Spoqa Han Sans Neo', sans-serif;
-	max-width: 480px;
+	width: 25%;
 	margin: auto auto;
 	padding: 24px;
 	background: white;

@@ -16,7 +16,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypageUpdate.css">
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const alertFlag = urlParams.get("alert");
+  if (alertFlag === "needUpdate") {
+    alert("회원정보를 먼저 수정해 주세요.");
+  }
+</script>
 </head>
 
 <body>
