@@ -35,7 +35,7 @@
 
 ---
 
-## Notion
+## Notion 링크
 
 <p align="center">
   <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
