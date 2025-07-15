@@ -41,6 +41,13 @@
 	color: white;
 }
 
+.svg-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
 .controls {
 	flex: 1;
 	display: flex;

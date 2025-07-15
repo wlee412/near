@@ -53,7 +53,7 @@ $(document).ready(function() {
 							$('#registernow').removeClass('hide').show();
 							$('#register').click(registerUsername);
 							$('#roomname').focus();
-							$('#start').removeAttr('disabled').html("종료")
+							$('#start').removeAttr('disabled').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg> 종료')
 								.click(function() {
 									$(this).attr('disabled', true);
 									janus.destroy();
@@ -359,22 +359,22 @@ function registerUsername() {
 
 		var username = $('#username').val();
 		if (username === "") {
-//			$('#you')
-//				.removeClass().addClass('label label-warning')
-//				.html("채팅방에서 사용할 이름을 입력해주세요.");
-//			$('#username').removeAttr('disabled');
-//			$('#register').removeAttr('disabled').click(registerUsername);
+			//			$('#you')
+			//				.removeClass().addClass('label label-warning')
+			//				.html("채팅방에서 사용할 이름을 입력해주세요.");
+			//			$('#username').removeAttr('disabled');
+			//			$('#register').removeAttr('disabled').click(registerUsername);
 			$('#username').focus();
 			return;
 		}
-//		if (/[^a-zA-Z0-9]/.test(username)) {
-//			$('#you')
-//				.removeClass().addClass('label label-warning')
-//				.html('닉네임은 영문만 가능합니다.');
-//			$('#username').removeAttr('disabled').val("");
-//			$('#register').removeAttr('disabled').click(registerUsername);
-//			return;
-//		}
+		//		if (/[^a-zA-Z0-9]/.test(username)) {
+		//			$('#you')
+		//				.removeClass().addClass('label label-warning')
+		//				.html('닉네임은 영문만 가능합니다.');
+		//			$('#username').removeAttr('disabled').val("");
+		//			$('#register').removeAttr('disabled').click(registerUsername);
+		//			return;
+		//		}
 
 		//alert("room id:" + roomname);
 		myroom = Number(roomname); //사용자 입력 방 아이디
@@ -486,7 +486,9 @@ function toggleMute() {
 	else
 		sfutest.muteAudio();
 	muted = sfutest.isAudioMuted();
-	$('#mute').html(muted ? "마이크 켜기" : "마이크 끄기");
+	$('#mute').html(muted ?
+		'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic-off-icon lucide-mic-off"><line x1="2" x2="22" y1="2" y2="22"/><path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><line x1="12" x2="12" y1="19" y2="22"/></svg> 마이크 켜기' :
+		'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic-icon lucide-mic"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></svg> 마이크 끄기');
 }
 
 // [윤성찬] 화면 송출 토글
@@ -502,9 +504,9 @@ function toggleVideo() {
 function updateCameraButtonText() {
 	const btn = $('#unpublish');
 	if (isPublishing) {
-		btn.text('카메라 끄기');
+		btn.html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video-icon lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg> 카메라 끄기');
 	} else {
-		btn.text('카메라 켜기');
+		btn.html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video-off-icon lucide-video-off"><path d="M10.66 6H14a2 2 0 0 1 2 2v2.5l5.248-3.062A.5.5 0 0 1 22 7.87v8.196"/><path d="M16 16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2"/><path d="m2 2 20 20"/></svg> 카메라 켜기');
 	}
 }
 

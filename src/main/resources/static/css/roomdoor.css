@@ -42,6 +42,13 @@ form button:hover {
 	background-color: #4a9cb1;
 }
 
+.svg-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
 #token {
 	border: 1pt solid #5daec5;
 	border-radius: 30pt;
