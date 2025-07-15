@@ -69,7 +69,7 @@ public class MainController {
 //        	redirectAttributes.addFlashAttribute("message", "로그인 회원만 접근 가능합니다.");
 //        	return "redirect:/" ;
 //    }
-//        return "room/door"; 
+//         return "room/door"; 
 //    }
         
     // 심리검사 페이지

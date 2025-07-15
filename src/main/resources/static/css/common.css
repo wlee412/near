@@ -96,24 +96,29 @@ footer {
 	text-decoration: none;
 }
 
+.spacer {
+  width: 100px;  /* 필요에 따라 조절 */
+}
+
+
 .logo a:hover {
 	color: #479bb0;
 }
 
 .center-menu {
 	display: flex;
-	gap: 30px;
+	gap: 40px;
 }
 
 .center-menu a, .login a {
 	text-decoration: none;
 	color: #333;
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 15px;
 }
 
 .login a+a {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 .center-menu a:hover, .login a:hover {
