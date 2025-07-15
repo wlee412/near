@@ -11,6 +11,8 @@ html, body {
   color: #333;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+
 }
 
 .wrapper {
@@ -23,23 +25,28 @@ header, footer {
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-footer {
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* 위 그림자 */
-}
 
 .header-container {
   max-width: 1300px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.header-container {
+  max-width: 1920px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
+  padding: 12px 32px;
+  position: relative;
+  
 }
 
 .footer-container {
-  max-width: 1300px;
+  max-width: 1920px;
   margin: 0 auto;
-  padding: 8px 24px;
+  padding: 8px 32px;
+
   font-size: 14px;
   color: #555;
   display: flex;
@@ -102,8 +109,9 @@ footer {
   font-weight: 500;
   font-size: 16px;
 }
+
 .login a + a {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .center-menu a:hover,
@@ -125,12 +133,24 @@ footer {
   font-size: 42px;
   margin-bottom: 10px;
   color: #444;
+  animation: fadeIn 2s ease-in-out forwards; 
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .main-banner p {
   font-size: 18px;
   margin-bottom: 30px;
   color: #666;
+  animation: fadeIn 2s ease-in-out forwards; 
+
 }
 
 .main-banner button {
@@ -144,9 +164,41 @@ footer {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
   transition: background-color 0.3s ease;
+  animation: fadeIn 2s ease-in-out forwards; 
+
 }
 .main-banner button:hover {
   background-color: #4a9cb1;
+}
+
+/*화면 로딩*/
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 스피너 스타일 */
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #5daec5;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @media (max-width: 1024px) { /* 일반 노트북 */
@@ -166,3 +218,14 @@ footer {
     font-size: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  .header-container,
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+  }
+}
+

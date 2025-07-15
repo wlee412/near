@@ -16,7 +16,11 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+	private final CustomOAuth2UserService customOAuth2UserService;
+	private final CustomOidcUserService customOidcUserService;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -29,16 +33,39 @@ public class SecurityConfig {
             .cors(cors -> cors.disable())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/member/update", "/", "/member/login", "/css/**", "/js/**", "/images/**", "/icons/**").permitAll()
+
+                .requestMatchers("/client/update", "/", "/client/login", "/css/**", "/js/**", "/images/**", "/icons/**").permitAll()
                 .anyRequest().permitAll()
             )
-            .formLogin(form -> form.disable())
+            .formLogin(form -> form
+            	    .loginPage("/login")      
+            	    .permitAll()
+             )
             .logout(logout -> logout
-                .logoutUrl("/member/logout")
-                .logoutSuccessUrl("/member/login")
+                .logoutUrl("/client/logout")
+                .logoutSuccessUrl("/client/login?logout")
                 .permitAll()
-            );
+            )
             
+            .headers(headers -> headers
+                    .frameOptions(frame -> frame.sameOrigin())
+                )
+            
+            .oauth2Login(oauth2 -> oauth2
+                    .loginPage("/client/login")
+                    .defaultSuccessUrl("/oauth2/success", true)
+                    .failureHandler((request, response, exception) -> {
+                        exception.printStackTrace(); // 콘솔에 예외 출력
+                        response.getWriter().write("OAuth2 인증 실패: " + exception.getMessage());
+                        response.sendRedirect("/client/login?error");
+                    })
+                    .userInfoEndpoint(userInfo -> userInfo
+                        .userService(customOAuth2UserService)
+                        .oidcUserService(customOidcUserService)
+
+                    )
+                );
+
         return http.build();
     }
 
@@ -57,4 +84,3 @@ public class SecurityConfig {
 	    }
 	 
 }
-
