@@ -39,7 +39,7 @@
 n:ear 프로젝트 노션 링크
 </div>
 
-<table>
+<table style="border: none;">
   <tr>
     <td>
       <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
@@ -48,7 +48,7 @@ n:ear 프로젝트 노션 링크
     </td>
     <td style="padding-left: 10px;">
       <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
-        <span style="font-size: 16px; color: #5DAEC5;">n:ear 프로젝트 노션 링크</span>
+        <span style="font-size: 16px; color: #5DAEC5; text-decoration:none;">n:ear 프로젝트 노션 링크</span>
       </a>
     </td>
   </tr>
