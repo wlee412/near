@@ -34,7 +34,9 @@
 
 
 [n:ear 노션 페이지](https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe)
-
+<a href="[https://www.notion.so/your-project-page](https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe)" target="_blank">
+<img width="50" height="50" alt="notion-near" src="https://github.com/user-attachments/assets/2601f284-3140-45c0-9a0b-992f37b32ffa" />
+</a>
 ---
 
 ## 프로젝트 주요 목표
