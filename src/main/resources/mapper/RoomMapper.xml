@@ -38,10 +38,11 @@
 	
 	<select id="getExpiredRooms" resultType="room">
 		SELECT * FROM room WHERE state='진행' AND end &lt;= NOW()
+		AND room_id!=1
 	</select>
 	
 	<update id="expireRooms">
-		UPDATE room SET state='완료' WHERE state='진행';
+		UPDATE room SET state='완료' WHERE state='진행' AND room_id!=1
 	</update>
 	
 	<update id="roomOpen">

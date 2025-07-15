@@ -140,7 +140,7 @@ public class RoomController {
 	@PostMapping("/rec")
 	public ResponseEntity<String> uploadRecording(@RequestParam("file") MultipartFile file,
 			@ModelAttribute RoomRecording rec) {
-
+		System.out.println("영상 저장 중...");
 		String savePath = "C:/recordings/"; // 배포 전 수정 필요: /home/ubuntu/
 		String filename = UUID.randomUUID() + ".webm";
 		Path path = Paths.get(savePath + filename);
@@ -149,6 +149,7 @@ public class RoomController {
 			Files.copy(file.getInputStream(), path);
 			rec.setName(filename);
 			roomService.uploadRec(rec);
+			System.out.println("영상 저장 완료!");
 			return ResponseEntity.ok("저장 완료: " + filename);
 		} catch (IOException ioe) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류");

@@ -52,14 +52,14 @@ function stopRecording() {
 		$recStop.hide();
 	}
 }
-window.stopRec = startRecording;
+window.stopRec = stopRecording;
 
 
 function uploadToServer(blob) {
 	const formData = new FormData();
 	formData.append("file", blob, `recording_${Date.now()}.webm`);
 	formData.append("roomId", roomId);
-	fetch("/chat/rec", {
+	fetch("/room/rec", {
 		method: "POST",
 		body: formData
 	})
