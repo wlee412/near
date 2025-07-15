@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
 /* ──────────────────────────────────────
    사이드바
 ────────────────────────────────────── */
@@ -17,7 +19,7 @@
   text-decoration: none;
   color: #333;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
 }
@@ -26,7 +28,7 @@
 }
 .sidebar-button.active {
   color: #5daec5;
-  font-weight: 500;
+  font-weight: 400;
   border-left: 2px solid #5daec5;
 }
 
@@ -34,6 +36,7 @@
    페이지 제목
 ────────────────────────────────────── */
 .client-container {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
   max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -166,7 +169,9 @@
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 0.95rem;
+  font-size: 0.90rem;
+  font-weight:400;
+  
 }
 .reservation-table th,
 .reservation-table td {
