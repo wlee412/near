@@ -25,7 +25,8 @@
 	
 	<select id="getBooked" resultType="reservation">
 		SELECT *
-		FROM room
+		FROM (SELECT s.*, r.room_token 
+		FROM v_reservation_summary AS s INNER JOIN room AS r USING(reservation_no)) AS st
 		WHERE state = '예약'
 		  AND start BETWEEN DATE_ADD(NOW(), INTERVAL 78 MINUTE)
 		                AND DATE_ADD(NOW(), INTERVAL 82 MINUTE)

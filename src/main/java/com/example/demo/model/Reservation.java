@@ -22,15 +22,18 @@ public class Reservation {
 	private String clientId;
 	private String clientName;
 	private String clientPhone;
+	private String clientEmail;
 	private String counselorId;
 	private String counselorName;
 	private String counselorPhone;
+	private String counselorEmail;
 	private String sympCsv;		// , 구분으로 증상 열거
 	private LocalDateTime start;
 	private String state;
 	private Timestamp reg_date;
+	private String roomToken;
 	
-	// Date형 - fmt 포맷팅 가능
+	// Date형 - 포맷팅 가능
 	public Date getStartDate() {
 		return Date.from(start.atZone(ZoneId.systemDefault()).toInstant());
 	}

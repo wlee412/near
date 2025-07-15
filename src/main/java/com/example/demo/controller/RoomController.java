@@ -34,8 +34,8 @@ public class RoomController {
 
 	@GetMapping("")
 	public String main(HttpSession session) {
-//		session.setAttribute("loginCounselor", "test_counselor");
-		session.invalidate();
+		session.setAttribute("loginCounselor", "test_counselor");
+//		session.invalidate();
 		return "room/door";
 	}
 
@@ -86,7 +86,7 @@ public class RoomController {
 		
 		// 세션 없음 - 로그인
 		session.setAttribute("roomToken", token);
-		return "redirect:client/login";
+		return "redirect:/client/login";
 	}
 
 	// 상담실 정보, 예약정보 보여준 후 webRTC 화상채팅
