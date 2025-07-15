@@ -37,7 +37,7 @@
 
 ## Notion
 
-<p align="right">
+<p align="center">
   <a href="https://www.notion.so/2-N-EAR-21f678f892a7803ca924ca3c5816cffe" target="_blank">
     <img width="317" height="70" alt="Group 1" src="https://github.com/user-attachments/assets/368621c9-44f1-4b1f-9d25-4610d18e051c" />
   </a>
