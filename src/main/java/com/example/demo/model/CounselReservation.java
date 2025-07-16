@@ -13,3 +13,4 @@ public class CounselReservation {
     private Timestamp regDate;
 
 }
+

@@ -10,7 +10,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- FullCalendar CSS & JS -->
-<!-- <link-->
 <!-- 	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" -->
 <!-- 	rel="stylesheet" /> -->
 <script
@@ -49,7 +48,9 @@
 						<!-- 캘린더 영역 -->
 						<div id="calendar" class="calendar-container"></div>
 									</div>
+            
 						<!-- 날짜출력 -->
+
 						<div id="selected-date-box" style="margin-top: 20px;">
 							<p>
 								<span id="selected-date"></span>

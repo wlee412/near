@@ -19,8 +19,10 @@
 		<div class="counselor-container">
 			<!-- 타이틀 -->
 			<div class="mypage-title">
+
 				<a href="/counselor/mypage">
 					<h2>상담사 마이페이지</h2>
+
 				</a>
 			</div>
 
@@ -67,7 +69,6 @@
 						<div class="btn-box">
 							<a href="/counselor/reservation" class="btn-back">이전으로 이동하기</a>
 						</div>
-
 					</div>
 				</section>
 			</div>
@@ -77,3 +78,4 @@
 	<%@ include file="../includes/footer.jsp"%>
 </body>
 </html>
+

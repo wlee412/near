@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.RoomMapper">
+	<select id="findByToken" parameterType="String" resultType="room">
+		SELECT * FROM room WHERE room_token = #{token}
+		AND NOW() BETWEEN start - INTERVAL 10 MINUTE AND end
+	</select>
+
+	<select id="findByRoomId" parameterType="int" resultType="room">
+		SELECT * FROM room WHERE room_id=#{roomId}
+		AND NOW() BETWEEN start - INTERVAL 10 MINUTE AND end
+	</select>
+
+	<insert id="uploadRec" parameterType="rec">
+		INSERT INTO room_rec (name,
+		room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
+	</insert>
+
+	<select id="getReservationInfo" parameterType="int" resultType="reservation">
+		SELECT * FROM v_reservation_summary WHERE
+		reservation_no=#{reservationNo}
+	</select>
+	
+	<select id="getBooked" resultType="reservation">
+		SELECT *
+		FROM (SELECT s.*, r.room_token 
+		FROM v_reservation_summary AS s INNER JOIN room AS r USING(reservation_no)) AS st
+		WHERE state = '예약'
+		  AND start BETWEEN DATE_ADD(NOW(), INTERVAL 78 MINUTE)
+		                AND DATE_ADD(NOW(), INTERVAL 82 MINUTE)
+	</select>
+	
+	<select id="janusNums" resultType="int">
+    	SELECT janus_num FROM room
+	</select>
+	
+	<select id="getExpiredRooms" resultType="room">
+		SELECT * FROM room WHERE state='진행' AND end &lt;= NOW()
+		AND room_id!=1
+	</select>
+	
+	<update id="expireRooms">
+		UPDATE room SET state='완료' WHERE state='진행' AND room_id!=1
+	</update>
+	
+	<update id="roomOpen">
+		UPDATE room SET state='진행'
+		WHERE state='예약'
+			AND start BETWEEN DATE_ADD(NOW(), INTERVAL 13 MINUTE)
+			                AND DATE_ADD(NOW(), INTERVAL 9 MINUTE)
+	</update>
+	
+</mapper>

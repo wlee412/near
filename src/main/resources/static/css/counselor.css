@@ -4,13 +4,14 @@ body {
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
-
 /* 전체 레이아웃 */
 .counselor-container {
 	max-width: 1300px;
 	margin: 0 auto;
 	padding: 40px 20px;
+
 	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+
 }
 
 /* 타이틀 영역 */
@@ -104,6 +105,7 @@ body {
     font-size: 30px;  /* 글씨 크기 키우기 */
     font-weight: bold;
     text-align: left; 
+
 }
 
 .profile-box ul {
@@ -133,6 +135,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	margin-bottom :10px;
+
 }
 
 .profile-info {
@@ -263,7 +266,6 @@ body {
   color: #337DAA;
 }
 
-
 /* 날짜 출력 박스 */
 #selected-date-box {
   max-width: 420px;
@@ -293,19 +295,19 @@ body {
 
 /* 시간 버튼 */
 .time-btn {
+
   flex: 1 1 20px;  
   padding: 10px;
   font-size: 15px;
-  border: 1px solid #5daec5;
-  border-radius: 6px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(93, 179, 206, 0.4);
-}
+  flex: 1 1 50px;  
+  padding: 10px;
+  font-size: 15px;
+  font-family: 'Gowun Batang', serif;
+
 .time-btn:hover {
   background-color: #e0f7ff;
 }
+  
 .time-btn.selected {
   background-color: #5daec5;
   color: white;
@@ -359,6 +361,7 @@ body {
   border: none !important;
 }
 
+
 /* 테이블 전체 스타일 */
 .reservation-table, .detail-table {
     width: 100%;
@@ -386,9 +389,11 @@ body {
   font-size: 14px;
 }
 
-/* 표 본문 스타일 */
-.reservation-table tbody {
-    background-color: #f9f9f9;
+/* 정렬 화살표 스타일 */
+#state-sort-arrow, #start-sort-arrow {
+    font-size: 18px;
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
 .reservation-table td, .detail-table td {
@@ -479,7 +484,6 @@ input[type="checkbox"]:checked + .label-text {
     background-color: #4a9cb1; /* 마우스 오버 시 색상 변경 */
 }
 
-
 /* 페이지 네비게이션 */
 .pagination {
 	text-align: center;
@@ -504,37 +508,36 @@ input[type="checkbox"]:checked + .label-text {
 	
 }
 
-
 #loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.8); /* 반투명 배경 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	text-align: center;
+	flex-direction: column; /* 수직 배치 */
+	gap: 10px;
+}
+
+#start-sort-arrow, #state-sort-arrow {
+	font-size: 16px;
+	margin-left: 4px;
+	color: #555;
 }
 
 /* 애니메이션 효과 */
 .spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-
-/* 텍스트 스타일 */
-.loading-text {
-  margin-top: 15px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+	border: 8px solid rgba(255, 255, 255, 0.3); /* 배경색 */
+	border-top: 8px solid #A7C8FF; /* 파스텔톤 색상 */
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 1s linear infinite; /* 빠른 애니메이션 */
 }
 
 /* 빙글빙글 도는 애니메이션 */
@@ -561,6 +564,7 @@ input[type="checkbox"]:checked + .label-text {
     background-color: #f3faff; 
     border-radius: 12px;
 }
+
 .btn-back {
     text-align: left;  
     text-decoration: none;  
@@ -568,6 +572,7 @@ input[type="checkbox"]:checked + .label-text {
     display: inline-block; 
     margin-top:20px;
 }
+
 .btn-back:hover {
     color: #5c85d6;  
     text-decoration: underline; 
