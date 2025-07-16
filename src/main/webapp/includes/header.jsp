@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common.css">
 
 <!-- 공통 헤더 -->
 <header>
@@ -11,15 +12,22 @@
 		</div>
 
 		<nav class="center-menu">
+
+			<c:if test="${not empty loginCounselor or not empty loginClient}">
+				<div class="spacer"></div>
+			</c:if> <!-- 로그인한 경우에만 표시 -->
+
 			<a href="/introduce">소개</a> <a href="/reservation">상담예약</a> <a
-				href="/chat">상담하기</a> <a href="/survey">심리검사</a> <a href="/hospital">병원찾기</a>
+				href="/room/door">상담하기</a> <a href="/survey/selfSurveyList">심리검사</a>
+			<a href="/hospitalMap">병원찾기</a> <a href="/mental/mentalDashboard">멘탈케어</a>
+
 		</nav>
 
 		<div class="login">
 			<c:choose>
-				<c:when test="${not empty sessionScope.loginMember}">
+				<c:when test="${not empty sessionScope.loginClient}">
 					<a href="/client/logout">로그아웃</a>
-					<a href="/client/mypage">마이페이지</a>
+					<a href="/mypage/mypage" onclick="showLoading()">마이페이지</a>
 				</c:when>
 				<c:when test="${not empty sessionScope.loginCounselor}">
 					<a href="/client/logout">로그아웃</a>
@@ -31,4 +39,9 @@
 			</c:choose>
 		</div>
 	</div>
+	<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+		<div class="spinner"></div>
+		<div class="loading-text">Loading...</div>
+	</div>
+	<script src="${pageContext.request.contextPath}/js/loading.js"></script>
 </header>
