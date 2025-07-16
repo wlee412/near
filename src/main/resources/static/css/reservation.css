@@ -1,6 +1,8 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 /* 전체 레이아웃 */
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;  /* ← 제거! */
   background-color: #f9f9f9;
@@ -13,7 +15,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 }
 
 h2 {

@@ -10,7 +10,7 @@ body {
   background: #f0f8ff;
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
