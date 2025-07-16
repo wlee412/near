@@ -35,7 +35,7 @@
   <!-- 2. 증상 관심 그룹별 평균 점수 통계 -->
   <select id="selectSymptomAvgStats" resultType="com.example.demo.model.SymptomAvgScoreDTO">
   SELECT
-    s.survey_name AS symptomName,  -- 기존 symptom_name 대신 survey_name 사용
+    s.survey_name AS symptomName, 
     ROUND(AVG(f.score), 2) AS avgScore
   FROM survey_feedback f
   JOIN survey s ON f.survey_id = s.survey_id
