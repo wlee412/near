@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.mapper.RoomMapper;
 import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
-import com.example.demo.model.RoomRecording;
 
 import jakarta.mail.internet.MimeMessage;
 
@@ -34,10 +33,6 @@ public class RoomService {
 		return roomMapper.findByRoomId(roomId);
 	}
 
-	public void uploadRec(RoomRecording rec) {
-		roomMapper.uploadRec(rec);
-	}
-
 	public Reservation getReservationInfo(int reservationNo) {
 		return roomMapper.getReservationInfo(reservationNo);
 	}
@@ -46,7 +41,7 @@ public class RoomService {
 		return roomMapper.getBooked();
 	}
 
-	public void createRoom(int rsv, String counselor, String client, LocalDateTime start) {
+	public void createRoom(int reservationNo, String counselorId, String clientId, LocalDateTime start) {
 		List<Integer> usedJanusNums = roomMapper.janusNums();
 		Set<Integer> usedSet = new HashSet<>(usedJanusNums);
 
@@ -57,9 +52,9 @@ public class RoomService {
 
 		Room room = new Room();
 		room.setRoomToken(UUID.randomUUID().toString());
-		room.setReservationNo(rsv);
-		room.setCounselorId(counselor);
-		room.setClientId(client);
+		room.setReservationNo(reservationNo);
+		room.setCounselorId(counselorId);
+		room.setClientId(clientId);
 		room.setStart(start);
 		room.setEnd(start.plusMinutes(30));
 		room.setState("예약");

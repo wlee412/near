@@ -59,7 +59,7 @@ function uploadToServer(blob) {
 	const formData = new FormData();
 	formData.append("file", blob, `recording_${Date.now()}.webm`);
 	formData.append("roomId", roomId);
-	fetch("/room/rec", {
+	fetch("/vid/rec", {
 		method: "POST",
 		body: formData
 	})
