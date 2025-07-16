@@ -1,4 +1,4 @@
-## 프로젝트 기간 
+## 소개
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60ac6585-1227-414c-9aaa-52c6ba52cc70"
