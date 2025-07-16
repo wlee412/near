@@ -39,7 +39,7 @@
     </div>
 
 	<div class="symptom-title">상담 사유</div>
-    <div class="symptom-list">
+     <div class="symptom-list">
   <label><input type="checkbox" name="symptom" value="1"> 우울</label>
   <label><input type="checkbox" name="symptom" value="2"> 불안</label>
   <label><input type="checkbox" name="symptom" value="3"> 자존감</label>
