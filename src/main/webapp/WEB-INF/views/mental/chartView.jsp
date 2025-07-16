@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/includes/header.jsp" %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mental-chart.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mentalChart.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mentalDashboard.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

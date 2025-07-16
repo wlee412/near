@@ -1,6 +1,15 @@
 @charset "UTF-8";
 /* luckycard.css */
 
+/* 폰트 import (Pretendard CDN) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* 카드 텍스트 폰트 적용 */
+.flip-card-front,
+.flip-card-back {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
 /* 전체 카드 선택 영역 */
 .card-choice-container {
     display: flex;
@@ -78,6 +87,6 @@
         margin-bottom: 20px;
     }
     
+
     
 }
-

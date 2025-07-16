@@ -6,9 +6,22 @@
     <title>정신건강 대시보드</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mentalDashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mentalChart.css"> 
+    <!-- Google Fonts에서 Noto Sans KR 불러오기 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Lottie 애니메이션 추가 -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- ✅ Pretendard 폰트 적용을 위한 직접 스타일 추가 -->
+    <style>
+        .wrapper, .modal-content {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif !important;
+        }
+    </style>
 </head>
 
 <jsp:include page="/includes/header.jsp"/>   	    		<!-- 2개로 동작 -->   
@@ -19,15 +32,15 @@
 <div class="wrapper">
     <div class="dashboard-container">
         <h2></h2>
-       <div class="card-container">
+        <div class="card-container">
             <div class="card" onclick="openModal('young')">
                 <span>연령별 정신건강 통계</span>
                 <lottie-player
-                    src="${pageContext.request.contextPath}/lottie/chartWebble.json"
+                    src="${pageContext.request.contextPath}/lottie/chart.json"
                     background="transparent"
                     speed="1"
                     style="width: 180px; height: 180px;"
-                    loop autoplay>
+                    autoplay>
                 </lottie-player>
             </div>
             <div class="card" onclick="openCardModal()">
@@ -37,7 +50,7 @@
                     background="transparent"
                     speed="1"
                     style="width: 180px; height: 180px;"
-                    loop autoplay>
+                    autoplay>
                 </lottie-player>
             </div>
             <div class="card" onclick="openYoutubeModal()">
@@ -47,7 +60,7 @@
                     background="transparent"
                     speed="1"
                     style="width: 180px; height: 180px;"
-                    loop autoplay>
+                    autoplay>
                 </lottie-player>
             </div>
             <div class="card" onclick="openGameModal()">
@@ -56,46 +69,59 @@
                     src="https://assets2.lottiefiles.com/packages/lf20_x62chJ.json"
                     background="transparent" speed="1"
                     style="width: 280px; height: 260px;"
-                    loop autoplay>
+                    autoplay>
                 </lottie-player>
             </div>
         </div>
     </div>
 </div>
 
+<!-- <script>
+    const chartPlayer = document.getElementById('chartPlayer');
+
+    // 재생이 끝났을 때 마지막 프레임에 정지
+    chartPlayer.addEventListener('complete', () => {
+        chartPlayer.pause(); // 이미 자동 정지되지만 명시적 정지
+        chartPlayer.seek(chartPlayer.getDuration(true)); // 마지막 프레임 고정
+    });
+</script>
+ -->
+
 <!-- 차트 모달 -->
-<div id="chartModal" class="modal">
-    <div class="modal-content">
+<div id="chartModal" class="modal chart-modal">  <%-- css 클래스 추가 --%>
+    <div class="modal-content chart-modal-content">  <%-- 클래스 추가 --%>
         <span class="close" onclick="closeModal()">&times;</span>
 
         <!-- 버튼 영역 -->
         <div class="chart-tab-buttons">
-            <button onclick="showChart('youth')">청소년/대학생</button>
-            <button onclick="showChart('adult')">성인</button>
+            <button class="tab-button" onclick="showChart('youth')">청소년/대학생</button>
+            <button class="tab-button" onclick="showChart('adult')">성인</button>
         </div>
 
-        <!-- 기존 차트 -->
+        <!-- 청소년 차트 -->
         <div id="youthChartSection">
-            <h3>2010-2023 청소년 정신문제 호소</h3>
+            <h3 class="chart-title">2010-2023 청소년 정신문제 호소</h3>
             <canvas id="mentalChart" width="800" height="400"></canvas>
         </div>
 
         <!-- 성인용 차트 -->
         <div id="adultChartSection" style="display: none;">
-            <h3>2023 성인 정신문제 호소</h3>
+            <h3 class="chart-title">2023 성인 정신문제 호소</h3>
 
-            <!-- 🔽 추가된 병명 필터 -->
+            <!-- 병명 필터 -->
             <div style="margin-bottom: 10px;">
-                <label for="diseaseSelect">질병 선택:</label>
-                <select id="diseaseSelect" onchange="loadAdultChartDataByDisease()">
-                    <option value="전체">전체</option>
-                    <option value="조현병">조현병</option>
-                    <option value="조울증">조울증</option>
-                    <option value="우울증">우울증</option>
-                    <option value="불안장애">불안장애</option>
-                    <option value="불면증">불면증</option>
-                    <option value="ADHD">ADHD</option>
-                </select>
+                <div class="select-wrapper" style="margin-bottom: 10px;">
+                    <label for="diseaseSelect">질병 선택:</label>
+                    <select id="diseaseSelect" onchange="loadAdultChartDataByDisease()">
+                        <option value="전체">전체</option>
+                        <option value="조현병">조현병</option>
+                        <option value="조울증">조울증</option>
+                        <option value="우울증">우울증</option>
+                        <option value="불안장애">불안장애</option>
+                        <option value="불면증">불면증</option>
+                        <option value="ADHD">ADHD</option>
+                    </select>
+                </div>
             </div>
 
             <canvas id="mentalAdult" width="800" height="400"></canvas>
@@ -135,7 +161,7 @@
 
 <!-- 차트 JS -->
 <script src="/js/chart.js"></script>
-<script src="/js/mentalAdult.js"></script> <!-- 🔽 추가 -->
+<script src="/js/mentalAdult.js"></script> 
 
 <!-- 유튜브 기능 JS 분리 -->
 <script src="${pageContext.request.contextPath}/js/youtube.js"></script>
@@ -144,7 +170,7 @@
 <script>
     function openModal(type) {
         document.getElementById("chartModal").style.display = "block";
-        showChart('youth'); // 🔽 열릴 때 기본 차트는 청소년
+        showChart('youth'); // 열릴 때 기본 차트는 청소년
         loadChartData(type);
     }
 

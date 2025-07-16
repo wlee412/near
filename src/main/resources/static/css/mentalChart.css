@@ -1,21 +1,27 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* ✅ 전체 제목에 Pretendard 적용 */
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
 /* mental-chart.css */
-.chart-title {
-  font-family: 'Gowun Batang', serif;
-  font-size: 28px;
-  color: #333333;
-  margin-bottom: 20px;
-  text-align: center;
-  
-}
 
+/* ✅ 차트 제목 스타일 */
 .chart-title {
-  font-size: 24px;   /* 줄이고 싶은 크기, 예: 24px */
-  color: #333;       /* 텍스트 색상 */
-  font-weight: bold; /* 굵게 유지할지 여부 */
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
   margin-bottom: 30px;
+  text-align: center;
+}
+/* 셀렉트 박스 폰트 강제 적용 */
+select, option {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif !important;
 }
 
-
+/* 차트 영역 */
 .chart-container {
   max-width: 700px;
   height: 400px;
@@ -38,4 +44,5 @@
   .chart-title {
     font-size: 22px;
   }
+  
 }
