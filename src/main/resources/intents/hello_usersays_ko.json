@@ -1,0 +1,67 @@
+[
+  {
+    "id": "d7f9498f-6705-4611-8d50-8a4afb6c9f24",
+    "data": [
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "b4e07a66-97b8-4034-ac9c-f8584071c36e",
+    "data": [
+      {
+        "text": "저기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "de84bef8-557d-4b55-9c74-58423c61bd70",
+    "data": [
+      {
+        "text": "안녕",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "79bc67f7-df07-4ba8-a15d-3262f08249dd",
+    "data": [
+      {
+        "text": "저기요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "5223a52a-0d17-4a6e-bcef-b4c6785fa678",
+    "data": [
+      {
+        "text": "안녕하세요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ko",
+    "updated": 0
+  }
+]

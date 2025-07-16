@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.HospitalMapper">
+
+  <select id="findById" parameterType="String" resultMap="hospitalResultMap">
+    SELECT * FROM hosp_info WHERE hosp_id = #{hospId}
+  </select>
+
+  <insert id="insert" parameterType="HospitalInfo">
+    INSERT INTO hosp_info (
+      hosp_id, hosp_name, hosp_address, hosp_tel,
+      hosp_type, hosp_department, hosp_lat, hosp_lng
+    ) VALUES (
+      #{hospId}, #{hospName}, #{hospAddress}, #{hospTel},
+      #{hospType}, #{hospDepartment}, #{hospLat}, #{hospLng}
+    )
+  </insert>
+  
+  <resultMap id="hospitalResultMap" type="HospitalInfo">
+    <id property="hospId" column="hosp_id"/>
+    <result property="hospName" column="hosp_name"/>
+    <result property="hospAddress" column="hosp_address"/>
+    <result property="hospTel" column="hosp_tel"/>
+    <result property="hospType" column="hosp_type"/>
+    <result property="hospDepartment" column="hosp_department"/>
+    <result property="hospLat" column="hosp_lat"/>
+    <result property="hospLng" column="hosp_lng"/>
+</resultMap>
+  
+  
+  <select id="findWithFilter" resultType="map">
+  SELECT hosp_id AS id, hosp_name AS name, hosp_address AS address,
+         hosp_tel AS tel, hosp_department AS dept, hosp_lat AS lat, hosp_lng AS lng
+  FROM hosp_info
+  WHERE hosp_lat IS NOT NULL AND hosp_lng IS NOT NULL
+  <if test="name != null and name != ''">
+    AND hosp_name LIKE CONCAT('%', #{name}, '%')
+  </if>
+  <if test="area != null and area != ''">
+    AND hosp_address LIKE CONCAT('%', #{area}, '%')
+  </if>
+  <if test="dept != null and dept != ''">
+    AND hosp_department LIKE CONCAT('%', #{dept}, '%')
+  </if>
+</select>
+
+
+<select id="searchHospitals" resultType="map">
+  SELECT 
+    hosp_id AS id,
+    hosp_name AS name,
+    hosp_address AS address,
+    hosp_tel AS tel,
+    hosp_department AS dept,
+    hosp_type AS type,   <!-- 타입도 반환 -->
+    hosp_lat AS lat,
+    hosp_lng AS lng
+  FROM hosp_info
+  WHERE 1 = 1
+  <if test="name != null and name != ''">
+    AND hosp_name LIKE CONCAT('%', #{name}, '%')
+  </if>
+  <if test="area != null and area != ''">
+    AND hosp_address LIKE CONCAT('%', #{area}, '%')
+  </if>
+  <if test="dept != null and dept != ''">
+    AND hosp_department LIKE CONCAT('%', #{dept}, '%')
+  </if>
+  <if test="type != null and type != ''">
+    AND hosp_type LIKE CONCAT('%', #{type}, '%')
+  </if>
+</select>
+
+</mapper>

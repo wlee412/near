@@ -1,0 +1,41 @@
+[
+  {
+    "id": "ba5f01ef-a7b9-42ae-867e-57b0e3185f07",
+    "data": [
+      {
+        "text": "심리검사 비용이 궁금해요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "1e558fb5-c09a-42c4-a872-b295ded87ec2",
+    "data": [
+      {
+        "text": "심리테스트 공짜인강?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "71ca7b42-d02c-4acd-acf9-e1b1c356e14d",
+    "data": [
+      {
+        "text": "무료 심리검사 있어요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

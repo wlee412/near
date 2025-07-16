@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.MentalHealthMapper">
+
+    <!-- INSERT -->
+    <insert id="insert" parameterType="com.example.demo.model.MentalHealthItem">
+        INSERT INTO mental_health_data (
+            cht_ttl_nm, cht_se_nm, cht_x_cn, cht_y_cn, x_idx, y_idx, cht_vl
+        ) VALUES (
+            #{chtTtlNm}, #{chtSeNm}, #{chtXCn}, #{chtYCn}, #{xIdx}, #{yIdx}, #{chtVl}
+        )
+    </insert>
+
+    <!-- 중복 확인 -->
+    <select id="exists" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM mental_health_data
+        WHERE cht_ttl_nm = #{chtTtlNm}
+          AND cht_se_nm = #{chtSeNm}
+          AND cht_x_cn = #{chtXCn}
+          AND cht_y_cn = #{chtYCn}
+    </select>
+
+    <!-- 청소년 -->
+    <select id="selectYoungOnly" resultType="com.example.demo.model.MentalHealthItem">
+        SELECT * FROM mental_health_data
+        WHERE cht_x_cn REGEXP '^(미취학|초등|중학|고등)'
+    </select>
+
+    <!-- 대학생 이상 -->
+    <select id="selectOldOnly" resultType="com.example.demo.model.MentalHealthItem">
+        SELECT * FROM mental_health_data
+        WHERE cht_x_cn REGEXP '^(대학|청소년아님)'
+    </select>
+
+    <!-- 전체 -->
+    <select id="selectAll" resultType="com.example.demo.model.MentalHealthItem">
+        SELECT * FROM mental_health_data
+    </select>
+
+    <!-- 연령대별 평균 -->
+    <select id="selectAvgByAgeGroup" resultType="map">
+        SELECT 
+            CASE
+                WHEN cht_x_cn = '미취학' THEN '미취학'
+                WHEN cht_x_cn LIKE '초등%' THEN '초등학생'
+                WHEN cht_x_cn LIKE '중학%' THEN '중학생'
+                WHEN cht_x_cn LIKE '고등%' THEN '고등학생'
+                WHEN cht_x_cn LIKE '대학%' THEN '대학생'
+                ELSE '기타'
+            END AS chtXCn,
+            ROUND(AVG(cht_vl), 2) AS chtVl
+        FROM mental_health_data
+        WHERE cht_se_nm = '정신건강'
+          AND cht_x_cn REGEXP '^(미취학|초등|중학|고등|대학)'  
+        GROUP BY chtXCn
+        ORDER BY FIELD(chtXCn, '미취학', '초등학생', '중학생', '고등학생', '대학생')  
+    </select>
+
+</mapper>

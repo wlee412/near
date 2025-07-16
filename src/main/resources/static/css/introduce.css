@@ -1,0 +1,163 @@
+/* 탭 네비게이션 */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 30px;
+  gap: 40px;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-family: 'Gowun Batang', serif;
+  font-weight: 500;
+  color: #333;
+  padding: 10px 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.tab-button.active {
+  color: #5daec5;
+  border-bottom: 1px solid #5daec5;
+  font-weight: bold;
+}
+
+/* 탭 콘텐츠 */
+.tab-content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 20px;
+}
+
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+#tab-about {
+  text-align: center;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  text-align: center;
+  margin-top:30px;
+  margin-bottom:50px;
+}
+
+/* 상담사 프로필 카드 (세로형 리스트 + 가로형 카드) */
+.counselor-list.vertical-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.counselor-card-horizontal {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 30px 10px 30px 40px;
+  max-width: 600px;
+  width: 100%;
+  gap: 50px;
+}
+
+.counselor-card-horizontal img {
+  width: 150px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 16px; 
+  flex-shrink: 0;
+}
+
+.counselor-info {
+  flex: 1;
+  text-align: left;
+}
+
+.counselor-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.counselor-info .subtitle {
+  margin: 4px 0 10px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.counselor-info p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.counselor-list {
+  margin-bottom: 80px;  /* 마지막 카드 밑에 공간*/
+}
+
+/* 상담사 카드용 리본 (좌측 상단 태그) */
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #5daec5;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* 이용안내 카드 */
+.step-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.step-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top:20px;
+  width: 160px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+
+.step-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #7bb8cc;
+}
+
+.step-card p {
+  margin: 4px 0 0;
+  font-weight: bold;
+  color: #333;
+}

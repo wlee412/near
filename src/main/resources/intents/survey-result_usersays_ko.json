@@ -1,0 +1,54 @@
+[
+  {
+    "id": "9f4e62b5-a4bf-4e39-b70d-73d260a1ac7e",
+    "data": [
+      {
+        "text": "심리검사결과",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "5db40fcb-8e0d-4c23-8e0c-cb1767b7fa08",
+    "data": [
+      {
+        "text": "검사한 거 어떻게 확인해요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "a1ec1a9b-b05e-4d98-bb89-22ef532f7180",
+    "data": [
+      {
+        "text": "테스트결과 확인하고 싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "52ca2364-8b50-4d99-bde2-a1aee6d206e7",
+    "data": [
+      {
+        "text": "검사 결과 어디서 봐요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

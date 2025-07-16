@@ -1,0 +1,64 @@
+[
+  {
+    "id": "42a9764d-3cd6-40bb-89a3-4a7eb9e928b2",
+    "data": [
+      {
+        "text": "게임할래요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "b6b7ad5f-c55e-459b-b778-14ede2435c00",
+    "data": [
+      {
+        "text": "게임?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "67572063-5698-40f1-a2ff-1691a75c3d8e",
+    "data": [
+      {
+        "text": "게임",
+        "userDefined": false
+      },
+      {
+        "text": "은",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      },
+      {
+        "text": " 뭐에요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "76c23691-8598-4f19-bae8-919424f1b58e",
+    "data": [
+      {
+        "text": "게임",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

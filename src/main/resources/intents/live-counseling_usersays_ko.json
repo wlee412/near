@@ -1,0 +1,41 @@
+[
+  {
+    "id": "d213e2d3-dd7b-48c4-a130-9a2d4763cd9a",
+    "data": [
+      {
+        "text": "실시간 상담하고 싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "405c30af-94d0-4eaa-acf3-6a8174d909c7",
+    "data": [
+      {
+        "text": "바로 연결되나요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "8e8767ba-ff08-448b-ba83-9a1293692dd4",
+    "data": [
+      {
+        "text": "지금 상담 가능해요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

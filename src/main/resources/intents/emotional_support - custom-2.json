@@ -1,0 +1,86 @@
+{
+  "id": "5f95f9e6-337f-4dd5-ae82-97e5496d4119",
+  "parentId": "6660441a-9dae-4a86-8bf6-8c73431ce96f",
+  "rootParentId": "6660441a-9dae-4a86-8bf6-8c73431ce96f",
+  "name": "emotional_support - custom-2",
+  "auto": true,
+  "contexts": [
+    "emotional_redirect",
+    "emotional_support-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "emotional_support.emotional_support-custom-2",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "d34adad1-d57c-49f3-bdf3-958f88ccd20b",
+          "name": "person",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "title": "기분 전환하고 싶으신가요?",
+                  "type": "description",
+                  "text": [
+                    "간단한 힐링 게임으로 마음을 환기해보세요!"
+                  ]
+                },
+                {
+                  "link": "http://43.203.171.36/relax/ballonGame",
+                  "type": "button",
+                  "event": {
+                    "name": "",
+                    "parameters": {},
+                    "languageCode": ""
+                  },
+                  "text": "🎮 게임 하러 가기",
+                  "icon": {
+                    "type": "chevron_right",
+                    "color": "#FFFFFF"
+                  }
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

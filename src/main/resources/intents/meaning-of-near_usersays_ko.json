@@ -1,0 +1,93 @@
+[
+  {
+    "id": "f87e559c-5c7e-4ce6-a4e0-86badb723f24",
+    "data": [
+      {
+        "text": "누군데",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "430986c4-45ea-4ca0-be8b-800c3a5d5702",
+    "data": [
+      {
+        "text": "뭐야 너",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "28c68b7a-7d95-475e-8cab-b3f56e507312",
+    "data": [
+      {
+        "text": "너 누구야?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "58434790-acaf-4289-83eb-09679cfe9b34",
+    "data": [
+      {
+        "text": "이 사이트는 뭐하는 곳인가요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "63c1f870-78bb-483b-aa48-0920dd16518a",
+    "data": [
+      {
+        "text": "near가 무슨 뜻이에요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "8dca6896-d2be-466e-b3ab-4c835493e73f",
+    "data": [
+      {
+        "text": "near가 뭐임",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "95c64eba-0ceb-4982-9e66-92d1191d7c6a",
+    "data": [
+      {
+        "text": "near뜻이 뭐예요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

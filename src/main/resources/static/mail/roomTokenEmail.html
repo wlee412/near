@@ -1,0 +1,51 @@
+<body
+	style="background: linear-gradient(to right, #e0f7ff 0%, #f0fbff 50%, #e8faff 100%); padding: 30px;">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td align="center">
+				<table width="600" cellpadding="0" cellspacing="0" border="0"
+					style="background-color: #ffffff; 
+					font-family: 'Gowun Batang', serif; 
+					font-size: 16px; 
+					border-radius: 10pt; 
+					padding: 30px; 
+					text-align: center; 
+					box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);">
+					<tr>
+						<td align="center" style="padding-bottom: 20px;"><img
+							src="https://i.imgur.com/H5grzMN.png" alt="logo-img"
+							style="max-width: 150px; height: auto;"></td>
+					</tr>
+					<tr>
+						<td align="center">
+							<h1 style="margin: 0; font-size: 24px;">n:ear 화상상담 알림</h1>
+							<p style="margin: 20px 0;">상담 시작 시간: {{start_time}}</p>
+							<h3 style="margin: 10px 0;">{{room_token}}</h3>
+							<a href="http://localhost/chat/token?t={{room_token}}"
+							   style="display: inline-block;
+							          padding: 12px 30px;
+							          font-size: 16px;
+							          font-family: 'Gowun Batang', serif;
+							          border: none;
+							          border-radius: 30px;
+							          background-color: #5daec5;
+							          color: white;
+							          text-decoration: none;
+							          box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+							          margin: 30px;">
+							   입장하기
+							</a>
+							<p style="color: gray; font-size: 13px;">※
+								상담 시작 10분 전 부터 입장 가능합니다.</p>
+							<p style="margin: 20px 0;">상담사: {{counselor_name}}</p>
+							<p style="margin: 20px 0;">내담자: {{client_name}}</p>
+							<p style="margin: 20px 0;">{{opponent_phone}}</p>
+							<p style="color: gray; font-size: 13px; margin-top: 40px;">※
+								본 메일은 시스템에 의해 자동 발송되었습니다.</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>

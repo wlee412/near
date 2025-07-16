@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* luckycard.css */
+
+/* 폰트 import (Pretendard CDN) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* 카드 텍스트 폰트 적용 */
+.flip-card-front,
+.flip-card-back {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+/* 전체 카드 선택 영역 */
+.card-choice-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px 0;
+}
+
+/* 카드 바깥 테두리 */
+.flip-card {
+    background-color: transparent;
+    width: 180px;
+    height: 250px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* 카드 회전 영역 */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* 카드 뒤집힘 적용 */
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 앞면, 뒷면 공통 스타일 */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 카드 앞면 */
+.flip-card-front {
+    background-color: #fffbe6;
+    color: #333;
+    border: 2px dashed #bbb;
+}
+
+/* 카드 뒷면 */
+.flip-card-back {
+    background-color: #ffeedd;
+    color: #222;
+    transform: rotateY(180deg);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* 반응형 */
+@media screen and (max-width: 768px) {
+    .card-choice-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .flip-card {
+        width: 80%;
+        max-width: 250px;
+        margin-bottom: 20px;
+    }
+    
+
+    
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.AdminReservationMapper">
+
+    <select id="getReservations" resultType="com.example.demo.model.AdminReservation">
+  SELECT 
+      r.reservation_no,
+      csl.name AS counselorName,
+      cli.name AS clientName,
+      cli.client_id AS clientId,
+      cli.phone,
+      ca.start,
+      r.state
+  FROM counsel_reservation r
+  JOIN client cli ON r.client_id = cli.client_id
+  JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
+  JOIN counselor csl ON ca.counselor_id = csl.counselor_id
+  <where>
+    <if test="type != null and keyword != null">
+      <choose>
+        <when test="type == 'name'">
+          cli.name LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'phone'">
+          cli.phone LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'id'">
+          cli.client_id LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+      </choose>
+    </if>
+  </where>
+  ORDER BY ca.start DESC
+  LIMIT #{startRow}, #{pageSize}
+</select>
+
+
+<select id="getTotalCount" resultType="int">
+  SELECT COUNT(*) 
+  FROM counsel_reservation r
+  JOIN client cli ON r.client_id = cli.client_id
+  JOIN counsel_available ca ON r.counsel_no = ca.counsel_no
+  JOIN counselor csl ON ca.counselor_id = csl.counselor_id
+  <where>
+    <if test="type != null and keyword != null">
+      <choose>
+        <when test="type == 'name'">
+          cli.name LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'phone'">
+          cli.phone LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+        <when test="type == 'id'">
+          cli.client_id LIKE CONCAT('%', #{keyword}, '%')
+        </when>
+      </choose>
+    </if>
+  </where>
+</select>
+
+
+    <update id="cancelReservation">
+        UPDATE counsel_reservation
+        SET state = '취소'
+        WHERE reservation_no = #{reservationNo}
+    </update>
+
+</mapper>

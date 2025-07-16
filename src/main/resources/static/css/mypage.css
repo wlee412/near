@@ -1,0 +1,207 @@
+@import
+	url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css')
+	;
+
+.mypage-sidebar {
+	width: 220px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.client-container {
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 40px 20px;
+}
+
+.sidebar-button {
+	display: block;
+	padding: 12px 20px;
+	background-color: #fff;
+	border-radius: 12px;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: 400;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+	transition: all 0.2s ease;
+}
+
+.sidebar-button:hover {
+	color: #13688a;
+}
+
+.sidebar-button.active {
+	color: #5daec5;
+	font-weight: 500;
+	border-left: 2px solid #5daec5;
+}
+
+.mypage-title {
+	text-decoration: none !important;
+	width: 100%;
+	border-bottom: 0.5px solid #666;
+	margin-bottom: 30px;
+}
+
+.mypage-title a {
+	text-decoration: none !important;
+	color: #333 !important;
+}
+
+.mypage-title a:hover {
+	color: #333 !important;
+}
+
+.mypage-title a:active {
+	color: #333 !important;
+}
+
+.mypage-title h2 {
+	text-decoration: none !important;
+	font-size: 24px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	color: #333;
+}
+
+.mypage-body {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+}
+
+.main-section {
+	flex-grow: 1;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 16px;
+	min-width: 800px;
+	min-height: 300px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+	word-break: keep-all;
+	font-weight: 400;
+	font-size: 0.9rem;
+}
+
+.welcome-box {
+	text-align: center;
+	margin-top: 50px;
+	justify-content: center;
+}
+
+.welcome-box h2 {
+	font-size: 28px;
+	margin-bottom: 60px;
+}
+
+.slider-wrapper-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.slider-wrapper {
+	width: 750px;
+	height: 300px;
+	/*   max-width: 740px; */
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	perspective: 1000px;
+}
+
+.slider-track {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	transition: transform 0.5s cubic-bezier(.22, .61, .36, 1);
+	will-change: transform;
+}
+
+.slider-card {
+	flex: 0 0 80%;
+	/* margin: 0 auto; <- 삭제 */
+	max-width: 680px;
+	padding: 24px;
+	background: linear-gradient(135deg, #f0f4ff, #ffffff);
+	border-radius: 16px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+.slider-card p {
+	font-size: 15px;
+}
+/* 4) 비활성 카드 (측면) */
+.slider-card.inactive {
+	transform: rotateY(30deg) scale(0.8);
+	opacity: 0.5;
+}
+
+/* 5) 활성 카드 (중앙) */
+.slider-card.active {
+	transform: rotateY(0deg) scale(1);
+	opacity: 1;
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* 6) 버튼 강조 (hover 시 살짝 키우기) */
+.slider-button {
+	position: absolute;
+	top: 50%; /* 수직 가운데 정렬 */
+	transform: translateY(-50%); /* 위아래 오프셋 보정 */
+	background: #fff;
+	border: none;
+	font-size: 28px;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 50%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+/* .slider-button:hover { */
+/*   transform: scale(1.1); */
+/* } */
+.slider-button.prev {
+	left: 8px; /* 필요에 따라 음수 마진으로 살짝 빼내도 되고 */
+}
+
+.slider-button.next {
+	right: 8px;
+}
+
+.recommend-explanation-box {
+	background-color: #f9f9fc;
+	padding: 20px;
+	margin-top: 30px;
+	border-left: 5px solid #5daec5;
+	border-radius: 8px;
+	font-size: 15px;
+	line-height: 1.6;
+	color: #333;
+}
+
+.slider-card a {
+	background: #5daec5;
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background 0.3s ease;
+	float: right;
+}
+
+.slider-card a:hover {
+	background: #3a8dab;
+}
+
+.recommend-explanation-box p {
+	font-size: 14px;
+}

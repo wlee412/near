@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.AdminMemberMapper">
+
+  <!-- 페이징 + 검색 목록 -->
+  <select id="pagingSearch" resultType="com.example.demo.model.AdminMember">
+           SELECT 
+            client_id AS clientId,
+            name,
+            phone,
+            email_id AS emailId,
+            email_domain AS emailDomain,
+            addr_base AS addrBase,
+            state,
+            reg_date AS regDate
+        FROM client
+    <where>
+      <if test="type != null and keyword != null and type eq 'name'">
+        name LIKE CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="type != null and keyword != null and type eq 'email'">
+        CONCAT(email_id, '@', email_domain) LIKE CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="type != null and keyword != null and type eq 'state'">
+        state = #{keyword}
+      </if>
+    </where>
+    ORDER BY clientId DESC
+    LIMIT #{startRow}, #{pageSize}
+  </select>
+
+  <!-- 총 회원 수 (검색 포함) -->
+  <select id="getTotalCount" resultType="int">
+    SELECT COUNT(*) FROM client
+    <where>
+      <if test="type != null and keyword != null and type eq 'name'">
+        name LIKE CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="type != null and keyword != null and type eq 'email'">
+        CONCAT(email_id, '@', email_domain) LIKE CONCAT('%', #{keyword}, '%')
+      </if>
+      <if test="type != null and keyword != null and type eq 'state'">
+        state = #{keyword}
+      </if>
+    </where>
+  </select>
+
+  <!-- 상태 변경 -->
+    <update id="updateState">
+        UPDATE client
+        SET state = #{state}
+        WHERE client_id = #{clientId}
+    </update>
+
+  <!-- 전체 회원 목록 -->
+  <select id="selectBasicMembers" resultType="com.example.demo.model.AdminMember">
+           SELECT 
+            client_id AS clientId,
+            name,
+            phone,
+            email_id AS emailId,
+            email_domain AS emailDomain,
+            addr_base AS addrBase,
+            state,
+            reg_date AS regDate
+        FROM client
+    ORDER BY clientId DESC
+  </select>
+
+</mapper>

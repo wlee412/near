@@ -1,0 +1,41 @@
+{
+  "id": "f4d1715d-549c-4b98-8383-5a26cffc23b6",
+  "name": "Default Fallback Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.unknown",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "원하시는 것이 상담인지, 검사인지 말씀해주시면 도와드릴게요!",
+            "n:ear 플랫폼 관련 질문만 도와드릴 수 있어요.\n   예) 상담 예약, 상담사 정보, 심리검사 등",
+            "죄송해요! 제가 도와드릴 수 있는 영역은 상담, 예약, 심리검사 관련이에요.",
+            "이해가 잘 되지 않았어요. 다시 입력해주시길 바랍니다.",
+            "죄송해요, 아직 정확히 이해하진 못했어요.  \nn:ear에서는 온라인 심리상담과 심리검사를 도와드릴 수 있어요.  \n혹시 \u0027상담\u0027, \u0027검사\u0027, \u0027예약\u0027 중 어떤 게 궁금하신가요?",
+            "아직 도와드릴 준비가 안 된 질문이에요 😢  \n상담 예약이나 심리검사 관련해서 궁금하신 게 있으면 말씀해주세요!"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": true,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": [],
+  "endInteraction": true
+}
