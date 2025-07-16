@@ -1,0 +1,106 @@
+[
+  {
+    "id": "0011da66-ffa2-4322-a85f-2f8f17cdcb26",
+    "data": [
+      {
+        "text": "상담예약하고싶어",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "e034ec88-7e56-42cc-a960-bc11557146c8",
+    "data": [
+      {
+        "text": "상담예약",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "fad00f99-37a4-42bb-b70d-f70ea7cc06aa",
+    "data": [
+      {
+        "text": "상담",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "7f2f9e0c-3473-4c94-a6dc-a287d6018b82",
+    "data": [
+      {
+        "text": "상담 어떻게 하나요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "5b63f7fc-fc31-47a7-896e-0d401dc05c3f",
+    "data": [
+      {
+        "text": "상담진행과정",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "7f8287b2-c2e8-4710-bd86-043eb6245fc1",
+    "data": [
+      {
+        "text": "상담신청어떻게 해요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "1be4d296-f881-45c4-af14-40164377e8bc",
+    "data": [
+      {
+        "text": "예약방법 알려줘요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "7480809f-496c-4dc1-b86a-e2c311d46bb1",
+    "data": [
+      {
+        "text": "상담예약하고 싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "7943a1b9-51b0-4fa2-bc25-70c3684ec6b1",
+    "data": [
+      {
+        "text": "가입",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "024c1019-2442-44f7-b2d3-ebcff26ef146",
+    "data": [
+      {
+        "text": "회원가입",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "201a961e-9d06-47dd-9f11-6c66a81e4b08",
+    "data": [
+      {
+        "text": "로그인",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

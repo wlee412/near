@@ -1,0 +1,55 @@
+{
+  "id": "94a5ae19-71dc-4f91-9dce-b173b03d2c19",
+  "parentId": "18b298e2-b7cf-4fba-96d1-27f41b762cc0",
+  "rootParentId": "18b298e2-b7cf-4fba-96d1-27f41b762cc0",
+  "name": "find-id-passwd - id",
+  "auto": true,
+  "contexts": [
+    "find-id-passwd-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "find-id-passwd.find-id-passwd-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "subtitle": "가입 시 등록한 휴대폰 번호로 아이디를 찾을 수 있습니다. 👉클릭해서 이동하기👈",
+                  "title": "아이디를 잃어버리셨나요?",
+                  "type": "info",
+                  "actionLink": "http://43.203.171.36/client/find"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,201 @@
+[
+  {
+    "id": "912e4681-19a0-400e-804b-ad9d306ff20c",
+    "data": [
+      {
+        "text": "살고싶지않아요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "b9bda810-e01d-4c8f-913d-61beea19d9be",
+    "data": [
+      {
+        "text": "살기싫다",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "cbdd4584-2509-49a4-9052-3b67a0164b26",
+    "data": [
+      {
+        "text": "힘들다",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "016865a6-0ac8-474e-b4d6-3233a397a50a",
+    "data": [
+      {
+        "text": "자살",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "691e9281-f3f6-4565-b86e-117790004f4e",
+    "data": [
+      {
+        "text": "마음이 답답해요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "e108fe99-7f8c-49e9-810b-79365c25352f",
+    "data": [
+      {
+        "text": "죽고싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "b3db68e5-64f4-4107-811b-8f8e3d5c4196",
+    "data": [
+      {
+        "text": "외로워요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "cc65de7e-4516-4312-81cb-4ebd717ad67c",
+    "data": [
+      {
+        "text": "슬퍼요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "6ea64a96-45f3-4737-9444-03402db60648",
+    "data": [
+      {
+        "text": "우울",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "a945c18c-2758-4744-a55d-5204e36b7aa8",
+    "data": [
+      {
+        "text": "짜증나요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ed1bc119-1f6b-48e8-aa2e-cd37eebcf759",
+    "data": [
+      {
+        "text": "불안해요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "9b44a829-1d8a-46cf-916d-8303e1eecdab",
+    "data": [
+      {
+        "text": "심란",
+        "userDefined": false
+      },
+      {
+        "text": "합니다.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "58b9a4fc-0134-4489-ba33-1685a8cefac4",
+    "data": [
+      {
+        "text": "지쳐썽요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "30669bb3-be76-4387-92d9-079263a773d1",
+    "data": [
+      {
+        "text": "힘들어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "222e78d2-7002-4418-9387-97f8472a586b",
+    "data": [
+      {
+        "text": "우울해요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

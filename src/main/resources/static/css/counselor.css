@@ -303,6 +303,7 @@ body {
   padding: 10px;
   font-size: 15px;
   font-family: 'Gowun Batang', serif;
+}
 
 .time-btn:hover {
   background-color: #e0f7ff;
@@ -577,5 +578,3 @@ input[type="checkbox"]:checked + .label-text {
     color: #5c85d6;  
     text-decoration: underline; 
 }
-
-

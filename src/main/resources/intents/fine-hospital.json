@@ -1,0 +1,78 @@
+{
+  "id": "3251618c-2241-49c0-b4eb-0dbd0b170ac5",
+  "name": "fine-hospital",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "fine-hospital-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "02580752-7b27-4949-b2cb-211236f6e995",
+          "name": "location",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$location",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "description",
+                  "title": "병원/약국 위치 안내가 필요하신가요?",
+                  "text": [
+                    "n:ear에서는 화상상담 외에도 위치 기반으로 주변 병원/약국 정보를 안내해드리고 있어요.",
+                    "정신과적 도움이 더 필요하신 경우, 가까운 병원을 방문하시는 것도 추천드립니다.",
+                    "병원/약국 안내 페이지로 이동할까요?"
+                  ]
+                },
+                {
+                  "type": "chips",
+                  "options": [
+                    {
+                      "text": "네"
+                    },
+                    {
+                      "text": "아니오"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

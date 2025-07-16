@@ -1,0 +1,36 @@
+{
+  "id": "0deaaa81-b0eb-4254-ae94-a3e07b572133",
+  "name": "counselor",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "상담사 정보는 사이트 상단에 소개 목록에서 확인하실 수 있습니다.",
+            "n:ear의 전문 상담사들은 공인 자격을 보유한 심리상담 전문가입니다. 자세한 정보를 원하시면 사이트 상단의 소개 목록을 눌러보세요."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

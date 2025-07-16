@@ -1,0 +1,54 @@
+[
+  {
+    "id": "f5192fca-ac8c-44f6-902e-14fb48b1efdb",
+    "data": [
+      {
+        "text": "상담사이력",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "b82d5257-078c-4847-b276-71d0da321e5b",
+    "data": [
+      {
+        "text": "상담하는 사람은 누구인가요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "695d0059-9aaa-4ae0-8751-7559a5178dbc",
+    "data": [
+      {
+        "text": "상담사",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "c7ce324a-e02a-466d-b209-776a10d3b51f",
+    "data": [
+      {
+        "text": "상담사정보",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

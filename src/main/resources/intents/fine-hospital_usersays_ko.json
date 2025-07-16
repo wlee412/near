@@ -1,0 +1,118 @@
+[
+  {
+    "id": "26e8a37d-fc04-4e00-a284-9ce757690232",
+    "data": [
+      {
+        "text": "병원약국",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": "찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "da809d85-e84e-4f80-b229-5574229a508a",
+    "data": [
+      {
+        "text": "약국",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      },
+      {
+        "text": "찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "51325a0e-64fa-44b0-bd84-53361c0be618",
+    "data": [
+      {
+        "text": "병원찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "298b5370-0269-4485-8aa8-c61516acc3a1",
+    "data": [
+      {
+        "text": "병원",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "7d4c0ae6-43bc-4260-b8c9-38bcb3a08820",
+    "data": [
+      {
+        "text": "병원 찾는 법",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "2ac89a1f-0486-4a48-9c1d-517104081d65",
+    "data": [
+      {
+        "text": "병원추천",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "bca08309-e11a-42e5-8a1b-917642bb81cb",
+    "data": [
+      {
+        "text": "주변에 병원있어?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "74df846c-2066-434f-9ebc-7dff2bfd9721",
+    "data": [
+      {
+        "text": "근처병원 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

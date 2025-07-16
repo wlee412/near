@@ -1,0 +1,32 @@
+[
+  {
+    "id": "f145eadb-e790-456e-aa87-c12489533d8d",
+    "data": [
+      {
+        "text": "예",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "662d62c6-f189-4e72-8f68-205fb064936b",
+    "data": [
+      {
+        "text": "네",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]
