@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
+
 
 <!-- 공통 헤더 -->
 <header>
@@ -25,9 +27,11 @@
 
 		<div class="login">
 			<c:choose>
+
 				<c:when test="${not empty sessionScope.loginClient}">
 					<a href="/client/logout">로그아웃</a>
 					<a href="/mypage/mypage" onclick="showLoading()">마이페이지</a>
+
 				</c:when>
 				<c:when test="${not empty sessionScope.loginCounselor}">
 					<a href="/client/logout">로그아웃</a>
@@ -39,9 +43,11 @@
 			</c:choose>
 		</div>
 	</div>
+
 	<div id="loadingOverlay" class="loading-overlay" style="display: none;">
 		<div class="spinner"></div>
 		<div class="loading-text">Loading...</div>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/loading.js"></script>
 </header>
+

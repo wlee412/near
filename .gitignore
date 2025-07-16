@@ -36,6 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
+
 # 보안 파일
 secret.properties
 .env
@@ -58,3 +59,4 @@ secret.properties
 # 기타 (이미 포함된 것과 병합 정리 가능)
 .idea/
 *.iml
+

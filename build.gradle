@@ -33,6 +33,7 @@ repositories {
 
 dependencies {
 
+	implementation 'org.json:json:20240303'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation 'net.nurigo:sdk:4.2.7'
@@ -41,7 +42,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' 
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	compileOnly 'org.projectlombok:lombok'
