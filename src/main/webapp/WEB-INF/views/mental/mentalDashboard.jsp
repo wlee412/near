@@ -11,15 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Lottie 애니메이션 추가 -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <!-- ✅ Pretendard 폰트 적용을 위한 직접 스타일 추가 -->
+    <!-- Pretendard 폰트 적용을 위한 직접 스타일 추가 -->
     <style>
         .wrapper, .modal-content {
             font-family: 'Pretendard', 'Noto Sans KR', sans-serif !important;
+        }
+
+        /* 질병 선택 라벨과 셀렉트 간격 조절용 스타일 */
+        .select-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
     </style>
 </head>
@@ -75,17 +81,6 @@
         </div>
     </div>
 </div>
-
-<!-- <script>
-    const chartPlayer = document.getElementById('chartPlayer');
-
-    // 재생이 끝났을 때 마지막 프레임에 정지
-    chartPlayer.addEventListener('complete', () => {
-        chartPlayer.pause(); // 이미 자동 정지되지만 명시적 정지
-        chartPlayer.seek(chartPlayer.getDuration(true)); // 마지막 프레임 고정
-    });
-</script>
- -->
 
 <!-- 차트 모달 -->
 <div id="chartModal" class="modal chart-modal">  <%-- css 클래스 추가 --%>
