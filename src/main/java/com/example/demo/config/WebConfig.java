@@ -28,7 +28,9 @@ public class WebConfig implements WebMvcConfigurer {
 				"/static/**", 
 				"/css/**", 
 				"/js/**", 
-				"/images/**"
+				"/images/**",
+				"/api/favorite/**"
+				
 				// ❌ "/survey/**" 제거!
 			);
 	}

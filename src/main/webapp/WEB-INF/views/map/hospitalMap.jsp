@@ -17,7 +17,7 @@
 
   <!-- 로그인 세션 전달 (필요 시) -->
   <script>
-    window.clientId = "${sessionScope.clientId}";
+    window.clientId = "${sessionScope.clientId != null ? sessionScope.clientId : ''}";
   </script>
 
   <!-- ✅ 외부 CSS 적용 -->

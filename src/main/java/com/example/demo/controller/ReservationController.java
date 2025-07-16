@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.model.Client;
 import com.example.demo.model.CounselReservationDTO;
 import com.example.demo.service.ReservationService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/reservation")
@@ -51,8 +55,14 @@ public class ReservationController {
 
     // ✅ 4. 예약 저장
     @PostMapping("/save")
-    public ResponseEntity<?> saveReservation(@RequestBody Map<String, Object> payload) {
-        try {
+    public ResponseEntity<?> saveReservation(HttpSession session,@RequestBody Map<String, Object> payload) {
+    	 Client client = (Client) session.getAttribute("loginClient");
+    	 
+         if (client == null) {
+             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+         }
+    	
+    	try {
             String clientId = (String) payload.get("clientId");
             String counselorId = (String) payload.get("counselorId");
             String date = (String) payload.get("date");         // yyyy-MM-dd
@@ -64,6 +74,7 @@ public class ReservationController {
             );
 
             boolean result = reservationService.saveReservation(dto);
+            
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("예약 처리 실패: " + e.getMessage());

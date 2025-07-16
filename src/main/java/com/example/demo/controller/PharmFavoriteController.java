@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Client;
 import com.example.demo.service.PharmFavoriteService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/favorite/pharm")
@@ -20,8 +23,13 @@ public class PharmFavoriteController {
 
     // 즐겨찾기 등록
     @PostMapping("/add")
-    public ResponseEntity<String> addFavorite(@RequestParam String clientId, @RequestParam String pharmId) {
-        if (service.addFavorite(clientId, pharmId)) {
+    public ResponseEntity<String> addFavorite(HttpSession session, @RequestParam("pharmId") String pharmId) {
+        Client client = (Client) session.getAttribute("loginClient");
+        if (client == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+        }
+
+        if (service.addFavorite(client.getClientId(), pharmId)) {
             return ResponseEntity.ok("즐겨찾기 등록 완료");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("등록 실패");

@@ -145,6 +145,8 @@ public class ClientController {
 		if (client != null) {
 			session.setAttribute("loginClient", client);
 			session.setAttribute("id", client.getClientId());
+			session.setAttribute("clientId", client.getClientId());
+			
 			if (rememberMe != null) {
 				Cookie cookie = new Cookie("reclientId", client.getClientId());
 				cookie.setMaxAge(60 * 60 * 24 * 3);

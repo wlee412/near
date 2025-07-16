@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.example.demo.config.WebCounselorConfig;
 import jakarta.servlet.http.HttpSession;
-
+import com.example.demo.config.WebCounselorConfig;
+import com.example.demo.model.Client;
 @Controller
 public class MainController {
 
@@ -53,9 +51,20 @@ public class MainController {
  
     // 상담예약 페이지
     @GetMapping("/reservation")
-    public String reservation() {
+    public String reservation(HttpSession session,Model model) {
+    	Client client = (Client) session.getAttribute("loginClient");
+    	System.out.println("clientId - 예약: "+client.getClientId());
+
+		// null 체크
+		if (client == null) {
+			return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
+		}
+
+		model.addAttribute("loginClient", client);
         return "reservation";  
     }
+    
+
 
     // 상담하기 페이지
     @GetMapping("/room/door")
