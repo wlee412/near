@@ -5,15 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <title>병원 지도</title>
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services&autoload=false"></script>
-<script>
-  // ✅ 이제 정상 작동됨
-  kakao.maps.load(() => {
-    const script = document.createElement("script");
-    script.src = "/js/hospitalMap.js";
-    document.body.appendChild(script);
-  });
-</script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services"></script>
+	<script src="/js/hospitalMap.js"></script>
 
   <!-- 로그인 세션 전달 (필요 시) -->
   <script>

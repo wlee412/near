@@ -5,14 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <title>약국 지도</title>
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services&autoload=false"></script>
-  <script>
-    kakao.maps.load(() => {
-      const script = document.createElement("script");
-      script.src = "/js/pharmacyMap.js"; // 약국용 JS
-      document.body.appendChild(script);
-    });
-  </script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services"></script>
+ <script src="/js/hospitalMap.js"></script>
   
    <script>
     window.clientId = "${sessionScope.clientId}";
