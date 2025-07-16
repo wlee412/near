@@ -1,0 +1,119 @@
+[
+  {
+    "id": "ff3c859e-ee63-4951-803b-bf71a0a49a5b",
+    "data": [
+      {
+        "text": "비밀번호찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "e203c056-dd9f-42fd-a35a-c7fbf390963e",
+    "data": [
+      {
+        "text": "로그인 안됨",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ba52ae80-4153-4bfd-891f-232798e59dcc",
+    "data": [
+      {
+        "text": "로그인 안돼요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "db0b65bf-23c6-4fb0-93e8-937ffd5fdb22",
+    "data": [
+      {
+        "text": "계정찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "8640b33c-b41a-4647-8a39-5bd3a7a34461",
+    "data": [
+      {
+        "text": "아이디찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "6f72e390-c7ed-4225-b26e-152215731204",
+    "data": [
+      {
+        "text": "비밀번호변경",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "420755ef-5b31-46f9-b1ba-e41388a65398",
+    "data": [
+      {
+        "text": "아이디비번찾기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "77408c1d-1c4d-4638-ba7c-83487748d0d9",
+    "data": [
+      {
+        "text": "비번까먹었어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ee78b996-f2cf-423a-8af5-3928edae16c0",
+    "data": [
+      {
+        "text": "아이디찾고싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

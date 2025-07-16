@@ -1,0 +1,173 @@
+@import
+	url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css')
+	;
+/* -----------------------------
+   페이지 컨테이너
+----------------------------- */
+.client-container {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 40px 20px;
+}
+
+/* -----------------------------
+   페이지 제목
+----------------------------- */
+.mypage-title {
+	text-decoration: none !important;
+	width: 100%;
+	border-bottom: 0.5px solid #666;
+	margin-bottom: 30px;
+}
+
+.mypage-title h2 {
+	font-size: 24px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	color: #333;
+}
+
+/* -----------------------------
+   레이아웃
+----------------------------- */
+.mypage-body {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+}
+
+/* -----------------------------
+   사이드바
+----------------------------- */
+.mypage-sidebar {
+	width: 220px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.sidebar-button {
+	display: block;
+	padding: 12px 20px;
+	background-color: #fff;
+	border-radius: 12px;
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: 400;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
+	transition: all 0.2s ease;
+}
+
+.sidebar-button:hover {
+	color: #13688a;
+}
+
+.sidebar-button.active {
+	color: #5daec5;
+	border-left: 2px solid #5daec5;
+}
+
+/* -----------------------------
+   메인 섹션
+----------------------------- */
+.main-section {
+	flex-grow: 1;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 16px;
+	min-width: 800px;
+	min-height: 300px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+	word-break: keep-all;
+}
+
+.divider {
+	height: 1px;
+	background-color: #ddd;
+	margin: 20px 0;
+}
+
+/* -----------------------------
+   입력 폼 그룹
+----------------------------- */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	font-size: 15px;
+	font-weight: 500;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+/* -----------------------------
+   텍스트 입력 & 셀렉트
+----------------------------- */
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"],
+	input[type="date"], select {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 16px;
+	background-color: #f9f9f9;
+	transition: border 0.2s ease;
+}
+
+input:focus, select:focus {
+	border-color: #555;
+	outline: none;
+	background-color: #fff;
+}
+
+/* -----------------------------
+   읽기 전용 필드
+----------------------------- */
+input[readonly] {
+	background-color: #e9ecef;
+	color: #666;
+	cursor: not-allowed;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* ensure at least full-height */
+}
+
+/* ② this wrapper will expand to push footer down */
+.wrapper {
+	flex: 1; /* grow to fill available space */
+	display: flex;
+	flex-direction: column; /* if you want to flex inner content too */
+}
+
+/* if you need your inner content area to scroll when tall, you can also: */
+.client-container {
+	flex: 1; /* take all remaining space inside wrapper */
+	overflow: auto; /* scroll if its contents exceed the view */
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+/* ③ footer in normal flow, no fixed */
+footer {
+	background-color: #fff;
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+	/* no position:absolute/fixed at all */
+}
+
+/* drop your “padding-bottom” hack—Flex takes care of it */
+body {
+	padding-bottom: 0;
+}

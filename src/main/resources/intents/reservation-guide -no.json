@@ -1,0 +1,39 @@
+{
+  "id": "64c88178-f6a1-4c00-b315-a1e787672dc6",
+  "parentId": "0dfe6cba-f0fd-4024-93a1-438d2ebaa8e1",
+  "rootParentId": "0dfe6cba-f0fd-4024-93a1-438d2ebaa8e1",
+  "name": "reservation-guide -no",
+  "auto": true,
+  "contexts": [
+    "reservation-guide-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "reservation-guide.reservation-guide-custom-2",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "원하시는 질문을 다시 입력해주세요!"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

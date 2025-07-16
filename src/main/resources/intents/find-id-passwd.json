@@ -1,0 +1,66 @@
+{
+  "id": "18b298e2-b7cf-4fba-96d1-27f41b762cc0",
+  "name": "find-id-passwd",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "find-id-passwd-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "subtitle": "아래에서 항목을 선택해주세요 😊",
+                  "title": "아이디 비밀번호를 잃어버리셨나요?",
+                  "type": "info"
+                },
+                {
+                  "options": [
+                    {
+                      "text": "아이디 찾기"
+                    },
+                    {
+                      "text": "비밀번호 찾기"
+                    }
+                  ],
+                  "type": "chips"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

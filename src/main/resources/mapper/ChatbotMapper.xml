@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ChatbotMapper">
+	<!-- 채팅 내용 저장 -->
+	<insert id="insertChat"
+		parameterType="com.example.demo.model.Chatbot">
+		INSERT INTO chatbot (client_id, sender, message,
+		reg_date)
+		VALUES (#{clientId}, #{sender}, #{message}, NOW())
+	</insert>
+
+	<select id="findChatsByClientId"
+		resultType="com.example.demo.model.Chatbot">
+		SELECT * FROM chatbot
+		WHERE client_id = #{clientId}
+		ORDER BY
+		reg_date ASC
+	</select>
+
+	<select id="findReservationTimesByClientId" resultType="String">
+		SELECT DATE_FORMAT(ca.start, '%Y-%m-%d %H:%i')
+		FROM counsel_reservation cr
+		JOIN counsel_available ca ON cr.counsel_no = ca.counsel_no
+		WHERE cr.client_id = #{clientId}
+		ORDER BY ca.start ASC
+	</select>
+
+
+
+</mapper>

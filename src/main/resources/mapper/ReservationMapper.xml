@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.ReservationMapper">
+
+  <!-- 1. 예약 불가 시간 조회 -->
+<select id="selectUnavailableTimes" resultType="string">
+  SELECT DATE_FORMAT(a.start, '%H:%i')
+  FROM counsel_reservation r
+  JOIN counsel_available a ON r.counsel_no = a.counsel_no
+  WHERE a.counselor_id = #{counselorId}
+    AND DATE(a.start) = #{date}
+</select>
+
+  <!-- 2. 예약 가능한 시간 조회 -->
+  <select id="getAvailableTimes" resultType="string">
+    SELECT DATE_FORMAT(start, '%H:%i')
+    FROM counsel_available
+    WHERE counselor_id = #{counselorId}
+      AND DATE(start) = #{date}
+  </select>
+
+  <!-- 3. 해당 시간의 counsel_no 조회 -->
+  <select id="findCounselNoByTime" resultType="int">
+    SELECT counsel_no
+    FROM counsel_available
+    WHERE counselor_id = #{counselorId}
+      AND start = #{start}
+  </select>
+
+  <!-- 4. 중복 예약 여부 확인 -->
+  <select id="checkDuplicateReservation" resultType="boolean">
+    SELECT CASE
+      WHEN EXISTS (
+        SELECT 1
+        FROM counsel_reservation
+        WHERE counsel_no = #{counselNo}
+          AND (client_id = #{clientId}
+            OR EXISTS (
+              SELECT 1
+              FROM counsel_available
+              WHERE counsel_no = #{counselNo}
+                AND counselor_id = (
+                  SELECT counselor_id
+                  FROM counsel_available
+                  WHERE counsel_no = #{counselNo}
+                )
+            )
+          )
+      ) THEN TRUE
+      ELSE FALSE
+    END
+  </select>
+
+  <!-- 5. 예약 등록 -->
+  <insert id="insertReservation" parameterType="com.example.demo.model.CounselReservationDTO" useGeneratedKeys="true" keyProperty="reservationNo">
+    INSERT INTO counsel_reservation (
+      client_id,
+      counsel_no,
+      state,
+      reg_date
+    ) VALUES (
+      #{clientId},
+      #{counselNo},
+      #{state},
+      #{regDate}
+    )
+  </insert>
+
+  <!-- 6. 증상 코드 저장 (N:M 관계) -->
+  <insert id="insertSymptom">
+    INSERT INTO counsel_reason (
+      reservation_no,
+      symp_code
+    ) VALUES (
+      #{reservationNo},
+      #{sympCode}
+    )
+  </insert>
+
+</mapper>

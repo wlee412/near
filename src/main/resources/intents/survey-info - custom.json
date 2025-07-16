@@ -1,0 +1,69 @@
+{
+  "id": "2b928263-db76-4a69-88cb-70d6fa50136a",
+  "parentId": "b8a88334-f2bd-463c-9806-3cc4dca3e54f",
+  "rootParentId": "b8a88334-f2bd-463c-9806-3cc4dca3e54f",
+  "name": "survey-info - custom",
+  "auto": true,
+  "contexts": [
+    "survey-info-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "survey-info.survey-info-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "21aa58dc-f4f3-4f3d-90cf-3381c6d8c411",
+          "name": "person",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "32047c50-6a16-4236-a35e-5853ea09448d",
+          "name": "person1",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person1",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "상단에 심리 설문검사 메뉴가 있어요. 그 외에 게임, 오늘의 행운카드 등 기분 전환할 수 있는 리프레시 항목들이 있으니 한번 참고해주세요!",
+            "심리 검사는 5분이내로 이루어지며, 결과는 바로 확인하실 수 있습니다 !"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

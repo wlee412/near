@@ -1,0 +1,55 @@
+{
+  "id": "017aebfd-e20b-4abb-94e5-d050dcf56b88",
+  "parentId": "18b298e2-b7cf-4fba-96d1-27f41b762cc0",
+  "rootParentId": "18b298e2-b7cf-4fba-96d1-27f41b762cc0",
+  "name": "find-id-passwd - pw",
+  "auto": true,
+  "contexts": [
+    "find-id-passwd-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "find-id-passwd.find-id-passwd-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "actionLink": "http:/43.203.171.36/client/find",
+                  "subtitle": "휴대폰인증을 통해 비밀번호를 재설정할 수 있습니다. 👉클릭해서 이동하기👈",
+                  "title": "비밀번호 찾기 안내",
+                  "type": "info"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

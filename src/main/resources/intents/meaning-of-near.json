@@ -1,0 +1,35 @@
+{
+  "id": "bc3b718d-a656-41d6-9005-f233a48c158a",
+  "name": "meaning-of-near",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "n:ear는 \u0027near + ear\u0027의 합성어로, \u0027가까이 귀 기울이는 누군가\u0027를 의미해요. 온라인 심리상담 플랫폼입니다."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

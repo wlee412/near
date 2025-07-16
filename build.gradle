@@ -14,6 +14,13 @@ java {
 	}
 }
 
+tasks.named('processResources') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from("src/main/resources") {
+        include "secret.properties"
+    }
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -25,9 +32,17 @@ repositories {
 }
 
 dependencies {
+
+	implementation 'org.json:json:20240303'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'net.nurigo:sdk:4.2.7'
+	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' 
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	compileOnly 'org.projectlombok:lombok'
@@ -39,8 +54,29 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  implementation 'com.google.api-client:google-api-client:1.34.1'
+	implementation 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
+	implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+  
+}
+
+bootJar {
+	enabled = false
+}
+
+war {
+	enabled = true
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-parameters"
+}
+

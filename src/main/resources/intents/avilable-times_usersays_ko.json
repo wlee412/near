@@ -1,0 +1,54 @@
+[
+  {
+    "id": "43ff5b79-1771-4a67-b954-6c405726bccd",
+    "data": [
+      {
+        "text": "상담시간",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "4d07cc69-d541-4f16-a71d-b75844d96648",
+    "data": [
+      {
+        "text": "예약 시간대가 어떻게 돼요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "738d70a3-e12a-4e6c-a164-43d6db15d9af",
+    "data": [
+      {
+        "text": "상담 가능한 시간 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "e4636f75-43e2-400b-8368-cd99523cf12a",
+    "data": [
+      {
+        "text": "언제 상담 가능해요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

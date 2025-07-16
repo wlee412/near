@@ -1,0 +1,103 @@
+[
+  {
+    "id": "71ee3091-15ba-47e9-acf7-db0838a11121",
+    "data": [
+      {
+        "text": "무료",
+        "meta": "@sys.currency-name",
+        "alias": "currency-name",
+        "userDefined": false
+      },
+      {
+        "text": "심리검사",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "315bf4d4-952f-4581-a6ef-7ae961b3bb21",
+    "data": [
+      {
+        "text": "무료",
+        "meta": "@sys.currency-name",
+        "alias": "currency-name",
+        "userDefined": false
+      },
+      {
+        "text": "검사",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ab68c9e5-82e4-420a-83c2-d207fa0ca7bf",
+    "data": [
+      {
+        "text": "심리",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      },
+      {
+        "text": "테스트 있어요?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "fc6b30d3-682a-4285-80ec-200d1d8e5f47",
+    "data": [
+      {
+        "text": "검사종류 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ce908d89-13ce-4eb3-827e-3ccdcbcf0999",
+    "data": [
+      {
+        "text": "심리검사",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "하고",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      },
+      {
+        "text": " 싶어요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]
