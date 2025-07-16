@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+.layout {
+	display: flex;
+	height: 100vh;
+}
+
+#whiteboard-mode {
+	display: flex;
+	height: 100vh !important;
+}
+
+.left-section {
+	height: 100% !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.right-section {
+	width: 250px !important;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.whiteboard {
+	flex: 3;
+	background: #fff;
+	padding: 20px;
+}
+
+#videoremote1 {
+	flex: 2;
+	background: black;
+	color: white;
+}
+
+.svg-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+}
+
+.controls {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.controls button {
+	margin-bottom: 10px;
+	padding: 6px 12px;
+	font-family: 'Gowun Batang', serif;
+	border: none;
+	border-radius: 30px;
+	background-color: #5daec5;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+	background-color: #4a9cb1;
+}
+
+#volumeSlider {
+	margin-bottom: 10px;
+}
+
+.bottom-section {
+	display: flex;
+	flex: 1;
+}
+
+#videolocal {
+	flex: 1;
+	background: black;
+}
+
+.whiteboard canvas {
+	border: 1px solid #ccc;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	box-sizing: border-box;
+}
+
+.canvas-container {
+	width: 100% !important;
+	height: 100% !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	box-sizing: border-box;
+}

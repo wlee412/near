@@ -1,0 +1,182 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+   max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.content-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+.tab-header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.tab-header .tab {
+  padding: 5px 10px;
+}
+
+.tab-header .active {
+  padding: 2px 8px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 870px; /* ✅ 지도와 동일한 너비로 고정 */
+}
+
+.filter-bar input[type="text"],
+.filter-bar select {
+  flex: 1;         /* 입력창, 드롭다운은 같은 비율 */
+  min-width: 0;
+}
+
+.filter-bar button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #0ABAB5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-bar button:hover {
+  background-color: #088f8a; /* 더 어두운 청록 계열로 변경 */
+}
+
+.main-content {
+  display: flex;
+  height: 60vh;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}
+
+#map {
+  width: 900px;
+  height: 100%;
+  margin-right: 20px;
+  border: 1px solid #ddd;
+}
+
+#hospitalList {
+  width: 400px;
+  max-height: 100%;
+  overflow-y: auto;
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+}
+
+#hospitalList .item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  font-size: 15px;
+  color: black; /* ✅ 글자 색 추가 */
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#hospitalList .item:hover {
+  background-color: white;
+}
+
+
+/* 탭 기본 스타일 */
+.tab-header .tab {
+  color: black;
+  text-decoration: none;
+}
+
+/* 클릭 후에도 색 안 바뀌게 */
+.tab-header .tab:visited {
+  color: black;
+}
+
+/*화면 로딩*/
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 스피너 스타일 */
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+/* 텍스트 스타일 */
+.loading-text {
+  margin-top: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*병원 상세 창*/
+.infowindow-box {
+  font-size: 14px;
+  width: 240px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  line-height: 1.6;
+}
+
+.infowindow-box b {
+  font-size: 16px;
+  color: #0ABAB5;
+}
+
+.infowindow-box button {
+  padding: 5px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #5daec5;
+  color: white;
+}
+
+.infowindow-box button:hover {
+  background-color: #4a9cb1;
+}

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.tool-group {
+  display: flex;
+  gap: 20px;
+}
+
+.settings-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-group button {
+  padding: 6px 12px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 5px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+}
+.tool-group button:hover {
+  background-color: #4a9cb1;
+}
+
+input[type="color"],
+input[type="range"] {
+  margin-left: 5px;
+}
