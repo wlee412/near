@@ -1,0 +1,96 @@
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+
+canvas {
+  width: 100% !important;
+  max-width: 700px;
+  height: 400px !important;
+  margin: 0 auto;
+  display: block;
+}
+.content-wrapper {
+
+  padding: 20px;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+.tab-menu {
+  display: flex;
+  justify-content: center;  /* ⭐ 중앙 정렬 추가 */
+  gap: 10px;                /* 버튼 간 간격 */
+  margin-bottom: 15px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* 반응형에서만 width: 100% */
+@media (max-width: 768px) {
+  .tab-button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+.tab-button.active {
+  background-color: #408ca0;
+}
+
+.tab-content {
+  padding: 10px 0;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;  /* 중앙 정렬 */
+  gap: 20px;                /* 메뉴 간 간격 */
+  margin: 20px 0;
+}
+
+.menu-box {
+  background-color: #f4f8ff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu-box a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a4b7b;
+}
+
+.menu-box:hover {
+  background-color: #e0ecff;
+}
+
+/* ✅ 반응형 레이아웃 */
+@media (max-width: 768px) {
+  .tab-menu {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tab-button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-box {
+    width: 90%;
+    text-align: center;
+  }
+}

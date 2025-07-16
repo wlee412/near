@@ -1,0 +1,151 @@
+/* adminReservation.css 상단 */
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+body {
+  background-color: #f5f9ff;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 40px;
+}
+
+/* 예약 전용 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #e9f2ff;
+  font-size: 16px;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f4faff;
+}
+
+/* 버튼 통일 */
+.cancel-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #cc0000;
+}
+
+/* 검색창 통일 */
+.search-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box select,
+.search-box input[type="text"] {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-box button {
+  background-color: #5daec5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #4a9cb1;
+}
+.menu-container {
+  display: flex;
+  justify-content: center;  /* 중앙 정렬 */
+  gap: 20px;                 /* 메뉴 간 간격 */
+  margin: 20px 0;
+}
+
+.menu-box {
+  background-color: #f4f8ff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu-box a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a4b7b;
+}
+
+.menu-box:hover {
+  background-color: #e0ecff;
+}
+/* 페이지네이션 */
+.pagination {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 6px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.pagination a.current {
+  color: #5daec5;
+  text-decoration: underline;
+}
+
+.cancel-btn,
+.bulk-cancel-btn {
+  background-color: #e04b4b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-btn:hover,
+.bulk-cancel-btn:hover {
+  background-color: #c93232;
+}
+
+/* 검색창, 버튼 등 */
+.search-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box input,
+.search-box select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
