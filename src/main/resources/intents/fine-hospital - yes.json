@@ -1,0 +1,71 @@
+{
+  "id": "a58f3304-012f-49fe-ac0a-242f21efed3e",
+  "parentId": "3251618c-2241-49c0-b4eb-0dbd0b170ac5",
+  "rootParentId": "3251618c-2241-49c0-b4eb-0dbd0b170ac5",
+  "name": "fine-hospital - yes",
+  "auto": true,
+  "contexts": [
+    "fine-hospital-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "fine-hospital.fine-hospital-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "text": [
+                    "n:ear에서는 위치 기반으로 주변 병원/약국 정보를 제공하고 있어요.",
+                    "필요하시다면 아래 버튼을 눌러 이동해 주세요."
+                  ],
+                  "title": "병원/약국 안내 페이지로 이동하시겠어요?",
+                  "type": "description"
+                },
+                {
+                  "link": "/map/hospitalMap",
+                  "event": {
+                    "parameters": {},
+                    "languageCode": "",
+                    "name": ""
+                  },
+                  "type": "button",
+                  "text": "병원/약국 정보 보러가기",
+                  "icon": {
+                    "color": "#3366cc",
+                    "type": "chevron_right"
+                  }
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

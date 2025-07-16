@@ -1,0 +1,57 @@
+{
+  "id": "881adc56-ce3f-43e0-938a-ad05457c226c",
+  "parentId": "3251618c-2241-49c0-b4eb-0dbd0b170ac5",
+  "rootParentId": "3251618c-2241-49c0-b4eb-0dbd0b170ac5",
+  "name": "fine-hospital - no",
+  "auto": true,
+  "contexts": [
+    "fine-hospital-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "fine-hospital.fine-hospital-custom-2",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "description",
+                  "text": [
+                    "혹시 마음이 편해지지 않거나 도움이 필요하면 언제든지 말씀해 주세요.",
+                    "제가 곁에서 도와드릴게요. 다른질문 있으신가요?"
+                  ],
+                  "title": "괜찮아요 😊"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

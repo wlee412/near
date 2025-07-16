@@ -1,0 +1,95 @@
+{
+  "id": "5c843711-36f7-421e-ad83-955ad9dbfab6",
+  "parentId": "0dfe6cba-f0fd-4024-93a1-438d2ebaa8e1",
+  "rootParentId": "0dfe6cba-f0fd-4024-93a1-438d2ebaa8e1",
+  "name": "reservation-guide - yes",
+  "auto": true,
+  "contexts": [
+    "reservation-guide-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "reservation-guide.reservation-guide-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "fa180aaf-ecf2-4046-8174-5b960c1be7b1",
+          "name": "number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "53112fb8-0d8c-4b41-80b7-f7446bf3fa9f",
+          "name": "person",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "title": "상담 예약을 진행하겠습니다! 😊",
+                  "subtitle": "아래 버튼을 눌러 상담 예약 페이지로 이동해 주세요.",
+                  "type": "info"
+                },
+                {
+                  "text": "👉 상담 예약하러 가기",
+                  "event": {
+                    "parameters": {}
+                  },
+                  "link":  "https://www.near.com/counseling/reservation",
+                  "type": "button",
+                  "icon": {
+                    "color": "#ffffff",
+                    "type": "chevron_right"
+                  }
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

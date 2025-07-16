@@ -1,0 +1,72 @@
+{
+  "id": "0dfe6cba-f0fd-4024-93a1-438d2ebaa8e1",
+  "name": "reservation-guide",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "reservation-guide-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "description",
+                  "title": "n:ear 상담 예약 순서",
+                  "text": [
+                    "1️⃣ 상담사 선택",
+                    "2️⃣ 날짜/시간 선택",
+                    "3️⃣ 화상 링크 접속",
+                    "",
+                    "상담예약을 원하시나요?"
+                  ]
+                },
+                {
+                  "options": [
+                    {
+                      "text": "예"
+                    },
+                    {
+                      "text": "아니오"
+                    }
+                  ],
+                  "type": "chips"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

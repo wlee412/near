@@ -1,0 +1,60 @@
+[
+  {
+    "id": "c573f792-308c-4507-b18b-52fa232c3004",
+    "data": [
+      {
+        "text": "상담할게요",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "5531390a-2473-439d-b98d-a908e10cd880",
+    "data": [
+      {
+        "text": "상담",
+        "meta": "@sys.person",
+        "alias": "person",
+        "userDefined": false
+      },
+      {
+        "text": "하기",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "08219c18-8f98-4160-8499-ac53ba8a69d8",
+    "data": [
+      {
+        "text": "상담예약",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ffd205ec-32dd-47a3-ab37-67272d01dfed",
+    "data": [
+      {
+        "text": "상담",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

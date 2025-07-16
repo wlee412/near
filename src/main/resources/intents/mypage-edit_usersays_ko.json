@@ -1,0 +1,67 @@
+[
+  {
+    "id": "1f91f206-1799-401f-bca0-2c3d77d5dbd4",
+    "data": [
+      {
+        "text": "회원정보 수정",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "bd6362c8-4f9a-48e2-8f4f-718e98461efc",
+    "data": [
+      {
+        "text": "주소변경",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "8887aff1-7321-459b-8bbc-0aa152f3c31a",
+    "data": [
+      {
+        "text": "마이페이지",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "9d578789-7551-4310-a79e-a6345037ce19",
+    "data": [
+      {
+        "text": "정보수정",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "d46cd86e-ec5a-47a7-a45c-565497faec64",
+    "data": [
+      {
+        "text": "변경",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

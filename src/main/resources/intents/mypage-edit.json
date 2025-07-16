@@ -1,0 +1,56 @@
+{
+  "id": "badb796f-ae77-4ff2-90c8-04897e2a88da",
+  "name": "mypage-edit",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "subtitle": "회원정보는 마이페이지에서 수정할 수 있어요.",
+                  "image": {
+                    "src": {
+                      "rawUrl": "https://cdn-icons-png.flaticon.com/512/747/747376.png"
+                    }
+                  },
+                  "actionLink": "http://43.203.171.36/mypage",
+                  "type": "info",
+                  "title": "회원정보 수정"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

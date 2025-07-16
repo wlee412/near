@@ -1,0 +1,49 @@
+{
+  "id": "6660441a-9dae-4a86-8bf6-8c73431ce96f",
+  "name": "emotional_support",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "emotional_redirect",
+          "lifespan": 5
+        },
+        {
+          "name": "emotional_support-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "많이 힘드셨겠어요. 그 마음, 충분히 이해해요.\n\n필요하시면 상담 예약을 도와드릴게요.  \n잠시 기분을 전환하고 싶다면 힐링 게임도 있어요 😊\n\n👉 상담을 원하시면 [상담]  \n👉 게임을 원하시면 [게임] 이라고 입력해주세요.",
+            "그런 감정, 누구에게나 찾아올 수 있어요.  \n괜찮아요. 필요하시면 제가 도와드릴게요. 상담원하시나요? \n기분전환을 하고싶다면 게임을 입력해 보세요",
+            "어떤 일이든 저희 n:ear가 도와드릴게요!",
+            "무슨일이든 n:ear가 함께하겠습니다.",
+            "너무 힘드시겠어요.. 기분 전환 하고 싶으시면 게임을 입력해주세요 !",
+            "어떤 부분이 힘드신지, 상담 원하시나요? n:ear 상담은 예약제로 진행되고 있습니다. 상담예약을 원하시면, 채팅창에 \u0027상담\u0027이라고 입력해주세요."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

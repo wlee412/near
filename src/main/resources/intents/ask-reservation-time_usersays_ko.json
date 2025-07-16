@@ -1,0 +1,67 @@
+[
+  {
+    "id": "b31de275-302c-4dd0-8401-b4b0a914554d",
+    "data": [
+      {
+        "text": " 예약시간 알려줘.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "a5202d44-c991-4338-b250-a2356db9f5e2",
+    "data": [
+      {
+        "text": "내 예약현황보여줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "00d725b2-f9bd-479a-af30-73e07ec10a49",
+    "data": [
+      {
+        "text": "예약 몇시로 돼 있어?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "47f62ccf-34cc-43c0-a421-55537f3a85ad",
+    "data": [
+      {
+        "text": "예약언제로했지?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "5269500c-312b-4d2d-b11b-0d5be79a3023",
+    "data": [
+      {
+        "text": "내예약언제야",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

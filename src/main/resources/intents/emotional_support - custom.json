@@ -1,0 +1,81 @@
+{
+  "id": "6d6518f2-7381-4c41-b483-9c1e499b5ae7",
+  "parentId": "6660441a-9dae-4a86-8bf6-8c73431ce96f",
+  "rootParentId": "6660441a-9dae-4a86-8bf6-8c73431ce96f",
+  "name": "emotional_support - custom",
+  "auto": true,
+  "contexts": [
+    "emotional_redirect",
+    "emotional_support-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "emotional_support.emotional_support-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "d349f464-716d-4ea4-bcfd-dc5dac0a9b4f",
+          "name": "person",
+          "required": false,
+          "dataType": "@sys.person",
+          "value": "$person",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "description",
+                  "title": "상담 예약이 필요하신가요?",
+                  "text": [
+                    "전문 상담사와의 대화를 예약해보세요."
+                  ]
+                },
+                {
+                  "icon": {
+                    "type": "chevron_right",
+                    "color": "#3366cc"
+                  },
+                  "type": "button",
+                  "text": "🧑‍⚕ 상담 예약하러 가기",
+                  "link": "http://43.203.171.36/reservation"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "ko",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,36 @@
+{
+  "id": "39d0a54c-e9fa-478e-b67e-b7fcee82bd5c",
+  "name": "free-survey",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "기본 심리검사는 무료로 제공되며, \n결과는 마이페이지에서 확인가능합니다. \n심리검사페이지로 이동하시겠습니까? (1.예 /2.아니오)"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": [],
+  "endInteraction": true
+}

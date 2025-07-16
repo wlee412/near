@@ -1,0 +1,145 @@
+[
+  {
+    "id": "fa3b896b-2617-41e1-9ceb-ca114bcb764a",
+    "data": [
+      {
+        "text": "멍청이",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "addcb179-5e4f-4b2f-8364-e504b7e96200",
+    "data": [
+      {
+        "text": "바보",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "c058afd0-1972-481a-aa1b-a74012948004",
+    "data": [
+      {
+        "text": "뭐야?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "6253ad05-adaf-4b93-bc4a-bf5f82ca5b15",
+    "data": [
+      {
+        "text": "음.......",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "a599ea07-b307-4773-bfda-5ff5bd7c8dd7",
+    "data": [
+      {
+        "text": "다시",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "30623783-0a0b-488c-a0b9-16d3626cddb2",
+    "data": [
+      {
+        "text": "아무거나",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "69550d79-e684-47da-895d-ad1a87f7a69e",
+    "data": [
+      {
+        "text": "뭔데",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "e6a68d0e-110a-4f72-91ef-48a2a6ed6031",
+    "data": [
+      {
+        "text": "뭘?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "ac7a3f02-5c47-4025-b7bd-b7f2e7ced264",
+    "data": [
+      {
+        "text": "딴거",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "f69bc203-821b-41c8-b190-38706d13e9ad",
+    "data": [
+      {
+        "text": "다른거",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  },
+  {
+    "id": "47499e53-ee8a-4a02-bbee-9a727b9b063a",
+    "data": [
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "ko",
+    "updated": 0
+  }
+]

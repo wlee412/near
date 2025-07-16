@@ -1,0 +1,36 @@
+{
+  "id": "bdfcaeec-7297-4193-a339-ad7a06d8ed24",
+  "name": "login",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "ko",
+          "speech": [
+            "n:ear는 회원가입 후 화상상담 진행이 가능합니다. 가입 후 여러가지 무료 혜택을 받아보세요!",
+            "n:ear는 무료회원가입 후 게임, 심리설문조사, 화상상담 등 다양한 혜택을 제공합니다."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
