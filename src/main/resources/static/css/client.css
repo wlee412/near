@@ -1,7 +1,7 @@
 /* =============================
 📌 기본세팅
 ============================= */
-@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 html,body {
 	
@@ -20,7 +20,7 @@ html,body {
 }
 
 .container {
-	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 	max-width: 480px;
 	margin: 30px auto;
 	padding: 24px;
@@ -32,7 +32,7 @@ html,body {
 /* 아이디비번찾기 */
 .containerbox {
 	font-family: 'Spoqa Han Sans Neo', sans-serif;
-	max-width: 480px;
+	width: 25%;
 	margin: auto auto;
 	padding: 24px;
 	background: white;
@@ -282,7 +282,7 @@ input[readonly] {
 	display: flex;
 	gap: 10px;
 	font-size: 14px;
-	margin-bottom: 15px;
+	margin-bottom: 8px;
 	flex-wrap: wrap;
 }
 
@@ -425,3 +425,59 @@ footer {
 body {
   padding-bottom: 0;
 }
+
+#idMessage {
+  text-align: left;
+  white-space: nowrap;
+}
+
+#idTimerDisplay {
+  text-align: right;
+}
+.result-container-id {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+  margin-bottom: 8px; 
+}
+
+.result-text {
+  flex: 1;          
+  min-width: 80px;  
+  margin: 0;
+}
+
+.result-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.result-text {
+  margin: 0;
+  font-size: 13px;
+}
+
+.btn-confirm-small {
+  display: inline-block;
+  background-color: #5daec5;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  outline: none; 
+  box-shadow: none;
+}
+.btn-confirm-small:hover {
+  background-color: #4a9cb1;
+  box-shadow: none;
+}
+
+.btn-confirm-small:focus {
+  outline: none; 
+  box-shadow: none;
+}
+

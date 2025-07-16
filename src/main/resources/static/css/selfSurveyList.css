@@ -1,4 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 .survey-list-wrapper {
   max-width: 720px;
@@ -12,19 +13,8 @@
 	margin: 0;
 }
 
-/* .survey-list h2 { */
-/*   display: block;         블록 요소로 만들어서 width가 먹히게 */
-/*   width: 40%;             .survey-item 과 동일한 너비 */
-/*   margin: 1% auto 1%;    상단 0, 좌우 auto(가로 중앙), 하단 20px */
-/*   font-family: 'Spoqa Han Sans Neo', sans-serif; */
-/*   font-size: 22px; */
-/*   color: #2c3e50; */
-/*   text-align: left; */
-/*   font-weight: normal; */
-/* } */
-
 .survey-item {
-	font-family: 'Spoqa Han Sans Neo', sans-serif;
+	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
 	font-weight: normal;
 	font-size: 14px;
 	background: #ffffff;

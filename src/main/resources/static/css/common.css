@@ -12,7 +12,6 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-
 }
 
 .wrapper {
@@ -25,9 +24,7 @@ header, footer {
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-
-.header-container {
-  max-width: 1300px;
+footer {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); 
 }
 
@@ -46,7 +43,6 @@ header, footer {
   max-width: 1920px;
   margin: 0 auto;
   padding: 8px 32px;
-
   font-size: 14px;
   color: #555;
   display: flex;
@@ -127,6 +123,7 @@ header, footer {
   align-items: center;
   justify-content: center;
   text-align: center;
+  
 }
 
 .main-banner h1 {
@@ -144,13 +141,11 @@ header, footer {
     opacity: 1;
   }
 }
-
 .main-banner p {
   font-size: 18px;
   margin-bottom: 30px;
   color: #666;
   animation: fadeIn 2s ease-in-out forwards; 
-
 }
 
 .main-banner button {
@@ -165,7 +160,6 @@ header, footer {
   box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
   transition: background-color 0.3s ease;
   animation: fadeIn 2s ease-in-out forwards; 
-
 }
 .main-banner button:hover {
   background-color: #4a9cb1;
@@ -228,4 +222,3 @@ header, footer {
     text-align: center;
   }
 }
-

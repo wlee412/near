@@ -1,3 +1,4 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 /* ──────────────────────────────────────
    탭 스타일
 ────────────────────────────────────── */
@@ -135,7 +136,7 @@
   text-decoration: none;
   color: #333;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.03);
   transition: all 0.2s ease;
 }
@@ -144,7 +145,7 @@
 }
 .sidebar-button.active {
   color: #5daec5;
-  font-weight: 500;
+  font-weight: 400;
   border-left: 2px solid #5daec5;
 }
 
@@ -152,6 +153,7 @@
    페이지 제목
 ────────────────────────────────────── */
 .client-container {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -278,10 +280,11 @@
    즐겨찾기 테이블 (중복 제거)
 ────────────────────────────────────── */
 .report-table {
+  	
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  font-size: 15px;
+  font-size: 0.87rem;
   text-align: center;
 }
 .report-table th,

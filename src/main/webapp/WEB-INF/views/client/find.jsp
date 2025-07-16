@@ -23,15 +23,22 @@
 				<input type="tel" id="findIdPhone" placeholder="휴대폰 번호 입력 (예: 01012345678)">
 				<button class="btn-small" onclick="sendIdCode()">인증번호 전송</button>
 			</div>
-			<p id="idMessage" class="result-text"></p>
-			<p id="idTimerDisplay" class="result-text" style="color: gray;"></p> 
+			
+			<div class="result-container-id">
+				<p id="idMessage" class="result-text"></p>
+				<p id="idTimerDisplay" class="result-text" style="color: gray; text-align: right;"></p> 
+			</div>
 
 			<div class="input-inline">
 				<input type="text" id="findIdCode" placeholder="인증번호 입력">
 				<button class="btn-small" onclick="checkIdCode()">확인</button>
 			</div>
-			<p id="idResult" class="result-text"></p>
-			<p id="foundIdText" class="result-text" style="display: none; text-align: right;"></p>
+			
+			<div class="result-container">
+				<p id="idResult" class="result-text"></p>
+				<p id="foundIdText" class="result-text" style="display: none;"></p>
+			</div>
+			<div id="foundIdTextBtn" style="display: none; text-align: center; margin-top: 10px;"></div>
 			
 		</div>
 
@@ -49,8 +56,10 @@
 			<div class="form-group">
 				<button class="btn-slim" onclick="sendPwCode()">인증번호 전송</button>
 			</div>
-			<p id="pwMessage" class="result-text"></p>
-			<p id="pwTimerDisplay" class="result-text" style="color: gray; text-align: right"></p>
+			<div class="result-container" style="margin-bottom: 10px;">
+				<p id="pwMessage" class="result-text"></p>
+				<p id="pwTimerDisplay" class="result-text" style="color: gray; text-align: right"></p>
+			</div>
 
 			<div class="form-group" id="pwCodeGroup" style="display: none;">
 				<label for="findPwCode">인증번호</label> 

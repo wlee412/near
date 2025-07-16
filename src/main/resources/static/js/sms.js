@@ -33,8 +33,8 @@ $('#sendCodeBtn').click(async function() {
 		$('#verifyCodeBtn').prop('disabled', false);
 		$('#verifyResult').text('').css('color', '');
 		$('#verificationSection').show();
-		
-		startTimer(15, document.getElementById('timerDisplay'));
+
+		startTimer(180, document.getElementById('timerDisplay'));
 
 	} catch (err) {
 		console.error(err);
@@ -70,7 +70,7 @@ if (verifyBtn) {
 
 			// 🔽 인증번호 만료 처리
 			if (res.status === 410) {
-				alert("⏰ 인증번호가 만료되었습니다. 다시 요청해주세요.");
+				alert("⏰인증번호가 만료되었습니다. 다시 요청해주세요.");
 				resultEl.innerText = "⏰ 만료된 인증번호입니다.";
 				resultEl.style.color = "orange";
 				return;
@@ -78,13 +78,13 @@ if (verifyBtn) {
 
 
 			if (!result.success) {
-				alert("❌ 인증 실패: 인증번호가 일치하지 않습니다.");
+				alert("❌인증 실패: 인증번호가 일치하지 않습니다.");
 				document.getElementById("verificationCode").focus();
 				return;
 			}
 
 			// 인증 성공 시
-			alert("✅ 인증에 성공했습니다!");
+			alert("✅인증에 성공했습니다!");
 			sessionStorage.setItem("phoneVerified", "true");
 			clearInterval(timerInterval);
 			document.getElementById("timerDisplay").textContent = "✅ 인증 완료";
@@ -106,7 +106,7 @@ function sendIdCode() {
 	const timerEl = document.getElementById("idTimerDisplay");
 
 	if (!/^010\d{7,8}$/.test(phone)) {
-		msgEl.innerText = "📱 올바른 휴대폰 번호를 입력하세요.";
+		msgEl.innerText = "📱올바른 휴대폰 번호를 입력하세요.";
 		timerEl.textContent = "";
 		return;
 	}
@@ -119,19 +119,20 @@ function sendIdCode() {
 		.then(res => res.text())
 		.then(data => {
 			if (data === "success") {
-				msgEl.innerText = "✅ 인증번호가 전송되었습니다.";
-				startTimer(15, timerEl);
+				msgEl.innerText = "✅인증번호가 전송되었습니다.";
+				startTimer(180, timerEl);
 			} else {
-				msgEl.innerText = "❌ 전송 실패. 다시 시도해주세요.";
+				msgEl.innerText = "❌전송 실패. 다시 시도해주세요.";
 				timerEl.textContent = "";
 			}
 		})
 		.catch((err) => {
 			console.error(err);
-			msgEl.innerText = "⚠️ 서버 오류가 발생했습니다.";
+			msgEl.innerText = "⚠️서버 오류가 발생했습니다.";
 			timerEl.textContent = "";
 		});
 }
+
 
 // 아이디 찾기 인증번호 확인
 function checkIdCode() {
@@ -155,8 +156,9 @@ function checkIdCode() {
 				resultEl.style.color = "green";
 
 				idTextEl.style.display = "block";
-				idTextEl.innerHTML = `📌회원님의 아이디는 <strong>${result.clientId}</strong> 입니다.<br><br>
-				<a href="/client/login" class="btn-confirm-small">로그인 하러 가기</a>`;
+				const idTextBtnEl = document.getElementById("foundIdTextBtn");
+				idTextBtnEl.style.display = "block";
+				idTextBtnEl.innerHTML = `<button class="btn-confirm-small" onclick="location.href='/client/login'" style="border:none;">로그인</button>`;
 			} else {
 				resultEl.innerText = "❌ 인증 실패: " + result.message;
 				resultEl.style.color = "red";
