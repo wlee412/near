@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.container {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Gowun Batang', serif;
+}
+
+h2 {
+	margin-top: 50px;
+}
+
+table {
+	width: 50%;
+	border: 1pt solid #5daec5;
+	border-radius: 20pt;
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+	border-collapse: collapse;
+	overflow: hidden;
+}
+
+th, td {
+	width: 33%;
+	text-align: center;
+	padding: 15px;
+	border: 1pt solid #5daec5;
+	border-left: none;
+	border-right: none;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 5px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #4a9cb1;
+}
+
+#search-group {
+	margin: 20px;
+	width: 50%;
+}
+
+#search-group input {
+	border: 1pt solid #5daec5;
+	border-radius: 5pt;
+	font-family: 'Gowun Batang', serif;
+	font-size: 12pt;
+	padding: 4px;
+	outline: none;
+}
+
+#search-group button {
+	font-family: 'Gowun Batang', serif;
+	font-size: 12pt;
+	outline: none;
+}
+
+#search-group input:focus {
+	border: 2pt solid #5daec5;
+}

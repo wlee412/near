@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.VideoMapper">
+	<!-- 녹화 경로 -->
+	<insert id="uploadRec" parameterType="rec">
+		INSERT INTO room_rec (name,
+		room_id, reg_date) values(#{name}, #{roomId}, CURRENT_TIMESTAMP)
+	</insert>
+
+	<!-- 비디오 목록, 검색 -->
+	<select id="videoList" parameterType="vid"
+		resultType="vid">
+		SELECT
+		c.name AS client_name,
+		r.start,
+		rr.name AS rec_name
+		FROM
+		room_rec rr
+		JOIN
+		room r ON rr.room_id = r.room_id
+		JOIN
+		client c ON r.client_id = c.client_id
+		<where>
+			r.counselor_id = #{counselorId}
+
+			<if test="clientName != null and clientName != ''">
+				AND c.name LIKE CONCAT('%', #{clientName}, '%')
+			</if>
+
+			<if test="startFilter != null and startFilter != ''">
+				AND DATE(r.start) = #{startFilter}
+			</if>
+		</where>
+		ORDER BY r.start DESC
+	</select>
+	
+	<select id="getVideoInfo" parameterType="String" resultType="vid">
+		SELECT
+		r.counselor_id,
+		r.start,
+		rr.name AS rec_name
+		FROM room r
+		JOIN room_rec rr USING(room_id)
+		WHERE name=#{filename}
+	</select>
+
+	<!-- 다운로드 파일 이름 조회 -->
+	<select id="getVideoName" parameterType="String"
+		resultType="vid">
+		SELECT
+		c.name AS client_name,
+		r.start,
+		rr.name AS rec_name
+		FROM
+		room_rec rr
+		JOIN
+		room r ON rr.room_id = r.room_id
+		JOIN
+		client c ON
+		r.client_id = c.client_id
+		WHERE
+		rr.name = #{filename}
+		ORDER BY
+		r.start
+		DESC
+	</select>
+</mapper>
