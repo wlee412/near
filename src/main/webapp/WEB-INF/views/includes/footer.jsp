@@ -33,6 +33,9 @@
   }
 </style>
 
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
 <df-messenger
   intent="WELCOME"
   chat-title="n:ear챗봇상담"
@@ -41,6 +44,5 @@
   chat-icon="/images/chatbot.png">
 </df-messenger>
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
-
+<%-- <%@ include file="../chatbot/chatbot.jsp" %> --%>

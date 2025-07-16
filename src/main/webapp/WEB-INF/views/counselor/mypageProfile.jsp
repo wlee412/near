@@ -39,9 +39,9 @@
               <div class="profile-info">
                 <h3 class="section-title">상담사 프로필</h3>
                 <ul>
-                  <li><strong>아이디:</strong> ${counselor.counselorId}</li>
-                  <li><strong>이름:</strong> ${counselor.name}</li>
-                  <li><strong>전화번호:</strong> ${counselor.phone}</li>
+                  <li><strong>아이디&nbsp;:&nbsp; </strong> ${counselor.counselorId}</li>
+                  <li><strong>이름&nbsp;:&nbsp; </strong> ${counselor.name}</li>
+                  <li><strong>전화번호&nbsp;:&nbsp; </strong> ${counselor.phone}</li>
                 </ul>
               </div>
             </div>

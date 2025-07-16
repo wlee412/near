@@ -1,16 +1,13 @@
 package com.example.demo.model;
 
 import java.sql.Timestamp;
-
 import lombok.Data;
 
 @Data
-public class CounselReservation {
-    private int reservationNo;
-    private int counselNo;
+public class Chatbot {
+	private int pk;
     private String clientId;
-    private String state;
+    private String sender;
+    private String message;
     private Timestamp regDate;
-
 }
-

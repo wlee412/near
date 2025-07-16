@@ -5,15 +5,261 @@
 
 <mapper namespace="com.example.demo.mapper.CounselorMapper">
 
-	
-    <select id="loginCounselor" parameterType="com.example.demo.model.Counselor" resultType="com.example.demo.model.Counselor">
-        SELECT *
-        FROM counselor
-        WHERE counselor_id = #{counselorId}
-        AND password = #{password}
-    </select>
+	<resultMap id="CounselorReservationMap"
+		type="com.example.demo.model.CounselorReservation">
+		<result property="start" column="start" />
+		<result property="counselorId" column="counselor_id" />
+		<result property="clientId" column="client_id" />
+		<result property="name" column="name" />
+		<result property="birth" column="birth" />
+		<result property="gender" column="gender" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="state" column="state" />
+		<result property="reservationNo" column="reservation_no" />
+		<result property="counselNo" column="counsel_no" />
+		<result property="feedback" column="feedback" />
+		<result property="gptSummary" column="gpt_summary" />
+		<result property="interest" column="interest" />
+	</resultMap>
+
+	<!-- 상담사 로그인 -->
+	<select id="loginCounselor"
+		parameterType="com.example.demo.model.Counselor"
+		resultType="com.example.demo.model.Counselor">
+		SELECT *
+		FROM counselor
+		WHERE counselor_id = #{counselorId}
+		AND password = #{password}
+	</select>
+
+	<!-- 오늘 예약건수 -->
+	<select id="countTodayReservations" resultType="int">
+		SELECT COUNT(*)
+		FROM counsel_reservation r
+		JOIN counsel_available a ON r.counsel_no =
+		a.counsel_no
+		WHERE a.counselor_id = #{counselorId}
+		AND DATE(r.reg_date)
+		= CURDATE()
+	</select>
+
+	<!-- 예약 가능시간 설정 -->
+
+	<insert id="insertCounselAvailable">
+		INSERT INTO counsel_available (counselor_id, start)
+		VALUES (#{counselorId}, #{start})
+	</insert>
 
 
+	<!-- 예약 가능 시간 삭제 (선택 날짜 전체 삭제) -->
+	<delete id="deleteAvailableTimesByTimes">
+		DELETE FROM counsel_available
+		WHERE counselor_id = #{counselorId}
+		AND
+		DATE(start) = #{selectedDate}
+		AND DATE_FORMAT(start, '%H:%i') IN
+		<foreach collection="times" item="time" open="(" separator=","
+			close=")">
+			#{time}
+		</foreach>
+	</delete>
 
+	<delete id="deleteAvailableTimesByIds">
+		DELETE FROM counsel_available
+		WHERE counsel_no IN
+		<foreach collection="counselNos" item="id" open="("
+			separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 상담사 예약 가능 시간 전체 조회 -->
+	<select id="findAvailableTimesByCounselorId"
+		resultType="com.example.demo.model.CounselAvailable">
+		SELECT counsel_no, counselor_id, start
+		FROM
+		counsel_available
+		WHERE counselor_id = #{counselorId}
+		AND DATE(start) =
+		STR_TO_DATE(#{selectedDate}, '%Y-%m-%d')
+		ORDER BY start ASC
+	</select>
+
+	<select id="findAvailableTimesByDate"
+		resultType="com.example.demo.model.CounselAvailable">
+		SELECT
+		counsel_no AS counselNo,
+		counselor_id AS counselorId,
+		DATE_FORMAT(start, '%Y-%m-%d %H:%i:%s') AS start  <!-- 초까지 포함 -->
+		FROM counsel_available
+		WHERE counselor_id = #{counselorId}
+		AND
+		DATE(start) = #{selectedDate}
+	</select>
+
+	<!-- 상담사 예약 가능 시간 전체 조회 -->
+	<select id="findAvailableTimesByCounselorIdAll"
+		parameterType="string"
+		resultType="com.example.demo.model.CounselAvailable">
+		SELECT counsel_no, counselor_id, start
+		FROM counsel_available
+		WHERE counselor_id = #{counselorId}
+		ORDER BY start ASC
+	</select>
+
+
+	<!-- 예약현황 (날짜별 예약 건수) -->
+	<select id="countReservationsByDate" resultType="map">
+		SELECT
+		DATE(reg_date) AS date,
+		COUNT(*) AS count
+		FROM counsel_reservation
+		WHERE
+		state != '취소'
+		GROUP BY DATE(reg_date)
+	</select>
+
+	<select id="getReservationCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		counsel_reservation
+		WHERE counsel_no IN (
+		SELECT counsel_no
+		FROM
+		counsel_available
+		WHERE counselor_id = #{counselorId}
+		)
+	</select>
+
+
+	<!-- 예약 번호로 상세 조회 -->
+	<select id="findReservationByNo" parameterType="int"
+		resultType="com.example.demo.model.CounselorReservation">
+		SELECT
+		r.reservation_no AS reservationNo,
+		r.counsel_no AS
+		counselNo,
+		r.client_id AS clientId,
+		c.name AS name,
+		c.birth AS birth,
+		c.gender AS gender,
+		c.phone AS phone,
+		CONCAT(c.addr_base, ' ',
+		c.addr_detail) AS address,
+		r.state AS state,
+		ca.start AS start,
+		ca.counselor_id AS counselorId
+		FROM counsel_reservation r
+		JOIN client c
+		ON r.client_id = c.client_id
+		JOIN counsel_available ca ON r.counsel_no
+		= ca.counsel_no
+		WHERE r.reservation_no = #{reservationNo}
+	</select>
+
+	<!-- 상담사 전체 예약 목록 조회 -->
+	<select id="findReservationsByCounselor"
+		resultType="CounselorReservation">
+		SELECT
+		r.reservation_no,
+		r.counsel_no,
+		r.client_id,
+		a.start AS
+		start,
+		c.name,
+		c.birth,
+		c.gender,
+		c.phone,
+		CONCAT(c.addr_base, ' ',
+		c.addr_detail) AS
+		address,
+		r.state
+		FROM
+		counsel_reservation r
+		JOIN client c
+		ON r.client_id =
+		c.client_id
+		JOIN counsel_available a ON r.counsel_no =
+		a.counsel_no
+		WHERE a.counselor_id = #{counselorId}
+		<choose>
+			<when test="sortColumn == 'start'">a.start</when>
+			<when test="sortColumn == 'state'">r.state</when>
+			<otherwise>a.start</otherwise>
+		</choose>
+		<choose>
+			<when test="sortOrder == 'ASC'">ASC</when>
+			<when test="sortOrder == 'DESC'">DESC</when>
+			<otherwise>DESC</otherwise>
+		</choose>
+		ORDER BY a.start DESC
+	</select>
+	<!-- 예약자상태파악 chat api활용 -->
+	<select id="getReservationDetail"
+		resultMap="CounselorReservationMap">
+		SELECT
+		cr.*,
+		GROUP_CONCAT(sf.feedback SEPARATOR '\n') AS feedback,   <!-- ★ -->
+		c.interest
+		FROM counsel_reservation cr
+		LEFT JOIN survey_feedback sf
+		ON
+		cr.client_id = sf.client_id
+		LEFT JOIN client c
+		ON cr.client_id =
+		c.client_id
+		WHERE cr.reservation_no = #{reservationNo}
+		GROUP BY
+		cr.reservation_no
+		LIMIT 1
+	</select>
+
+	<update id="cancelReservationByCounselor" parameterType="int">
+		UPDATE
+		counsel_reservation
+		SET state = '상담사 취소'
+		WHERE reservation_no =
+		#{reservationNo}
+	</update>
+
+	<!-- 페이징처리 -->
+	<select id="findReservationsByCounselorWithPaging"
+		parameterType="map"
+		resultType="com.example.demo.model.CounselorReservation">
+		SELECT
+		r.reservation_no,
+		r.counsel_no,
+		r.client_id,
+		a.start
+		AS
+		start,
+		c.name,
+		c.birth,
+		c.gender,
+		c.phone,
+		CONCAT(c.addr_base, ' ',
+		c.addr_detail) AS address,
+		r.state
+		FROM counsel_reservation r
+		JOIN client
+		c ON r.client_id = c.client_id
+		JOIN counsel_available a ON r.counsel_no
+		= a.counsel_no
+		WHERE a.counselor_id = #{counselorId}
+		ORDER BY
+		${sortColumn} ${sortOrder}
+		LIMIT #{size} OFFSET #{offset}
+	</select>
+
+	<select id="countReservationsByCounselor" parameterType="string"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM counsel_reservation r
+		JOIN
+		counsel_available a ON r.counsel_no = a.counsel_no
+		WHERE a.counselor_id
+		= #{counselorId}
+	</select>
 
 </mapper>

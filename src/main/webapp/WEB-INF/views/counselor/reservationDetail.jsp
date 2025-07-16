@@ -19,8 +19,10 @@
 		<div class="counselor-container">
 			<!-- 타이틀 -->
 			<div class="mypage-title">
-			<a href="/counselor/mypage">
-				<h2>상담사 마이페이지</h2>
+
+				<a href="/counselor/mypage">
+					<h2>상담사 마이페이지</h2>
+
 				</a>
 			</div>
 
@@ -35,42 +37,45 @@
 				<section class="main-section">
 					<div class="reservation-box">
 						<h3 class="section-title">상담 전 상세정보 분석</h3>
-						
-						<div class = "detail-wrapper">
-						<!-- 예약 상세 정보 표시 -->
-						<p>
-							<strong>상담일시:</strong>
-							<fmt:formatDate value="${reservation.start}"
-								pattern="yyyy-MM-dd HH:mm" />
-						</p>
 
-						<p>
-							<strong>이름:</strong> ${reservation.name}
-						</p>
-						<p>
-							<strong>생년월일:</strong> ${reservation.birth}
-						</p>
-						<p>
-							<strong>전화번호:</strong> ${reservation.phone}
-						</p>
+						<!-- ✅ 예약 정보 테이블 -->
+						<table class="detail-table">
+							<tr>
+								<th>상담일시</th>
+								<th>이름</th>
+								<th>생년월일</th>
+								<th>전화번호</th>
+							</tr>
+							<tr>
+								<td><fmt:formatDate value="${reservation.start}"
+										pattern="yyyy-MM-dd HH:mm" /></td>
+								<td>${reservation.name}</td>
+                				  <td>
+ 									 ${fn:substring(reservation.birth, 2, 4)}
+ 									 ${fn:substring(reservation.birth, 5, 7)}
+								     ${fn:substring(reservation.birth, 8, 10)} / ${reservation.gender}
+									</td>
+								<td>${reservation.phone}</td>
+							</tr>
 
-						<c:if test="${not empty gptSummary}">
-							<p>
-								<strong>상담전 분석 내용:</strong> ${gptSummary}
-							</p>
-						</c:if>
+							<c:if test="${not empty gptSummary}">
+								<tr>
+									<td colspan="4" class="gpt-summary-cell">${gptSummary}</td>
+								</tr>
+							</c:if>
+						</table>
 
+						<!-- ✅ 돌아가기 버튼 -->
+						<div class="btn-box">
+							<a href="/counselor/reservation" class="btn-back">이전으로 이동하기</a>
 						</div>
-
-						<!-- 이전버튼 -->
-						<a href="/counselor/reservation" class="back-button">이전으로 이동하기</a>
 					</div>
 				</section>
 			</div>
 		</div>
 	</div>
 
-
 	<%@ include file="../includes/footer.jsp"%>
 </body>
 </html>
+
