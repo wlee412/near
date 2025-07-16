@@ -36,7 +36,7 @@
 **기간:** 2025년 7월 1일 \~ 7월 27일
 
 <p align="center">
-  <img width="443" height="100" alt="Group 5" src="https://github.com/user-attachments/assets/d86fa17c-f14a-48fc-abc9-90441f26ce8b" />
+ <img width="2388" height="1318" alt="Group 2" src="https://github.com/user-attachments/assets/9e759ff3-2cac-45a1-a297-813223133bd0" />
 </p>
 
 ---
