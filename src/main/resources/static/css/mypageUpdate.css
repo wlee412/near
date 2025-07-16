@@ -1,0 +1,228 @@
+/* 페이지 컨테이너 */
+.client-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* 페이지 제목 */
+.mypage-title {
+  text-decoration: none !important;
+  width: 100%;
+  border-bottom: 0.5px solid #666;
+  margin-bottom: 30px;
+}
+.mypage-title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #333;
+}
+
+/* 레이아웃 & 메인 섹션 */
+.mypage-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+/*   display: flex; */
+/*   gap: 24px; */
+/*   align-items: stretch;  두 칸을 같은 높이로 */
+}
+.main-section {
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 800px;
+  min-height: 300px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.03);
+  word-break: keep-all;
+}
+.divider {
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+/* 사이드바 */
+.mypage-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sidebar-button {
+  display: block;
+  padding: 12px 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 0 4px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+.sidebar-button:hover {
+  color: #13688a;
+}
+.sidebar-button.active {
+  color: #5daec5;
+  border-left: 2px solid #5daec5;
+}
+
+/* 폼 그룹 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* 입력 필드 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border 0.2s ease;
+}
+input:focus,
+select:focus {
+  border-color: #555;
+  outline: none;
+  background-color: #fff;
+}
+
+/* 읽기 전용 필드 */
+input[readonly] {
+  background-color: #e9ecef;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* 이메일 입력 행 */
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.input-row input,
+.input-row select {
+  flex: 1;
+}
+.input-row span {
+  font-size: 16px;
+  width: 16px;
+  text-align: center;
+}
+.input-row button {
+  white-space: nowrap;
+  background-color:#4a9cb1;
+  border: 1px solid;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.input-row button:hover {
+  background-color: #3b7d91;  
+  border-color:   #3b7d91;
+}
+
+/* 라디오 & 체크박스 그룹 */
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 6px;
+}
+.radio-group label,
+.checkbox-group label {
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* 결과 메시지 */
+.result-text {
+  font-size: 13px;
+  color: gray;
+  margin-top: 5px;
+}
+
+/* 버튼 행: 가로 flex, 가운데 정렬, 버튼 간격 */
+.button-row {
+  display: flex;
+  justify-content: center;  /* 가운데 정렬 */
+  gap: 16px;                /* 버튼 사이 간격 */
+  margin-top: 30px;
+}
+
+/* 공통 버튼 스타일 */
+.btn {
+  flex: 0 1 auto;           /* 내용 크기만큼만 늘어남 */
+  min-width: 120px;         /* 최소 너비 */
+  padding: 10px 20px;       /* 패딩 줄임 */
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93,174,197,0.3);
+  transition: background-color 0.3s ease;
+}
+
+/* hover 색상 */
+.btn:hover {
+  background-color: #4a9cb1;
+}
+
+/* /* 취소 버튼만 살짝 다른 스타일 */ */
+/* .btn-cancel { */
+/*   background-color: #ccc; */
+/*   color: #333; */
+/* } */
+/* .btn-cancel:hover { */
+/*   background-color: #bbb; */
+/* } */
+
+
+/* 이메일 도메인 필드 너비 */
+#emailId {
+  flex: 1;
+  min-width: 100px;
+}
+#emailDomainSelect {
+  flex: 1;
+  min-width: 100px;
+}
+#customEmailDomain {
+  flex: 1;
+  min-width: 90px;
+}
+
+

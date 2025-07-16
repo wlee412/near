@@ -1,0 +1,231 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Gowun Batang', serif;
+/*   background: linear-gradient(145deg, #e0f7ff, #f8fcff); */
+  background: linear-gradient(to right, #e0f7ff 0%, #f0fbff 50%, #e8faff 100%);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+  max-width: 1300px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.header-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  position: relative;
+  
+}
+
+.footer-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 8px 32px;
+
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-container a {
+  text-decoration: none;
+  color: #555;
+  margin-left: 10px;
+}
+.footer-container a:hover {
+  text-decoration: underline;
+}
+
+.terms-container {
+  max-width: 600px;
+  margin: 15px auto; 
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  font-family: 'Gowun Batang', serif;
+  line-height: 1.6;
+  font-size: 13px;
+  color: #333;
+  background: #f9fafa;
+}
+
+.terms-wrapper {
+  flex: 1;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #e0f7ff, #f8fcff);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+
+.logo a {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5daec5 !important;
+  text-decoration: none;
+}
+.logo a:hover {
+  color: #479bb0;
+}
+
+.center-menu {
+  display: flex;
+  gap: 30px;
+}
+.center-menu a,
+.login a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.login a + a {
+  margin-left: 10px;
+}
+
+.center-menu a:hover,
+.login a:hover {
+  color:#5daec5;
+}
+
+.main-banner {
+  flex: 1;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.main-banner h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #444;
+  animation: fadeIn 2s ease-in-out forwards; 
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.main-banner p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #666;
+  animation: fadeIn 2s ease-in-out forwards; 
+
+}
+
+.main-banner button {
+  padding: 12px 30px;
+  font-size: 16px;
+  font-family: 'Gowun Batang', serif;
+  border: none;
+  border-radius: 30px;
+  background-color: #5daec5;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(93, 174, 197, 0.3);
+  transition: background-color 0.3s ease;
+  animation: fadeIn 2s ease-in-out forwards; 
+
+}
+.main-banner button:hover {
+  background-color: #4a9cb1;
+}
+
+/*화면 로딩*/
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 스피너 스타일 */
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #5daec5;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) { /* 일반 노트북 */
+  .center-menu {
+    gap: 25px;
+  }
+}
+@media (max-width: 800px) { /* 태블릿 */
+  .center-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) { /* 모바일 */
+  .center-menu a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container,
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+  }
+}
+
