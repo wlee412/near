@@ -28,9 +28,11 @@
     --df-messenger-chat-background-color: #ffffff;
     --df-messenger-font-color: #333333;
     --df-messenger-user-message: #f1f1f1;
-    --df-messenger-bot-message: #e3f2fd;
+    --df-messenger-bot-message: #e3f2fd; 
   }
 </style>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
 <df-messenger
   intent="WELCOME"
@@ -40,4 +42,6 @@
   chat-icon="/images/chatbot.png">
 </df-messenger>
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+<%-- <%@ include file="../chatbot/chatbot.jsp" %> --%>
+

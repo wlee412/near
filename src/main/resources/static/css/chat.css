@@ -1,0 +1,161 @@
+/* 푸터 바로 위에 챗봇 아이콘 고정 */
+* {
+	font-family: 'Gowun Batang', serif;
+}
+
+.chatbot-icon {
+	position: fixed;
+	bottom: 90px; /* 푸터에서 90px 위로 */
+	right: 40px; /* 오른쪽 끝에 배치 */
+	background: #D0F0F6; /* 파스텔 톤 하늘색 배경 */
+	padding: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	z-index: 9999;
+}
+
+.chatbot-icon img {
+	width: 45px; /* 아이콘 크기 */
+	height: 45px;
+	object-fit: cover;
+}
+
+/* X 버튼 (배경 없이 흰색 글자) */
+.chat-header button {
+	background-color: transparent; /* 배경 없음 */
+	border: none;
+	color: white; /* 글자 색을 흰색으로 */
+	font-size: 20px; /* 글자 크기 */
+	font-weight: 100;
+	cursor: pointer;
+}
+
+/* 챗봇 모달 스타일 */
+.chat-modal {
+	position: fixed;
+	bottom: 180px; /* 아이콘 아래에 고정 */
+	right: 40px;
+	width: 300px;
+	height: 500px;
+	background: #fff;
+	flex-direction: column;
+	border-radius: 12px; /* 상단과 하단 모두 둥글게 */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+	display: flex;
+	flex-direction: column;
+	z-index: 9998;
+}
+/* 채팅 메시지 영역 */
+.chat-log {
+	flex: 1; /* 남은 영역 모두 차지 */
+	padding: 12px;
+	overflow-y: auto; /* 스크롤 가능 */
+	background-color: #fff;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.chat-log::-webkit-scrollbar {
+	width: 10px;
+	height: 5px; /* 스크롤바 너비 */
+}
+
+.chat-log::-webkit-scrollbar-track {
+	background: #f0f8ff; /* 스크롤바 트랙 배경 */
+	border-radius: 10px;
+}
+
+.chat-log::-webkit-scrollbar-thumb {
+	background: #D0F0F6;  /* 스크롤바 색  */
+	border-radius: 10px;
+	min-height: 30px;
+}
+
+.chat-log::-webkit-scrollbar-thumb:hover {
+	background: #4999af; /* 마우스 오버 시 색 */
+}
+
+
+/* 타이틀 영역 둥글게 */
+.chat-header {
+	background: #5daec5;
+	color: white;
+	padding: 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top-left-radius: 12px; /* 좌측 상단 둥글게 */
+	border-top-right-radius: 12px; /* 우측 상단 둥글게 */
+}
+
+/* 입력창 */
+.chat-input {
+	display: flex;
+	padding: 0;
+	background-color: #9ED9F2;
+	margin-top: auto;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+}
+
+/* 메시지 입력창 */
+.chat-input input {
+	flex: 1;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #5daec5;
+	border-radius: 0 0 0 12px; /* 왼쪽만 둥글게 */
+	background-color: #fff;
+	box-sizing: border-box;
+}
+
+.chat-input input:focus {
+  outline: none;       /* 기본 테두리 제거 */
+  box-shadow: none;    /* 혹시 생기는 그림자도 제거 */
+  border: 2px solid #5daec5; /* 원래 테두리 색상 유지 */
+}
+
+/* 전송 버튼*/
+.chat-input button {
+	padding: 10px;
+	background-color: #5daec5;
+	color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 0 0 12px 0; /* 오른쪽만 둥글게 */
+	box-sizing: border-box;
+	font-family: 'Gowun Batang', serif;
+}
+
+/*chat bot 말풍선*/
+.chat-log {
+  padding: 15px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 18px;
+  display: inline-block;
+  clear: both;
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+.chat-bubble.user {
+  background-color: #dcf8c6;
+  float: right;
+  text-align: right;
+}
+
+.chat-bubble.bot {
+  background-color: #f1f0f0;
+  float: left;
+  text-align: left;
+}
