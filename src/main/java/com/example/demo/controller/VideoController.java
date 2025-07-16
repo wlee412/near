@@ -35,6 +35,7 @@ import jakarta.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/vid")
 public class VideoController {
+	private final String savePath = "/var/secure-videos/";
 
 	@Autowired
 	private VideoService videoService;
@@ -44,7 +45,6 @@ public class VideoController {
 	public ResponseEntity<String> uploadRecording(@RequestParam("file") MultipartFile file,
 			@ModelAttribute RoomRecording rec) {
 		System.out.println("영상 저장 중...");
-		String savePath = "/var/secure-videos/"; // 배포 전 수정 필요: /var/secure-videos/
 		String filename = UUID.randomUUID() + ".webm";
 		Path path = Paths.get(savePath + filename);
 
@@ -83,7 +83,7 @@ public class VideoController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	    }
 		
-		Path path = Paths.get("/var/secure-videos/", filename);
+		Path path = Paths.get(savePath, filename);
 		Resource resource;
 		try {
 			resource = new UrlResource(path.toUri());
