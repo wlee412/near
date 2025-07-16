@@ -15,7 +15,8 @@
 		SELECT
 		c.name AS client_name,
 		r.start,
-		rr.name AS rec_name
+		rr.name AS rec_name,
+		rr.reg_date
 		FROM
 		room_rec rr
 		JOIN
@@ -33,7 +34,7 @@
 				AND DATE(r.start) = #{startFilter}
 			</if>
 		</where>
-		ORDER BY r.start DESC
+		ORDER BY rr.reg_date DESC
 	</select>
 	
 	<select id="getVideoInfo" parameterType="String" resultType="vid">
