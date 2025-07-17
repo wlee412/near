@@ -47,7 +47,7 @@ import jakarta.servlet.http.HttpSession;
 	        return "redirect:/admin/adminLogin";
 	    }
 	    
-	    // 홈화면 이동
+	    // 홈화면으로 이동
 	    @GetMapping("/adminHome")
 	    public String home() {
 			 System.out.println("✅ 홈 화면 진입");
