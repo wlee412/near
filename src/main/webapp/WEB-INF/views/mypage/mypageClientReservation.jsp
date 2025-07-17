@@ -26,7 +26,7 @@
 				<aside class="mypage-sidebar">
 					<a
 						href="${pageContext.request.contextPath}/mypage/mypageClientReservation"
-						class="sidebar-button">예약확인</a> <a
+						class="sidebar-button active">예약확인</a> <a
 						href="${pageContext.request.contextPath}/mypage/mypageReport"
 						class="sidebar-button">검사기록</a> <a
 						href="${pageContext.request.contextPath}/mypage/mypageFavorite"

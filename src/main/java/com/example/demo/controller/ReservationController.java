@@ -52,7 +52,8 @@ public class ReservationController {
 	@PostMapping("/save")
 	public ResponseEntity<?> saveReservation(HttpSession session, @RequestBody Map<String, Object> payload) {
 		Client client = (Client) session.getAttribute("loginClient");
-
+		System.out.println("client: "+client.getClientId());
+		
 		if (client == null) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
 		}
@@ -63,8 +64,7 @@ public class ReservationController {
 			String time = (String) payload.get("time"); // HH:mm
 			List<String> sympCode = (List<String>) payload.get("symptoms");
 
-			CounselReservationDTO dto = reservationService.createReservationDTO(clientId, counselorId, date, time,
-					sympCode);
+			CounselReservationDTO dto = reservationService.createReservationDTO(clientId, counselorId, date, time, sympCode);
 
 			boolean result = reservationService.saveReservation(dto);
 

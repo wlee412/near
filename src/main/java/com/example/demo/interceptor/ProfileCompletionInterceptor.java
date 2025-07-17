@@ -45,7 +45,7 @@ public class ProfileCompletionInterceptor implements HandlerInterceptor {
 
 			if (incomplete) {
 				// 회원정보 수정 페이지로 리다이렉트
-				response.sendRedirect("/mypage/mypageUpdate");
+				response.sendRedirect("/mypage/mypageUpdate?alert=needUpdate");
 				return false; // ❌ 요청 중단
 			}
 		}

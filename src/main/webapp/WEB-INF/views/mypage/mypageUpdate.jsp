@@ -45,7 +45,7 @@
 						href="${pageContext.request.contextPath}/mypage/mypageProfile"
 						class="sidebar-button">프로필</a> <a
 						href="${pageContext.request.contextPath}/mypage/mypageUpdate"
-						class="sidebar-button">정보수정</a> <a
+						class="sidebar-button active">정보수정</a> <a
 						href="${pageContext.request.contextPath}/mypage/mypagePassword"
 						class="sidebar-button">비밀번호 변경</a> <a
 						href="${pageContext.request.contextPath}/mypage/mypageDelete"

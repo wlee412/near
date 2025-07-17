@@ -34,12 +34,6 @@
 	color: #13688a;
 }
 
-.sidebar-button.active {
-	color: #5daec5;
-	font-weight: 500;
-	border-left: 2px solid #5daec5;
-}
-
 .mypage-title {
 	text-decoration: none !important;
 	width: 100%;
