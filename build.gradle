@@ -32,50 +32,50 @@ repositories {
 }
 
 dependencies {
-<<<<<<< HEAD
-	implementation 'com.google.api-client:google-api-client:2.2.0'
-    implementation 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
-    implementation 'com.google.http-client:google-http-client-jackson2:1.43.3'
-=======
-
->>>>>>> branch 'developer' of https://github.com/wlee412/near.git
-	implementation 'org.json:json:20240303'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'com.fasterxml.jackson.core:jackson-databind'
-	implementation 'net.nurigo:sdk:4.2.7'
-	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' 
-	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-<<<<<<< HEAD
-  	implementation 'org.springframework.boot:spring-boot-starter-security'
-=======
-  implementation 'org.springframework.boot:spring-boot-starter-security'
->>>>>>> branch 'developer' of https://github.com/wlee412/near.git
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-<<<<<<< HEAD
-  	implementation 'com.google.api-client:google-api-client:1.34.1'
-=======
-  implementation 'com.google.api-client:google-api-client:1.34.1'
->>>>>>> branch 'developer' of https://github.com/wlee412/near.git
+    // ✅ YouTube API (정확히 호환되는 버전)
+    implementation 'com.google.api-client:google-api-client:1.34.1'
 	implementation 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
 	implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-  
+
+    // ✅ 공통 유틸 및 JSON 처리
+    implementation 'org.json:json:20240303'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    // ✅ Spring Boot Starter Modules
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    // ✅ JSP & JSTL (for JSP view rendering)
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    // ✅ MyBatis + DB Driver
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // ✅ Servlet API (only needed if not already provided)
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // ✅ 외부 문자 인증 라이브러리 (쿨에스엠에스)
+    implementation 'net.nurigo:sdk:4.2.7'
+
+    // ✅ 개발용 및 빌드 설정
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // ✅ 테스트용
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
 
 bootJar {
 	enabled = false
