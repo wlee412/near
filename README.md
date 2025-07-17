@@ -131,5 +131,29 @@
 ---
 
 ## 메인화면 
-<img width="1904" height="909" alt="image" src="https://github.com/user-attachments/assets/5052b39b-8be4-4ea3-bf8d-909bc918404d" />
+
+<img width="1905" height="911" alt="main" src="https://github.com/user-attachments/assets/7008be53-a630-449e-b55a-f22cb26c32b3" />
+
+## 상담예약
+
+<img width="1885" height="906" alt="image" src="https://github.com/user-attachments/assets/72145a17-fc72-4b1b-9cd5-d6ab9d96584a" />
+
+## 상담하기
+
+<img width="1905" height="909" alt="image" src="https://github.com/user-attachments/assets/a8f6d835-5a7d-43a8-959f-96552b9439f1" />
+
+## 심리검사
+
+<img width="1906" height="907" alt="image" src="https://github.com/user-attachments/assets/a7bf2c67-bc7c-45f3-922c-ae6dde188760" />
+
+## 멘탈케어
+
+<img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/05b34251-ce73-4f61-a43e-a03823a85718" />
+
+# 병원찾기 
+
+<img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/df2dc1be-fb60-4937-84a2-d2066d3a39dc" />
+
+
+
 
