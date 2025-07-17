@@ -12,7 +12,7 @@
 		ca.start AS startTime,
 		co.name AS name,
 		co.phone AS counselorPhone,
-		s.symp AS symptom
+		GROUP_CONCAT(s.symp ORDER BY s.symp SEPARATOR ', ') AS symptom
 		FROM counsel_reservation cr
 		JOIN counsel_available ca
 		ON cr.counsel_no = ca.counsel_no
@@ -23,12 +23,15 @@
 		JOIN symptom s
 		ON crs.symp_code = s.symp_code
 		WHERE cr.client_id = #{clientId}
-		ORDER BY ca.start DESC
+		GROUP BY cr.reservation_no, cr.state, ca.start, co.name, co.phone
+		ORDER BY ca.start DESC;
+
 	</select>
-	
+
 	<update id="cancelReservation">
 		UPDATE counsel_reservation
 		SET state = '취소'
-		WHERE reservation_no = #{reservationNo}
+		WHERE
+		reservation_no = #{reservationNo}
 	</update>
 </mapper>

@@ -4,7 +4,11 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common.css">
-
+<c:if test="${not empty message}">
+    <script>
+        alert("${message}");
+    </script>
+</c:if>
 
 <!-- 공통 헤더 -->
 <header>

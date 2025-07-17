@@ -141,11 +141,11 @@ body {
 }
 
 /* ③ footer in normal flow, no fixed */
-footer {
+body.start-survey footer {
   font-family: 'Gowun Batang', serif;
   margin-top: 5%;
-  width: 100vw;  /* ✅ 화면 전체 너비로 설정 */
-  margin-left: calc(-50vw + 50%); /* ✅ wrapper의 margin-auto 보정용 */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   background-color: #fff;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
 }

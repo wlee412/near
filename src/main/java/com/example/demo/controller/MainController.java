@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.example.demo.config.WebCounselorConfig;
 import com.example.demo.model.Client;
+import com.example.demo.model.Counselor;
+
+import jakarta.servlet.http.HttpSession;
 @Controller
 public class MainController {
 
@@ -51,18 +55,28 @@ public class MainController {
  
     // 상담예약 페이지
     @GetMapping("/reservation")
-    public String reservation(HttpSession session,Model model) {
-    	Client client = (Client) session.getAttribute("loginClient");
-    	System.out.println("clientId - 예약: "+client.getClientId());
+    public String reservation(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+        Client client = (Client) session.getAttribute("loginClient");
+        Counselor counselor = (Counselor) session.getAttribute("loginCounselor");
 
-		// null 체크
-		if (client == null) {
-			return "redirect:/client/login"; // 로그인 안돼있으면 로그인 페이지로 보내기
-		}
+        // 상담사 접근 차단
+        if (counselor != null) {
+            redirectAttributes.addFlashAttribute("message", "상담 예약은 내담자만 이용 가능합니다.");
+            return "redirect:/";
+        }
 
-		model.addAttribute("loginClient", client);
-        return "reservation";  
+        // 내담자 로그인 안 된 경우
+        if (client == null) {
+            return "redirect:/client/login";
+        }
+
+        // ✅ 이제 null이 아니므로 안전하게 호출 가능
+        System.out.println("clientId - 예약: " + client.getClientId());
+
+        model.addAttribute("loginClient", client);
+        return "reservation";
     }
+
     
 
 

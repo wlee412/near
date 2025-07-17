@@ -23,8 +23,8 @@ public class ProfileCompletionInterceptor implements HandlerInterceptor {
 
 		// 1. 로그인 여부 체크
 		if (client == null && counselor == null) {
-			response.sendRedirect("/client/login"); // 로그인 페이지로 이동
-			return false;
+		    response.sendRedirect("/client/login"); // 기본 로그인 페이지
+		    return false;
 		}
 
 		// 2. 회원 정보 누락 여부 체크
