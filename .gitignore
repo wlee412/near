@@ -1,1 +1,57 @@
-"src/main/resources/secret.properties" 
+# =====================================
+# OS 환경 관련
+# =====================================
+.DS_Store
+Thumbs.db
+
+# =====================================
+# Java / Gradle
+# =====================================
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+/build/
+/out/
+/target/
+/bin/
+/.gradle/
+/.idea/
+/!gradle/wrapper/gradle-wrapper.jar
+
+# Gradle Wrapper Logs
+gradle-app.setting
+
+# Local Environment Properties
+*.iml
+*.ipr
+*.iws
+
+# =====================================
+# IntelliJ
+# =====================================
+.idea/
+/*.iml
+*.ipr
+
+# =====================================
+# VS Code
+# =====================================
+.vscode/
+
+# =====================================
+# 환경설정 파일 (보안 정보 포함 가능)
+# =====================================
+secret.properties
+
+# =====================================
+# 기타
+# =====================================
+node_modules/
+.env
+*.swp
+*.swo
+*.bak
+*.tmp
