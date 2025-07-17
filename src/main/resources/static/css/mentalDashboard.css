@@ -253,7 +253,6 @@
 select, option {
   font-family: 'Pretendard', 'Noto Sans KR', sans-serif !important;
 }
-<<<<<<< HEAD
 
   .game-tabs {
     display: flex;
@@ -290,5 +289,4 @@ select, option {
   color: #666;
   line-height: 1.6;
 }
-=======
->>>>>>> branch 'developer' of https://github.com/wlee412/near.git
+
