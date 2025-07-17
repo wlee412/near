@@ -261,5 +261,15 @@
 		WHERE a.counselor_id
 		= #{counselorId}
 	</select>
+	
+	<!-- 캘린더에 예약된 시간 표시 -->
+	<select id="findReservedTimesByDate" resultType="string">
+		SELECT DATE_FORMAT(a.start, '%Y-%m-%d %H:%i')
+		FROM counsel_reservation r
+		JOIN counsel_available a ON r.counsel_no = a.counsel_no
+		WHERE DATE(a.start) = #{date}
+		AND a.counselor_id = #{counselorId}
+		AND r.state = '예약'
+	</select>
 
 </mapper>

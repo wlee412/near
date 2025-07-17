@@ -64,4 +64,6 @@ public interface CounselorMapper {
     int cancelReservationByCounselor(int reservationNo);
 
     List<CounselorReservation> findReservationsByCounselorWithPaging(Map<String, Object> param);
+    
+    List<String> findReservedTimesByDate(@Param("date") String date, @Param("counselorId") String counselorId);
 }

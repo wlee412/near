@@ -279,6 +279,7 @@ body {
 }
 
 /* 시간 버튼 묶음 박스 */
+/* 시간 버튼 묶음 박스 */
 #time-buttons-wrapper {
   margin-top: 30px;
   text-align: center;
@@ -288,15 +289,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
   max-width : 500px; 
   margin: 0 auto;
 }
 
 /* 시간 버튼 */
 .time-btn {
-  flex: 1 1 50px;  
-  padding: 10px;
+  flex: 1 1 40px;  
+  padding: 10px 8px;
   font-size: 15px;
   font-family: 'Gowun Batang', serif;
   border: 1px solid #5daec5;
@@ -309,17 +310,6 @@ body {
 .time-btn:hover {
   background-color: #e0f7ff;
 }
-
-/* .time-btn.selected { */
-/*   background-color: #5daec5; */
-/*   color: white; */
-/*   padding: 14px; */
-/*   font-size: 16px; */
-/*   font-family: 'Gowun Batang', serif; */
-/*   background-color: #5daec5; */
-/*   color: white; */
-/*   border: none; */
-/* } */
 
 .time-btn.selected {
   background-color: #5daec5;
@@ -589,4 +579,11 @@ input[type="checkbox"]:checked + .label-text {
 .btn-back:hover {
     color: #5c85d6;  
     text-decoration: underline; 
+}
+
+.time-btn.reserved {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border: 1px solid #bbb;
 }

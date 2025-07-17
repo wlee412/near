@@ -324,5 +324,19 @@ public class CounselorController {
 
 		return "counselor/mypageReservation";
 	}
+	
+	// 캘린더에 예약된 시간표시
+		@GetMapping("/reserved/selectedDate/{date}")
+		@ResponseBody
+		public List<String> getReservedTimes(@PathVariable("date") String date, HttpSession session) {
+		    Counselor loginCounselor = (Counselor) session.getAttribute("loginCounselor");
+		    if (loginCounselor == null) {
+		        System.out.println("❌ 세션 없음");
+		        return Collections.emptyList(); // 또는 에러 처리
+		    }
+
+		    String counselorId = loginCounselor.getCounselorId();
+		    return counselorService.getReservedTimesByDate(date, counselorId);
+		}
 
 }

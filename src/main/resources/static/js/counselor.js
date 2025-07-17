@@ -94,6 +94,7 @@ function initCalendar() {
 
 // ✅ 시간 버튼 렌더링
 function renderTimeButtons(date) {
+  const counselorId = $("#counselor-id").val(); 
   const timeContainer = $("#time-buttons");
   timeContainer.empty();
 
@@ -108,28 +109,49 @@ function renderTimeButtons(date) {
     $("#save-available-times").prop("disabled", false);
   }
 
-  for (let hour = 9; hour <= 17; hour++) {
-    if (hour === 12 || hour === 13) continue;
+  // ✅ 예약된 시간 조회 먼저 AJAX
+  $.ajax({
+    url: "/counselor/reserved/selectedDate/" + encodeURIComponent(date),
+    method: "GET",
+    dataType: "json",
+    success: function (reservedTimes) {
+      // 👉 예: reservedTimes = ["2025-07-31 09:00:00", ...]
+      // → "초(:ss)" 제거
+      const trimmedReserved = reservedTimes.map(t => t.slice(0, 16)); // "2025-07-31 09:00"
 
-    const hourStr = hour.toString().padStart(2, '0');
-    const timeStr = `${date} ${hourStr}:00`;
+      for (let hour = 9; hour <= 17; hour++) {
+        if (hour === 12) continue;
 
-    const button = $("<button>")
-      .text(`${hourStr}:00`)
-      .addClass("time-btn")
-      .toggleClass("selected", selectedTimes.has(timeStr))
-      .on("click", function () {
-        $(this).toggleClass("selected");
-        if (selectedTimes.has(timeStr)) {
-          selectedTimes.delete(timeStr);
-        } else {
-          selectedTimes.add(timeStr);
-        }
-        console.log("선택된 시간들:", selectedTimes);
-      });
+        const hourStr = hour.toString().padStart(2, '0');
+        const timeStr = `${date} ${hourStr}:00`;
 
-    timeContainer.append(button);
-  }
+        const isReserved = trimmedReserved.includes(timeStr);
+        const isSelected = selectedTimes.has(timeStr);
+
+        const button = $("<button>")
+          .text(`${hourStr}:00`)
+          .addClass("time-btn")
+          .toggleClass("selected", isSelected)
+          .prop("disabled", isReserved)               // ❗ 예약된 시간은 클릭 못하게 막기
+          .toggleClass("reserved", isReserved)        // (선택) 스타일 추가용 클래스
+          .on("click", function () {
+            if ($(this).prop("disabled")) return;
+            $(this).toggleClass("selected");
+            if (selectedTimes.has(timeStr)) {
+              selectedTimes.delete(timeStr);
+            } else {
+              selectedTimes.add(timeStr);
+            }
+            console.log("선택된 시간들:", selectedTimes);
+          });
+
+        timeContainer.append(button);
+      }
+    },
+    error: function () {
+      alert("예약된 시간 조회에 실패했습니다. 버튼은 제한 없이 표시됩니다.");
+    }
+  });
 }
 
 // ✅ 저장 버튼 클릭 이벤트
