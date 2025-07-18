@@ -118,7 +118,7 @@
 | 마이페이지, 로그인, 회원가입, 심리도구 | 이재원 |[`@wlee412`](https://github.com/wlee412)
 | 상담사 관리, Chatbot        | 양지선 |[`@nyangji`](https://github.com/nyangji)
 | 관리자 페이지                | 이영교 |[`@YeongGyo`](https://github.com/YeongGyo)
-| 지도기반 병원 찾기, 미니게임       | 윤태권 |[`@TG-0806`]((https://github.com/TG-0806))
+| 지도기반 병원 찾기, 미니게임       | 윤태권 |[`@TG-0806`](https://github.com/TG-0806)
 | 예약 관리 및 화상 상담          | 윤성찬 |[`@Dae-Ban`](https://github.com/Dae-Ban)
 | 멘탈케어 컨텐츠 & 자료          | 조민정 |[`@minkimmin`](https://github.com/minkimmin)
 
