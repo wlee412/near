@@ -151,7 +151,7 @@
 
 ## 멘탈케어
 
-<img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/05b34251-ce73-4f61-a43e-a03823a85718" />
+![멘탈케어](https://github.com/user-attachments/assets/c91eff03-b6da-4da0-9596-f607b7bf5b35)
 
 # 병원찾기 
 
