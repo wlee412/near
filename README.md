@@ -35,7 +35,7 @@
 ---
 
 ## 프로젝트 기간 
-**기간:** 2025년 7월 1일 \~ 7월 27일
+> **기간:** 2025년 7월 1일 \~ 7월 27일
 <p align="center">
  <img width="2388" height="1318" alt="Group 2" src="https://github.com/user-attachments/assets/9e759ff3-2cac-45a1-a297-813223133bd0" />
 </p>
