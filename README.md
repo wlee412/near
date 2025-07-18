@@ -145,18 +145,15 @@
 
 
 ### API & Service: 
+
 <div align=left>
 <img src="https://img.shields.io/badge/YouYube API-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
 <img src="https://img.shields.io/badge/ChatGPT API-74AA9C?style=for-the-badge&logo=openai&logoColor=white">
 <img src="https://img.shields.io/badge/KakaoMap API-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=white">
 <img src="https://img.shields.io/badge/google smtp API-4285F4?style=for-the-badge&logo=google&logoColor=white">
 <img src="https://img.shields.io/badge/Coolsms API-5A41FF?style=for-the-badge&logo=googlemessages&logoColor=white">
-
-
-
 </div>
   
-ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
 
 ### Version Control:
 
