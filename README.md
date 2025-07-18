@@ -159,7 +159,7 @@
 
 # 내담자 마이페이지
 
-<img width="1905" height="911" alt="image" src="https://github.com/user-attachments/assets/58d85706-d61d-4512-b25a-5239dbd57fa1" />
+![mypage](https://github.com/user-attachments/assets/2ca4fbdc-ea62-4922-8beb-a717da7172a5)
 
 # 상담사 마이페이지
 
