@@ -147,7 +147,7 @@
 
 ## 심리검사
 
-<img width="1906" height="907" alt="image" src="https://github.com/user-attachments/assets/a7bf2c67-bc7c-45f3-922c-ae6dde188760" />
+![심리검사 ](https://github.com/user-attachments/assets/a2d44c73-98e4-4359-b168-721eecb17806)
 
 ## 멘탈케어
 
