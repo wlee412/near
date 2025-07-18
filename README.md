@@ -163,7 +163,7 @@
 
 # 상담사 마이페이지
 
-<img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/c6692ddc-448a-4017-98af-00cc55cbab9a" />
+![상담사](https://github.com/user-attachments/assets/8115abe5-4485-4e70-bf9c-bc0bcf9984a9)
 
 # 챗봇
 
