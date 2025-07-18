@@ -1,6 +1,6 @@
 ## 소개
 <p align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:5daec5,50:80c3e2,100:5daec5&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:5daec5,100:4bc0c8&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear" />
 </div>
 
 <p align="center">
