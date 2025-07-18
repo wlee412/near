@@ -1,5 +1,8 @@
 ## 소개
-
+<img
+  src="https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=capsule%20render&fontSize=90"
+  alt="capsule render header"
+/>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60ac6585-1227-414c-9aaa-52c6ba52cc70"
        width="345" height="113" alt="image" />
