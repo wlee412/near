@@ -30,11 +30,18 @@
 </resultMap>
   
   
-  <select id="findWithFilter" resultType="map">
-  SELECT hosp_id AS id, hosp_name AS name, hosp_address AS address,
-         hosp_tel AS tel, hosp_department AS dept, hosp_lat AS lat, hosp_lng AS lng
+<select id="findWithFilter" resultType="map">
+  SELECT 
+    hosp_id AS id, 
+    hosp_name AS name, 
+    hosp_address AS address,
+    hosp_tel AS tel, 
+    hosp_department AS dept, 
+    hosp_lat AS lat, 
+    hosp_lng AS lng
   FROM hosp_info
   WHERE hosp_lat IS NOT NULL AND hosp_lng IS NOT NULL
+
   <if test="name != null and name != ''">
     AND hosp_name LIKE CONCAT('%', #{name}, '%')
   </if>
@@ -44,6 +51,8 @@
   <if test="dept != null and dept != ''">
     AND hosp_department LIKE CONCAT('%', #{dept}, '%')
   </if>
+
+  LIMIT 100  <!-- ✅ 무조건 100개로 제한 -->
 </select>
 
 

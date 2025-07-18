@@ -4,6 +4,8 @@ let map;
 let markers = [];
 let openInfoWindow = null;
 let openMarker = null;
+let myLocationMarker = null;
+let myLocationCircle = null;
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initMap);
@@ -26,24 +28,7 @@ function initMap() {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
       const locPosition = new kakao.maps.LatLng(lat, lng);
-
-      const marker = new kakao.maps.Marker({
-        position: locPosition,
-        image: new kakao.maps.MarkerImage("/images/my-location.png", new kakao.maps.Size(30, 35)),
-        map: map
-      });
-
-      const circle = new kakao.maps.Circle({
-        center: locPosition,
-        radius: 100,
-        strokeWeight: 2,
-        strokeColor: '#007aff',
-        strokeOpacity: 0.8,
-        fillColor: '#007aff',
-        fillOpacity: 0.2,
-        map: map
-      });
-
+      setMyLocation(locPosition);
       map.setCenter(locPosition);
       map.setLevel(2);
     });
@@ -59,7 +44,7 @@ function initMap() {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
           const loc = new kakao.maps.LatLng(lat, lng);
-
+          setMyLocation(loc);
           map.setCenter(loc);
           map.setLevel(2);
         });
@@ -68,11 +53,57 @@ function initMap() {
       }
     });
   }
+
+  kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+    const latlng = mouseEvent.latLng;
+    console.log("🖱️ 지도 클릭 위치:", latlng.getLat(), latlng.getLng());
+    setMyLocation(latlng);
+    map.setCenter(latlng);
+  });
+}
+
+function setMyLocation(latlng) {
+  if (myLocationMarker) myLocationMarker.setMap(null);
+  if (myLocationCircle) myLocationCircle.setMap(null);
+
+  myLocationMarker = new kakao.maps.Marker({
+    position: latlng,
+    image: new kakao.maps.MarkerImage("/images/my-location.png", new kakao.maps.Size(30, 35)),
+    map: map
+  });
+
+  myLocationCircle = new kakao.maps.Circle({
+    center: latlng,
+    radius: 100,
+    strokeWeight: 2,
+    strokeColor: '#007aff',
+    strokeOpacity: 0.8,
+    fillColor: '#007aff',
+    fillOpacity: 0.2,
+    map: map
+  });
+}
+
+function searchAddress() {
+  const addr = document.getElementById("addressInput").value;
+  if (!addr) return alert("주소를 입력하세요!");
+
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(addr, function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      console.log("🔍 주소 검색 위치:", coords.getLat(), coords.getLng());
+      setMyLocation(coords);
+      map.setCenter(coords);
+    } else {
+      alert("주소를 찾을 수 없습니다.");
+    }
+  });
 }
 
 function loadMarkers() {
-	showLoading();	
-	
+  showLoading();
+
   const name = encodeURIComponent(document.getElementById("searchName").value);
   const area = encodeURIComponent(document.getElementById("searchArea").value);
 
@@ -99,15 +130,14 @@ function loadMarkers() {
             <b>${p.name}</b><br/>
             ${p.address}<br/>
             ☎ ${p.tel || '-'}<br/><br/>
-            <button onclick="addFavorite('${p.id}', '${p.name}')">			
-			<img src="/images/heart.png" alt="즐겨찾기"
-			style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-			즐겨찾기</button>
-			
-            <button onclick="goToMap('${p.address}')">			
-			<img src="/images/my-location.png" alt="길찾기"
-			style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-			길찾기</button>
+            <button onclick="addFavorite('${p.id}', '${p.name}')">
+              <img src="/images/heart.png" alt="즐겨찾기"
+                style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+              즐겨찾기</button>
+            <button onclick="goToMap('${p.address}')">
+              <img src="/images/my-location.png" alt="길찾기"
+                style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+              길찾기</button>
           </div>`;
 
         const infoWindow = new kakao.maps.InfoWindow({ content });
@@ -139,15 +169,15 @@ function loadMarkers() {
           openMarker = marker;
         });
 
-		listContainer.appendChild(item);
-		      });
-		    })
-		    .catch(err => {
-		      console.error("❌ 병원 정보 로딩 에러:", err);
-		    })
-		    .finally(() => {
-		      hideLoading();
-		    });
+        listContainer.appendChild(item);
+      });
+    })
+    .catch(err => {
+      console.error("❌ 약국 정보 로딩 에러:", err);
+    })
+    .finally(() => {
+      hideLoading();
+    });
 }
 
 function addFavorite(pharmId, pharmName) {

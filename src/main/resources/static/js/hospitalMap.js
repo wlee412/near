@@ -4,6 +4,8 @@ let map;
 let markers = [];
 let openInfoWindow = null;
 let openMarker = null;
+let myLocationMarker = null;
+let myLocationCircle = null;
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initMap);
@@ -16,35 +18,24 @@ function initMap() {
 
   const container = document.getElementById('map');
   const options = {
-    center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 시청
+    center: new kakao.maps.LatLng(37.5665, 126.9780),
     level: 5
   };
   map = new kakao.maps.Map(container, options);
 
-  // ✅ 내 위치 마커 및 원
+  // ✅ 내 위치 자동 탐색
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(pos => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
+      const accuracy = pos.coords.accuracy;
+
+      console.log("📍 위도:", lat);
+      console.log("📍 경도:", lng);
+      console.log("📏 위치 정확도 (m):", accuracy);
+
       const locPosition = new kakao.maps.LatLng(lat, lng);
-
-      new kakao.maps.Marker({
-        position: locPosition,
-        image: new kakao.maps.MarkerImage("/images/my-location.png", new kakao.maps.Size(30, 35)),
-        map: map
-      });
-
-      new kakao.maps.Circle({
-        center: locPosition,
-        radius: 100,
-        strokeWeight: 2,
-        strokeColor: '#007aff',
-        strokeOpacity: 0.8,
-        fillColor: '#007aff',
-        fillOpacity: 0.2,
-        map: map
-      });
-
+      setMyLocation(locPosition);
       map.setCenter(locPosition);
       map.setLevel(2);
     });
@@ -54,13 +45,14 @@ function initMap() {
   showLoading();
   loadMarkers();
 
-  // ✅ "내 위치로" 버튼 이벤트
+  // ✅ 내 위치로 이동 버튼
   const myLocationBtn = document.getElementById("goMyLocationBtn");
   if (myLocationBtn) {
     myLocationBtn.addEventListener("click", () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
           const loc = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          setMyLocation(loc);
           map.setCenter(loc);
           map.setLevel(2);
         });
@@ -69,10 +61,60 @@ function initMap() {
       }
     });
   }
+
+  // ✅ 지도 클릭 시 내 위치 마커 이동
+  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+    const latlng = mouseEvent.latLng;
+    console.log("🖱️ 지도 클릭 위치:", latlng.getLat(), latlng.getLng());
+    setMyLocation(latlng);
+    map.setCenter(latlng);
+  });
+}
+
+// ✅ 내 위치 마커 및 원 그리기 함수
+function setMyLocation(latlng) {
+  if (myLocationMarker) myLocationMarker.setMap(null);
+  if (myLocationCircle) myLocationCircle.setMap(null);
+
+  myLocationMarker = new kakao.maps.Marker({
+    position: latlng,
+    image: new kakao.maps.MarkerImage("/images/my-location.png", new kakao.maps.Size(30, 35)),
+    map: map
+  });
+
+  myLocationCircle = new kakao.maps.Circle({
+    center: latlng,
+    radius: 100,
+    strokeWeight: 2,
+    strokeColor: '#007aff',
+    strokeOpacity: 0.8,
+    fillColor: '#007aff',
+    fillOpacity: 0.2,
+    map: map
+  });
+}
+
+// ✅ 주소로 위치 검색 (검색 버튼에서 호출)
+function searchAddress() {
+  const addr = document.getElementById("addressInput").value;
+  if (!addr) return alert("주소를 입력하세요!");
+
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(addr, function(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      console.log("🔍 주소 검색 위치:", coords.getLat(), coords.getLng());
+      setMyLocation(coords);
+      map.setCenter(coords);
+    } else {
+      alert("주소를 찾을 수 없습니다.");
+    }
+  });
 }
 
 // ✅ 병원 마커 불러오기
 function loadMarkers() {
+  console.log("📡 병원 데이터 로드 시작");
   showLoading();
 
   const name = encodeURIComponent(document.getElementById("searchName").value);
@@ -97,23 +139,21 @@ function loadMarkers() {
           map: map
         });
 
-		const content = `
-		  <div class="infowindow-box">
-		    <b>${h.name}</b><br/>
-		    ${h.address}<br/>
-		    ☎ ${h.tel || '-'}<br/>
-		    병원종류: ${h.type || '-'}<br/><br/>
-		    <button onclick="addFavorite('${h.id}', '${h.name}')">
-		      <img src="/images/heart.png" alt="즐겨찾기"
-		           style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-		      즐겨찾기
-		    </button>
-		    <button onclick="goToMap('${h.address}')">
-		      <img src="/images/my-location.png" alt="길찾기"
-		           style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-		      길찾기
-		    </button>
-		  </div>`;
+        const content = `
+          <div class="infowindow-box">
+            <b>${h.name}</b><br/>
+            ${h.address}<br/>
+            ☎ ${h.tel || '-'}<br/>
+            병원종류: ${h.type || '-'}<br/><br/>
+            <button onclick="addFavorite('${h.id}', '${h.name}')">
+              <img src="/images/heart.png" alt="즐겨찾기" style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+              즐겨찾기
+            </button>
+            <button onclick="goToMap('${h.address}')">
+              <img src="/images/my-location.png" alt="길찾기" style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+              길찾기
+            </button>
+          </div>`;
 
         const infoWindow = new kakao.maps.InfoWindow({ content });
 
@@ -155,7 +195,7 @@ function loadMarkers() {
     });
 }
 
-// ✅ 즐겨찾기 추가
+// 즐겨찾기 추가
 function addFavorite(hospId, hospName) {
   const clientId = window.clientId;
   if (!clientId || clientId === 'null') {
@@ -172,13 +212,13 @@ function addFavorite(hospId, hospName) {
     .then(msg => alert(msg));
 }
 
-// ✅ 외부 지도 이동
+// 외부 지도 이동
 function goToMap(address) {
   const encoded = encodeURIComponent(address);
   window.open(`https://map.kakao.com/?q=${encoded}`, "_blank");
 }
 
-// ✅ 로딩 오버레이 제어
+// 로딩 오버레이
 function showLoading() {
   const overlay = document.getElementById("loadingOverlay");
   if (overlay) overlay.style.display = "flex";

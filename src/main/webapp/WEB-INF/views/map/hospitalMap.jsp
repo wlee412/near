@@ -65,6 +65,14 @@
   	내 위치로</button>
   </div>
 
+<!-- 주소 검색 영역: 별도 라인으로 분리 -->
+<div class="address-bar">
+  <input type="text" id="addressInput" placeholder="주소를 입력하세요">
+  <button onclick="searchAddress()">
+    주소로 이동
+  </button>
+</div>
+
   <!-- 지도 + 리스트 -->
   <div class="main-content">
     <div id="map"></div>
