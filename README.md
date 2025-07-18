@@ -129,13 +129,14 @@
 * 외부 서비스 이동 없이도 병원과 약국 정보를 쉽게 접근하고 관리할 수 있도록 지원
 
 ---
-## 화상통화 
-
-
 
 ## 메인화면 
 
 <img width="1905" height="911" alt="main" src="https://github.com/user-attachments/assets/7008be53-a630-449e-b55a-f22cb26c32b3" />
+
+# 챗봇
+
+![chatbot1](https://github.com/user-attachments/assets/e7543750-984d-4e7a-8f23-2d67ccc1c8ea)
 
 ## 문자인증
 
@@ -169,9 +170,12 @@
 
 ![상담사](https://github.com/user-attachments/assets/8115abe5-4485-4e70-bf9c-bc0bcf9984a9)
 
-# 챗봇
+# 관리자 페이지
 
-![chatbot1](https://github.com/user-attachments/assets/e7543750-984d-4e7a-8f23-2d67ccc1c8ea)
+![관리자](https://github.com/user-attachments/assets/68962d85-ffa9-436d-b892-d4c12434b0ea)
+
+
+
 
 
 
