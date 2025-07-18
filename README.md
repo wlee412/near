@@ -121,6 +121,60 @@
 | 멘탈케어 컨텐츠 & 자료          | 조민정 |
 
 ---
+## 프로젝트 구조
+
+├── build.gradle
+├── deps.txt
+├── gradle/
+│ └── wrapper/
+│ ├── gradle-wrapper.jar
+│ └── gradle-wrapper.properties
+├── src/
+│ ├── main/
+│ │ ├── java/
+│ │ │ └── com/
+│ │ │ └── example/
+│ │ │ └── demo/
+│ │ │ ├── config/
+│ │ │ ├── controller/
+│ │ │ ├── interceptor/
+│ │ │ ├── mapper/
+│ │ │ ├── model/
+│ │ │ ├── page/
+│ │ │ ├── scheduler/
+│ │ │ ├── security/
+│ │ │ ├── service/
+│ │ │ └── util/
+│ │ │ ├── DbConnectionTest.java
+│ │ │ ├── NearApplication.java
+│ │ │ └── ServletInitializer.java
+│ │ └── resources/
+│ │ ├── application.properties
+│ │ ├── secret.properties
+│ │ ├── intents/
+│ │ ├── mapper/
+│ │ ├── static/
+│ │ │ ├── css/
+│ │ │ ├── cursor/
+│ │ │ ├── images/
+│ │ │ ├── js/
+│ │ │ ├── json/
+│ │ │ └── mail/
+│ │ └── webapp/
+│ │ ├── includes/
+│ │ │ ├── header.jsp
+│ │ │ └── footer.jsp
+│ │ ├── lottie/
+│ │ │ ├── chart.json
+│ │ │ ├── video.json
+│ │ │ └── wheelOfFate.json
+│ │ └── WEB-INF/
+│ │ └── views/
+│ │ └── web.xml
+│ └── test/
+└── settings.gradle
+
+---
 
 ## 프로젝트 기대 효과
 
