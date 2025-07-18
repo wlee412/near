@@ -122,7 +122,7 @@
 
 ---
 ## 프로젝트 구조
-```text
+```
 near/
 ├── build.gradle
 ├── deps.txt
@@ -174,7 +174,7 @@ near/
 │   │                   └── web.xml
 │   └── test/
 └── settings.gradle
-
+```
 ---
 
 ## 프로젝트 기대 효과
