@@ -142,7 +142,6 @@
 
 ![회원가입인증](https://github.com/user-attachments/assets/8c181bd6-7489-401f-8d30-f010ff52259b)
 
-![아이디찾기](https://github.com/user-attachments/assets/05d4647e-2b01-4f90-ab92-8fc45e85c659)
 
 
 ## 상담예약
