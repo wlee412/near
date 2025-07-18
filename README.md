@@ -1,8 +1,8 @@
 ## 소개
-<img
+[<img
   src="[https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=capsule%20render&fontSize=90](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear)"
   alt="capsule render header"
-/>
+/>](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear)
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60ac6585-1227-414c-9aaa-52c6ba52cc70"
        width="345" height="113" alt="image" />
