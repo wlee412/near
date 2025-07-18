@@ -155,7 +155,7 @@
 
 # 병원찾기 
 
-<img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/df2dc1be-fb60-4937-84a2-d2066d3a39dc" />
+![병원3](https://github.com/user-attachments/assets/8e7e5294-4c2d-4537-b6e9-d23410511a06)
 
 # 내담자 마이페이지
 
