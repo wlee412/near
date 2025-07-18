@@ -23,7 +23,8 @@ public class PharmFavoriteController {
 
     // 즐겨찾기 등록
     @PostMapping("/add")
-    public ResponseEntity<String> addFavorite(HttpSession session, @RequestParam("pharmId") String pharmId) {
+    public ResponseEntity<String> addFavorite(@RequestParam("pharmId") String pharmId,
+            HttpSession session) {
         Client client = (Client) session.getAttribute("loginClient");
         if (client == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");

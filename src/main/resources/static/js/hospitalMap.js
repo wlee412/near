@@ -196,20 +196,49 @@ function loadMarkers() {
 }
 
 // 즐겨찾기 추가
-function addFavorite(hospId, hospName) {
-  const clientId = window.clientId;
-  if (!clientId || clientId === 'null') {
-    alert("로그인이 필요합니다.");
-    return;
-  }
+//function addFavorite(hospId, hospName) {
+//  const clientId = window.clientId;
+//  if (!clientId || clientId === 'null') {
+//    alert("로그인이 필요합니다.");
+//    return;
+//  }
+//
+//  fetch('/favorite/add', {
+//    method: 'POST',
+//    headers: { 'Content-Type': 'application/json' },
+//    body: JSON.stringify({ clientId, hospId })
+//  })
+//    .then(res => res.text())
+//    .then(msg => alert(msg));
+//}
 
-  fetch('/favorite/add', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ clientId, hospId })
+// 즐겨찾기 추가
+function addFavorite(hospId, hospName) {
+
+  // 서버에서 세션으로 clientId 판단하므로 따로 보낼 필요 없음
+
+  fetch('/api/favorite/hosp/add?hospId=' + encodeURIComponent(hospId), {
+
+    method: 'POST'
+
   })
-    .then(res => res.text())
-    .then(msg => alert(msg));
+
+    .then(res => {
+
+      if (!res.ok) {
+
+        return res.text().then(text => { throw new Error(text); });
+
+      }
+
+      return res.text();
+
+    })
+
+    .then(msg => alert(msg))
+
+    .catch(err => alert("⚠️ " + err.message));
+
 }
 
 // 외부 지도 이동

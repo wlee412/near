@@ -149,20 +149,25 @@ function checkIdCode() {
 			const resultEl = document.getElementById("idResult");
 			const idTextEl = document.getElementById("foundIdText");
 			const idTimerDisplay = document.getElementById("idTimerDisplay");
+			const idTextBtnEl = document.getElementById("foundIdTextBtn");
+
 			if (result.success) {
 				clearInterval(timerInterval);
 				idTimerDisplay.style.display = "none";
 				resultEl.innerText = "✅ 인증 성공!";
 				resultEl.style.color = "green";
 
+				// ✅ 여기에 아이디 출력 코드 추가!
+				idTextEl.innerText = `회원님의 아이디는 '${result.clientId}' 입니다.`;
 				idTextEl.style.display = "block";
-				const idTextBtnEl = document.getElementById("foundIdTextBtn");
-				idTextBtnEl.style.display = "block";
+
 				idTextBtnEl.innerHTML = `<button class="btn-confirm-small" onclick="location.href='/client/login'" style="border:none;">로그인</button>`;
+				idTextBtnEl.style.display = "block";
 			} else {
 				resultEl.innerText = "❌ 인증 실패: " + result.message;
 				resultEl.style.color = "red";
 				idTextEl.style.display = "none";
+				idTextBtnEl.style.display = "none";
 			}
 		})
 		.catch(() => {
@@ -171,6 +176,7 @@ function checkIdCode() {
 			resultEl.style.color = "red";
 		});
 }
+
 
 function sendPwCode() {
 	const clientId = document.getElementById("findPwId").value;

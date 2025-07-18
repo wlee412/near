@@ -180,21 +180,50 @@ function loadMarkers() {
     });
 }
 
-function addFavorite(pharmId, pharmName) {
-  const clientId = window.clientId;
-  if (!clientId || clientId === 'null') {
-    alert("로그인이 필요합니다.");
-    return;
-  }
+//function addFavorite(pharmId, pharmName) {
+//  const clientId = window.clientId;
+//  if (!clientId || clientId === 'null') {
+//    alert("로그인이 필요합니다.");
+//    return;
+//  }
+//
+//  fetch('/favorite/add', {
+//    method: 'POST',
+//    headers: { 'Content-Type': 'application/json' },
+//    body: JSON.stringify({ clientId, pharmId })
+//  })
+//    .then(res => res.text())
+//    .then(msg => alert(msg));
+//}
 
-  fetch('/favorite/add', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ clientId, pharmId })
-  })
-    .then(res => res.text())
-    .then(msg => alert(msg));
-}
+// 즐겨찾기 추가
+function addFavorite(pharmId, pharmName) {
+
+    // 서버에서 세션으로 clientId 판단하므로 따로 보낼 필요 없음
+
+    fetch('/api/favorite/pharm/add?pharmId=' + encodeURIComponent(pharmId), {
+
+      method: 'POST'
+
+    })
+
+      .then(res => {
+
+        if (!res.ok) {
+
+          return res.text().then(text => { throw new Error(text); });
+
+        }
+
+        return res.text();
+
+      })
+
+      .then(msg => alert(msg))
+
+      .catch(err => alert("⚠️ " + err.message));
+
+  }
 
 function goToMap(address) {
   const encoded = encodeURIComponent(address);
