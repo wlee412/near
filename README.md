@@ -139,7 +139,7 @@
 
 ## 상담예약
 
-<img width="1885" height="906" alt="image" src="https://github.com/user-attachments/assets/72145a17-fc72-4b1b-9cd5-d6ab9d96584a" />
+![예약](https://github.com/user-attachments/assets/739b6482-89a6-405e-b549-a239fe68967a)
 
 ## 상담하기
 
