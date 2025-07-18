@@ -30,7 +30,7 @@
 - [기술 스택](#기술-스택)  
 - [프로젝트 구성원 및 업무](#프로젝트-구성원-및-업무)  
 - [프로젝트 기대 효과](#프로젝트-기대-효과)  
-- [메인화면](#메인화면)  
+- [구현](#구현)  
 
 ---
 
@@ -129,16 +129,18 @@
 * 외부 서비스 이동 없이도 병원과 약국 정보를 쉽게 접근하고 관리할 수 있도록 지원
 
 ---
+## 구현
 
-## 메인화면 
+
+### 메인화면 
 
 <img width="1905" height="911" alt="main" src="https://github.com/user-attachments/assets/7008be53-a630-449e-b55a-f22cb26c32b3" />
 
-# 챗봇
+### 챗봇
 
 ![chatbot1](https://github.com/user-attachments/assets/e7543750-984d-4e7a-8f23-2d67ccc1c8ea)
 
-## 문자인증
+### 문자인증
 
 ![회원가입인증](https://github.com/user-attachments/assets/8c181bd6-7489-401f-8d30-f010ff52259b)
 
@@ -146,39 +148,39 @@
 
 
 
-## 상담예약
+### 상담예약
 
 ![예약](https://github.com/user-attachments/assets/739b6482-89a6-405e-b549-a239fe68967a)
 
-## 상담하기
+### 상담하기
 
 <img width="1905" height="909" alt="image" src="https://github.com/user-attachments/assets/a8f6d835-5a7d-43a8-959f-96552b9439f1" />
 
-## 심리검사
+### 심리검사
 
 ![심리검사 ](https://github.com/user-attachments/assets/a2d44c73-98e4-4359-b168-721eecb17806)
 
-## 멘탈케어
+### 멘탈케어
 
 ![멘탈케어](https://github.com/user-attachments/assets/c91eff03-b6da-4da0-9596-f607b7bf5b35)
 
-# 병원찾기 
+### 병원찾기 
 
 ![병원3](https://github.com/user-attachments/assets/8e7e5294-4c2d-4537-b6e9-d23410511a06)
 
-# 소셜로그인
+### 소셜로그인
 
 ![소셜로그인](https://github.com/user-attachments/assets/d1922382-ed70-4625-93b6-0018121fe694)
 
-# 내담자 마이페이지
+### 내담자 마이페이지
 
 ![mypage](https://github.com/user-attachments/assets/2ca4fbdc-ea62-4922-8beb-a717da7172a5)
 
-# 상담사 마이페이지
+### 상담사 마이페이지
 
 ![상담사](https://github.com/user-attachments/assets/8115abe5-4485-4e70-bf9c-bc0bcf9984a9)
 
-# 관리자 페이지
+### 관리자 페이지
 
 ![관리자](https://github.com/user-attachments/assets/68962d85-ffa9-436d-b892-d4c12434b0ea)
 
