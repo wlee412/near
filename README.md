@@ -116,11 +116,8 @@
 <div align=left>
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
-  <img src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge &logo=https%3A%2F%2Fi.imgur.com%2Fh1TiEtw.png">
-  <img
-  src="https://img.shields.io/badge/MyBatis-000000.svg?style=for-the-badge&logo=https%3A%2F%2Fi.imgur.com%2Fh1TiEtw.png&logoWidth=24"
-  alt="MyBatis Badge"
-/>
+  <img src="https://img.shields.io/badge/MyBatis-000000?style=for-the-badge">
+
 </div>
 
 ### Database:
