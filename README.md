@@ -1,5 +1,7 @@
 ## 소개
+<p align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear" />
+</div>
 
 <p align="center">
 ‘near’(가까운)와 ‘ear’(귀)의 조합으로,<br>
