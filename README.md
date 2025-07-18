@@ -162,6 +162,10 @@
 
 ![병원3](https://github.com/user-attachments/assets/8e7e5294-4c2d-4537-b6e9-d23410511a06)
 
+# 소셜로그인
+
+![소셜로그인](https://github.com/user-attachments/assets/d1922382-ed70-4625-93b6-0018121fe694)
+
 # 내담자 마이페이지
 
 ![mypage](https://github.com/user-attachments/assets/2ca4fbdc-ea62-4922-8beb-a717da7172a5)
