@@ -163,7 +163,8 @@
 <img width="1905" height="910" alt="image" src="https://github.com/user-attachments/assets/c6692ddc-448a-4017-98af-00cc55cbab9a" />
 
 # 챗봇
-![chatbot](https://github.com/user-attachments/assets/42127190-6f11-4712-8ab0-71290a23e8fc)
+
+![chatbot1](https://github.com/user-attachments/assets/e7543750-984d-4e7a-8f23-2d67ccc1c8ea)
 
 
 
