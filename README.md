@@ -137,6 +137,12 @@
 
 <img width="1905" height="911" alt="main" src="https://github.com/user-attachments/assets/7008be53-a630-449e-b55a-f22cb26c32b3" />
 
+## 문자인증
+
+![회원인증](https://github.com/user-attachments/assets/888b1b11-01a3-489a-8ce9-7a7f8060d43d)
+
+
+
 ## 상담예약
 
 ![예약](https://github.com/user-attachments/assets/739b6482-89a6-405e-b549-a239fe68967a)
