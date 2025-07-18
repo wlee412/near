@@ -1,6 +1,6 @@
 ## 소개
 <img
-  src="[https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=capsule%20render&fontSize=90](https://capsule-render.vercel.app/api?type=waving&height=300&color=0:5daec5,50:80c3e2,100:5daec5&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear)"
+  src="[https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=capsule%20render&fontSize=90](https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear)"
   alt="capsule render header"
 />
 <p align="center">
