@@ -11,6 +11,7 @@
   JOIN counsel_available a ON r.counsel_no = a.counsel_no
   WHERE a.counselor_id = #{counselorId}
     AND DATE(a.start) = #{date}
+    AND r.state = '예약'
 </select>
 
   <!-- 2. 예약 가능한 시간 조회 -->

@@ -5,19 +5,12 @@
 <head>
   <meta charset="UTF-8">
   <title>병원 지도</title>
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services&autoload=false"></script>
-<script>
-  // ✅ 이제 정상 작동됨
-  kakao.maps.load(() => {
-    const script = document.createElement("script");
-    script.src = "/js/hospitalMap.js";
-    document.body.appendChild(script);
-  });
-</script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services"></script>
+	<script src="/js/hospitalMap.js"></script>
 
   <!-- 로그인 세션 전달 (필요 시) -->
   <script>
-    window.clientId = "${sessionScope.clientId != null ? sessionScope.clientId : ''}";
+    window.clientId = "${sessionScope.clientId}";
   </script>
 
   <!-- ✅ 외부 CSS 적용 -->
@@ -71,6 +64,14 @@
   	style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
   	내 위치로</button>
   </div>
+
+<!-- 주소 검색 영역: 별도 라인으로 분리 -->
+<div class="address-bar">
+  <input type="text" id="addressInput" placeholder="주소를 입력하세요">
+  <button onclick="searchAddress()">
+    주소로 이동
+  </button>
+</div>
 
   <!-- 지도 + 리스트 -->
   <div class="main-content">

@@ -44,6 +44,7 @@
   <if test="dept != null and dept != ''">
     AND hosp_department LIKE CONCAT('%', #{dept}, '%')
   </if>
+  LIMIT 100
 </select>
 
 

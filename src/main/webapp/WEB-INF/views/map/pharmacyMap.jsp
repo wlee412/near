@@ -5,14 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <title>약국 지도</title>
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services&autoload=false"></script>
-  <script>
-    kakao.maps.load(() => {
-      const script = document.createElement("script");
-      script.src = "/js/pharmacyMap.js"; // 약국용 JS
-      document.body.appendChild(script);
-    });
-  </script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fbeb1de12354ca4a38d48cbfbb131e4c&libraries=services"></script>
+ <script src="/js/pharmacyMap.js"></script>
   
    <script>
     window.clientId = "${sessionScope.clientId}";
@@ -55,6 +49,14 @@
   		내 위치로
   	</button>
   </div>
+  
+  <div class="address-bar">
+  <input type="text" id="addressInput" placeholder="주소를 입력하세요">
+  <button onclick="searchAddress()">
+    주소로 이동
+  </button>
+</div>
+  
 
   <!-- 지도 + 리스트 -->
   <div class="main-content">

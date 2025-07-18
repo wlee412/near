@@ -24,7 +24,7 @@ body {
 }
 
 .tab-header {
-  font-size: 28px;
+  font-size: 38px;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -41,7 +41,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 870px; /* ✅ 지도와 동일한 너비로 고정 */
 }
 
@@ -63,6 +63,34 @@ body {
 
 .filter-bar button:hover {
   background-color: #088f8a; /* 더 어두운 청록 계열로 변경 */
+}
+
+
+.address-bar {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+  width: 780px;  /* 지도 영역에 맞춰 고정 */
+}
+
+.address-bar input[type="text"] {
+  flex: 1;
+  padding: 6px;
+  font-size: 14px;
+}
+
+.address-bar button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #0ABAB5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.address-bar button:hover {
+  background-color: #088f8a;
 }
 
 .main-content {
