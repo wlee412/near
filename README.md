@@ -124,7 +124,7 @@
 
 <div align=left>
    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-   <img src="https://img.shields.io/badge/Amazon RDS-232F3E?style=for-the-badge&logo=amazonRDS&logoColor=white">
+   <img src="https://img.shields.io/badge/Amazon RDS-2374B9?style=for-the-badge&logo=amazonRDS&logoColor=white">
    <img src="https://img.shields.io/badge/eXERD-750B0F?style=for-the-badge&logo=exerd&logoColor=white">
 </div>
   MySQL, Amazon RDS, eXERD
