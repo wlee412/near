@@ -103,18 +103,24 @@
 
 ### Frontend:
   HTML5, CSS3, JavaScript, JQuery, Bootstrap
+  
 ### Backend:
   Java 17, Spring Boot, MyBatis
+  
 ### Database:
   MySQL, Amazon RDS, eXERD
   
-### Cloud & Deployment: AWS EC2, Tomcat
+### Cloud & Deployment: 
+AWS EC2, Tomcat
 
-### API & Service: ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
+### API & Service: 
+ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
 
-### Version Control:GitHub
+### Version Control:
+GitHub
 
-### Collaboration & Documentation: Notion, PPT
+### Collaboration & Documentation: 
+Notion, PPT
 
 ---
 
