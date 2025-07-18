@@ -139,9 +139,7 @@
 
 ## 문자인증
 
-![회원인증](https://github.com/user-attachments/assets/888b1b11-01a3-489a-8ce9-7a7f8060d43d)
-
-
+![회원가입인증](https://github.com/user-attachments/assets/8c181bd6-7489-401f-8d30-f010ff52259b)
 
 ## 상담예약
 
