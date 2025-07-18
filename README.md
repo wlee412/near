@@ -146,7 +146,7 @@
 ### API & Service: 
 
 <div align=left>
-<img src="https://img.shields.io/badge/YouYube API-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
+<img src="https://img.shields.io/badge/YouTube API-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
 <img src="https://img.shields.io/badge/ChatGPT API-74AA9C?style=for-the-badge&logo=openai&logoColor=white">
 <img src="https://img.shields.io/badge/KakaoMap API-FFCD00?style=for-the-badge&logo=kakaotalk&logoColor=white">
 <img src="https://img.shields.io/badge/google smtp API-4285F4?style=for-the-badge&logo=google&logoColor=white">
