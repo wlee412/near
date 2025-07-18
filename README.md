@@ -101,7 +101,8 @@
 
 ## 기술 스택
 
-* **Frontend:** HTML5, CSS3, JavaScript, JQuery, Bootstrap
+* ###Frontend:
+  HTML5, CSS3, JavaScript, JQuery, Bootstrap
 * **Backend:** Java 17, Spring Boot, MyBatis
 * **Database:** MySQL, Amazon RDS, eXERD
 * **Cloud & Deployment:** AWS EC2, Tomcat
