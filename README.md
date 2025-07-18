@@ -102,6 +102,7 @@
 ## 기술 스택
 
 ### Frontend:
+
 <div align=left>
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
@@ -111,6 +112,7 @@
 
   
 ### Backend:
+
 <div align=left>
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white"> 
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
@@ -119,6 +121,7 @@
   Java 17, Spring Boot, MyBatis
   
 ### Database:
+
 <div align=left>
    <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
    <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
@@ -126,6 +129,7 @@
   MySQL, Amazon RDS, eXERD
   
 ### Cloud & Deployment: 
+
 <div align=left>
 <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=Amazon%20EC2&logoColor=white">
 <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
@@ -136,11 +140,16 @@
 ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
 
 ### Version Control:
+
 <div align=left>
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 </div>
+
 ### Collaboration & Documentation: 
 
+<div align=left>
+  <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white">
+</div>
 
 ---
 
