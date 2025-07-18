@@ -101,14 +101,20 @@
 
 ## 기술 스택
 
-* ###Frontend:
+### Frontend:
   HTML5, CSS3, JavaScript, JQuery, Bootstrap
-* **Backend:** Java 17, Spring Boot, MyBatis
-* **Database:** MySQL, Amazon RDS, eXERD
-* **Cloud & Deployment:** AWS EC2, Tomcat
-* **API & Service:** ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
-* **Version Control:** GitHub
-* **Collaboration & Documentation:** Notion, PPT
+### Backend:
+  Java 17, Spring Boot, MyBatis
+### Database:
+  MySQL, Amazon RDS, eXERD
+  
+### Cloud & Deployment: AWS EC2, Tomcat
+
+### API & Service: ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
+
+### Version Control:GitHub
+
+### Collaboration & Documentation: Notion, PPT
 
 ---
 
