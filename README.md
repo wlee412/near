@@ -147,6 +147,8 @@
 ### API & Service: 
 <div align=left>
 <img src="https://img.shields.io/badge/YouYube API-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
+<img src="https://img.shields.io/badge/ChatGPT API-74AA9C?style=for-the-badge&logo=chatgpt&logoColor=white">
+
 </div>
   
 ChatGPT API, Google Calendar API, CoolSMS API, Kakao Map API, YouTube API
