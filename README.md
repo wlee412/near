@@ -3,10 +3,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=gradient&customColorList=4&text=n:ear&animation=fadeIn&textBg=false&desc=가까이%20귀%20기울이는%20누군가,%20n:ear&fontColor=ffffff" />
 </div>
 
-
-> ‘near’(가까운)와 ‘ear’(귀)의 조합으로,<br>
+<div align="center">
+> ‘near’(가까운)와 ‘ear’(귀)의 조합으로,
 > 언제나 가까이에서 귀 기울이며 당신의 이야기를 들어주는 사람을 의미합니다.
-
+</div>
 
 <p align="left">
 상담자와 내담자 모두에게 쉽고 편리한 상담 환경을 제공하고, 정신 건강 상태를 자가 진단 및 관리할 수 있는 다양한 도구와 컨텐츠를 제공하는 웹 플랫폼입니다.
