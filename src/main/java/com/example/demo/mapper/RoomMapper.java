@@ -26,4 +26,8 @@ public interface RoomMapper {
 
 	public void roomOpen();
 
+	public void createRoom(Room room);
+
+	public void cancelRoom(int reservationNo);
+
 }

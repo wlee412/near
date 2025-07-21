@@ -59,6 +59,12 @@ public class RoomService {
 		room.setEnd(start.plusMinutes(30));
 		room.setState("예약");
 		room.setJanusNum(janusNum);
+		roomMapper.createRoom(room);
+	}
+	
+	public void cancelRoom(String reservationNo) {
+		int reservationNumber = Integer.parseInt(reservationNo.trim());
+		roomMapper.cancelRoom(reservationNumber);
 	}
 
 	public List<Room> expireRooms() {

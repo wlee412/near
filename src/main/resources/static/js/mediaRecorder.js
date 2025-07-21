@@ -24,7 +24,9 @@ function startRecording() {
 	recordedChunks = [];
 
 	mediaRecorder = new MediaRecorder(stream, {
-		mimeType: "video/webm;codecs=vp8"
+		mimeType: "video/webm;codecs=vp9",
+		videoBitsPerSecond: 600_000, // 600kbps
+		audioBitsPerSecond: 64_000   // 64kbps
 	});
 
 	mediaRecorder.ondataavailable = event => {

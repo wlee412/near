@@ -33,7 +33,7 @@
 	</select>
 	
 	<select id="janusNums" resultType="int">
-    	SELECT janus_num FROM room
+    	SELECT janus_num FROM room WHERE state IN ('예약','진행')
 	</select>
 	
 	<select id="getExpiredRooms" resultType="room">
@@ -50,6 +50,19 @@
 		WHERE state='예약'
 			AND start BETWEEN DATE_ADD(NOW(), INTERVAL 13 MINUTE)
 			                AND DATE_ADD(NOW(), INTERVAL 9 MINUTE)
+	</update>
+	
+	<insert id="createRoom" parameterType="room">
+		INSERT INTO room 
+		(room_token, reservation_no, counselor_id, client_id, start, end, state, janus_num)
+		VALUES(#{roomToken}, #{reservationNo}, #{counselorId}, #{clientId}, #{start}, #{end}, #{state}, #{janusNum})
+	</insert>
+	
+	<update id="cancelRoom" parameterType="int">
+		UPDATE room 
+		SET state = '취소'
+		WHERE reservation_no = #{reservationNo}
+		AND state IN ('예약', '진행')
 	</update>
 	
 </mapper>
