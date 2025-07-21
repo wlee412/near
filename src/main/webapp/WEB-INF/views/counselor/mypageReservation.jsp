@@ -57,7 +57,7 @@
 
           <div id="loading-overlay" style="display: none;">
           <div class="spinner"></div>
-          <div class="loading-text">로딩 중입니다...</div>
+          <div class="loading-text">Loading...</div>
           </div>
           <button class="cancelSelectedBtn">예약 취소하기</button>
 

@@ -536,7 +536,7 @@ input[type="checkbox"]:checked + .label-text {
 /* 애니메이션 효과 */
 .spinner {
 	border: 8px solid rgba(255, 255, 255, 0.3); /* 배경색 */
-	border-top: 8px solid #A7C8FF; /* 파스텔톤 색상 */
+	border-top: 8px solid #5daec5; /* 파스텔톤 색상 */
 	border-radius: 50%;
 	width: 60px;
 	height: 60px;

@@ -168,7 +168,7 @@ body {
 /* 텍스트 스타일 */
 .loading-text {
   margin-top: 15px;
-  color: white;
+  color: black;
   font-size: 18px;
   font-weight: bold;
 }

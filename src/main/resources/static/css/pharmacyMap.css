@@ -142,7 +142,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
+  background-color: rgba(255, 255, 255, 0.3);
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -162,8 +162,9 @@ body {
 
 /* 텍스트 스타일 */
 .loading-text {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;	
   margin-top: 15px;
-  color: white;
+  color: black;
   font-size: 18px;
   font-weight: bold;
 }
