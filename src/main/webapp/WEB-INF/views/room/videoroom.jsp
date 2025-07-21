@@ -296,7 +296,7 @@
 	<script type="text/javascript" src="/js/roomlayout.js"></script>
 	<script type="text/javascript" src="/js/whiteboard.js"></script>
 	<script type="text/javascript" src="/js/textmsg.js"></script>
-	<script type="text/javascript" src="/js/cameratest.js"></script>
+	<script type="text/javascript" src="/js/cameraTest.js"></script>
 	<script type="text/javascript" src="/js/mediaRecorder.js"></script>
 </body>
 </html>
