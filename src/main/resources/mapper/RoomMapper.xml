@@ -33,7 +33,7 @@
 	</select>
 	
 	<select id="janusNums" resultType="int">
-    	SELECT janus_num FROM room
+    	SELECT janus_num FROM room WHERE state IN ('예약','진행')
 	</select>
 	
 	<select id="getExpiredRooms" resultType="room">
