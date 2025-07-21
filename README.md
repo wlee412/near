@@ -8,17 +8,19 @@
 언제나 가까이에서 귀 기울이며 당신의 이야기를 들어주는 사람을 의미합니다.
 </div>
 
+<p align="center">
+  <a href="https://js1.jsflux.co.kr/" target="_blank">
+    <img width="369" height="115" alt="Group 8" src="https://github.com/user-attachments/assets/13b42502-45fb-4dc0-87ca-a3044b34ee89" />
+  </a>
+</p>
+
 <br>
 <br>
 <p align="left">
 상담자와 내담자 모두에게 쉽고 편리한 상담 환경을 제공하고, 정신 건강 상태를 자가 진단 및 관리할 수 있는 다양한 도구와 컨텐츠를 제공하는 웹 플랫폼입니다.
 </p>
 
-<p align="center">
-  <a href="https://js1.jsflux.co.kr/" target="_blank">
-    <img width="369" height="115" alt="Group 8" src="https://github.com/user-attachments/assets/13b42502-45fb-4dc0-87ca-a3044b34ee89" />
-  </a>
-</p>
+
 
 ---
 
