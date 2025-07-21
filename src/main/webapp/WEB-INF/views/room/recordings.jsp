@@ -18,6 +18,7 @@
 		<div class="container">
 			<h2>상담 녹화 영상</h2>
 			<div id="search-group" align="right">
+				<button type="button" class="btn" onclick="location.href='/counselor/mypage'">검색</button>
 				<form method="get" action="/vid">
 					<input type="date" name="startFilter" value="${param.startFilter}">
 					<input type="text" name="clientName" placeholder="내담자" value="${param.clientName}">
