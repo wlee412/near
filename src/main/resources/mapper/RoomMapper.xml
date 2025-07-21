@@ -52,4 +52,10 @@
 			                AND DATE_ADD(NOW(), INTERVAL 9 MINUTE)
 	</update>
 	
+	<insert id="createRoom">
+		INSERT INTO room 
+		(room_token, reservation_no, counselor_id, client_id, start, end, state, janus_num)
+		VALUES(#{roomToken}, #{reservationNo}, #{counselorId}, #{clientId}, #{start}, #{end}, #{state}, #{janus_num})
+	</insert>
+	
 </mapper>
