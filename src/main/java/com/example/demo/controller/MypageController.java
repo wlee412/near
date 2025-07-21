@@ -29,6 +29,7 @@ import com.example.demo.service.ChatGptService;
 import com.example.demo.service.ClientReservationService;
 import com.example.demo.service.ClientService;
 import com.example.demo.service.FavoriteService;
+import com.example.demo.service.RoomService;
 import com.example.demo.service.SurveyFeedbackService;
 import com.example.demo.service.SurveyService;
 import com.example.demo.service.VerifyService;
@@ -60,6 +61,8 @@ public class MypageController {
 	
 	@Autowired
 	private ClientReservationService clientReservationService;
+	@Autowired
+	private RoomService roomService;
 
 	
 	@GetMapping({"/mypage", "/"})
@@ -274,6 +277,7 @@ public class MypageController {
 			}
 			
 			boolean result = clientReservationService.cancelReservation(reservationNo);
+			roomService.cancelRoom(reservationNo);
 			redirectAttributes.addFlashAttribute("msg", result ? "예약이 취소되었습니다." : "취소에 실패했습니다.");
 			
 			return "redirect:/mypage/mypageClientReservation";

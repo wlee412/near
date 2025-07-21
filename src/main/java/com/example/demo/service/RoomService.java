@@ -61,6 +61,11 @@ public class RoomService {
 		room.setJanusNum(janusNum);
 		roomMapper.createRoom(room);
 	}
+	
+	public void cancelRoom(String reservationNo) {
+		int reservationNumber = Integer.parseInt(reservationNo.trim());
+		roomMapper.cancelRoom(reservationNumber);
+	}
 
 	public List<Room> expireRooms() {
 		List<Room> ExpiredRooms = roomMapper.getExpiredRooms();
