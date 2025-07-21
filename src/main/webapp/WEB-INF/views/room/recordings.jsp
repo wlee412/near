@@ -17,19 +17,22 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 		<div class="container">
 			<h2>상담 녹화 영상</h2>
-			<div id="search-group" align="right">
-				<button type="button" class="btn" onclick="location.href='/counselor/mypage'">검색</button>
-				<form method="get" action="/vid">
-					<input type="date" name="startFilter" value="${param.startFilter}">
-					<input type="text" name="clientName" placeholder="내담자" value="${param.clientName}">
-					<button type="submit" class="btn">검색</button>
-				</form>
+			<div id="vid-menu">
+				<button type="button" id="mypage" class="btn" onclick="location.href='/counselor/mypage'">마이페이지로</button>
+				<div id="search-group">
+					<form method="get" action="/vid">
+						<input type="date" name="startFilter" value="${param.startFilter}">
+						<input type="text" name="clientName" placeholder="내담자" value="${param.clientName}">
+						<button type="submit" class="btn">검색</button>
+					</form>
+				</div>
 			</div>
 			<table>
 				<thead>
 					<tr>
 						<th>내담자</th>
 						<th>상담 일시</th>
+						<th>녹화 일시</th>
 						<th>다운로드</th>
 					</tr>
 				</thead>
@@ -38,6 +41,7 @@
 						<tr>
 							<td>${video.clientName }</td>
 							<td><fmt:formatDate value="${video.startDate }" pattern="yyyy-M-d HH:mm"/></td>
+							<td><fmt:formatDate value="${video.regDate }" pattern="yyyy-M-d HH:mm"/></td>
 							<td><button id="${video.recName }" class="btn dl-btn">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
 							</button></td>

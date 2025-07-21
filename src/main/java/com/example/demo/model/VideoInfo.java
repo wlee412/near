@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class VideoInfo {
 	private String clientName;
 	private LocalDateTime start;
 	private String recName;
+	private Timestamp regDate;
 
 	private String startFilter;
 	private String counselorId;
