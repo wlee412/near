@@ -542,7 +542,7 @@ input[type="checkbox"]:checked + .label-text {
 	height: 60px;
 	animation: spin 1s linear infinite; /* 빠른 애니메이션 */
 }
-
+ 
 /* 빙글빙글 도는 애니메이션 */
 @keyframes spin {
     0% { transform: rotate(0deg); }

@@ -60,7 +60,7 @@
           <div class="loading-text">Loading...</div>
           </div>
           <button class="cancelSelectedBtn">예약 취소하기</button>
-
+ 
           <div class="pagination">
             <c:if test="${currentPage > 1}">
               <a href="?page=1&sortColumn=${sortColumn}&sortOrder=${sortOrder}" class="page-btn"><<</a>

@@ -12,7 +12,7 @@
   <script>
     window.clientId = "${sessionScope.clientId}";
   </script>
-
+ 
   <!-- ✅ 외부 CSS 적용 -->
   <link rel="stylesheet" href="<c:url value='/css/hospitalMap.css' />">
   <link rel="stylesheet" href="/css/common.css" />

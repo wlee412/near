@@ -164,7 +164,7 @@ body {
   height: 60px;
   animation: spin 1s linear infinite;
 }
-
+ 
 /* 텍스트 스타일 */
 .loading-text {
   margin-top: 15px;
