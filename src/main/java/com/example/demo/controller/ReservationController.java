@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.Client;
 import com.example.demo.model.CounselReservationDTO;
 import com.example.demo.service.ReservationService;
+import com.example.demo.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,6 +22,8 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
+	@Autowired
+	private RoomService roomService;
 
 	// ✅ 1. 예약 불가 시간 조회 (이미 예약된 시간)
 	@GetMapping("/unavailable")
@@ -67,6 +70,7 @@ public class ReservationController {
 			CounselReservationDTO dto = reservationService.createReservationDTO(clientId, counselorId, date, time, sympCode);
 
 			boolean result = reservationService.saveReservation(dto);
+			roomService.createRoom(dto.getReservationNo(), counselorId, clientId, dto.getStart());
 
 			return ResponseEntity.ok(result);
 		} catch (Exception e) {

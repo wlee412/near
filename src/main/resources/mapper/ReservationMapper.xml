@@ -31,28 +31,30 @@
   </select>
 
   <!-- 4. 중복 예약 여부 확인 -->
-  <select id="checkDuplicateReservation" resultType="boolean">
-    SELECT CASE
-      WHEN EXISTS (
-        SELECT 1
-        FROM counsel_reservation
-        WHERE counsel_no = #{counselNo}
-          AND (client_id = #{clientId}
-            OR EXISTS (
-              SELECT 1
-              FROM counsel_available
-              WHERE counsel_no = #{counselNo}
-                AND counselor_id = (
-                  SELECT counselor_id
-                  FROM counsel_available
-                  WHERE counsel_no = #{counselNo}
-                )
-            )
-          )
-      ) THEN TRUE
-      ELSE FALSE
-    END
-  </select>
+	<select id="checkDuplicateReservation" resultType="boolean">
+	  SELECT CASE
+	    WHEN EXISTS (
+	      SELECT 1
+	      FROM counsel_reservation r
+	      WHERE r.counsel_no = #{counselNo}
+	        AND r.state = '예약'
+	        AND (
+	          r.client_id = #{clientId}
+	          OR EXISTS (
+	            SELECT 1
+	            FROM counsel_available a
+	            WHERE a.counsel_no = r.counsel_no
+	              AND a.counselor_id = (
+	                SELECT counselor_id
+	                FROM counsel_available
+	                WHERE counsel_no = #{counselNo}
+	              )
+	          )
+	        )
+	    ) THEN TRUE
+	    ELSE FALSE
+	  END
+	</select>
 
   <!-- 5. 예약 등록 -->
   <insert id="insertReservation" parameterType="com.example.demo.model.CounselReservationDTO" useGeneratedKeys="true" keyProperty="reservationNo">
