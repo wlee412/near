@@ -50,7 +50,8 @@ public class RoomScheduler {
 		        "room_token", rsv.getRoomToken(),
 		        "counselor_name", rsv.getCounselorName(),
 		        "client_name", rsv.getClientName(),
-		        "opponent_phone", "상담사 전화번호: " + rsv.getCounselorPhone()
+		        "opponent_phone", "상담사 전화번호: " + rsv.getCounselorPhone(),
+		        "url", "https://js1.jsflux.co.kr"
 		    );
 
 		    // 내담자에게 발송

@@ -30,7 +30,7 @@
 					<a href="/counselor/profile" class="sidebar-button">프로필</a> <a
 						href="/counselor/time" class="sidebar-button">상담 가능시간 설정</a> <a
 						href="/counselor/reservation" class="sidebar-button">상담 예약현황</a> 
-<!-- 						<a href="/counselor/room" class="sidebar-button">상담 방 개설하기</a> -->
+						<a href="/vid" class="sidebar-button">상담 영상</a>
 
 				</aside>
 

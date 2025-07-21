@@ -37,6 +37,7 @@
 						href="/counselor/time" class="sidebar-button active">상담 가능시간
 						설정</a> <a href="/counselor/reservation" class="sidebar-button">상담
 						예약현황</a>
+						<a href="/vid" class="sidebar-button">상담 영상</a>
 				</aside>
 
 				<!-- 우측 콘텐츠 -->

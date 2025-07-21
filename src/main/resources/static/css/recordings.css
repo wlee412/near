@@ -25,7 +25,7 @@ table {
 }
 
 th, td {
-	width: 33%;
+	width: 25%;
 	text-align: center;
 	padding: 15px;
 	border: 1pt solid #5daec5;
@@ -49,9 +49,26 @@ th, td {
   background-color: #4a9cb1;
 }
 
+#vid-menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 50vw;
+	box-sizing: border-box;
+}
+
 #search-group {
 	margin: 20px;
 	width: 50%;
+	display: flex;
+	gap: 10px;
+	align-items: right;
+}
+
+#search-group form {
+	display: flex;
+	align-items: right;
+	gap: 10px;
 }
 
 #search-group input {
@@ -67,6 +84,7 @@ th, td {
 	font-family: 'Gowun Batang', serif;
 	font-size: 12pt;
 	outline: none;
+	white-space: nowrap;
 }
 
 #search-group input:focus {
