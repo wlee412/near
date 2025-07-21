@@ -55,7 +55,7 @@
 
 <p align="center">
   <a href="https://js1.jsflux.co.kr/" target="_blank">
-    <img width="369" height="92" alt="Group 6" src="https://github.com/user-attachments/assets/4b3e9467-0372-4345-977c-52bc4671bf78" />
+    <img width="369" height="84" alt="Group 7" src="https://github.com/user-attachments/assets/16f8dcc6-017a-42fe-abeb-033fd305dbad" />
   </a>
 </p>
 
