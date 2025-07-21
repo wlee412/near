@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://js1.jsflux.co.kr/" target="_blank">
-    <img width="369" height="84" alt="Group 7" src="https://github.com/user-attachments/assets/16f8dcc6-017a-42fe-abeb-033fd305dbad" />
+    <img width="369" height="115" alt="Group 8" src="https://github.com/user-attachments/assets/13b42502-45fb-4dc0-87ca-a3044b34ee89" />
   </a>
 </p>
 
