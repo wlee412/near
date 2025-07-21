@@ -14,6 +14,12 @@
 상담자와 내담자 모두에게 쉽고 편리한 상담 환경을 제공하고, 정신 건강 상태를 자가 진단 및 관리할 수 있는 다양한 도구와 컨텐츠를 제공하는 웹 플랫폼입니다.
 </p>
 
+<p align="center">
+  <a href="https://js1.jsflux.co.kr/" target="_blank">
+    <img width="369" height="84" alt="Group 7" src="https://github.com/user-attachments/assets/16f8dcc6-017a-42fe-abeb-033fd305dbad" />
+  </a>
+</p>
+
 ---
 
 ## 목차
@@ -52,14 +58,6 @@
     <img width="369" height="100" alt="Group 3" src="https://github.com/user-attachments/assets/0b2edc25-ef31-4515-8305-68c86ec131c7"/>
   </a>
 </p>
-
-<p align="center">
-  <a href="https://js1.jsflux.co.kr/" target="_blank">
-    <img width="369" height="84" alt="Group 7" src="https://github.com/user-attachments/assets/16f8dcc6-017a-42fe-abeb-033fd305dbad" />
-  </a>
-</p>
-
-
 
 ---
 
