@@ -17,6 +17,7 @@ public class PharmacyController {
     @Autowired
     private PharmacyService service;
 
+    // ✅ 1. 공공 API 전체 불러오기
     @GetMapping("/load")
     public ResponseEntity<String> loadAllPharmacies() {
         try {
@@ -27,18 +28,18 @@ public class PharmacyController {
                                  .body("오류 발생: " + e.getMessage());
         }
     }
-    
+
+    // ✅ 2. 구(area) 기준 검색 필터 반영
     @GetMapping("/list")
     public ResponseEntity<?> getPharmacies(
             @RequestParam(name = "name", required = false) String name,
             @RequestParam(name = "area", required = false) String area) {
-
         try {
+            // ✅ Service에서 'area'가 포함된 주소 기반으로 필터링
             return ResponseEntity.ok(service.getPharmacies(name, area));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body("오류 발생: " + e.getMessage());
         }
     }
-    
 }

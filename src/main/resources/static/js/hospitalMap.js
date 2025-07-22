@@ -7,6 +7,9 @@ let openMarker = null;
 let myLocationMarker = null;
 let myLocationCircle = null;
 
+// ★ 변경: 현재 내 좌표에서 역지오코딩으로 얻은 "구" 이름 저장
+let currentGuName = "";   // 예: "강남구"
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initMap);
 } else {
@@ -23,7 +26,7 @@ function initMap() {
   };
   map = new kakao.maps.Map(container, options);
 
-  // ✅ 내 위치 자동 탐색
+  // ★ 변경: 내 위치 탐색 후 역지오코딩 -> 구 추출 -> 병원 로드
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(pos => {
       const lat = pos.coords.latitude;
@@ -38,23 +41,35 @@ function initMap() {
       setMyLocation(locPosition);
       map.setCenter(locPosition);
       map.setLevel(2);
+
+      // ★ 변경: 좌표 → 구 이름 얻어와서 검색필드 채우고 병원 로드
+      resolveGuFromCoords(lat, lng, gu => {
+        currentGuName = gu || "";
+        syncAreaInput(gu);  // UI에 자동입력
+        showLoading();
+        loadMarkers(); // 구 기반 병원 로드
+      });
     });
   }
 
-  // ✅ 초기 병원 마커 로드
-  showLoading();
-  loadMarkers();
-
-  // ✅ 내 위치로 이동 버튼
+  // 내 위치 버튼
   const myLocationBtn = document.getElementById("goMyLocationBtn");
   if (myLocationBtn) {
     myLocationBtn.addEventListener("click", () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
-          const loc = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+          const loc = new kakao.maps.LatLng(lat, lng);
           setMyLocation(loc);
           map.setCenter(loc);
           map.setLevel(2);
+          // ★ 변경: 다시 구 이름 추출 후 재검색
+          resolveGuFromCoords(lat, lng, gu => {
+            currentGuName = gu || "";
+            syncAreaInput(gu);
+            loadMarkers();
+          });
         });
       } else {
         alert("이 브라우저는 위치 정보를 지원하지 않습니다.");
@@ -62,16 +77,31 @@ function initMap() {
     });
   }
 
-  // ✅ 지도 클릭 시 내 위치 마커 이동
+  // 지도 클릭 시 그 지점으로 내 위치 이동 + 구 재계산 + 병원 재로드
   kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     const latlng = mouseEvent.latLng;
     console.log("🖱️ 지도 클릭 위치:", latlng.getLat(), latlng.getLng());
     setMyLocation(latlng);
     map.setCenter(latlng);
+    // ★ 변경: 클릭 지점 기준 구 이름 재계산 후 검색
+    resolveGuFromCoords(latlng.getLat(), latlng.getLng(), gu => {
+      currentGuName = gu || "";
+      syncAreaInput(gu);
+      loadMarkers();
+    });
   });
+
+  // ★ 변경: 상단 "검색" 버튼이 눌리면 입력값 기준으로 로드
+  const searchBtn = document.querySelector("#searchBtn"); // id=검색 버튼에 맞게 조정
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      // 사용자가 수동으로 구/병원명 입력 후 검색 눌렀을 경우
+      loadMarkers();
+    });
+  }
 }
 
-// ✅ 내 위치 마커 및 원 그리기 함수
+// 내 위치 마커 및 원
 function setMyLocation(latlng) {
   if (myLocationMarker) myLocationMarker.setMap(null);
   if (myLocationCircle) myLocationCircle.setMap(null);
@@ -94,47 +124,76 @@ function setMyLocation(latlng) {
   });
 }
 
-// ✅ 주소로 위치 검색 (검색 버튼에서 호출)
-function searchAddress() {
-  const addr = document.getElementById("addressInput").value;
-  if (!addr) return alert("주소를 입력하세요!");
-
+// ★ 변경: 좌표 -> 구 이름 (카카오 좌표-행정구역 변환)
+function resolveGuFromCoords(lat, lng, callback) {
   const geocoder = new kakao.maps.services.Geocoder();
-  geocoder.addressSearch(addr, function(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-      console.log("🔍 주소 검색 위치:", coords.getLat(), coords.getLng());
-      setMyLocation(coords);
-      map.setCenter(coords);
+  geocoder.coord2RegionCode(lng, lat, function(result, status) {
+    if (status === kakao.maps.services.Status.OK && result.length > 0) {
+      // result[0] 또는 행정구 레벨이 B, H 등 여러 건 나올 수 있음
+      // region_type==="H" (행정동) / "B" (법정동). 구 단위는 2depth.
+      const gu = result[0].region_2depth_name; // 예: "강남구"
+      console.log("🧭 현재 구 추출:", gu);
+      callback(gu);
     } else {
-      alert("주소를 찾을 수 없습니다.");
+      console.warn("구 정보를 찾지 못했습니다.", status, result);
+      callback(null);
     }
   });
 }
 
-// ✅ 병원 마커 불러오기
+// ★ 변경: 구 자동입력 (UI input#searchArea 값과 currentGuName 동기화)
+function syncAreaInput(gu) {
+  const areaInput = document.getElementById("searchArea");
+  if (areaInput && gu) {
+    areaInput.value = gu;
+  }
+}
+
+// 병원 마커 불러오기 - ★ 변경: 반경 대신 "구(area)" 기반
 function loadMarkers() {
   console.log("📡 병원 데이터 로드 시작");
   showLoading();
 
-  const name = encodeURIComponent(document.getElementById("searchName").value);
-  const area = encodeURIComponent(document.getElementById("searchArea").value);
-  const type = encodeURIComponent(document.getElementById("typeFilter").value);
+  const name = encodeURIComponent(document.getElementById("searchName").value.trim());
+  // 사용자가 수동으로 입력했을 수도 있으므로 input에서 우선 가져오고, 없으면 currentGuName 사용
+  let areaRaw = document.getElementById("searchArea").value.trim();
+  const typeRaw = document.getElementById("typeFilter").value.trim();
 
+  // ★ 변경: area 값 fallback
+  if (!areaRaw && currentGuName) {
+    areaRaw = currentGuName;
+  }
+  const area = encodeURIComponent(areaRaw);
+  const type = encodeURIComponent(typeRaw);
+
+  // 디버그
+  console.log("🔁 검색 파라미터:", { name, areaRaw, typeRaw });
+
+  // ★ 변경: 이제 /nearby 호출 안 함, /list 사용 (구 필터 기반)
   fetch(`/api/hospitals/list?name=${name}&area=${area}&type=${type}`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error("병원 목록 응답 실패: " + res.status);
+      return res.json();
+    })
     .then(data => {
+      console.log("📦 응답 병원 수(구 필터):", data.length);
+      console.log("📦 병원 데이터(구 필터):", data);
+
+      // 기존 마커 제거
       markers.forEach(m => m.setMap(null));
       markers = [];
 
       const listContainer = document.getElementById("hospitalList");
-      listContainer.innerHTML = "";
+      if (listContainer) listContainer.innerHTML = "";
 
       data.forEach(h => {
-        if (!h.lat || !h.lng) return;
+        // 반환 데이터 키: id, name, address, tel, dept, type, lat, lng (searchHospitals 쿼리 기준)
+        const lat = h.lat ?? h.hosp_lat;
+        const lng = h.lng ?? h.hosp_lng;
+        if (lat == null || lng == null) return;
 
         const marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(h.lat, h.lng),
+          position: new kakao.maps.LatLng(lat, lng),
           image: new kakao.maps.MarkerImage("/images/hospital-marker.png", new kakao.maps.Size(24.5, 37.5)),
           map: map
         });
@@ -172,19 +231,21 @@ function loadMarkers() {
 
         markers.push(marker);
 
-        const item = document.createElement("div");
-        item.className = "item";
-        item.textContent = `${h.name} (${h.type || '종류 없음'})`;
-        item.addEventListener("click", () => {
-          map.setCenter(new kakao.maps.LatLng(h.lat, h.lng));
-          map.setLevel(3);
-          if (openInfoWindow) openInfoWindow.close();
-          infoWindow.open(map, marker);
-          openInfoWindow = infoWindow;
-          openMarker = marker;
-        });
-
-        listContainer.appendChild(item);
+        // 병원 리스트 패널
+        if (listContainer) {
+          const item = document.createElement("div");
+          item.className = "item";
+          item.textContent = `${h.name} (${h.type || '종류 없음'})`;
+          item.addEventListener("click", () => {
+            map.setCenter(new kakao.maps.LatLng(lat, lng));
+            map.setLevel(3);
+            if (openInfoWindow) openInfoWindow.close();
+            infoWindow.open(map, marker);
+            openInfoWindow = infoWindow;
+            openMarker = marker;
+          });
+          listContainer.appendChild(item);
+        }
       });
     })
     .catch(err => {
@@ -193,6 +254,31 @@ function loadMarkers() {
     .finally(() => {
       hideLoading();
     });
+}
+
+// 주소 검색 (사용자가 직접 입력한 주소 기준 이동 + 구 재계산 + 병원 다시 로드)
+function searchAddress() {
+  const addr = document.getElementById("addressInput").value;
+  if (!addr) return alert("주소를 입력하세요!");
+
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(addr, function(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      console.log("🔍 주소 검색 위치:", coords.getLat(), coords.getLng());
+      setMyLocation(coords);
+      map.setCenter(coords);
+      map.setLevel(2);
+      // ★ 변경: 주소 → 구
+      resolveGuFromCoords(coords.getLat(), coords.getLng(), gu => {
+        currentGuName = gu || "";
+        syncAreaInput(gu);
+        loadMarkers();
+      });
+    } else {
+      alert("주소를 찾을 수 없습니다.");
+    }
+  });
 }
 
 // 즐겨찾기 추가
@@ -241,7 +327,7 @@ function addFavorite(hospId, hospName) {
 
 }
 
-// 외부 지도 이동
+// 외부 지도 이동 (변경 없음)
 function goToMap(address) {
   const encoded = encodeURIComponent(address);
   window.open(`https://map.kakao.com/?q=${encoded}`, "_blank");
@@ -252,7 +338,6 @@ function showLoading() {
   const overlay = document.getElementById("loadingOverlay");
   if (overlay) overlay.style.display = "flex";
 }
-
 function hideLoading() {
   const overlay = document.getElementById("loadingOverlay");
   if (overlay) overlay.style.display = "none";
