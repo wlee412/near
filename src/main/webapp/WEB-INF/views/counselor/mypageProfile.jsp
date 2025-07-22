@@ -34,7 +34,7 @@
           <div class="profile-box">
             <div class="profile-content">
               <!-- 왼쪽 이미지 -->
-              <img class="profile-img" src="/images/${counselor.counselorId}.png" alt="상담사 이미지">
+              <img class="profile-img" src="/images/${counselor.counselorId}.webp" alt="상담사 이미지">
 
               <!-- 오른쪽 텍스트 -->
               <div class="profile-info">

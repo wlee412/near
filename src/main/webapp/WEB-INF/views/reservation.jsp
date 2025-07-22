@@ -27,7 +27,7 @@
 
   <!-- 상담사 1 -->
   <div class="counselor-card" data-counselor-id="counselor01">
-    <img src="/images/counselor01.png" alt="상담사1" width="100" /><br>
+    <img src="/images/counselor01.webp" alt="상담사1" width="100" /><br>
     <strong>상담사 이병철</strong><br><br>
 
     <input type="date" class="date-input" data-counselor-id="counselor01"><br><br>
@@ -58,7 +58,7 @@
 
   <!-- 상담사 2 -->
   <div class="counselor-card" data-counselor-id="counselor02">
-    <img src="/images/counselor02.png" alt="상담사2" width="100" /><br>
+    <img src="/images/counselor02.webp" alt="상담사2" width="100" /><br>
     <strong>상담사 신하령</strong><br><br>
 
     <input type="date" class="date-input" data-counselor-id="counselor02"><br><br>
@@ -89,7 +89,7 @@
 
   <!-- 상담사 3 -->
   <div class="counselor-card" data-counselor-id="counselor03">
-    <img src="/images/counselor03.png" alt="상담사3" width="100" /><br>
+    <img src="/images/counselor03.webp" alt="상담사3" width="100" /><br>
     <strong>상담사 전미희</strong><br><br>
 
     <input type="date" class="date-input" data-counselor-id="counselor03"><br><br>
