@@ -1,8 +1,10 @@
 package com.example.demo.security;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -11,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +34,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.disable())
+        	.cors(Customizer.withDefaults()) 
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
 
@@ -81,6 +86,19 @@ public class SecurityConfig {
 	    public WebSecurityCustomizer webSecurityCustomizer(HttpFirewall firewall) {
 	        return web -> web.httpFirewall(firewall);
 	    }
+	 
+	 @Bean
+	 public CorsConfigurationSource corsConfigurationSource() {
+	     CorsConfiguration configuration = new CorsConfiguration();
+	     configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "https://your-frontend.com")); // 배포된 도메인
+	     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+	     configuration.setAllowedHeaders(Arrays.asList("*"));
+	     configuration.setAllowCredentials(true); // 세션 공유 위해 필요
+
+	     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	     source.registerCorsConfiguration("/**", configuration);
+	     return source;
+	 }
 	 
 }
 
