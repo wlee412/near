@@ -44,7 +44,10 @@
     AND pharm_name LIKE CONCAT('%', #{name}, '%')
   </if>
   <if test="area != null and area != ''">
-    AND pharm_address LIKE CONCAT('%', #{area}, '%')
+    AND pharm_address LIKE CONCAT('%', #{area}, '%')  <!-- ✅ 여기에서 area 필터링 -->
   </if>
 </select>
+
+
+
 </mapper>
