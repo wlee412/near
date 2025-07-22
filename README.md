@@ -280,7 +280,7 @@ near/
 
 ### 상담하기
 
-<img width="1905" height="909" alt="image" src="https://github.com/user-attachments/assets/a8f6d835-5a7d-43a8-959f-96552b9439f1" />
+![webrtc7](https://github.com/user-attachments/assets/453e6f36-5e82-4777-a22a-e5032e00c2d8)
 
 ---
 
