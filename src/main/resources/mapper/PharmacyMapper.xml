@@ -39,13 +39,15 @@
     pharm_lat AS lat,
     pharm_lng AS lng
   FROM pharm_info
-  WHERE 1 = 1
+  WHERE pharm_lat IS NOT NULL AND pharm_lng IS NOT NULL
   <if test="name != null and name != ''">
     AND pharm_name LIKE CONCAT('%', #{name}, '%')
   </if>
   <if test="area != null and area != ''">
-    AND pharm_address LIKE CONCAT('%', #{area}, '%')
+    AND pharm_address LIKE CONCAT('%', #{area}, '%')  <!-- ✅ 여기에서 area 필터링 -->
   </if>
 </select>
+
+
 
 </mapper>

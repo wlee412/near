@@ -31,10 +31,9 @@ function initMap() {
       setMyLocation(locPosition);
       map.setCenter(locPosition);
       map.setLevel(2);
+      loadMarkers(); // ✅ 초기 로드 시 호출
     });
   }
-
-  loadMarkers();
 
   const myLocationBtn = document.getElementById("goMyLocationBtn");
   if (myLocationBtn) {
@@ -47,6 +46,7 @@ function initMap() {
           setMyLocation(loc);
           map.setCenter(loc);
           map.setLevel(2);
+          loadMarkers(); // ✅ 위치 변경 시 다시 로드
         });
       } else {
         alert("이 브라우저는 위치 정보를 지원하지 않습니다.");
@@ -59,6 +59,7 @@ function initMap() {
     console.log("🖱️ 지도 클릭 위치:", latlng.getLat(), latlng.getLng());
     setMyLocation(latlng);
     map.setCenter(latlng);
+    loadMarkers(); // ✅ 클릭 시 로드
   });
 }
 
@@ -95,89 +96,118 @@ function searchAddress() {
       console.log("🔍 주소 검색 위치:", coords.getLat(), coords.getLng());
       setMyLocation(coords);
       map.setCenter(coords);
+      loadMarkers(); // ✅ 검색 시 다시 로드
     } else {
       alert("주소를 찾을 수 없습니다.");
     }
   });
 }
 
+// ✅ 약국 마커 로드 함수 - 내 위치 기준 구 이름 필터링
 function loadMarkers() {
   showLoading();
 
-  const name = encodeURIComponent(document.getElementById("searchName").value);
-  const area = encodeURIComponent(document.getElementById("searchArea").value);
+  if (!myLocationMarker) {
+    console.warn("⚠️ 내 위치가 설정되지 않았습니다.");
+    hideLoading();
+    return;
+  }
 
-  fetch(`/api/pharmacies/list?name=${name}&area=${area}`)
-    .then(res => res.json())
-    .then(data => {
-      markers.forEach(m => m.setMap(null));
-      markers = [];
+  const lat = myLocationMarker.getPosition().getLat();
+  const lng = myLocationMarker.getPosition().getLng();
 
-      const listContainer = document.getElementById("pharmacyList");
-      listContainer.innerHTML = "";
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.coord2RegionCode(lng, lat, function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const gu = result.find(r => r.region_type === 'H' || r.region_type === 'B')?.region_3depth_name;
+      if (!gu) {
+        alert("위치의 행정구역(구)을 찾을 수 없습니다.");
+        hideLoading();
+        return;
+      }
 
-      data.forEach(p => {
-        if (!p.lat || !p.lng) return;
+      const name = encodeURIComponent(document.getElementById("searchName").value);
+      const area = encodeURIComponent(gu); // ✅ 구 이름으로 필터
 
-        const marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(p.lat, p.lng),
-          image: new kakao.maps.MarkerImage("/images/pharmacy-marker.png", new kakao.maps.Size(24.5, 37.5)),
-          map: map
+      fetch(`/api/pharmacies/list?name=${name}&area=${area}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log("📦 약국 수:", data.length);
+          renderPharmacyMarkers(data);
+        })
+        .catch(err => {
+          console.error("❌ 약국 정보 로딩 에러:", err);
+        })
+        .finally(() => {
+          hideLoading();
         });
+    }
+  });
+}
 
-        const content = `
-          <div class="infowindow-box">
-            <b>${p.name}</b><br/>
-            ${p.address}<br/>
-            ☎ ${p.tel || '-'}<br/><br/>
-            <button onclick="addFavorite('${p.id}', '${p.name}')">
-              <img src="/images/heart.png" alt="즐겨찾기"
-                style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-              즐겨찾기</button>
-            <button onclick="goToMap('${p.address}')">
-              <img src="/images/my-location.png" alt="길찾기"
-                style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
-              길찾기</button>
-          </div>`;
+// ✅ 마커 및 리스트 출력 분리 함수
+function renderPharmacyMarkers(data) {
+  markers.forEach(m => m.setMap(null));
+  markers = [];
 
-        const infoWindow = new kakao.maps.InfoWindow({ content });
+  const listContainer = document.getElementById("pharmacyList");
+  listContainer.innerHTML = "";
 
-        kakao.maps.event.addListener(marker, 'click', () => {
-          if (openMarker === marker) {
-            infoWindow.close();
-            openInfoWindow = null;
-            openMarker = null;
-          } else {
-            if (openInfoWindow) openInfoWindow.close();
-            infoWindow.open(map, marker);
-            openInfoWindow = infoWindow;
-            openMarker = marker;
-          }
-        });
+  data.forEach(p => {
+    if (!p.lat || !p.lng) return;
 
-        markers.push(marker);
-
-        const item = document.createElement("div");
-        item.className = "item";
-        item.textContent = `${p.name}`;
-        item.addEventListener("click", () => {
-          map.setCenter(new kakao.maps.LatLng(p.lat, p.lng));
-          map.setLevel(3);
-          if (openInfoWindow) openInfoWindow.close();
-          infoWindow.open(map, marker);
-          openInfoWindow = infoWindow;
-          openMarker = marker;
-        });
-
-        listContainer.appendChild(item);
-      });
-    })
-    .catch(err => {
-      console.error("❌ 약국 정보 로딩 에러:", err);
-    })
-    .finally(() => {
-      hideLoading();
+    const marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(p.lat, p.lng),
+      image: new kakao.maps.MarkerImage("/images/pharmacy-marker.png", new kakao.maps.Size(24.5, 37.5)),
+      map: map
     });
+
+    const content = `
+      <div class="infowindow-box">
+        <b>${p.name}</b><br/>
+        ${p.address}<br/>
+        ☎ ${p.tel || '-'}<br/><br/>
+        <button onclick="addFavorite('${p.id}', '${p.name}')">
+          <img src="/images/heart.png" alt="즐겨찾기"
+            style="width:16px; height:14px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+          즐겨찾기</button>
+        <button onclick="goToMap('${p.address}')">
+          <img src="/images/my-location.png" alt="길찾기"
+            style="width:14px; height:16px; vertical-align:middle; margin-right:5px; position:relative; top:-1px;">
+          길찾기</button>
+      </div>`;
+
+    const infoWindow = new kakao.maps.InfoWindow({ content });
+
+    kakao.maps.event.addListener(marker, 'click', () => {
+      if (openMarker === marker) {
+        infoWindow.close();
+        openInfoWindow = null;
+        openMarker = null;
+      } else {
+        if (openInfoWindow) openInfoWindow.close();
+        infoWindow.open(map, marker);
+        openInfoWindow = infoWindow;
+        openMarker = marker;
+      }
+    });
+
+    markers.push(marker);
+
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = `${p.name}`;
+    item.addEventListener("click", () => {
+      map.setCenter(new kakao.maps.LatLng(p.lat, p.lng));
+      map.setLevel(3);
+      if (openInfoWindow) openInfoWindow.close();
+      infoWindow.open(map, marker);
+      openInfoWindow = infoWindow;
+      openMarker = marker;
+    });
+
+    listContainer.appendChild(item);
+  });
 }
 
 //function addFavorite(pharmId, pharmName) {
@@ -230,7 +260,6 @@ function goToMap(address) {
   window.open(`https://map.kakao.com/?q=${encoded}`, "_blank");
 }
 
-// ✅ 로딩 오버레이 제어
 function showLoading() {
   const overlay = document.getElementById("loadingOverlay");
   if (overlay) overlay.style.display = "flex";

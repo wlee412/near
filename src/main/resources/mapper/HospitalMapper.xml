@@ -4,10 +4,12 @@
 
 <mapper namespace="com.example.demo.mapper.HospitalMapper">
 
+  <!-- 병원 상세 -->
   <select id="findById" parameterType="String" resultMap="hospitalResultMap">
     SELECT * FROM hosp_info WHERE hosp_id = #{hospId}
   </select>
 
+  <!-- 삽입 -->
   <insert id="insert" parameterType="HospitalInfo">
     INSERT INTO hosp_info (
       hosp_id, hosp_name, hosp_address, hosp_tel,
@@ -17,7 +19,7 @@
       #{hospType}, #{hospDepartment}, #{hospLat}, #{hospLng}
     )
   </insert>
-  
+
   <resultMap id="hospitalResultMap" type="HospitalInfo">
     <id property="hospId" column="hosp_id"/>
     <result property="hospName" column="hosp_name"/>
@@ -27,51 +29,70 @@
     <result property="hospDepartment" column="hosp_department"/>
     <result property="hospLat" column="hosp_lat"/>
     <result property="hospLng" column="hosp_lng"/>
-</resultMap>
-  
-  
-  <select id="findWithFilter" resultType="map">
-  SELECT hosp_id AS id, hosp_name AS name, hosp_address AS address,
-         hosp_tel AS tel, hosp_department AS dept, hosp_lat AS lat, hosp_lng AS lng
-  FROM hosp_info
-  WHERE hosp_lat IS NOT NULL AND hosp_lng IS NOT NULL
-  <if test="name != null and name != ''">
-    AND hosp_name LIKE CONCAT('%', #{name}, '%')
-  </if>
-  <if test="area != null and area != ''">
-    AND hosp_address LIKE CONCAT('%', #{area}, '%')
-  </if>
-  <if test="dept != null and dept != ''">
-    AND hosp_department LIKE CONCAT('%', #{dept}, '%')
-  </if>
-  LIMIT 100
-</select>
+  </resultMap>
 
+  <!-- 구 기반 검색 (Controller /list 에서 사용) -->
+  <select id="searchHospitals" resultType="map">
+    SELECT 
+      hosp_id AS id,
+      hosp_name AS name,
+      hosp_address AS address,
+      hosp_tel AS tel,
+      hosp_department AS dept,
+      hosp_type AS type,
+      hosp_lat AS lat,
+      hosp_lng AS lng
+    FROM hosp_info
+    WHERE 1 = 1
+    <if test="name != null and name != ''">
+      AND hosp_name LIKE CONCAT('%', #{name}, '%')
+    </if>
+    <if test="area != null and area != ''">
+      AND hosp_address LIKE CONCAT('%', #{area}, '%')
+    </if>
+    <if test="dept != null and dept != ''">
+      AND hosp_department LIKE CONCAT('%', #{dept}, '%')
+    </if>
+    <if test="type != null and type != ''">
+      AND hosp_type LIKE CONCAT('%', #{type}, '%')
+    </if>
+    LIMIT 500  <!-- 필요에 따라 조절 -->
+  </select>
 
-<select id="searchHospitals" resultType="map">
-  SELECT 
-    hosp_id AS id,
-    hosp_name AS name,
-    hosp_address AS address,
-    hosp_tel AS tel,
-    hosp_department AS dept,
-    hosp_type AS type,   <!-- 타입도 반환 -->
-    hosp_lat AS lat,
-    hosp_lng AS lng
-  FROM hosp_info
-  WHERE 1 = 1
-  <if test="name != null and name != ''">
-    AND hosp_name LIKE CONCAT('%', #{name}, '%')
-  </if>
-  <if test="area != null and area != ''">
-    AND hosp_address LIKE CONCAT('%', #{area}, '%')
-  </if>
-  <if test="dept != null and dept != ''">
-    AND hosp_department LIKE CONCAT('%', #{dept}, '%')
-  </if>
-  <if test="type != null and type != ''">
-    AND hosp_type LIKE CONCAT('%', #{type}, '%')
-  </if>
-</select>
-
+  <!-- 반경 검색 (남겨놓기) -->
+  <select id="findNearbyHospitals" resultType="map">
+    SELECT 
+      hosp_id AS id,
+      hosp_name AS name,
+      hosp_address AS address,
+      hosp_tel AS tel,
+      hosp_department AS dept,
+      hosp_type AS type,
+      hosp_lat AS lat,
+      hosp_lng AS lng,
+      (6371 * ACOS(
+        LEAST(1.0,
+          COS(RADIANS(#{lat})) * COS(RADIANS(hosp_lat)) *
+          COS(RADIANS(hosp_lng) - RADIANS(#{lng})) +
+          SIN(RADIANS(#{lat})) * SIN(RADIANS(hosp_lat))
+        )
+      )) AS distance
+    FROM hosp_info
+    WHERE (6371 * ACOS(
+        LEAST(1.0,
+          COS(RADIANS(#{lat})) * COS(RADIANS(hosp_lat)) *
+          COS(RADIANS(hosp_lng) - RADIANS(#{lng})) +
+          SIN(RADIANS(#{lat})) * SIN(RADIANS(hosp_lat))
+        )
+      )) &lt; #{radius}
+    <if test="name != null and name != ''">
+      AND hosp_name LIKE CONCAT('%', #{name}, '%')
+    </if>
+    <if test="area != null and area != ''">
+      AND hosp_address LIKE CONCAT('%', #{area}, '%')
+    </if>
+    <if test="type != null and type != ''">
+      AND hosp_type LIKE CONCAT('%', #{type}, '%')
+    </if>
+  </select>
 </mapper>

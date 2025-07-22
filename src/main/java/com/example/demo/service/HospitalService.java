@@ -123,4 +123,9 @@ public class HospitalService {
     public List<Map<String, Object>> getHospitals(String name, String area, String dept, String type) {
         return mapper.searchHospitals(name, area, dept, type);
     }
+    
+    public List<Map<String, Object>> findHospitalsByDistance(double lat, double lng, int radius,
+            String name, String area, String type) {
+    	return mapper.findNearbyHospitals(lat, lng, radius, name, area, type);
+}
 }
