@@ -23,6 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 			.excludePathPatterns(
 				"/mental/**",
 				"/hospitalMap/**",
+				"/pharmacyMap/**",
 				"/mypage/mypageUpdate", 
 				"/mypage/update", 
 				"/static/**", 
