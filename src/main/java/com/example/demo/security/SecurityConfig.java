@@ -90,7 +90,7 @@ public class SecurityConfig {
 	 @Bean
 	 public CorsConfigurationSource corsConfigurationSource() {
 	     CorsConfiguration configuration = new CorsConfiguration();
-	     configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "https://your-frontend.com")); // 배포된 도메인
+	     configuration.setAllowedOrigins(Arrays.asList("http://localhost:80", "https://js1.jsflux.co.kr/")); // 배포된 도메인
 	     configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	     configuration.setAllowedHeaders(Arrays.asList("*"));
 	     configuration.setAllowCredentials(true); // 세션 공유 위해 필요
