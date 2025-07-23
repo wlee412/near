@@ -37,7 +37,7 @@ public class RoomScheduler {
 		}
 	}
 
-	@Scheduled(cron = "0 40 * * * *")
+	@Scheduled(cron = "0 30 * * * *")
 	public void sendRoomToken() throws IOException {
 		System.out.println("토큰 발송");
 		List<Reservation> rsvList = roomService.getBooked();
