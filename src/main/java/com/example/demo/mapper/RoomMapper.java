@@ -30,4 +30,6 @@ public interface RoomMapper {
 
 	public void cancelRoom(int reservationNo);
 
+	public List<Reservation> testGetBooked();
+
 }

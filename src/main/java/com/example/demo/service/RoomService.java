@@ -93,4 +93,8 @@ public class RoomService {
 	public void roomOpen() {
 		roomMapper.roomOpen();
 	}
+	
+	public List<Reservation> testGetBooked() {
+		return roomMapper.testGetBooked();
+	}
 }

@@ -14,12 +14,15 @@ import org.springframework.stereotype.Component;
 import com.example.demo.model.Reservation;
 import com.example.demo.model.Room;
 import com.example.demo.service.RoomService;
+import com.example.demo.task.EmailSend;
 import com.example.demo.util.EmailTemplate;
 
 @Component
 public class RoomScheduler {
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private EmailSend emailSend;
 
 	private final SimpMessagingTemplate tpl;
 
@@ -40,30 +43,7 @@ public class RoomScheduler {
 	@Scheduled(cron = "0 30 * * * *")
 	public void sendRoomToken() throws IOException {
 		System.out.println("토큰 발송");
-		List<Reservation> rsvList = roomService.getBooked();
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy년 M월 d일 E요일 a h:mm");
-		EmailTemplate emailTpl = new EmailTemplate("roomTokenEmail.html");
-
-		for (Reservation rsv : rsvList) {
-		    Map<String, String> data = Map.of(
-		        "start_time", sd.format(rsv.getStartDate()),
-		        "room_token", rsv.getRoomToken(),
-		        "counselor_name", rsv.getCounselorName(),
-		        "client_name", rsv.getClientName(),
-		        "opponent_phone", "상담사 전화번호: " + rsv.getCounselorPhone(),
-		        "url", "https://js1.jsflux.co.kr"
-		    );
-
-		    // 내담자에게 발송
-		    String htmlContent = emailTpl.loadEmailTemplate(data);
-		    roomService.sendEmailToken(rsv.getClientEmail(), htmlContent);
-
-		    // 상담사에게 발송 (상대 전화번호만 교체)
-		    Map<String, String> data2 = new HashMap<>(data);
-		    data2.put("opponent_phone", "내담자 전화번호: " + rsv.getClientPhone());
-		    String htmlContent2 = emailTpl.loadEmailTemplate(data2);
-		    roomService.sendEmailToken(rsv.getCounselorEmail(), htmlContent2);
-		}
+		emailSend.reservationMail();
 	}
 	
 	@Scheduled(cron = "0 49 * * * *")
