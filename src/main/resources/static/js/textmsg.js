@@ -95,7 +95,7 @@ sfutest.onmessage = (msg, jsep) => {
 	if (event === "event") {
 		if (msg["leaving"]) {
 			console.log("Participant leaving:", msg["leaving"]);
-			sfutest.detach();
+			janus.destroy();
 		}
 	}
 };
