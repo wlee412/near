@@ -72,10 +72,12 @@ document.getElementById("chat-input").addEventListener("keypress", function(e) {
 });
 
 window.expireSub = function() {
-	stompClient.subscribe(`/topic/room/expired/${roomId}`, msg => {
+	stompClient.subscribe(`/topic/expired/${roomId}`, msg => {
+		console.log(msg);
+		console.log("상담 시간 종료");
 		sfutest.send({ message: { request: "leave" } });
 		alert("상담 시간이 종료되었습니다. 퇴장합니다.");
-		window.location.href = "/chat/exit";
+		window.location.href = "/";
 	});
 }
 
