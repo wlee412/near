@@ -73,17 +73,19 @@ document.getElementById("chat-input").addEventListener("keypress", function(e) {
 
 window.expireSub = function() {
 	stompClient.subscribe(`/topic/expired/${roomId}`, msg => {
-		console.log(msg);
-		console.log("상담 시간 종료");
-		sfutest.send({ message: { request: "leave" } });
-		alert("상담 시간이 종료되었습니다. 퇴장합니다.");
-		window.location.href = "/";
+		console.log("만료 메시지 수신:", msg.body);
+		const data = JSON.parse(msg.body);
+		if (data.type === "expired") {
+			if (sfutest) {
+				sfutest.send({
+					message: { request: "leave" },
+					success: () => console.log("Leave request sent."),
+					error: err => console.error("Leave error", err)
+				});
+			}
+			alert("상담 시간이 종료되었습니다. 퇴장합니다.");
+			window.location.href = "/";
+		}
 	});
-}
-
-pluginHandle.onmessage = (msg, jsep) => {
-	const event = msg["videoroom"];
-	if (event === "event" && msg["leaving"]) {
-		sfutest.detach();
-	}
 };
+
