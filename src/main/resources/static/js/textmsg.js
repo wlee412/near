@@ -89,3 +89,14 @@ window.expireSub = function() {
 	});
 };
 
+sfutest.onmessage = (msg, jsep) => {
+	const event = msg["videoroom"];
+	console.log("Janus message", msg);
+	if (event === "event") {
+		if (msg["leaving"]) {
+			console.log("Participant leaving:", msg["leaving"]);
+			sfutest.detach();
+		}
+	}
+};
+
