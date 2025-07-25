@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
 
-html, body {
+html {
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
 	height: 100%;
 	margin: 0;
 	font-family: 'Gowun Batang', serif;
@@ -9,7 +14,7 @@ html, body {
 	color: #333;
 	display: flex;
 	flex-direction: column;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .wrapper {
