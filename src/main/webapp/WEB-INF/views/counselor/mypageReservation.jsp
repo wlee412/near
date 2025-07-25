@@ -6,6 +6,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>상담 예약 현황</title>
   <link rel="stylesheet" href="/css/common.css" />
   <link rel="stylesheet" href="/css/counselor.css" />
