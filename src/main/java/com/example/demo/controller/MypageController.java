@@ -224,8 +224,6 @@ public class MypageController {
 
 			    //세션에 최신 정보 저장
 			    session.setAttribute("loginClient", refreshed);
-
-			    redirectAttributes.addFlashAttribute("message", "회원 정보가 성공적으로 수정되었습니다.");
 			    return "redirect:/mypage/mypageProfile";
 			} else {
 				// 실패 메시지 추가

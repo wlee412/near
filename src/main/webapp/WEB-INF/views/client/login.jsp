@@ -9,17 +9,7 @@
 </head>
 <%@ include file="../includes/header.jsp"%>
 <body class="login-page">
-	<c:if test="${not empty message}">
-		<script>
-			alert("${message}");
-		</script>
-	</c:if>
-	<c:if test="${not empty error}">
-		<script>
-			alert("${error}");
-		</script>
-	</c:if>
-	
+
 
 	<div class="wrapper">
 		<div class="login-box">

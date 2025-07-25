@@ -162,8 +162,6 @@ function execDaumPostcode() {
 		
 
 	
-	
-
 	return true; 
 
 
@@ -399,8 +397,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const birthInput = document.getElementById("birth");
 	birthInput?.addEventListener("blur", () => {
 		if (!birthInput.value) {
-			alert("생년월일을 반드시 선택해야 합니다!");
-			birthInput.focus();
+		    alert("생년월일을 반드시 선택해야 합니다!");
+		    setTimeout(() => birthInput.focus(), 0);
 		}
 	});
 
