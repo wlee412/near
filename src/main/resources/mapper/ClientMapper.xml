@@ -236,7 +236,7 @@
 	<select id="findByPhone"
 		resultType="com.example.demo.model.Client">
 		SELECT * FROM client
-		WHERE PHONE = #{phone}
+		WHERE PHONE = #{phone} AND state = 0
 	</select>
 
 	<select id="checkPhoneExists" resultType="int">
