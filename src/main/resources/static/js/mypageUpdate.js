@@ -158,5 +158,7 @@ function validateUpdateForm() {
 		alert("정보 수정에 동의하셔야 합니다.");
 		return false;
 	}
+	
+	alert("회원정보가 수정되었습니다!");
 	return true; // 모든 조건 통과 시 제출 허용
 }

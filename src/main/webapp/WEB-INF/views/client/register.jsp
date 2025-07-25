@@ -79,17 +79,17 @@
 				</div>
 
 				<!-- 휴대폰 -->
-				<div class="form-group">
-					<label for="phone">휴대폰 번호</label>
-					<div class="input-row">
-						<input type="tel" name="phone" id="phone" required
-							placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
-						<button type="button" class="btn-sendcode" id="sendCodeBtn">인증코드
-							전송</button>
+					<div class="form-group">
+						<label for="phone">휴대폰 번호</label>
+						<div class="input-row">
+							<input type="tel" name="phone" id="phone" required
+								placeholder="숫자만 입력 (예: 01012345678)" maxlength="11">
+							<button type="button" class="btn-sendcode" id="sendCodeBtn">인증코드
+								전송</button>
+						</div>
+						<div id="phoneCheckResult" class="result-text"
+							style="font-size: 14px; margin-top: 4px;"></div>
 					</div>
-					<div id="phoneCheckResult" class="result-text"
-						style="font-size: 14px; margin-top: 4px;"></div>
-				</div>
 
 				<!-- 인증번호 입력 및 타이머 -->
 				<div class="form-group" id="verificationSection"
