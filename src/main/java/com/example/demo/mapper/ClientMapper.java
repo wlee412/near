@@ -1,13 +1,11 @@
 package com.example.demo.mapper;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.model.Client;
-import com.example.demo.model.ClientReservation;
 
 @Mapper
 public interface ClientMapper {
@@ -59,7 +57,7 @@ public interface ClientMapper {
 
 	public int deletePharmFav(@Param("clientId") String clientId, @Param("pharmId") String pharmId);
 
-	public Boolean checkPhoneExists(String phone);
+	public int checkPhoneExists(String phone);
 
  
 	

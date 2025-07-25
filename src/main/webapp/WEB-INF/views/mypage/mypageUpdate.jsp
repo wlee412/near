@@ -23,7 +23,7 @@
     alert("회원정보를 먼저 수정해 주세요.");
   }
 </script>
-</head>
+</head>	
 
 <body>
 	<!-- 헤더 영역 -->
@@ -55,12 +55,6 @@
 				<section class="main-section" id="contentArea">
 					<h3>정보수정</h3>
 					<div class="divider"></div>
-					<c:if test="${not empty message}">
-						<script>
-							alert("${message}");
-						</script>
-					</c:if>
-
 					<form id="updateForm" action="/mypage/update" method="post"
 						onsubmit="return validateUpdateForm();">
 
