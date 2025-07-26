@@ -23,9 +23,21 @@
     alert("회원정보를 먼저 수정해 주세요.");
   }
 </script>
+
+
 </head>	
 
 <body>
+	<c:if test="${not empty fail}">
+		<script>
+			alert('<c:out value="${fail}" />');
+		</script>
+	</c:if>
+	<c:if test="${not empty success}">
+		<script>
+			alert('<c:out value="${success}" />');
+		</script>
+	</c:if>
 	<!-- 헤더 영역 -->
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />

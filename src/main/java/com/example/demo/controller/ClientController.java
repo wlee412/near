@@ -162,7 +162,7 @@ public class ClientController {
 			System.out.println("로그인 성공!");
 			return "redirect:/"; // 로그인 성공 시 메인 페이지로 이동
 		} else {
-			model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
+			model.addAttribute("fail", "아이디 또는 비밀번호가 틀렸습니다.");
 			return "client/login"; // 로그인 실패 시 로그인 화면으로
 		}
 	}
@@ -214,20 +214,20 @@ public class ClientController {
 
 		// 현재 비밀번호 확인
 		if (!passwordEncoder.matches(currentPassword, client.getPassword())) {
-			redirectAttributes.addFlashAttribute("error", "❌ 현재 비밀번호가 일치하지 않습니다.");
+			redirectAttributes.addFlashAttribute("fail", "❌ 현재 비밀번호가 일치하지 않습니다.");
 			return "redirect:/mypage/mypagePassword";
 		}
 
 		// 새 비밀번호 유효성 검사
 		String pwRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+\\[\\]{};:'\",.<>/?`~]).{8,}$";
 		if (!newPassword.matches(pwRegex)) {
-			redirectAttributes.addFlashAttribute("error", "❌ 비밀번호는 8자 이상, 영문+숫자+특수문자를 포함해야 합니다.");
+			redirectAttributes.addFlashAttribute("fail", "❌ 비밀번호는 8자 이상, 영문+숫자+특수문자를 포함해야 합니다.");
 			return "redirect:/mypage/changePassword";
 		}
 
 		// 새 비밀번호 일치 여부 확인
 		if (!newPassword.equals(confirmPassword)) {
-			redirectAttributes.addFlashAttribute("error", "❌ 새 비밀번호가 서로 다릅니다.");
+			redirectAttributes.addFlashAttribute("fail", "❌ 새 비밀번호가 서로 다릅니다.");
 			return "redirect:/mypage/mypagePassword";
 		}
 
@@ -236,7 +236,7 @@ public class ClientController {
 		clientService.updatePassword(client);
 
 		redirectAttributes.addFlashAttribute("success", " 비밀번호가 성공적으로 변경되었습니다. ");
-		return "redirect:/mypage/";
+		return "redirect:/mypage/mypagePassword";
 	}
 
 	// ✅ 현재 비밀번호 일치 확인용 (AJAX 요청 처리)
@@ -320,8 +320,8 @@ public class ClientController {
 	    if (loginClient.getSocialPlatform() != null || "true".equals(social)) {
 	        boolean result = clientService.deleteClient(clientId);
 	        if (!result) {
-	            redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다.");
-	            return "redirect:/mypage";
+	            redirectAttributes.addFlashAttribute("fail", "연동 해제에 실패했습니다.");
+	            return "redirect:/mypageDelete";
 	        }
 	        session.invalidate();
 	        return "redirect:/main";
@@ -329,25 +329,27 @@ public class ClientController {
 
 	    // ② 일반 회원은 기존대로 pw 검사
 	    if (pw == null || pwConfirm == null) {
-	        redirectAttributes.addFlashAttribute("error", "비밀번호를 입력해 주세요.");
+	        redirectAttributes.addFlashAttribute("fail", "비밀번호를 입력해 주세요.");
 	        return "redirect:/mypage/mypageDelete";
 	    }
 	    if (!pw.equals(pwConfirm)) {
-	        redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+	        redirectAttributes.addFlashAttribute("fail", "비밀번호가 일치하지 않습니다.");
 	        return "redirect:/mypage/mypageDelete";
 	    }
 	    if (!passwordEncoder.matches(pw, loginClient.getPassword())) {
-	        redirectAttributes.addFlashAttribute("error", "비밀번호가 올바르지 않습니다.");
+	        redirectAttributes.addFlashAttribute("fail", "비밀번호가 올바르지 않습니다.");
 	        return "redirect:/mypage/mypageDelete";
 	    }
 
 	    // ③ 일반 회원 탈퇴 처리
 	    boolean result = clientService.deleteClient(clientId);
 	    if (!result) {
-	        redirectAttributes.addFlashAttribute("error", "회원 탈퇴에 실패했습니다.");
-	        return "redirect:/mypage/";
+	        redirectAttributes.addFlashAttribute("fail", "회원 탈퇴에 실패했습니다.");
+	        return "redirect:/mypage/mypageDelete";
 	    }
 	    session.invalidate();
+	    
+        redirectAttributes.addFlashAttribute("success", "회원 탈퇴하셨습니다.");
 	    return "redirect:/main";
 	}
 
