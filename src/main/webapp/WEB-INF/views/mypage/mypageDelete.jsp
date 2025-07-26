@@ -11,10 +11,14 @@
 </head>
 <body>
 
-	<!-- 회원탈퇴 페이지의 맨 위나 body 안에 삽입 -->
-	<c:if test="${not empty error}">
+	<c:if test="${not empty fail}">
 		<script>
-			alert("${error}");
+			alert('<c:out value="${fail}" />');
+		</script>
+	</c:if>
+	<c:if test="${not empty success}">
+		<script>
+			alert('<c:out value="${success}" />');
 		</script>
 	</c:if>
 	

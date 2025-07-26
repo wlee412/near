@@ -90,3 +90,24 @@ function checkNewPwValid() {
         newPwMsg.style.color = "green";
     }
 }
+
+function checkPwMatch() {
+    const newPw = document.getElementById("newPw").value;
+    const confirmPw = document.getElementById("confirmPw").value;
+    const pwMatchMsg = document.getElementById("pwMatchMsg");
+
+    // 새 비밀번호가 비어있으면 메시지 지우기
+    if (!confirmPw) {
+        pwMatchMsg.textContent = "";
+        return;
+    }
+
+    // 비밀번호 일치 여부 확인
+    if (newPw === confirmPw) {
+        pwMatchMsg.textContent = "✅ 새 비밀번호가 일치합니다.";
+        pwMatchMsg.style.color = "green";
+    } else {
+        pwMatchMsg.textContent = "❌ 새 비밀번호가 일치하지 않습니다.";
+        pwMatchMsg.style.color = "red";
+    }
+}

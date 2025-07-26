@@ -3,13 +3,21 @@
 <html>
 <head>
 <title>로그인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/login.css">
 
 </head>
 <%@ include file="../includes/header.jsp"%>
-<body class="login-page">
 
+
+<body class="login-page">
+	<c:if test="${not empty fail}">
+		<script>
+			alert('<c:out value="${fail}" />');
+		</script>
+	</c:if>
 
 	<div class="wrapper">
 		<div class="login-box">
@@ -20,12 +28,14 @@
 			</div>
 
 			<form id="loginForm" action="/client/login" method="post">
-			    <input type="text" id="idInput" name="clientId" placeholder="아이디" required>
-			    <input type="password" id="pwInput" name="password" placeholder="비밀번호" required>
-			    
+				<input type="text" id="idInput" name="clientId" placeholder="아이디"
+					required> <input type="password" id="pwInput"
+					name="password" placeholder="비밀번호" required>
+
 				<div class="login-options">
-					<label><input type="checkbox" name="rememberMe">로그인 상태 유지</label> 
-					<a href="/client/find" class="find-link" id="findLink">아이디/비밀번호 찾기</a>
+					<label><input type="checkbox" name="rememberMe">로그인
+						상태 유지</label> <a href="/client/find" class="find-link" id="findLink">아이디/비밀번호
+						찾기</a>
 
 					<!-- 토글 버튼 -->
 					<div class="role-toggle">
@@ -60,7 +70,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<%@ include file="../includes/footer.jsp"%>
 	<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>

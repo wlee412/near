@@ -97,14 +97,6 @@ public class MypageController {
 	        }
 	    }
 
-	    // 가입일로부터 D+ 계산
-	    if (client.getRegDate() != null) {
-	        LocalDate joinDate = client.getRegDate().toLocalDateTime().toLocalDate();
-	        LocalDate today = LocalDate.now(ZoneId.systemDefault());
-	        long dday = ChronoUnit.DAYS.between(joinDate, today);
-	        model.addAttribute("dDay", dday);
-	    }
-
 	    return "mypage/mypage";
 	}
 	
@@ -176,8 +168,8 @@ public class MypageController {
 			if (loginClient == null) {
 				return "redirect:/client/login"; // 로그인 안 했으면 로그인으로
 			}
-
-			model.addAttribute("client", loginClient); // JSP에 회원 정보 넘겨줌
+			
+			model.addAttribute("client", loginClient); 
 			return "client/update"; // 수정 폼 화면 반환
 		}
 
@@ -224,10 +216,12 @@ public class MypageController {
 
 			    //세션에 최신 정보 저장
 			    session.setAttribute("loginClient", refreshed);
+				redirectAttributes.addFlashAttribute("success", "회원 정보 수정에 성공했습니다!");
+				
 			    return "redirect:/mypage/mypageProfile";
 			} else {
 				// 실패 메시지 추가
-				redirectAttributes.addFlashAttribute("error", "회원 정보 수정에 실패했습니다.");
+				redirectAttributes.addFlashAttribute("fail", "회원 정보 수정에 실패했습니다.");
 
 				// 수정 페이지로 리다이렉트
 				return "redirect:/mypage/mypageUpdate";
