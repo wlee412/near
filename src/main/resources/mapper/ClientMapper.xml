@@ -6,53 +6,70 @@
 <mapper namespace="com.example.demo.mapper.ClientMapper">
 
 
-	<!-- 회원가입. -->
-	<insert id="insert"
-		parameterType="com.example.demo.model.Client">
-		INSERT INTO client (
-		client_id,
-		password,
-		name,
-		phone,
-		email_id,
-		email_domain,
-		zipcode,
-		addr_base,
-		addr_detail,
-		birth,
-		gender,
-		alarm,
-		personal_info,
-		social_platform,
-		social_id,
-		interest,
-		verified,
-		state,
-		reg_date
-		)
-		VALUES (
-		#{clientId},
-		#{password},
-		#{name},
-		#{phone},
-		#{emailId},
-		#{emailDomain},
-		#{zipcode},
-		#{addrBase},
-		#{addrDetail},
-		#{birth},
-		#{gender},
-		#{alarm},
-		#{personalInfo},
-		#{socialPlatform},
-		#{socialId},
-		#{interest},
-		#{verified},
-		#{state},
-		NOW()
-		)
-	</insert>
-
+<insert id="insert" parameterType="com.example.demo.model.Client">
+    INSERT INTO client (
+        client_id,
+        password,
+        name,
+        phone,
+        email_id,
+        email_domain,
+        zipcode,
+        addr_base,
+        addr_detail,
+        birth,
+        gender,
+        alarm,
+        personal_info,
+        social_platform,
+        social_id,
+        interest,
+        verified,
+        state,
+        reg_date
+    )
+    VALUES (
+        #{clientId},
+        #{password},
+        #{name},
+        #{phone},
+        #{emailId},
+        #{emailDomain},
+        #{zipcode},
+        #{addrBase},
+        #{addrDetail},
+        #{birth},
+        #{gender},
+        #{alarm},
+        #{personalInfo},
+        #{socialPlatform},
+        #{socialId},
+        #{interest},
+        #{verified},
+        0,
+        NOW()
+    )
+    ON DUPLICATE KEY UPDATE
+        -- state가 1(탈퇴)인 경우에만 덮어쓰기
+        password = IF(state=1, VALUES(password), password),
+        name = IF(state=1, VALUES(name), name),
+        phone = IF(state=1, VALUES(phone), phone),
+        email_id = IF(state=1, VALUES(email_id), email_id),
+        email_domain = IF(state=1, VALUES(email_domain), email_domain),
+        zipcode = IF(state=1, VALUES(zipcode), zipcode),
+        addr_base = IF(state=1, VALUES(addr_base), addr_base),
+        addr_detail = IF(state=1, VALUES(addr_detail), addr_detail),
+        birth = IF(state=1, VALUES(birth), birth),
+        gender = IF(state=1, VALUES(gender), gender),
+        alarm = IF(state=1, VALUES(alarm), alarm),
+        personal_info = IF(state=1, VALUES(personal_info), personal_info),
+        social_platform = IF(state=1, VALUES(social_platform), social_platform),
+        social_id = IF(state=1, VALUES(social_id), social_id),
+        interest = IF(state=1, VALUES(interest), interest),
+        verified = IF(state=1, VALUES(verified), verified),
+        state = IF(state=1, 0, state),
+        reg_date = IF(state=1, NOW(), reg_date);
+</insert>
 	<!-- ID 중복 확인 -->
 	<select id="countById" parameterType="String" resultType="int">
 		SELECT
@@ -236,7 +253,7 @@
 	<select id="findByPhone"
 		resultType="com.example.demo.model.Client">
 		SELECT * FROM client
-		WHERE PHONE = #{phone}
+		WHERE PHONE = #{phone} AND state=0;
 	</select>
 
 	<select id="checkPhoneExists" resultType="int">

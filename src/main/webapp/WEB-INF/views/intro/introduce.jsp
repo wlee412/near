@@ -40,7 +40,7 @@
 				<h2>상담사 프로필</h2>
 				<div class="counselor-list vertical-profile">
 					<div class="counselor-card-horizontal">
-						<img src="/images/counselor01.png" alt="상담사1">
+						<img src="/images/counselor01.webp" alt="상담사1">
 						<div class="counselor-info">
 							<h3>이병철 상담사</h3>
 							<p class="subtitle">정신건강 임상심리사 / 1급 상담심리사</p>
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="counselor-card-horizontal">
-						<img src="/images/counselor02.png" alt="상담사2">
+						<img src="/images/counselor02.webp" alt="상담사2">
 						<div class="counselor-info">
 							<h3>신하령 상담사</h3>
 							<p class="subtitle">청소년 상담사 / 놀이치료사</p>
@@ -69,7 +69,7 @@
 					</div>
 
 					<div class="counselor-card-horizontal">
-						<img src="/images/counselor03.png" alt="상담사3">
+						<img src="/images/counselor03.webp" alt="상담사3">
 						<div class="counselor-info">
 							<h3>전미희 상담사</h3>
 							<p class="subtitle">부부상담 / 중독상담 전문가</p>

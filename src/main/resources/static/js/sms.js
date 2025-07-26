@@ -110,8 +110,10 @@ function sendIdCode() {
 		timerEl.textContent = "";
 		return;
 	}
-
-	fetch("/sms/send/find-id", {
+	
+	const url = "https://js1.isflux.co.kr/sms/send/find-id";
+	
+	fetch(url, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ phone })

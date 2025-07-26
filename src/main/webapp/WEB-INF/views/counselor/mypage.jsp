@@ -8,7 +8,7 @@
 <title>상담사 마이페이지</title>
 <link rel="stylesheet" href="/css/common.css" />
 <link rel="stylesheet" href="/css/counselor.css" />
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <%-- jQuery CDN --%>
 </head>
 <body>

@@ -28,8 +28,8 @@
 		FROM (SELECT s.*, r.room_token 
 		FROM v_reservation_summary AS s INNER JOIN room AS r USING(reservation_no)) AS st
 		WHERE state = '예약'
-		  AND start BETWEEN DATE_ADD(NOW(), INTERVAL 78 MINUTE)
-		                AND DATE_ADD(NOW(), INTERVAL 82 MINUTE)
+		  AND start BETWEEN DATE_ADD(NOW(), INTERVAL 28 MINUTE)
+		                AND DATE_ADD(NOW(), INTERVAL 32 MINUTE)
 	</select>
 	
 	<select id="janusNums" resultType="int">
@@ -48,8 +48,8 @@
 	<update id="roomOpen">
 		UPDATE room SET state='진행'
 		WHERE state='예약'
-			AND start BETWEEN DATE_ADD(NOW(), INTERVAL 13 MINUTE)
-			                AND DATE_ADD(NOW(), INTERVAL 9 MINUTE)
+			AND start BETWEEN DATE_ADD(NOW(), INTERVAL 9 MINUTE)
+			                AND DATE_ADD(NOW(), INTERVAL 13 MINUTE)
 	</update>
 	
 	<insert id="createRoom" parameterType="room">
@@ -64,5 +64,12 @@
 		WHERE reservation_no = #{reservationNo}
 		AND state IN ('예약', '진행')
 	</update>
+	
+	<select id="testGetBooked" resultType="reservation">
+		SELECT *
+		FROM (SELECT s.*, r.room_token 
+		FROM v_reservation_summary AS s INNER JOIN room AS r USING(reservation_no)) AS st
+		WHERE state = '예약'
+	</select>
 	
 </mapper>
