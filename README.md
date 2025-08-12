@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  <a href="https://js1.jsflux.co.kr/" target="_blank">
+  <a href="https://52.79.239.2.nip.io/" target="_blank">
     <img width="369" height="115" alt="Group 8" src="https://github.com/user-attachments/assets/13b42502-45fb-4dc0-87ca-a3044b34ee89" />
   </a>
 </p>
